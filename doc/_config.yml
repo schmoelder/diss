@@ -1,0 +1,257 @@
+# Book settings
+title: A modular framework for modeling and optimizing chromatographic processes
+author: Johannes Schmölder
+logo: "_static/logo.png"
+description: >-
+  A modular framework for modeling and optimizing chromatographic processes
+
+# Execution settings
+execute:
+  execute_notebooks: "cache"
+
+# Parse and render settings
+parse:
+  myst_enable_extensions:
+    - colon_fence
+    - amsmath
+    - dollarmath
+    - linkify
+    - substitution
+    - tasklist
+myst_dmath_double_inline: true
+
+# HTML-specific settings
+html:
+  use_issues_button: true
+  use_repository_button: true
+  home_page_in_navbar: false
+  extra_navbar: ""
+
+# Launch button settings
+launch_buttons:
+  notebook_interface: "classic"
+  jupyterhub_url: "https://jupyter.cadet-web.de"
+
+repository:
+  url: "https://github.com/schmoelder/diss"
+  path_to_book: "doc"
+
+# Bibliography
+bibtex_bibfiles:
+  - references.bib
+
+# Sphinx settings
+sphinx:
+  extra_extensions:
+    - sphinx_jupyterbook_latex
+    - sphinx.ext.intersphinx
+    - sphinx_subfigure
+  config:
+    # List with examples 👇 https://de.overleaf.com/learn/latex/Bibtex_bibliography_styles
+    bibtex_reference_style: label
+    bibtex_default_style: "plain"
+    intersphinx_mapping:
+      CADET-Process:
+        - "https://cadet-process.readthedocs.io/en/latest/"
+        - null
+      cadet:
+        - "https://cadet.github.io/master/"
+        - null
+    # Override the style how numrefs appear in the text
+    numfig_format:
+      section: "Section %s"
+      figure: "Fig. %s"
+      table: "Tab. %s"
+      code-block: "Code %s"
+    latex_logo: "_static/logo.png"
+    latex_elements:
+      papersize: "a4paper"
+      pointsize: "12"
+      geometry: |
+        \usepackage[
+          top=4cm,
+          bottom=4cm,
+          left=2.7cm,
+          right=2.7cm,
+        ]{geometry}
+      fontpkg: |
+        \usepackage{fontspec}
+
+        % Change color of Mono Font Output
+        \usepackage{xcolor}
+
+        \definecolor{ttcolor}{RGB}{255,110,120}
+
+        % redefinition of \texttt
+        \let\Oldtexttt\texttt
+        \renewcommand\texttt[1]{{\ttfamily\color{ttcolor}#1}}
+
+        % redefinition of \verb
+        \makeatletter
+        \def\verb{\relax\ifmmode\hbox\else\leavevmode\null\fi
+          \bgroup\color{ttcolor}
+            \verb@eol@error \let\do\@makeother \dospecials
+            \verbatim@font\@noligs
+            \@ifstar\@sverb\@verb}
+        \makeatother
+
+      sphinxsetup: |
+        hmargin={0.7in,0.7in}, vmargin={1in,1in},
+        HeaderFamily=\rmfamily\bfseries,
+        InnerLinkColor={rgb}{0,0,0},
+      fncychap: "" # Don't use fancy chapter titles; see custom definition in preamble
+      preamble: |
+        % Enable @-symbol for macros; don't forget to turn off with \makeatother
+        \makeatletter
+
+        % Load packages
+        \usepackage{mhchem}
+        \usepackage{etoc}
+
+        % Font Sizes
+        %% Standard text
+        \usepackage{setspace}
+        \onehalfspacing
+
+        %% Code blocks: Override the fontsize command defined and used by fancyvrb (which implements Verbatim environments).
+        %% \renewcommand{\FV@FontSize}{\scriptsize}
+
+        %% Tables:
+        \newcommand\originalSphinxAtTableStart{}
+        \let\originalSphinxAtTableStart\sphinxattablestart
+        \renewcommand{\sphinxattablestart}{\small \originalSphinxAtTableStart}
+
+        %% Basic caption configuration is via `usepackage` for multiple settings:
+        % - Fontsize a bit smaller than the text
+        % - Reduced spacing between captions and captioned content
+        \usepackage[font=small,skip=1pt]{caption}
+
+        % Normal Page Style
+        \fancypagestyle{normal}{
+          \fancyhf{}
+          \fancyfoot[RO]{{\py@HeaderFamily\thepage}}
+          \fancyhead[LO]{{\py@HeaderFamily\nouppercase{\leftmark}}}
+          \if@twoside
+            \fancyfoot[LE]{{\py@HeaderFamily\thepage}}
+            \fancyhead[RE]{{\py@HeaderFamily\nouppercase{\leftmark}}}
+          \fi
+          \renewcommand{\headrulewidth}{0.4pt}
+          \renewcommand{\footrulewidth}{0pt}
+        }
+        % Chapter pagestyle
+        \fancypagestyle{plain}{
+          \fancyhf{}
+          \fancyfoot[RO]{{\py@HeaderFamily\thepage}}
+          \if@twoside
+            \fancyfoot[LE]{{\py@HeaderFamily\thepage}}
+          \fi
+          \renewcommand{\headrulewidth}{0pt}
+          \renewcommand{\footrulewidth}{0pt}
+        }
+        \makeatother
+        \pagestyle{normal} % Call explicitly
+        \renewcommand{\chaptermark}[1]{\markboth{\thechapter\ #1}{}} % Set after pagestyle definition
+
+        % TOC Styling
+        \usepackage[titles]{tocloft}
+        \usepackage{xcolor}
+        \renewcommand\cftpartfont{\color{black}}
+        \renewcommand\cftpartpagefont{\color{black}}
+        \cftsetpnumwidth{1.25cm}\cftsetrmarg{1.5cm}
+        \setlength{\cftchapnumwidth}{0.75cm}
+        \setlength{\cftsecindent}{\cftchapnumwidth}
+        \setlength{\cftsecnumwidth}{1.25cm}
+
+        % Title styling
+        \titleformat{\chapter}[display]{\normalfont\huge\bfseries\titlerule\vspace{0.25cm}}{\LARGE\chaptertitlename~\thechapter}{1em}{}[\vspace{0.25cm}\titlerule]
+        \titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+        \titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+        \titleformat{\subsubsection}{\normalfont\normalsize\bfseries}{\thesubsubsection}{1em}{}
+        \titleformat{\paragraph}{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+        \titleformat{\subparagraph}{\normalfont\normalsize}{\thesubparagraph}{1em}{\labelitemi~}
+        \titlespacing*{\chapter}{0pt}{20pt}{30pt}
+        \titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+        \titlespacing*{\subsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+        \titlespacing*{\subsubsection}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+        \titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+        \titlespacing*{\subparagraph}{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+        % Label code blocks as "Code #" instead of "Listing #"
+        % This works in combination with the `sphinx.config.numfig_format` setting from further up in this file.
+        \AtBeginDocument{
+          % This is placed here, which is _after_ Babel overwrote the preamble setting.
+          \renewcommand{\literalblockname}{Code }
+        }
+
+      maketitle: |
+        \makeatletter % enable @-symbol for macros; don't forget to turn of with \makeatother
+        \newcommand{\mysphinxtitle}{%
+          \let\sphinxrestorepageanchorsetting\relax
+          \ifHy@pageanchor\def\sphinxrestorepageanchorsetting{\Hy@pageanchortrue}\fi
+          \hypersetup{pageanchor=false}% avoid duplicate destination warnings
+          \begin{titlepage}%
+            \begingroup % for PDF information dictionary
+             \def\endgraf{ }\def\and{\& }%
+             \pdfstringdefDisableCommands{\def\\{, }}% overwrite hyperref setup
+             \hypersetup{pdfauthor={\@author}, pdftitle={\@title}}%
+            \endgroup
+            \begin{flushright}%
+              \sphinxlogo
+              \py@HeaderFamily
+              {\LARGE \@title \par}
+              \vfill\vfill
+            \end{flushright}%\par
+            {\large
+              \begin{doublespacing}
+              \begin{centering}
+              Der Technischen Fakultät\\
+              der Friedrich-Alexander-Universität\\
+              Erlangen-Nürnberg\\
+              zur\\
+              Erlangung des Doktorgrades\\[2em]
+              D\,O\,K\,T\,O\,R\,-\,I\,N\,G\,E\,N\,I\,E\,U\,R\\[2em]
+              vorgelegt von\\
+              \@author\\
+              aus Bamberg\\
+              \end{centering}
+              \end{doublespacing}
+            }
+            \vfill\vfill
+          \end{titlepage}%
+
+          \clearpage
+
+          \thispagestyle{empty}
+          \vspace*{14cm}
+          {\large
+            \begin{doublespacing}
+              Als Dissertation genehmigt\\
+              von der Technischen Fakultät\\
+              der Friedrich-Alexander-Universität Erlangen-Nürnberg\\[1em]
+              \begin{tabular}{@{}lp{6cm}}
+                  Tag der mündlichen Prüfung:& \textbf{Tag. Monat Jahr}\\[1em]
+                  Vorsitzender des Promotionsorgans: &\textbf{Prof. Dr.-Ing.}\\[1em]
+                  Gutachter: & \textbf{Prof. Dr.-Ing. Malte Kaspereit}\\
+                             & \textbf{Prof. Dr.-Ing. }\\
+              \end{tabular}
+            \end{doublespacing}
+          }
+          \cleardoublepage
+
+          \thispagestyle{empty}
+          \section*{Acknogledgements}
+          foo bar
+
+          \clearpage
+
+          \sphinxrestorepageanchorsetting
+          \setcounter{footnote}{0}%
+        }
+        \mysphinxtitle
+        \makeatother
+
+# LaTeX settings
+latex:
+  latex_engine: "xelatex"
+  latex_documents:
+    targetname: "diss.tex"

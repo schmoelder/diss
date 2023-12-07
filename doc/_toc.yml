@@ -1,0 +1,38 @@
+format: jb-book
+root: index
+options:
+  numbered: true
+chapters:
+  - file: 01_introduction/00_index
+  - file: 02_fundamentals/00_index
+    sections:
+      - file: 02_fundamentals/01_chromatographic_principle
+      - file: 02_fundamentals/02_model_formulation
+      - file: 02_fundamentals/03_model_solution
+      - file: 02_fundamentals/04_design_formulation
+      - file: 02_fundamentals/05_design_solution
+  - file: 03_methods_software_design/00_index
+    sections:
+      - file: 03_methods_software_design/01_programming_principles
+      - file: 03_methods_software_design/02_object_oriented_programming
+      - file: 03_methods_software_design/03_documentation
+      - file: 03_methods_software_design/04_testing
+      - file: 03_methods_software_design/05_version_control
+      - file: 03_methods_software_design/06_ci_cd
+      - file: 03_methods_software_design/07_software_licenses
+  - file: 04_implementation/overview
+    sections:
+      - file: 04_implementation/process_model/index
+      - file: 04_implementation/simulator
+      - file: 04_implementation/process_evaluation/index
+      - file: 04_implementation/optimization/index
+  - file: 05_case_studies/00_index
+    sections:
+      - file: 05_case_studies/01_batch_elution/01_process_model.md
+      - file: 05_case_studies/01_batch_elution/02_optimization.md
+      - file: 05_case_studies/02_ssr_kaspereit/01_process_model.md
+      - file: 05_case_studies/02_ssr_kaspereit/02_optimization.md
+      # - file: 05_case_studies/03_pH/docs/index
+  - file: 06_conclusion/00_index
+  - file: bibliography
+  - file: appendix/index
