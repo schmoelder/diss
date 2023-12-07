@@ -1,0 +1,7 @@
+bracketSpacing: false
+trailingComma: "all"
+tabWidth: 4
+semi: false
+singleQuote: false
+overrides: [{"files": ["*.yaml", "*.yml"], "options": {"tabWidth": 2}}]
+endOfLine: "lf"
