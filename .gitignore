@@ -1,0 +1,6 @@
+*.bak
+*.sav
+**/_build/*
+log
+diskcache_*/
+results_*/
