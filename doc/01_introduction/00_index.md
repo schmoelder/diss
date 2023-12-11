@@ -24,7 +24,7 @@ Simultaneously, the advancements in material sciences meant that highly selectiv
 Today, the technique is widely used, as many different adsorbents can be combined with a broad range of solvents.
 It has applications in performing complex separations in the biopharmaceutical industry, where there are stringent purity requirements and regulatory compliance, including Good Manufacturing Practice (GMP).
 Additionally, the technique is employed in the purification of basic chemicals on a multi-ton scale.
-This includes the preparative separation of petrochemical isomers and sugars, as well as the purification of essential chemicals such as amino acids and pharmaceuticals {cite}`SchmidtTraub2020`..
+This includes the preparative separation of petrochemical isomers and sugars, as well as the purification of essential chemicals such as amino acids and pharmaceuticals {cite}`SchmidtTraub2020`.
 
 % Operating Concepts
 Most chromatographic separations are performed using a single column.

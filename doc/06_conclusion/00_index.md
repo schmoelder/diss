@@ -4,7 +4,7 @@ The development and optimal design of advanced chromatographic processes is chal
 A software platform was developed that greatly simplifies this by decoupling the main design tasks into interchangeable modules for process modeling, simulation, product fractionation, and process optimization.
 This enables flexible and fast adjustment of process and column configurations, chromatographic interaction mechanisms, and design goals or constraints.
 The software was implemented using the programming language Python and includes an interface to the open-source simulation tool *CADET*, a fast and accurate numerical solver for chromatographic processes.
-This makes the program, denoted as *CADET-Process*, directly applicable to developing advanced processes for demanding applications in, for example, the separation of biomolecules, nanoparticles, and the like, where complex interaction mechanisms and various dispersive effects need to be considered.
+This makes the program, denoted as **CADET-Process**, directly applicable to developing advanced processes for demanding applications in, for example, the separation of biomolecules, nanoparticles, and the like, where complex interaction mechanisms and various dispersive effects need to be considered.
 
 The `FlowSheet` of the chromatographic systems could be described by connecting `UnitOperations` in a directed graph which represents the material flow between them.
 The dynamic behavior typical for chromatography, especially for advanced operating modes, was modeling by defining events that change the state of the system at given times.

@@ -61,7 +61,7 @@ import math
 
 def circle_area(r):
     """Calculate the area of a circle.
-    
+
     Parameters
     ----------
     r : float or int
@@ -84,11 +84,11 @@ def circle_area(r):
         raise TypeError("The radius has to be float.")
     if r < 0:
         raise ValueError("The radius cannot be negative.")
-    
+
     return math.pi * r**2
 ```
 
-Writing these kinds of tests incentivizes programmers to think about code modularization, programming towards cleaner interfaces (see {numref}`interface_vs_implementation`, and writing proper documentation (see {numref}`software_documentation`).
+Writing these kinds of tests incentivizes programmers to think about code modularization, programming towards cleaner interfaces (see {numref}`programming_principles`, and writing proper documentation (see {numref}`software_documentation`).
 Tests are essential for ensuring a working code base and identifying problems when they occur.
 
 In this project, tests for various functions can be found in the root directory of the *Git* repository.

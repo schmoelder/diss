@@ -24,7 +24,8 @@ For linear isotherms, the resulting operating area takes on a triangular shape a
 Initially, this theory was developed solely for linear isotherms but has since been extended to accommodate other isotherm models, such as Langmuir {cite}`Mazzotti2006`.
 
 Equilibrium theory can be used for the design of steady-state recycling processes (see {numref}`section %s<ssr_study>`).
-In this context, the method is used to predict the breakthrough of components to determine the times when the recycling valve is switched, and consequently, the fractionation times {cite}`Kapspereit2005,Kaspereit2011`.
+@todo: update reference
+In this context, the method is used to predict the breakthrough of components to determine the times when the recycling valve is switched, and consequently, the fractionation times {cite}`Kaspereit2005,Kaspereit2011`.
 
 Siitonen et al. aimed at generalizing the established design methods for other single- and multi-column processes by using the equilibrium theory of chromatography, allowing direct prediction of multiple dimensionless operating parameters that lead to the complete separation of a binary feed mixture, using the Langmuir isotherm {cite}`Siitonen2015`.
 
