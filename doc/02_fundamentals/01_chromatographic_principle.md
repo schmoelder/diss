@@ -14,8 +14,7 @@ Chromatography is a thermal separation process widely used for purifying mixture
 In this process, the mixture's components are dissolved in a solvent, known as mobile phase, and then transported through a column packed with a porous material, also referred to as the stationary phase.
 As the solvent flows through the column, each component exhibits a distinct level of interaction with the stationary phase material.
 Consequently, components that interact more strongly with the surface of the stationary phase are retained for a longer duration and, as a result, elute later than components that only interact weakly.
-The differential retention and elution time enable the effective separation of the mixture's components at
-the column outlet.
+The differential retention and elution time enable the effective separation of the mixture's components at the column outlet.
 
 These interactions can be characterized by various retention mechanisms.
 Most chromatographic separations are based on the principle of adsorption, which involves the adhesion and accumulation of molecules on the surface of the stationary phase.
@@ -42,6 +41,7 @@ Preparative chromatography, on the other hand, is employed for the purification 
 
 This work primarily focusses on studying preparative liquid chromatography.
 Specifically, it aims to provide a comprehensive framework for modeling and optimizing the performance of different operating modes in which preparative liquid chromatography is performed.
+
 To introduce some fundamental concepts that are relevant for all chromatographic processes, consider a simple batch elution process.
 In a batch elution process, small quantities of a mixture are injected onto a chromatographic column.
 Following the injection, an eluent is pumped through the column, facilitating the separation of components based on the retention mechanisms previously discussed.
@@ -71,7 +71,7 @@ simulator = Cadet()
 simulation_results = simulator.simulate(process)
 
 import matplotlib.pyplot as plt
-fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(10, 5))
+fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(10, 4))
 
 simulation_results.solution.column.inlet.plot(fig=fig, ax=ax1, show=False)
 

@@ -107,7 +107,7 @@ It is worth noting that the sign of $\frac{dq}{dt}$ causes the resulting flux to
 In this approach, the original rate constants $k_a$ and $k_d$ are replaced by the equilibrium constant $k_{eq}$ and a new kinetic constant $k_{kin}$.
 
 Note that not all isotherms have a native representation in terms of explicit functions of solute concentration and amount adsorbed.
-For example, the Freundlich model does not follow this form.
+For example, the Freundlich model does not follow this form {cite}`Herzog1909`.
 In such cases, only LDF approximations exist.
 Similarly, LDF versions are not available for all binding models.
 

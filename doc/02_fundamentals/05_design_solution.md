@@ -11,16 +11,29 @@ In this chapter, multiple approaches are discussed to solve these problems.
 ## Shortcut methods
 
 Shortcut methods in the design of chromatographic processes refer to techniques that can help reduce the time and resources required to design and optimize such processes.
-These methods often rely on simplifying assumptions or heuristics to make the design process more efficient.
+These methods often rely on simplifying assumptions or heuristics to make the design process more efficient {cite}`Nicoud2015`.
 Examples of shortcut methods include using empirical equations or pre-determined values to estimate key parameters, using statistical or machine learning techniques to model the behavior of the process, and using optimization algorithms to find the best solution.
 
-@todo:
-Beispiele:
+A notable example of a shortcut method is the application of equilibrium theory.
+While it assumes the absence of kinetic limitations, which may not hold in practice, especially for larger molecules, it serves as a fundamental concept in several design methods.
+Equilibrium theory provides inherent boundaries for the design of processes, making it a valuable starting point {cite}`SchmidtTraub2020`.
 
-- Kaspereit {cite}`Kaspereit2005`
-- Triangle theory {cite}`Mazzotti2006`
-- Unified design {cite}`Siitonen2015`
+In particular, it finds application in the design and operation of the simulated moving bed (SMB) process.
+Here, the basic idea is to determine an operating area for dimensionless flow rate ratios for which a complete separation of a two-component mixture can be achieved in a (theoretical) true moving bed (TMB) process.
+For linear isotherms, the resulting operating area takes on a triangular shape and is often referred to as the "triangle theory".
+Initially, this theory was developed solely for linear isotherms but has since been extended to accommodate other isotherm models, such as Langmuir {cite}`Mazzotti2006`.
 
+Equilibrium theory can be used for the design of steady-state recycling processes (see {numref}`section %s<ssr_study>`).
+In this context, the method is used to predict the breakthrough of components to determine the times when the recycling valve is switched, and consequently, the fractionation times {cite}`Kapspereit2005,Kaspereit2011`.
+
+Siitonen et al. aimed at generalizing the established design methods for other single- and multi-column processes by using the equilibrium theory of chromatography, allowing direct prediction of multiple dimensionless operating parameters that lead to the complete separation of a binary feed mixture, using the Langmuir isotherm {cite}`Siitonen2015`.
+
+Depending on the desired level of precision, the parameters obtained through these shortcuts can either be directly utilized in the process design or serve as an initial starting point for more thorough optimization.
+However, shortcut methods have limitations related to model assumptions and the specific operating mode under consideration.
+They become somewhat constraining when dealing with multiple components, designing more advanced operating concepts, or addressing complex problem scenarios.
+As a result, optimization algorithms are frequently employed to tackle design challenges.
+
+(parameter_sampling)=
 ## Parameter sampling
 
 Parameter sampling is a common method used in the design of chromatographic processes.
