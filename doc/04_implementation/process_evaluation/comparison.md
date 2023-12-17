@@ -7,13 +7,6 @@ kernelspec:
   name: python3
 ---
 
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-import sys
-sys.path.append('../../../../')
-```
-
 (comparison_guide)=
 # Comparing Simulation Results with Reference Data
 
@@ -33,15 +26,15 @@ To properly work with **CADET-Process**, the experimental data needs to be conve
 The {mod}`CADETProcess.reference` module provides different classes for different types of experiments.
 For in- and outgoing streams of unit operations, the {class}`~CADETProcess.reference.ReferenceIO` class must be used.
 
-To demonstrate this module, consider a simple dextran pulse injection onto a chromatographic column.
+To demonstrate this module, consider a simple tracer pulse injection onto a chromatographic column.
 The following (experimental) concentration profile is measured at the column outlet.
-Consider that the time and the data of the experiment are stored in the variables `time_experiment`, and `dextran_experiment` respectively which are simply added to the constructor, together with a name for the reference.
+Consider that the time and the data of the experiment are stored in the variables `time_experiment`, and `c_experiment` respectively which are simply added to the constructor, together with a name for the reference.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
 import numpy as np
-data = np.loadtxt('../../../../studies/parameter_estimation/reference_data/dextran.csv', delimiter=',')
+data = np.loadtxt('./experimental_data/non_pore_penetrating_tracer.csv', delimiter=',')
 time_experiment = data[:, 0]
 dextran_experiment = data[:, 1]
 ```
@@ -91,7 +84,7 @@ This is particularly useful if system noise (e.g. injection peaks) should be ign
 
 ```{code-cell} ipython3
 comparator.add_difference_metric(
-    'SSE', reference, 'column.outlet', start=5*60, end=7*60
+    'SSE', reference, 'column.outlet', start=3*60, end=6*60
 )
 ```
 
@@ -99,9 +92,9 @@ comparator.add_difference_metric(
 
 Next to the experimental data, a reference model needs to be configured.
 It must include relevant details s.t. it is capable of accurately predicting the experimental system (e.g. tubing, valves etc.).
-For this example, the full process configuration can be found {ref}`here <dextran_pulse_example>`.
+For this example, the full process configuration can be found {ref}`here <fit_column_transport>`.
 
-As an initial guess, the bed porosity is set to $0.4$, and the axial dispersion to $1.0 \cdot 10^{-7}$.
+As an initial guess, the bed porosity is set to $0.5$, and the axial dispersion to $1.0 \cdot 10^{-7}$.
 After process simulation, the {meth}`~CADETProcess.comparison.Comparator.evaluate` method is called with the simulation results.
 
 ```{code-cell} ipython3
@@ -110,7 +103,11 @@ After process simulation, the {meth}`~CADETProcess.comparison.Comparator.evaluat
 from CADETProcess.simulator import Cadet
 simulator = Cadet()
 
-from examples.parameter_estimation.reference_simulation.dextran_pulse import process
+from examples.characterize_chromatographic_system.column_transport_parameters import process
+
+process.flow_sheet.column.bed_porosity = 0.5
+process.flow_sheet.column.axial_dispersion = 1e-7
+
 simulation_results = simulator.simulate(process)
 ```
 
@@ -127,4 +124,4 @@ _ = comparator.plot_comparison(simulation_results)
 
 The comparison shows that there is still a large discrepancy between simulation and experiment.
 Instead of manually adjusting these parameters, an {class}`~CADETProcess.optimization.OptimizationProblem` can be set up which automatically determines the parameter values.
-For an example, see {ref}`` [todo]
+For an example, see {ref}`fit_column_transport`.

@@ -9,72 +9,11 @@ execution:
   timeout: 300
 ---
 
-%matplotlib notebook
-
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-import sys
-sys.path.append('../../../../')
-```
 
 (fractionation_guide)=
 # Product Fractionation
 
-Key information for evaluating the separation performance of a chromatographic process are the amounts of the target components in the collected product fractions.
-To define corresponding fractionation intervals, the chromatograms, i.e., the concentration profiles $c_{i,k}\left(t\right)$ at the outlet(s) of the process must be evaluated.
-In a strict sense, a chromatogram is only given at the outlet of a single column. Note that here this term is used more generally for the concentration profiles at the outlets of a flow sheet, which only accounts for material leaving the process.
-The times for the start, $t_{start, j}$, and the end, $t_{end, j}$, of a product fraction $j$ have to be chosen such that constraints on product purity are met.
-It is important to note, that in advanced chromatographic process configurations, outlet chromatograms can be much more complex than the example shown below and that multiple sections of the chromatogram may represent suitable fractions $j$ for collecting one target component $i$.
-Moreover, flow sheets can have multiple outlets $k$ that have to be fractionated simultaneously.
-Also, the volumetric flow rate $Q_k$ at the outlets may depend on time and needs to be considered in the integral.
-These aspects are considered by defining the total product amount of a component $i$ as
-
-```{math}
-:label: mass
-m_{i} = \sum_{k=1}^{n_{chrom}} \sum_{j=1}^{n_{frac, k}^{i}}\int_{t_{start, j}}^{t_{end, j}} Q_k(t) \cdot c_{i,k}(t) dt,\\
-```
-
-where $n_{frac, k}^{i}$ is the number of fractions considered for component $i$ in chromatogram $k$, and $n_{chrom}$ is the number of chromatograms that is evaluated.
-
-Further performance criteria typically used for evaluation and optimization of chromatographic performance are the specific productivity, $PR_i$, the recovery yield, $Y_i$, and the specific solvent consumption, $EC_i$, which all depend on the product amounts:
-
-```{math}
-:label: productivity
-PR_{i} = \frac{m_i}{V_{solid} \cdot \Delta t_{cycle}},\\
-```
-
-```{math}
-:label: yield
-Y_{i} = \frac{m_i}{m_{feed, i}},\\
-```
-
-```{math}
-:label: eluent_consumption
-EC_{i} = \frac{V_{solvent}}{m_i},\\
-```
-
-with $V_{solid}$ being the volume of stationary phase, $V_{solvent}$ that of the solvent introduced during a cycle with duration $\Delta t_{cycle}$, and $m_{feed}$ the injected amount of mixture to be separated. Multiple {class}`Inlets <CADETProcess.processModel.Inlet>` can be considered for the amounts of consumed feed and solvent,
-
-```{math}
-:label: solvent_in
-V_{solvent} = \sum_{s=1}^{n_{solvents}} \int_{0}^{t_{cycle}} Q_s(t) dt,\\
-```
-
-```{math}
-:label: feed_in
-m_{feed,i} = \sum_{f=1}^{n_{feeds}} \int_{0}^{t_{cycle}} Q_f(t) \cdot c_{f,i}(t) dt.\\
-```
-
-For the cumulative product purities $PU_i$ holds
-
-```{math}
-:label: purity
-PU_{i} = \frac{m_{i}^{i}}{\sum_{l=1}^{n_{comp}} m_{l}^{i}},\\
-```
-
-where $n_{comp}$ is the number of mixture components and $m_{l}^{i}$ is the mass of component $l$ in target fraction $i$.
-
+As mentioned in {numref}`chapter %s <kpi>`, key information for evaluating the separation performance of a chromatographic process is the amounts of the target components in the collected product fractions.
 In **CADET-Process**, the {mod}`~CADETProcess.fractionation` module provides methods to calculate these performance indicators.
 
 ## Fractionator
@@ -88,7 +27,7 @@ To demonstrate the strategy, consider a simple {ref}`batch-elution example<batch
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-from examples.operating_modes.batch_elution import process
+from examples.batch_elution.process import process
 ```
 
 To enable the calculation of the process parameters, it is necessary to specify which of the inlets should be considered for the feed and eluent consumption.
@@ -111,15 +50,6 @@ simulation_results = process_simulator.simulate(process)
 For reference, this is the chromatogram at the outlet that needs to be fractionated:
 
 ```{code-cell} ipython3
----
-tags: [remove-input]
-mystnb:
-  figure:
-    caption: |
-      Concentration profile at column outlet.
-    name: column_outlet
----
-
 _ = simulation_results.solution.outlet.outlet.plot()
 ```
 
@@ -265,7 +195,7 @@ Here, the `Salt` component should not be used for fractionation.
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-from examples.operating_modes.lwe import process
+from examples.load_wash_elute.lwe_flow_rate import process
 
 from CADETProcess.simulator import Cadet
 process_simulator = Cadet()

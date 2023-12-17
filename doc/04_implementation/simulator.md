@@ -5,14 +5,9 @@ jupytext:
 kernelspec:
   display_name: Python 3
   name: python3
+execution:
+  timeout: 300
 ---
-
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-import sys
-sys.path.append('../../../')
-```
 
 (simulation_guide)=
 # Process Simulation
@@ -40,7 +35,9 @@ process_simulator = Cadet()
 
 If a specific version of **CADET** is to be used, add the install path to the constructor:
 
-```
+```{code-cell} ipython3
+:tags: [remove-output, raises-exception]
+
 process_simulator = Cadet(install_path='/path/to/cadet/executable')
 ```
 
@@ -105,7 +102,8 @@ For this example, consider a simple {ref}`batch-elution example<batch_elution_ex
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
-from examples.operating_modes.batch_elution import process
+
+from examples.recycling.mrssr_process import process
 
 process.add_parameter_sensitivity('column.total_porosity')
 ```
@@ -164,7 +162,8 @@ To demonstrate this concept, consider a SSR process (see {ref}`here <ssr_example
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
-from examples.operating_modes.steady_state_recycling import process
+
+from examples.recycling.mrssr_process import process
 ```
 
 A first strategy is to simulate multiple cycles at once.
@@ -225,7 +224,11 @@ simulation_results = process_simulator.simulate(process)
 _ = simulation_results.solution.column.outlet.plot()
 ```
 
-Here, it ran for 50 cycles.
+The number of cycles is stored in the simulation results.
+
+```{code-cell} ipython3
+print(simulation_results.n_cycles)
+```
 
 It is possible to access the solution of any of the cycles.
 For the last cycle, use the index `-1`.
