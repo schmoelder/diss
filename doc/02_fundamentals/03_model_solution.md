@@ -16,7 +16,7 @@ For the calculation of concentration profiles of chromatographic processes, a cl
 However, such analytic solutions are limited to specific models and rely on very restrictive, simplifying assumptions.
 For example, the equilibrium model can be solved analytically for the linear isotherm, as well as the multicomponent Langmuir isotherm {cite}`SchmidtTraub2020`.
 Additionally, Fechtner et al. have demonstrated a semi-analytical approach applicable any implicit isotherm model in the equilibrium model {cite}`Fechtner2017`.
-But also more complicated models can be solved analytically when a linear adsorption isotherm is assumed {cite}`Qamar2014, Leweke2021`.
+But also more complicated models can be solved analytically when a linear adsorption isotherm is assumed {cite}`Qamar2014,Leweke2021`.
 However, these restrictions limit their applicability for a general purpose modeling tool.
 Consequently, numerical approaches to approximate the solution of the chromatographic models are commonly used.
 
@@ -30,17 +30,17 @@ Consequently, all other aspects of the code can still be validated, including co
 ## Numerical solution
 
 To estimate a numerical approximation to the solution of the model equations, the method of lines is commonly applied.
-First, the spatial coordinates are discretized, resulting in a system of ordinary differential equations (ODEs) or differential algebraic equations (DAEs) depending on the isotherm.
-Next, this system is discretized in time using explicit or implicit discretization method.
-The latter results in an algebraic system which is then to be solved.
+First, the spatial coordinates are discretized, resulting in a system of ordinary differential equations (ODEs) or differential algebraic equations (DAEs), depending on the isotherm being used.
+Next, the system is discretized in time using either explicit or implicit methods.
 
 Generally, the finer the grid used to discretize the continuous space-time domain, the closer the approximation will be to the exact solution.
 However, this comes at the cost of increased computational effort.
 To analyze the performance of a numerical solution method, the order of convergence is examined.
-Convergence order is a measure of the rate at which a numerical solution method approaches the exact solution as the grid size is reduced.
-It is important to note that the convergence order is typically only reached asymptotically with increasing DOFs.
-Therefore, numerical methods with higher convergence orders may require more computational resources per grid point.
-Nevertheless, using numerical methods with high convergence orders is recommended for achieving accurate and efficient solutions of chromatographic models.
+Convergence order is a measure of the rate at which a numerical solution method approaches the exact solution as the grid size is increased.
+However, methods with higher convergence orders may demand more computational resources per grid point.
+Moreover, it's worth noting that convergence order is generally only reached asymptotically with an increase in degrees of freedom (DOFs).
+Nonetheless, utilizing numerical methods with high convergence orders is recommended for achieving accurate and efficient solutions for chromatographic models.
+These higher-order methods often come with other advantageous properties, such as better stability {cite}`Atkinson2011`.
 
 Several numerical methods have successfully been applied to solve chromatographic models.
 In the following, an overview is given on selected methods which are currently used in state-of-the-art simulation software.
@@ -69,6 +69,7 @@ It solves the EDM equations by neglecting the dispersion term in the FDM formula
 Although this numerical scheme is straightforward, it can result in a large ODE system due to the relatively fine grid required for accurate approximations if dispersion is low {cite}`SchmidtTraub2020`.
 Moreover, it can suffer from numerical dispersion and instability for problems with steep gradients or high-frequency oscillations.
 It is important to note that FDM is usually not mass conservative.
+**Another drawback is the treatment of boundary conditions: We are limited to low order at boundaries [@jan: what does this mean?]**
 
 % Finite Volume
 In contrast to the FDM, which computes the solution at discrete points, finite volume schemes (FV) define a grid of cells that give a constant value for each conservative variable inside the cell.
@@ -80,12 +81,12 @@ The flux at these interfaces is approximated by a feasible numerical flux functi
 \frac{d c_j(t)}{d t} \approx \frac{1}{\Delta z} (F(c_{j-1}, c_j) - F(c_j, c_{j+1}))
 ```
 
-for each control volume $j \in \{ 1, \dots, N_{z} - 2 \}$.
+for each control volume $j \in \{ 0, \dots, N_{z} - 1 \}$, with c_{-1}, c_{N_z} given by boundary conditions.
 
 This procedure is naturally conservative and monotonicity preserving {cite}`Blazek2015,Koren1993`.
-High-order FV schemes adjust the control volumes by higher order (e.g. polynomial) reconstruction using the information provided by the control volumes.
+High-order FV schemes adjust the control volumes by higher order (e.g. polynomial) reconstruction using the information provided by a stencil of control volumes.
 This preserves mass conservation but comes at the cost of the monotonicity property.
-Every nonlinear high-order scheme suffers from oscillations at steep gradients, since they cannot be monotone {cite}`Godunov1959`.
+Every linear high-order scheme suffers from oscillations at steep gradients, since they cannot be monotone {cite}`Godunov1959`.
 To overcome this problem, a nonlinear mechanism can be built into the reconstruction, such as a slope limiter {cite}`Blazek2015`, or a weighted essentially non-oscillatory (WENO) scheme {cite}`Lieres2010`.
 The latter is currently implemented in **CADET** and used for this work {cite}`Leweke2018`.
 
@@ -94,14 +95,15 @@ The finite element method (FEM) divides the spatial domain into cells, similar t
 However, FEM introduces a polynomial of arbitrary order for each cell, allowing for high accuracy with a comparably low number of cells if the solution is sufficiently smooth {cite}`SchmidtTraub2020`.
 
 The classical FEM approach, known as the continuous Galerkin method (CG), conditions cell interfaces to be continuous, leading to a tightly coupled ODE system.
-This method presents some drawbacks, such as not naturally being conservative, challenges retaining higher order at boundaries, and being generally more complicated than FV.
-Nonetheless, this approach is currently used in Cytiva's commercial GoSilico™ Chromatography Modeling Software {cite}`gosilico`.
+This method presents some drawbacks, such as not naturally being conservative, challenges retaining higher order at boundaries **(das stimmt glaube ich nur fuer bestimmte stabilisierte varianten, das originale schema benutzt denke ich einfach nur den Wert der boundary condition [@jan: what does this mean?])**, and being generally more complicated than FV.
+Nonetheless, this approach is currently used in Cytiva's commercial GoSilico™ Chromatography Modeling Software {cite}`gosilico` **wobei die auch eine stabilisierte variante benutzen** [@jan wie würdest du das beschreiben?].
 
-In contrast, the discontinuous Galerkin approach (DG) assumes discontinuous cell interfaces, making it a combination of FV and FEM.
+In contrast, the discontinuous Galerkin approach (DG) allows discontinuous cell interfaces, making it a combination of FV and FEM.
 This allows for a feasible numerical flux to solve the local Riemann problem, which adds numerical dispersion to the scheme.
-This additional artificial dispersion is considered beneficial due to its stabilizing effects {cite}`Brezzi2006`.
+This additional artificial dispersion is considered beneficial due to its stabilizing effects {cite}`Brezzi2006` which reduces oscillations.
 While the DG has some drawbacks when compared to CG, such as a larger state vector due to the discontinuous cell boundaries, its stabilizing properties as well as a generally easier integration of boundary conditions compensate for these downsides.
 Recent work has shown that DG can be highly performant in terms of computational speed and is hence currently actively being researched {cite}`Meyer2020`.
+**Bei FE koenntest du noch sagen, dass wir im gegensatz zu FV und FD nicht durch die boundary conditions auf eine Konvergenzordnung limitiert sind sondern arbitrary order polynome auch arbitrary order Konvergenz heissen [asymptotisch und solange keine echte Diskontinuität auftritt; bei steilen Gradienten tritt die high order Konvergenz auch erst spaeter ein](@jan: what does this mean?)**
 
 (time_integration)=
 ### Time integration
@@ -115,18 +117,17 @@ The most straightforward example of an explicit time integration scheme is the e
 In this method, the current state of the system and its derivative are used to project the system into the future.
 The next state of the system is then obtained by stepping forward in time by a small time increment.
 The explicit Euler method is a first-order method.
-Among the most popular explicit methods is the Runge-Kutta (RK) family which can be constructed to yield higher order with further beneficial properties such as low storage requirements {cite}`Carpenter1994`
+Among the most popular explicit methods is the Runge-Kutta (RK) family which can be constructed to yield higher order with further beneficial properties such as low storage requirements {cite}`Carpenter1994`.
 
-However, all explicit methods limited by the step size in order to maintain numerical stability and accuracy.
+However, all explicit methods are limited by the step size in order to maintain numerical stability and accuracy.
 Therefore, explicit methods are generally less suitable for stiff problems, such as those encountered in chromatography, where steep gradients can occur due to discontinuous injections or even self-sharpening effects of nonlinear isotherms.
 These effects demand very small step sizes for explicit methods to retain stability which increases the computational cost.
 In these cases, implicit methods are usually preferred.
 
-Implicit methods, on the other hand allow for larger time step sized for stiff problems since time step sizes are only limited by accuracy (and not by stability).
+Implicit methods, on the other hand allow for larger time step sizes for stiff problems since time step sizes are only limited by accuracy (and not by stability).
 Unlike explicit methods, implicit methods result in an algebraic system of equations that needs to be solved, making them computationally more expensive per time step.
 However, due to the aforementioned stiffness inherent to chromatographic separation models, the larger time steps usually outweigh this downside.
-Backwards differentiation formula (BDF) methods use a polynomial approximation of the solution that is based on the current state and (several) past time steps.
-@todo: cite, @jan, hast du da was?
+Backwards differentiation formula (BDF) methods use a polynomial approximation of the solution that is based on the current state and (several) past time steps {cite}`Atkinson2011`.
 Higher order BDF methods can be constructed to improve computational efficiency.
 Additionally, adaptive time stepping can be used with both Runge-Kutta and BDF methods to dynamically adjust the time step size based on the stiffness of the problem, further improving the accuracy and efficiency of the simulation.
 
