@@ -45,7 +45,6 @@ sphinx:
   extra_extensions:
     - sphinx_jupyterbook_latex
     - sphinx.ext.intersphinx
-    - sphinx_subfigure
   config:
     # List with examples 👇 https://de.overleaf.com/learn/latex/Bibtex_bibliography_styles
     bibtex_reference_style: label
