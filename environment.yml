@@ -2,7 +2,7 @@ name: diss
 channels:
   - conda-forge
 dependencies:
-  - python=3.10
+  - python=3.11
   - numpy
   - scipy
   - matplotlib
@@ -10,7 +10,7 @@ dependencies:
   - mdformat-myst
   - pip
   - pip:
-    - cadet-rdm
-    - cadet-process
-    - jupyter-book
-    - jupyter_contrib_nbextensions
+      - cadet-rdm
+      - cadet-process
+      - jupyter-book
+      - jupyter_contrib_nbextensions
