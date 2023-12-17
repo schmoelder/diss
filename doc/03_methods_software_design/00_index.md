@@ -1,5 +1,5 @@
 (methods_software_design)=
-# Design methods for scientific software
+# Development methods for scientific software
 
 In recent decades, the use of software has become an integral part of many scientific endeavors.
 In addition to solving computational problems such as numerical simulations, software is also employed to plan experiments, control laboratory equipment, and analyze data sets.
