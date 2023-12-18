@@ -68,8 +68,7 @@ A well-known first order FDM scheme is the forward-backward method by Rouchon et
 It solves the EDM equations by neglecting the dispersion term in the FDM formulation and using the second-order truncation error to approximate the apparent dispersion.
 Although this numerical scheme is straightforward, it can result in a large ODE system due to the relatively fine grid required for accurate approximations if dispersion is low {cite}`SchmidtTraub2020`.
 Moreover, it can suffer from numerical dispersion and instability for problems with steep gradients or high-frequency oscillations.
-It is important to note that FDM is usually not mass conservative.
-**Another drawback is the treatment of boundary conditions: We are limited to low order at boundaries [@jan: what does this mean?]**
+It is important to note that FDM is usually not mass conservative
 
 % Finite Volume
 In contrast to the FDM, which computes the solution at discrete points, finite volume schemes (FV) define a grid of cells that give a constant value for each conservative variable inside the cell.
@@ -95,15 +94,14 @@ The finite element method (FEM) divides the spatial domain into cells, similar t
 However, FEM introduces a polynomial of arbitrary order for each cell, allowing for high accuracy with a comparably low number of cells if the solution is sufficiently smooth {cite}`SchmidtTraub2020`.
 
 The classical FEM approach, known as the continuous Galerkin method (CG), conditions cell interfaces to be continuous, leading to a tightly coupled ODE system.
-This method presents some drawbacks, such as not naturally being conservative, challenges retaining higher order at boundaries **(das stimmt glaube ich nur fuer bestimmte stabilisierte varianten, das originale schema benutzt denke ich einfach nur den Wert der boundary condition [@jan: what does this mean?])**, and being generally more complicated than FV.
-Nonetheless, this approach is currently used in Cytiva's commercial GoSilico™ Chromatography Modeling Software {cite}`gosilico` **wobei die auch eine stabilisierte variante benutzen** [@jan wie würdest du das beschreiben?].
+This method presents some drawbacks, such as not naturally being conservative, challenges retaining higher order at boundaries, and being generally more complicated than FV.
+Nonetheless, this approach is currently implemented in Cytiva's commercial GoSilico™ Chromatography Modeling Software, where they use a streamline-upwind-Petrov-Galerkin stabilization {cite}`Hahn2015`.
 
 In contrast, the discontinuous Galerkin approach (DG) allows discontinuous cell interfaces, making it a combination of FV and FEM.
 This allows for a feasible numerical flux to solve the local Riemann problem, which adds numerical dispersion to the scheme.
 This additional artificial dispersion is considered beneficial due to its stabilizing effects {cite}`Brezzi2006` which reduces oscillations.
 While the DG has some drawbacks when compared to CG, such as a larger state vector due to the discontinuous cell boundaries, its stabilizing properties as well as a generally easier integration of boundary conditions compensate for these downsides.
 Recent work has shown that DG can be highly performant in terms of computational speed and is hence currently actively being researched {cite}`Meyer2020`.
-**Bei FE koenntest du noch sagen, dass wir im gegensatz zu FV und FD nicht durch die boundary conditions auf eine Konvergenzordnung limitiert sind sondern arbitrary order polynome auch arbitrary order Konvergenz heissen [asymptotisch und solange keine echte Diskontinuität auftritt; bei steilen Gradienten tritt die high order Konvergenz auch erst spaeter ein](@jan: what does this mean?)**
 
 (time_integration)=
 ### Time integration
