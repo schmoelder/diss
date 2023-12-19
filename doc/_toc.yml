@@ -20,12 +20,12 @@ chapters:
       - file: 03_methods_software_design/05_version_control
       - file: 03_methods_software_design/06_ci_cd
       - file: 03_methods_software_design/07_software_licenses
-  - file: 04_implementation/overview
+  - file: 04_implementation/00_overview
     sections:
-      - file: 04_implementation/process_model/index
-      - file: 04_implementation/simulator
-      - file: 04_implementation/process_evaluation/index
-      - file: 04_implementation/optimization/index
+      - file: 04_implementation/01_process
+      - file: 04_implementation/02_simulator
+      - file: 04_implementation/03_process_evaluation
+      - file: 04_implementation/04_optimization
   - file: 05_case_studies/00_index
     sections:
       - file: 05_case_studies/01_batch_elution/01_process_model
