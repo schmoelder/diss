@@ -43,7 +43,7 @@ FOSS licenses can be divided into two categories: (1) permissive licenses, which
 The following table gives an overview of the different rights that are granted to users by different types of software licenses.
 
 ```{table} Software Licenses
-:name: software_licenses
+:name: software_licenses_overview
 
 
 | Rights granted       | Public domain (e.g. CC0) | Permissive license (e.g. MIT) | Copyleft license (e.g. GPL) | Freeware | Proprietary software | Trade secret |

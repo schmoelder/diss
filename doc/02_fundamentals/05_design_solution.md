@@ -1,13 +1,14 @@
 (design_solution)=
+
 # Solution of chromatographic design problems
 
 The design of preparative chromatographic processes presents significant challenges due to the many degrees of freedom that can be manipulated to optimize their performance.
 In addition to continuous variables such as column length and diameter, injection concentration, and flow rate, there are also dynamic changes to the flow sheet that must be timed and optimized.
 Structural decisions can also be subject to optimization to determine the optimal operating concept and conditions for a given separation simultaneously.
 Overall, the design process requires careful consideration of all of these variables and the identification of the optimal combination of parameters to achieve the desired separation performance.
-
 In this chapter, multiple approaches are discussed to solve these problems.
 
+(shortcut_methods)=
 ## Shortcut methods
 
 Shortcut methods in the design of chromatographic processes refer to techniques that can help reduce the time and resources required to design and optimize such processes.
@@ -35,6 +36,7 @@ They become somewhat constraining when dealing with multiple components, designi
 As a result, optimization algorithms are frequently employed to tackle design challenges.
 
 (parameter_sampling)=
+
 ## Parameter sampling
 
 Parameter sampling is a common method used in the design of chromatographic processes.

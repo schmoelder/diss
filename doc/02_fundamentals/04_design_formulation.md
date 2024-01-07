@@ -48,7 +48,7 @@ The most important information for evaluating the separation performance of a ch
 In a strict sense, a chromatogram is given at the outlet of a single column.
 Note that here this term is used more generally for concentration profiles $c_{i,k}\left(t\right)$ at the outlets $k$ of a process.
 The times for the start, $t_{start, j}$, and the end, $t_{end, j}$, of a product fraction $j$ have to be chosen such that constraints on product purity are met.
-{numref}`Figure %s <fractionation>` shows an example chromatogram of a batch elution process where suitable fractions have been selected.
+{numref}`Figure %s <chromatogram_fractionation>` shows an example chromatogram of a batch elution process where suitable fractions have been selected.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -73,11 +73,11 @@ fractionator.add_fractionation_event('end_B', -1, 9*60)
 from CADETProcess import plotting
 
 fig, ax = fractionator.plot_fraction_signal(style='small', show=False)
-glue("fractionation", fig, display=False)
+glue("chromatogram_fractionation", fig, display=False)
 ```
 
-```{glue:figure} fractionation
-:name: "fractionation"
+```{glue:figure} chromatogram_fractionation
+:name: "chromatogram_fractionation"
 :figwidth: 300px
 
 Fractionation of a chromatogram.
@@ -86,7 +86,7 @@ Blue: Target fraction of component $A$.
 Red: Target fraction of component $B$.
 ```
 
-It is important to note, that in advanced chromatographic process configurations, outlet chromatograms can be much more complex than the example shown in {numref}`Fig. %s <fractionation>` and that multiple sections of the chromatogram may represent suitable fractions $j$ for collecting one target component $i$.
+It is important to note, that in advanced chromatographic process configurations, outlet chromatograms can be much more complex than the example shown in {numref}`Fig. %s <chromatogram_fractionation>` and that multiple sections of the chromatogram may represent suitable fractions $j$ for collecting one target component $i$.
 Moreover, flow sheets can have multiple outlets $k$ that have to be fractionated simultaneously, and the volumetric flow rate $Q_k$ at the outlets may depend on time.
 These aspects are considered by defining the total product amount of a component $i$ as
 
@@ -199,11 +199,12 @@ The individual values of the target components are combined using a weighting fa
 P_{ranked} = \frac{\sum_{i=1}^{n_comp} w_i \cdot P_i}{\sum_{i=1}^{n_comp} w_i}
 ```
 
+(multi_objective_optimization)=
 ## Multi-objective optimization
 
 In recent years, there has been growing interest in using multi-objective optimization (MOO) instead of single-objective optimization (SOO) in various fields, including chromatography.
 This is because SOO can sometimes result in information loss, as the optimization process focuses on a single objective and may overlook other important factors.
-In contrast, MOO considers multiple objectives simultaneously, providing a more comprehensive analysis of the design space {cite}`Heymann2022`.
+In contrast, MOO considers multiple objectives simultaneously, providing a more comprehensive analysis of the design space {cite}`Knutson2015,Heymann2022`.
 
 In the context of chromatography optimization, one advantage of MOO is that it usually does not require significantly additional computational power compared to SOO.
 This is primarily because most of the computational time is spent on evaluating the model, rather than the optimization process itself.

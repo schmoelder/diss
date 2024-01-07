@@ -40,7 +40,7 @@ More details on such advanced chromatographic operating modes are given in {numr
 Depending on the separation problem at hand, different operating concepts are better suited than others and the process selection usually involves a trade-off between multiple criteria.
 Simple systems are less expensive and more adaptable than complex multi-column systems which involve high capital investments.
 On the other hand, bigger, more complicated systems are often more robust in their operation and can lead to lower operating costs compared to single column processes.
-Another factor to consider is the distinctive startup behaviour of some operating concepts (see {numref}`chapter %s <stationarity_guide>`) making them only viable for large separation campaigns where these losses can be absorbed {cite}`Rajendran2013`.
+Another factor to consider is the distinctive startup behaviour of some operating concepts (see {numref}`chapter %s <stationarity>`) making them only viable for large separation campaigns where these losses can be absorbed {cite}`Rajendran2013`.
 This is to show that the selection of an appropriate operating mode is an important step in the design of the process.
 
 % Model based design

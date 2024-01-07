@@ -68,6 +68,7 @@ By designing with interfaces, the code can focus on the essential behavior, maki
 
 (style)=
 **Language and domain specific aspects**
+
 In addition to syntax, every programming language has its own philosophy that users should adhere to.
 Following these conventions enables better communication within the community.
 When sharing code or seeking assistance, the coding style will be evaluated, even if the program produces correct results.
