@@ -28,11 +28,8 @@ chapters:
       - file: 04_implementation/04_optimization
   - file: 05_case_studies/00_index
     sections:
-      - file: 05_case_studies/01_batch_elution/01_process_model
-      - file: 05_case_studies/01_batch_elution/02_optimization
-      - file: 05_case_studies/02_ssr_kaspereit/01_process_model
-      - file: 05_case_studies/02_ssr_kaspereit/02_optimization
-      # - file: 05_case_studies/03_pH/docs/index
+      - file: 05_case_studies/01_operating_modes
+      - file: 05_case_studies/02_optimization_studies
   - file: 06_conclusion/00_index
   - file: bibliography
   - file: appendix/00_index
