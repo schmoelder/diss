@@ -10,22 +10,25 @@ kernelspec:
 (chromtographic_principle)=
 # Principles of preparative chromatography
 
-Chromatography is a thermal separation process widely used for purifying mixtures of (bio-)chemical species.
-In this process, the mixture's components are dissolved in a solvent, known as mobile phase, and then transported through a column packed with a porous material, also referred to as the stationary phase.
-As the solvent flows through the column, each component exhibits a distinct level of interaction with the stationary phase material.
-Consequently, components that interact more strongly with the surface of the stationary phase are retained for a longer duration and, as a result, elute later than components that only interact weakly.
-The differential retention and elution time enable the effective separation of the mixture's components at the column outlet.
+Chromatography is a thermal separation process widely used for the separation and purification of mixtures of (bio-)chemical species.
+In this process, the mixture's components are dissolved in a solvent, known as the mobile phase, and transported through a column packed with a porous material, also referred to as the stationary phase.
+As the mobile phase flows through the column, each component exhibits a distinct level of interaction with the stationary phase material.
+Consequently, components that interact more strongly with the surface of the stationary phase are retained for a longer duration and, as a result, elute later than components that interact weakly.
+The differential retention and elution times enable the effective separation of the mixture's components at the column outlet.
 
 These interactions can be characterized by various retention mechanisms.
-Most chromatographic separations are based on the principle of adsorption, which involves the adhesion and accumulation of molecules on the surface of the stationary phase.
+Most chromatographic separations are based on the principle of adsorption, which involves the accumulation of molecules on the surface of the stationary phase.
 This phenomenon is influenced by several forces.
-Given that chromatography relies on the reversibility of the adsorption step, it primarily involves physisorption.
-Physisorption refers to the weak binding of molecules based on van der Waals interactions, such as dipole-dipole interactions.
-Besides van der Waals forces, hydrophobic and electrostatic interactions may also play a role between the stationary phase and the components being separated.
+
+Given that chromatography relies on the reversibility of the adsorption step, it is primarily governed by physisorption.
+Physisorption refers to the weak binding of molecules through van der Waals interactions, such as dipole-dipole interactions.
+In addition to van der Waals forces, hydrophobic and electrostatic interactions may also influence the retention of components on the stationary phase.
+
 Moreover, specific interactions with affinity ligands immobilized on the stationary phase can serve as another retention mechanism.
-For instance, separation can be based on specific interactions such as between an enzyme and its substrate, a receptor and its ligand, or an antibody and its antigen.
-Size exclusion also contributes to the separation process in chromatography.
-In this mechanism, larger molecules cannot penetrate as deeply into the pores of the stationary phase as smaller molecules, leading to differential retention times.
+For example, separation may be based on specific interactions such as those between an enzyme and its substrate, a receptor and its ligand, or an antibody and its antigen.
+The size exclusion mechanism can also contribute to chromatographic separation.
+In this mechanism, larger molecules are unable to penetrate as deeply into the pores of the stationary phase as smaller molecules, leading to differential retention times.
+
 The attachment of molecules to a solid surface in chromatography can be quantitatively described using adsorption isotherm models.
 For more detailed information on different retention models, see section {numref}`isotherm_models`.
 
@@ -36,10 +39,10 @@ Conversely, if the fluid phase is a liquid, the technique is known as liquid chr
 In cases where the liquid is maintained under temperature and pressure conditions above its critical point, the process is termed supercritical fluid chromatography (SFC).
 
 Another way to categorize chromatographic separations is by their separation objectives, distinguishing between preparative and analytical processes.
-Analytical chromatography involves separating small quantities of substance mixtures for the purpose of identifying or quantifying the components.
+Analytical chromatography involves separating small quantities of substance mixtures for the purpose of identifying or quantifying components.
 Preparative chromatography, on the other hand, is employed for the purification of larger quantities of a substance mixture, aiming to isolate a specific product.
 
-This work primarily focusses on studying preparative liquid chromatography.
+This work primarily focuses on studying preparative liquid chromatography.
 Specifically, it aims to provide a comprehensive framework for modeling and optimizing the performance of different operating modes in which preparative liquid chromatography is performed.
 
 To introduce some fundamental concepts that are relevant for all chromatographic processes, consider a simple batch elution process.
@@ -87,14 +90,15 @@ Left: Concentration profile at the column inlet.
 Right: Chromatogram recorded at the column outlet with components $A$ and $B$ partially separated.
 ```
 
-By selecting appropriate operating conditions, such as the amount of injected material and the flow rate, an efficient operating scenario can be realized in which the stationary phase is utilized with high efficiency.
-High product recoveries are typically achieved through 'baseline separation', a state where the component peaks from the same injection do not overlap when exiting the column.
-In addition, productivity and eluent consumption can be improved by minimizing the interval between two successive injections.
-Productivity and eluent consumption may be further improved by strategically collecting waste fractions between product fractions or between peaks of consecutive injections, albeit at the cost of lower recovery.
-Consequently, these operating conditions are subject to optimization.
-Such optimization can be accomplished using model-based design which allows balancing the different performance metrics.
+High product recoveries are typically achieved through 'baseline separation,' a state where the component peaks from the same injection do not overlap as they exit the column.
+By carefully selecting operating conditions, such as the amount of injected material and the flow rate, it is possible to create an efficient operating scenario where the stationary phase is utilized to with high efficiency.
+Productivity can be increased, and eluent consumption reduced, by minimizing the interval between successive injections.
+Further gains in productivity and eluent efficiency can be realized by strategically collecting waste fractions between product fractions or between peaks of consecutive injections, although this may come at the expense of slightly lower recovery rates.
 
-If parts of the component mixture are not completely separated after passing through the column, the separation can also be enhanced by expanding the operating mode.
-In such cases, frequently used concepts include different recycling techniques as well as processes with several columns.
-Additionally, process concepts such as flip flow can be applied to increase the productivity of the processes.
-Examples for advanced operating modes be discussed in more detail in {numref}`section %s <operating_modes>`.
+If parts of the component mixture are not fully separated after passing through the column, more advanced operating modes can further enhance separation.
+Popular concepts include fractional recycling techniques and multi-column processes, which are particularly effective in improving separation and overall performance.
+Additionally, innovative process concepts like flip-flow operations can significantly boost process productivity.
+Examples of these advanced operating modes are discussed in more detail in {numref}`section %s <operating_modes>`.
+
+The operating parameters specific to different operating modes are often optimized to balance trade-offs between various performance metrics.
+Such optimization tasks can be efficiently performed using model-based design, offering a fast, accurate, and cost-effective approach.

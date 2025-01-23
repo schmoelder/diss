@@ -26,6 +26,7 @@
  year = {2015}
 }
 
+
 @book{Freeman2008,
  author = {Freeman, Eric and Robson, Elisabeth and Bates, Bert and Sierra, Kathy},
  isbn = {9780596800741},
@@ -222,6 +223,21 @@
  year = {1969}
 }
 
+@article{Breuer2023,
+	title = {Spatial discontinuous {Galerkin} spectral element method for a family of chromatography models in {CADET}},
+	volume = {177},
+	issn = {0098-1354},
+	url = {https://www.sciencedirect.com/science/article/pii/S0098135423002107},
+	doi = {https://doi.org/10.1016/j.compchemeng.2023.108340},
+	abstract = {Packed bed liquid chromatography is widely applied in academia and industry. Model-based methods are increasingly utilized for process development and optimization, demanding multitudes of complex simulations. We derive spatial arbitrary order discontinuous Galerkin (DG) discretizations for three commonly used chromatography models, including the general rate model (GRM). The methods are integrated in the open source CADET software, making efficient implementations publicly available for the first time. The DG CADET code is validated and benchmarked against the original finite volume CADET code. We observe great performance advantages for DG, depending on the discrete problem size. For a four-component steric mass action GRM, we achieve a speed-up of an order of magnitude for an error range typical for engineering applications. We explore the performance of a collocation Legendre–Gauß–Lobatto (LGL) quadrature DG method in comparison to an exact integration DG method. Our performance benchmarks indicate a slight advantage for collocation DG.},
+	journal = {Computers \& Chemical Engineering},
+	author = {Breuer, Jan Michael and Leweke, Samuel and Schmölder, Johannes and Gassner, Gregor and Lieres, Eric von},
+	year = {2023},
+	keywords = {General rate model, CADET, Column liquid chromatography, Discontinuous Galerkin spectral element method, Lumped rate model with pores, Lumped rate model without pores},
+	pages = {108340},
+	file = {Attachment:/home/jo/Dokumente/Zotero/storage/NM8UUY43/Breuer2023 - Spatial Discontinuous Galerkin Spectral Element Method for a Family of Chromatography Models in CADET.pdf:application/pdf},
+}
+
 @article{Brezzi2006,
  author = {Brezzi, Franco and Cockburn, Bernardo and Marini, L Donatella and S{\"u}li, Endre},
  journal = {Computer Methods in Applied Mechanics and Engineering},
@@ -321,6 +337,22 @@
  year = {2012}
 }
 
+@article{Frandsen2025,
+	title = {{CADET}-{Julia}: {Efficient} and versatile, open-source simulator for batch chromatography in {Julia}},
+	volume = {192},
+	issn = {00981354},
+	shorttitle = {{CADET}-{Julia}},
+	url = {https://linkinghub.elsevier.com/retrieve/pii/S0098135424003314},
+	doi = {10.1016/j.compchemeng.2024.108913},
+	language = {en},
+	urldate = {2025-01-24},
+	journal = {Computers \& Chemical Engineering},
+	author = {Frandsen, Jesper and Breuer, Jan Michael and Schmölder, Johannes and Huusom, Jakob Kjøbsted and Gernaey, Krist V. and Abildskov, Jens and Von Lieres, Eric},
+	month = jan,
+	year = {2025},
+	pages = {108913},
+}
+
 @article{Freier2018,
  author = {Freier, Lars and von Lieres, Eric},
  journal = {Biotechnology journal},
@@ -353,6 +385,25 @@
   volume  = {15},
   journal = {Zeitschrift für Elektrochemie und angewandte physikalische Chemie},
   year    = {1909},
+}
+
+
+@article{Hindmarsh2005,
+	title = {{SUNDIALS}: {Suite} of nonlinear and differential/algebraic equation solvers},
+	volume = {31},
+	issn = {0098-3500, 1557-7295},
+	shorttitle = {{SUNDIALS}},
+	url = {https://dl.acm.org/doi/10.1145/1089014.1089020},
+	doi = {10.1145/1089014.1089020},
+	abstract = {SUNDIALS is a suite of advanced computational codes for solving large-scale problems that can be modeled as a system of nonlinear algebraic equations, or as initial-value problems in ordinary differential or differential-algebraic equations. The basic versions of these codes are called KINSOL, CVODE, and IDA, respectively. The codes are written in ANSI standard C and are suitable for either serial or parallel machine environments. Common and notable features of these codes include inexact Newton-Krylov methods for solving large-scale nonlinear systems; linear multistep methods for time-dependent problems; a highly modular structure to allow incorporation of different preconditioning and/or linear solver methods; and clear interfaces allowing for users to provide their own data structures underneath the solvers. We describe the current capabilities of the codes, along with some of the algorithms and heuristics used to achieve efficiency and robustness. We also describe how the codes stem from previous and widely used Fortran 77 solvers, and how the codes have been augmented with forward and adjoint methods for carrying out first-order sensitivity analysis with respect to model parameters or initial conditions.},
+	language = {en},
+	number = {3},
+	urldate = {2025-01-24},
+	journal = {ACM Transactions on Mathematical Software},
+	author = {Hindmarsh, Alan C. and Brown, Peter N. and Grant, Keith E. and Lee, Steven L. and Serban, Radu and Shumaker, Dan E. and Woodward, Carol S.},
+	month = sep,
+	year = {2005},
+	pages = {363--396},
 }
 
 @article{GarciaPalacios2009,
@@ -609,13 +660,22 @@
  year = {2020}
 }
 
-@misc{Paul2024,
-author = {Paul, Richard and Jadebeck, Johann and Stratmann, Anton and Wiechert, Wolfgang and Nöh, Katharina},
-year = {2023},
-month = {12},
-pages = {},
-title = {hopsy - a methods marketplace for convex polytope sampling in Python},
-doi = {10.1101/2023.12.22.573091}
+@article{Paul2024,
+	title = {hopsy — a methods marketplace for convex polytope sampling in {Python}},
+	volume = {40},
+	copyright = {https://creativecommons.org/licenses/by/4.0/},
+	issn = {1367-4811},
+	url = {https://academic.oup.com/bioinformatics/article/doi/10.1093/bioinformatics/btae430/7702329},
+	doi = {10.1093/bioinformatics/btae430},
+	language = {en},
+	number = {7},
+	urldate = {2025-01-24},
+	journal = {Bioinformatics},
+	author = {Paul, Richard D and Jadebeck, Johann F and Stratmann, Anton and Wiechert, Wolfgang and Nöh, Katharina},
+	editor = {Kendziorski, Christina},
+	month = jul,
+	year = {2024},
+	pages = {btae430},
 }
 
 @article{Puettmann2014,
