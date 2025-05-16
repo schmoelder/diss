@@ -8,9 +8,10 @@ dependencies:
   - matplotlib
   - cadet>=5.0
   - mdformat-myst
+  - jupyter-book
+  - jupyter_contrib_nbextensions
+  - jupytext
   - pip
   - pip:
       - cadet-rdm
       - cadet-process>=0.10
-      - jupyter-book
-      - jupyter_contrib_nbextensions
