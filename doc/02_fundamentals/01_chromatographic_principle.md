@@ -51,7 +51,7 @@ Following the injection, an eluent is pumped through the column, facilitating th
 As a result, these components elute from the column's outlet as distinct peaks.
 {numref}`Figure %s <batch_elution_flow_sheet_intro>` shows a typical flow sheet for a batch elution process.
 
-```{figure} ../05_case_studies/batch_elution/figures/flow_sheet.png
+```{figure} ../05_case_studies/operating_modes/batch_elution/figures/flow_sheet.png
 :name: batch_elution_flow_sheet_intro
 
 Flow sheet for batch elution process.

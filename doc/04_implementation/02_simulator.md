@@ -70,7 +70,7 @@ As the simulation continues over multiple cycles, the final state of one cycle s
 Criteria such as the maximum absolute deviation in concentration profiles or the peak areas between consecutive cycles can be specified {cite}`Holmqvist2015`.
 For process performance evaluation, only the last cycle is analyzed, as it provides representative key performance indicators of the process's behavior in subsequent cycles (see also {numref}`fractionation`).
 
-To illustrate this concept, consider an SSR process (see {ref}`here <ssr_example>` for the complete process configuration).
+To illustrate this concept, consider an SSR process (see {ref}`here <ssr>` for the complete process configuration).
 @TODO: update reference
 
 In this example, the relative change in the integral of the chromatogram (area of the solution) between successive cycles is compared.

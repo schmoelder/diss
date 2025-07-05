@@ -1,3 +1,4 @@
+(introduction)=
 # Introduction
 
 % Relevance of Chromatography
@@ -43,7 +44,7 @@ On the other hand, bigger, more complicated systems are often more robust in the
 Another factor to consider is the distinctive startup behaviour of some operating concepts (see {numref}`chapter %s <stationarity>`) making them only viable for large separation campaigns where these losses can be absorbed {cite}`Rajendran2013`.
 This is to show that the selection of an appropriate operating mode is an important step in the design of the process.
 
-% Model based design
+% Model-based design
 Due to the rapid development of computational methods as well as the low costs of running simulations compared to laboratory experiments, the driving force for the development of new advanced chromatographic processes is increasingly based on mathematical modeling and optimization tools.
 While there are still many physico-chemical phenomena which are challenging to describe, there is generally a high level of confidence in the modeling of the dynamics of chromatographic processes.
 Nowadays many wet lab experiments are only performed to calibrate these models {cite}`Rajendran2013`.
@@ -99,11 +100,10 @@ Since process engineers are usually not trained in this field, a chapter of this
 % Demonstrations
 To demonstrate the flexibility of the framework, several case studies are performed.
 
-First, a simple batch elution process is optimized, introducing the general setup.
-This case explores various scenarios, including single-objective and multi-objective optimization studies.
-Next, a more complex steady-state recycling process is studied, inspired by the work of Kaspereit et al {cite}`Kaspereit2011`.
-Initially, the framework reproduces the first results through a parametric study.
-Subsequently, these findings are compared with optimization results to demonstrate the effectiveness of the optimizer in locating global optima.
-Furthermore, the optimization scenarios are expanded to offer increased flexibility in process design.
-
-Finally, an optimization study is conducted to optimize buffer components, aiming to linearize a pH gradient within a system involving a complex set of interconnected reactions. This case study illustrates the framework's capacity to handle intricate and interrelated phenomena in process optimization.
+First, a batch elution process is optimized, demonstrating process modeling and evaluation through fractionation to obtain key performance indicators.
+Single- and multi-objective optimization are applied to refine switch and cycle times.
+Next, a load-wash-elute process is examined, incorporating gradient elution.
+Parameter estimation is performed by comparing simulations with experimental data, followed by gradient optimization to enhance separation performance.
+Then, various recycling techniques are explored, analyzing cyclic stationarity and optimizing switching times to maximize yield and minimize solvent consumption.
+Finally, a simulated moving bed (SMB) process is studied, focusing on multi-column operation and steady-state performance.
+Optimization is applied to refine switching times, flow rates, and recycle ratios.

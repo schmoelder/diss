@@ -6,12 +6,13 @@ dependencies:
   - numpy
   - scipy
   - matplotlib
-  - cadet>=5.0
+  - cadet>=5.0.4
   - mdformat-myst
   - jupyter-book
   - jupyter_contrib_nbextensions
   - jupytext
+  - tabulate
   - pip
   - pip:
-      - cadet-rdm
-      - cadet-process>=0.10
+      - cadet-rdm>=0.1.8
+      - cadet-process>=0.11.1

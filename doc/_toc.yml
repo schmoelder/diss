@@ -2,6 +2,7 @@ format: jb-book
 root: index
 options:
   numbered: true
+  maxdepth: 3
 chapters:
   - file: 01_introduction/00_index
   - file: 02_fundamentals/00_index
@@ -28,13 +29,19 @@ chapters:
       - file: 04_implementation/04_optimization
   - file: 05_case_studies/00_index
     sections:
-      - file: 05_case_studies/batch_elution/batch_elution
-      - file: 05_case_studies/load_wash_elute/load_wash_elute
-      - file: 05_case_studies/flip_flow/flip_flow
-      - file: 05_case_studies/recycling_techniques/recycling_techniques
-      - file: 05_case_studies/smb/smb
+      - file: 05_case_studies/characterization/characterization
+      - file: 05_case_studies/operating_modes/index
+        sections:
+          - file: 05_case_studies/operating_modes/batch_elution/batch_elution
+          - file: 05_case_studies/operating_modes/batch_elution_ternary/batch_elution_ternary
+          - file: 05_case_studies/operating_modes/recycling_techniques/recycling_techniques
+            sections:
+            - file: 05_case_studies/operating_modes/recycling_techniques/clr
+            - file: 05_case_studies/operating_modes/recycling_techniques/clr_peak_shaving
+            - file: 05_case_studies/operating_modes/recycling_techniques/ssr
+          - file: 05_case_studies/operating_modes/flip_flop/flip_flop
+          - file: 05_case_studies/operating_modes/serial_columns/serial_columns
+          # - file: 05_case_studies/operating_modes/smb/smb
   - file: 06_conclusion/00_index
   - file: bibliography
   - file: appendix/00_index
-    sections:
-      - file: appendix/characterize_chromatographic_system/index

@@ -34,7 +34,7 @@ import math
 class Shape(ABC):
     def __init__(self, color):
         self.color = color
-        
+
     @property
     @abstractmethod
     def area(self):
@@ -55,11 +55,11 @@ class Circle(Shape):
     def __init__(self, radius, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.radius = radius
-        
+
     @property
     def area(self):
         return math.pi * self.radius**2
-        
+
     @property
     def perimeter(self):
         return 2 * math.pi * self.radius
@@ -69,11 +69,11 @@ class Rectangle(Shape):
         super().__init__(*args, **kwargs)
         self.length = length
         self.width = width
-        
+
     @property
     def area(self):
         return self.length * self.width
-        
+
     @property
     def perimeter(self):
         return 2 * (self.length + self.width)

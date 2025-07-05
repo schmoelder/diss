@@ -62,7 +62,7 @@ Currently, {class}`~CADETProcess.optimization.COBYLA`{cite}`Powell1994`from the 
 To the best of the author's knowledge, this flexible automatic approach for determining fractionation times is a novel contribution that has not been previously discussed in literature.
 This method addresses an important gap in the toolchain necessary for the analysis and optimization of advanced chromatographic processes.
 
-@TODO: @Kaspereit: Soll ich sowas hervorheben? Außerdem, wurde ja auch schon im Paper/code veröffentlicht. Wie stelle ich das klar?
+@TODO: Add figure here
 
 (comparison)=
 ## Comparison of simulation results with reference data

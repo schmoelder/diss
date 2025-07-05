@@ -22,19 +22,23 @@ One of the main applications of **CADET-Process** is performing optimization stu
 Optimization refers to the selection of a solution with regard to some criterion.
 In the simplest case, an optimization problem consists of minimizing some function $f(x)$ by systematically varying the input values $x$ and computing the value of that function.
 
-$$
+```{math}
+:label: objective
+
 \min_x f(x)
-$$
+```
 
 Examples for the application of optimization studies in the context of physico-chemical processes include process optimization and parameter estimation.
 Here, often many variables are subject to optimization, multiple criteria have to be balanced, and additional linear and nonlinear constraints need to be considered.
 
-$$
+```{math}
+:label: optimization_problem_eq
+
 \min_x \quad f(x) \\
 \textrm{s.t.} \quad &g(x) \le 0, \\
               \quad &h(x) = 0, \\
               \quad &x \in \mathbb{R}^n, \\
-$$
+```
 
 where $g$ summarizes all inequality constraint functions, and $h$ equality constraints.
 
@@ -49,22 +53,98 @@ In the following, the {mod}`~CADETProcess.optimization` module of **CADET-Proces
 The {class}`~CADETProcess.optimization.OptimizationProblem` class is designed for defining optimization variables, objectives, and constraints.
 It allows the addition of any number of variables, each with optional lower and upper bounds.
 
+(variable_normalization)=
 ### Variable normalization
 
-Optimization algorithms often face challenges when variables vary across multiple orders of magnitude, as this variability affects the relative importance of each parameter{cite}`Heymann2022`.
-Consequently, normalizing parameters is crucial for improving the efficiency and accuracy of the optimization process, ensuring more reliable outcomes.
-Normalization aids in equalizing the influence of each parameter on the objective function, leading to a more balanced search in the solution space.
-This also reduces the risk of overlooking optimal solutions due to scale-induced biases.
-For this purpose, **CADET-Process** allows the specification of linear and logarithmic variable normalization.
+Optimization algorithms often struggle when variables span multiple orders of magnitude, as this variability affects the relative influence of each parameter on the objective function {cite}`Heymann2022`.
+To address this, parameter normalization is essential.
+It improves the efficiency and accuracy of the optimization process by ensuring a more balanced exploration of the solution space and reducing the risk of scale-induced biases.
 
-To illustrate this feature, consider the characterization of a chromatographic column (refer to {numref}`fit_column_transport`).
-In this scenario, two parameters are being optimized: the bed porosity, which is expected to range between $0.1$ and $0.6$, and the axial dispersion, which ranges between $1 \cdot 10^{-10}$ and $1 \cdot 10^{-6}~m^2 \cdot s^{-1}$.
-Given the large difference in their scales, the porosity can be normalized linearly, whereas the axial dispersion is more suitably normalized on a logarithmic scale.
-This approach allows the optimizer to operate as if it was optimizing two variables that both range from $0$ and $1$.
-Meanwhile, CADET-Process handles the back-transformation to their original scales for evaluation purposes.
+Normalization helps equalize the contribution of each parameter, leading to a more uniform search and a greater likelihood of identifying optimal solutions.
+To support this, **CADET-Process** allows for both linear and logarithmic normalization of variables.
 
-@TODO: Add figure.
+The linear normalization maps the variable space from the lower and upper bound to a range between $0$ and $1$ by applying the following transformation:
 
+```{math}
+:label: linear_normalization
+
+x^\prime = \frac{x - x_{lb}}{x_{ub} - x_{lb}}
+```
+
+The log normalization maps the variable space from the lower and upper bound to a range between $0$ and $1$ by applying the following transformation:
+
+```{math}
+:label: log_normalization
+
+x^\prime = \frac{log \left( \frac{x}{x_{lb}} \right) }{log \left( \frac{x_{ub} }{x_{lb}} \right) }
+```
+
+Consider the characterization of a chromatographic column (refer to @TODO:add reference), where two parameters are optimized:
+
+- **Bed porosity**, ranging from $0.1$ to $0.8$
+- **Axial dispersion**, ranging from $1 \cdot 10^{-9}$ to $1 \cdot 10^{-4}~m^2$.
+
+Figure {numref}`initial_values` shows 128 parameter combinations uniformly sampled from the unnormalized parameter space, plotted on a logarithmic scale.
+Despite the lower bound of $1\cdot10^{-9}$, few samples are drawn in that region; instead, the majority are biased toward the higher end of the range.
+
+Due to this disparity in scales, porosity is best normalized linearly, while **axial dispersion** benefits from logarithmic normalization (see {ref}`parameter_normalization_comparison`).
+Figure {ref}`initial_values_normalized` presents 128 parameter combinations sampled uniformly from the normalized space. As seen, all scales are now appropriately sampled—an important characteristic for generating effective initial values.
+
+This normalization strategy allows the optimizer to work within a consistent domain—effectively optimizing two variables that both range from $0$ to $1$—while **CADET-Process** handles the inverse transformation back to the original scales for evaluation.
+
+urposes.
+
+```{code-cell} ipython3
+:tags: [remove-cell]
+
+from CADETProcess.optimization import OptimizationProblem
+
+optimization_problem = OptimizationProblem('no_transform_demo')
+optimization_problem.add_variable(r'$\varepsilon_{bed}$', lb=0.1, ub=0.8)
+optimization_problem.add_variable(r'$D_{ax}$', lb=1e-9, ub=1e-4)
+
+x0 = optimization_problem.create_initial_values(2*64)
+pop = optimization_problem.create_population(x0)
+
+fig, _ = pop.plot_pairwise(autoscale=True)
+glue("initial_values", fig, display=False)
+
+optimization_problem = OptimizationProblem('transform_demo')
+optimization_problem.add_variable(r'$\varepsilon_{bed}$', lb=0.1, ub=0.8, transform="linear")
+optimization_problem.add_variable(r'$D_{ax}$', lb=1e-9, ub=1e-4, transform="log")
+
+x0 = optimization_problem.create_initial_values(2*64)
+pop = optimization_problem.create_population(x0)
+
+fig, _ = pop.plot_pairwise(autoscale=True)
+glue("initial_values_normalized", fig, display=False)
+```
+
+`````{grid}
+
+````{grid-item}
+:columns: 6
+
+```{glue:figure} initial_values
+:name: initial_values
+
+Regular parameter space.
+```
+````
+
+````{grid-item}
+:columns: 6
+
+```{glue:figure} initial_values_normalized
+:name: initial_values_normalized
+
+Normalized parameters.
+```
+````
+
+`````
+
+(variable_dependencies)=
 ### Variable dependencies
 
 Handling a large number of variables simultaneously can lead to high complexity, as the volume of the variable space grows exponentially with the number of variables.
@@ -77,14 +157,17 @@ Consider the equilibrium constant $k_{eq} = k_a / k_d$ in an adsorption model, w
 Optimizing both $k_a$ and $k_d$ separately is less efficient than optimizing $k_a$ and $k_{eq}$ {cite}`Heymann2022`.
 This method allows for the independent determination of equilibrium and kinetic parameters of the reaction (see also {numref}`fit_binding_parameters`).
 
+(linear_constraints)=
 ### Linear constraints
 
 Linear constraints are a common way to restrict the feasible region of an optimization problem.
 They are typically defined using linear functions of the optimization:
 
-$$
+```{math}
+:label: linear_constraints
+
 A \cdot x \leq b,
-$$
+```
 
 where $A$ is an $m \times n$ coefficient matrix and $b$ is an $m$-dimensional vector and $m$ denotes the number of constraints, and $n$ the number of variables, respectively.
 This method is especially useful for enforcing certain relationships between variables, like order or proportionality, ensuring solutions are mathematically optimal and practically viable.
@@ -93,6 +176,7 @@ Equality constraints are useful for setting specific solution conditions, thereb
 However, many optimizers, particularly evolutionary algorithms, encounter difficulties with linear equality constraints {cite}`BarkatUllah2012`.
 Therefore, it is often more practical to reduce the number of variables and manage equality constraints through variable dependencies, as previously discussed.
 
+(objectives_and_nonlinear_constraints)=
 ### Objectives and nonlinear constraints
 
 Any callable function that accepts an input $x$ and returns objectives $f$ can be added to the {class}`~CADETProcess.optimization.OptimizationProblem`.
@@ -134,9 +218,9 @@ Relationship between optimization variables and evaluation objects.
 Here, optimization variable $1$ is associated with both evaluation objects, while variable $2$ is specific to evaluation object $2$.
 ```
 
-Before integrating the objective and nonlinear constraint functions into the {class}`~CADETProcess.optimization.OptimizationProblem,` it is necessary to add further processing steps as evaluators.
+Before integrating the objective and nonlinear constraint functions into the {class}`~CADETProcess.optimization.OptimizationProblem`, it is necessary to add further processing steps as evaluators.
 Any callable function can be used as an evaluator, provided it takes the result of the previous step as its first argument and returns a single result object for subsequent processing.
-To enhance efficiency, CADET-Process internally caches intermediate results.
+To enhance efficiency, **CADET-Process** internally caches intermediate results.
 This approach minimizes redundant computations in other objectives or constraints that involve similar evaluation steps.
 The application of this approach is illustrated in {numref}`evaluation_steps`.
 
@@ -177,13 +261,15 @@ Each optimizer implementation offers additional configuration options, such as t
 
 To highlight some of the optimizer's features, consider the following (generic) multi-objective optimization problem which is solved using {class}`~CADETProcess.optimization.U_NSGA3`, a genetic algorithm {cite}`Seada2016`.
 
-$$
+```{math}
+:label: optimization_problem_example
+
 \min f(x) &= \begin{bmatrix}x_0^2 + x_1^2, (x_0-1)^2 + x_1^2\end{bmatrix} \\
 \textrm{s.t.}
 \quad -5 \leq &x_0 \leq 5, \\
 \quad -5 \leq &x_1 \leq 5, \\
 \quad x_1 &> x_0.
-$$
+```
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -207,12 +293,14 @@ optimization_problem.add_objective(multi_objective_func, n_objectives=2)
 
 ```
 
+(initial_values)=
 ### Initial Values
 
 Most optimization approaches are iterative in nature and require well-defined starting points for initiation.
 The choice of initial values significantly impacts optimization success, with poor choices potentially leading to suboptimal solutions or convergence failure.
 Ideally, initial values should closely approximate the true optimal values, considering any constraints or bounds on the decision variables.
 To facilitate the definition of starting points, the {class}`~CADETProcess.optimization.OptimizationProblem` provides a method to generate initial values.
+Note, this method also takes into account variable normalization as described in {numref}`variable_normalization`, as well as variable dependencies (see {numref}`variable_dependencies`).
 For this purpose, **hopsy** {cite}`Paul2024` is used to efficiently (uniformly) sample the parameter space (see {numref}`uniform_samples`).
 However, this method is effective only if all optimization variables have defined lower and upper bounds and primarily ensures that linear constraints are met.
 Nonlinear constraints might not be satisfied by the generated samples, and incorporating nonlinear parameter dependencies can be challenging.
@@ -241,6 +329,7 @@ glue("uniform_samples", fig, display=False)
 Example for uniform sampling of parameter space with linear inequality constraints, used for initial values.
 ```
 
+(optimization_results)=
 ### Optimization results
 
 To start the optimization, the {class}`~CADETProcess.optimization.OptimizationProblem` needs to be passed to the {class}`Optimizer's <CADETProcess.optimization.OptimizerBase>` {meth}`~CADETProcess.optimization.OptimizerBase.optimize()` method, which internally calls the external optimizer.
@@ -264,8 +353,8 @@ optimizer = U_NSGA3()
 
 optimization_results = optimizer.optimize(optimization_problem, save_results=False)
 
-figs, axs = optimization_results.plot_objectives()
-glue("objectives", figs[0], display=False)
+fig, axs = optimization_results.plot_objectives()
+glue("objectives", fig, display=False)
 ```
 
 ```{glue:figure} objectives
@@ -293,13 +382,13 @@ glue("pareto", fig, display=False)
 Pareto plot of all evaluated individuals.
 ```
 
-The {meth}`~CADETProcess.optimization.OptimizationResults.plot_convergence` method is a tool for visualizing the convergence of the optimization over time, where the objective value is plotted against the number of function evaluations (see {numref}`convergence`).
+The {meth}`~CADETProcess.optimization.OptimizationResults.plot_convergence` method is a tool for visualizing the convergence of the optimization over time, where the objective value is plotted against the number of function evaluations (see {ref}`convergence`).
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-figs, axs = optimization_results.plot_convergence()
-glue("convergence", figs[0], display=False)
+fig, axs = optimization_results.plot_convergence()
+glue("convergence", fig, display=False)
 ```
 
 ```{glue:figure} convergence

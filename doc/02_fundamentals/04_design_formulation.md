@@ -162,6 +162,7 @@ The feed cost, $C_{i, feed}$, which reflects the cost of the feed material proce
 
 ```{math}
 :label: feed_cost
+
 C_{i, feed} = \frac{1 - Y_i}{Y_i} \cdot \dot{m}_{i, annual} \cdot f_{feed}, \\
 ```
 
@@ -171,6 +172,7 @@ The adsorbent cost, $C_{i, ads}$, which reflects the cost of the adsorbent mater
 
 ```{math}
 :label: adsorbent_cost
+
 C_{i, ads} = \frac{1}{PR_i} \cdot \dot{m}_{i, annual} \cdot \frac{f_{ads}}{\Delta t_{life}}, \\
 ```
 
