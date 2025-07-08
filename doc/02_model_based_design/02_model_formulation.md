@@ -460,18 +460,18 @@ This framework allows for independent specification of dispersion and adsorption
 (lumped_rate_model_with_pores)=
 ### Lumped rate model with pores
 
-To account for additional transport-limiting effects, the volume of the particle pores can be considered by introducing the particle porosity, $\varepsilon_p$.
+To account for additional transport-limiting effects, the volume of the particle pores can be considered by introducing the particle porosity, $\varepsilon^p$.
 This creates a separate reference volume within the particles where the solute concentration, $c_i^p$, can differ from the bulk liquid phase concentration, $c_i^b$, where convection occurs.
-The interstitial porosity $\varepsilon_c$ represents the void volume between the particles in the packed bed.
-The total porosity, $\varepsilon_t$, is given by:
+The interstitial porosity $\varepsilon^b$ represents the void volume between the particles in the packed bed.
+The total porosity, $\varepsilon^t$, is given by:
 
 ```{math}
 :label: total_porosity
 
-\varepsilon_t = \varepsilon_c + \left( 1 - \varepsilon_c \right) \varepsilon_p
+\varepsilon^t = \varepsilon^b + \left( 1 - \varepsilon^b \right) \varepsilon^p
 ```
 
-where the term $\left( 1 - \varepsilon_c \right) \varepsilon_p$ accounts for the volume of the pores inside the particles.
+where the term $\left( 1 - \varepsilon^b \right) \varepsilon^p$ accounts for the volume of the pores inside the particles.
 
 The stationary phase particles are surrounded by a stagnant boundary layer, whose thickness depends on the properties of the mobile phase and the flow rate.
 A thicker boundary layer slows down mass transport and increases band broadening, while a thinner layer allows for faster mass transfer and improves separation efficiency.
@@ -481,15 +481,15 @@ The flux through this boundary layer depends on the specific surface area, $a_s$
 ```{math}
 :label: specific_particle_surface
 
-a_s = \frac{\mathrm{d} A}{\mathrm{d} V} = \frac{3}{r_p} \cdot (1 - \varepsilon_c),
+a_s = \frac{\mathrm{d} A}{\mathrm{d} V} = \frac{3}{r^p} \cdot (1 - \varepsilon^b),
 ```
 
-where $r_p$ is the particle radius.
+where $r^p$ is the particle radius.
 
 The transport from the bulk phase (denoted by the superscript $b$) to the pore phase (denoted by the superscript $p$) is then given by:
 
 ```{math}
-\frac{\partial c^p_i}{\partial t} = F \cdot \frac{3}{\varepsilon_p r_p} \cdot k_{f,i} \left(c^b_i - c_i^p \right)
+\frac{\partial c^p_i}{\partial t} = F \cdot \frac{3}{\varepsilon^p r^p} \cdot k_{f,i} \left(c^b_i - c_i^p \right)
 ```
 
 where $k_{f,i}$ is the film mass transfer coefficient.
@@ -499,8 +499,8 @@ The lumped rate model with pores (LRMP) combines these considerations into the f
 ```{math}
 :label: mass_balance_lrmp
 
-\frac{\partial c^b_i}{\partial t} = -u \cdot \frac{\partial c^b_i}{\partial z} + D_{ax,i} \frac{\partial^2 c^b_i}{\partial z^2} - F \cdot \frac{3}{r_p} \cdot k_{f,i} \left(c^b_i - c^p_i \right) + f_{react}(c^b) , \\
-\frac{\partial c^p_i}{\partial t} + \frac{1 - \varepsilon_p}{\varepsilon_p} \cdot \frac{\partial q}{\partial t} = \frac{3}{\varepsilon_p r_p} \cdot k_{f,i} \left(c^b_i - c^p_i \right) + f^p_{react}(c^p, q) + \frac{1 - \varepsilon_p}{\varepsilon_p} f^s_{react}(c^p, q).
+\frac{\partial c^b_i}{\partial t} = -u \cdot \frac{\partial c^b_i}{\partial z} + D_{ax,i} \frac{\partial^2 c^b_i}{\partial z^2} - F \cdot \frac{3}{r^p} \cdot k_{f,i} \left(c^b_i - c^p_i \right) + f_{react}(c^b) , \\
+\frac{\partial c^p_i}{\partial t} + \frac{1 - \varepsilon^p}{\varepsilon^p} \cdot \frac{\partial q}{\partial t} = \frac{3}{\varepsilon^p r^p} \cdot k_{f,i} \left(c^b_i - c^p_i \right) + f^p_{react}(c^p, q) + \frac{1 - \varepsilon^p}{\varepsilon^p} f^s_{react}(c^p, q).
 ```
 
 where:
