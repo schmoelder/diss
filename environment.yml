@@ -3,14 +3,15 @@ channels:
   - conda-forge
 dependencies:
   - python=3.12
-  - numpy
-  - scipy
-  - matplotlib
   - cadet>=5.0.4
-  - mdformat-myst
   - jupyter-book
   - jupyter_contrib_nbextensions
   - jupytext
+  - matplotlib
+  - mdformat-myst
+  - numpy
+  - scipy
+  - pytest
   - tabulate
   - pip
   - pip:
