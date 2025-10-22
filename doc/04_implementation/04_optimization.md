@@ -48,7 +48,7 @@ And an {class}`~CADETProcess.optimization.OptimizerBase` class which allows inte
 In the following, the {mod}`~CADETProcess.optimization` module of **CADET-Process** is introduced and core features are discussed.
 
 (optimization_problem)=
-## Optimization Problem
+## Optimization problem
 
 The {class}`~CADETProcess.optimization.OptimizationProblem` class is designed for defining optimization variables, objectives, and constraints.
 It allows the addition of any number of variables, each with optional lower and upper bounds.
@@ -82,13 +82,13 @@ x^\prime = \frac{log \left( \frac{x}{x_{lb}} \right) }{log \left( \frac{x_{ub} }
 Consider the characterization of a chromatographic column (refer to @TODO:add reference), where two parameters are optimized:
 
 - **Bed porosity**, ranging from $0.1$ to $0.8$
-- **Axial dispersion**, ranging from $1 \cdot 10^{-9}$ to $1 \cdot 10^{-4}~m^2$.
+- **Axial dispersion**, ranging from $1 \times 10^{-9}$ to $1 \times 10^{-4}~m^2$.
 
-Figure {numref}`initial_values` shows 128 parameter combinations uniformly sampled from the unnormalized parameter space, plotted on a logarithmic scale.
-Despite the lower bound of $1\cdot10^{-9}$, few samples are drawn in that region; instead, the majority are biased toward the higher end of the range.
+Figure {numref}`fig_initial_values` shows 128 parameter combinations uniformly sampled from the unnormalized parameter space, plotted on a logarithmic scale.
+Despite the lower bound of $1 \times 10^{-9}$, few samples are drawn in that region; instead, the majority are biased toward the higher end of the range.
 
-Due to this disparity in scales, porosity is best normalized linearly, while **axial dispersion** benefits from logarithmic normalization (see {ref}`parameter_normalization_comparison`).
-Figure {ref}`initial_values_normalized` presents 128 parameter combinations sampled uniformly from the normalized space. As seen, all scales are now appropriately sampled—an important characteristic for generating effective initial values.
+Due to this disparity in scales, porosity is best normalized linearly, while **axial dispersion** benefits from logarithmic normalization.
+Figure {ref}`fig_initial_values_normalized` presents 128 parameter combinations sampled uniformly from the normalized space. As seen, all scales are now appropriately sampled—an important characteristic for generating effective initial values.
 
 This normalization strategy allows the optimizer to work within a consistent domain—effectively optimizing two variables that both range from $0$ to $1$—while **CADET-Process** handles the inverse transformation back to the original scales for evaluation.
 
@@ -107,7 +107,7 @@ x0 = optimization_problem.create_initial_values(2*64)
 pop = optimization_problem.create_population(x0)
 
 fig, _ = pop.plot_pairwise(autoscale=True)
-glue("initial_values", fig, display=False)
+glue("fig_initial_values", fig, display=False)
 
 optimization_problem = OptimizationProblem('transform_demo')
 optimization_problem.add_variable(r'$\varepsilon_{bed}$', lb=0.1, ub=0.8, transform="linear")
@@ -117,7 +117,7 @@ x0 = optimization_problem.create_initial_values(2*64)
 pop = optimization_problem.create_population(x0)
 
 fig, _ = pop.plot_pairwise(autoscale=True)
-glue("initial_values_normalized", fig, display=False)
+glue("fig_initial_values_normalized", fig, display=False)
 ```
 
 `````{grid}
@@ -125,8 +125,8 @@ glue("initial_values_normalized", fig, display=False)
 ````{grid-item}
 :columns: 6
 
-```{glue:figure} initial_values
-:name: initial_values
+```{glue:figure} fig_initial_values
+:name: fig_initial_values
 
 Regular parameter space.
 ```
@@ -135,8 +135,8 @@ Regular parameter space.
 ````{grid-item}
 :columns: 6
 
-```{glue:figure} initial_values_normalized
-:name: initial_values_normalized
+```{glue:figure} fig_initial_values_normalized
+:name: fig_initial_values_normalized
 
 Normalized parameters.
 ```

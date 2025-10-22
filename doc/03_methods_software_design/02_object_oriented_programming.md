@@ -21,7 +21,7 @@ Four general principles characterize object oriented languages:
 - *Abstraction* refers to hiding internal complexity in the background and providing a simple interface that requires only essential information to use the class's functionality. It simplifies the use of complex functionality by providing only what is necessary for the user.
 - *Encapsulation* refers to restricting access to certain properties and methods to ensure a consistent internal state of the object, preventing unintended side effects or errors. It enables developers to control how objects are used, providing security and reducing errors that can arise from unintended manipulation.
 
-## OOP Example
+## Example
 
 To demonstrate these principles, consider a generic `Shape` class which defines that an object of this type has a `color` attribute, as well as two getter functions for accessing the values of its `area` and `perimeter`.
 Note that this parent class does not actually implement any methods but instead, the `area` and `perimeter` methods have to be provided by concrete implementations (i.e. sub-classes) of the interface.
@@ -113,7 +113,7 @@ print(rectangle.perimeter)
 The objects `circle` and `another_circle` are instances of the `Circle` class; `rectangle` is an instance of a `Rectangle`.
 They use the class templates that were previously defined and independently store values of their properties.
 
-## Design Patterns
+## Design patterns
 
 Design patterns are a set of solutions to recurring software design problems, and they provide best practices and templates for designing flexible, reusable, and maintainable code.
 Since these patterns are programming language agnostic, they provide a shared vocabulary and best practices for solving common problems in software design {cite}`Gamma1994`.

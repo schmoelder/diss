@@ -42,6 +42,8 @@ from run_all import (
 
 study = setup_study(studies_root, "batch_elution")
 cases = setup_cases(study)
+
+import matplotlib.pyplot as plt
 ```
 
 (batch_elution_study)=
@@ -50,7 +52,7 @@ cases = setup_cases(study)
 A basic chromatographic batch-elution setup consists of `feed` and `eluent` reservoirs, a pump to deliver the necessary flow rate against the column's pressure drop, a valve to select whether feed or eluent is pumped into the column, the column itself, and one or more valves for fraction collection.
 
 (batch_elution_process)=
-## Process Model
+## Process model
 
 In **CADET-Process**, this setup is modeled by connecting two {class}`Inlets <CADETProcess.processModel.Inlet>`, a column model (e.g., {class}`~CADETProcess.processModel.LumpedRateModelWithPores`).
 Since in a model-based simulation framework the determination of optimal fractionation times can be done by analyzing the chromatograms {ref}`fractionation`, here only an {class}`~CADETProcess.processModel.Outlet` is added to the {class}`~CADETProcess.processModel.FlowSheet`.
@@ -66,6 +68,32 @@ To reduce the degrees of freedom that need to be explicitly specified, event dep
 
 ```{figure} ./figures/event_dependencies.png
 Events of batch elution process with event dependencies.
+```
+
+```{code-cell} ipython3
+:tags: [remove-cell]
+
+from CADETProcess.simulator import Cadet
+
+from process import setup_process
+
+process = setup_process()
+
+process.cycle_time = 600
+process.feed_duration.time = 60
+
+process_simulator = Cadet()
+
+simulation_results = process_simulator.simulate(process)
+fig_batch_elution, ax = simulation_results.solution.column.outlet.plot()
+glue("fig_batch_elution", fig_batch_elution, display=False)
+```
+
+```{glue:figure} fig_batch_elution
+:name: fig_batch_elution
+:figwidth: 300px
+
+Batch elution chromatogram.
 ```
 
 (batch_elution_evaluation)=
@@ -99,19 +127,21 @@ so_results = load_optimization_results(so)
 
 simulation_results = simulate_results(so_problem, so_results.x[0])
 fractionator = fractionate_results(so_problem, simulation_results)
-abc_so_batch_elution_fig, ax = fractionator.plot_fraction_signal()
+so_batch_elution_fig, ax = fractionator.plot_fraction_signal()
 
-glue("abc_so_batch_elution_fig", abc_so_batch_elution_fig, display=False)
+glue("so_batch_elution_fig", so_batch_elution_fig, display=False)
 
 so_batch_elution_table = setup_so_results_table(so_results, fractionator)
 ```
 
-```{glue:figure} abc_so_batch_elution_fig
-:name: abc_so_batch_elution_chromatogram
+```{glue:figure} so_batch_elution_fig
+:name: so_batch_elution_chromatogram
 :figwidth: 300px
 
 Optimal chromatogram of single-objective optimization of batch elution process.
 ```
+
+TODO: why is this figure not properly showing?
 
 ```{code-cell} ipython3
 ---

@@ -44,30 +44,20 @@ study = setup_study(studies_root, "clr")
 cases = setup_cases(study)
 ```
 
-(clr)=
-# Closed Loop Recycling
+(clr_peak_shaving)=
+# Closed-loop recycling with peak shaving
 
-In closed-loop recycling (CLR), the stock mixture is pumped over the column several times until the desired purity is achieved.
-The general structure of a CLR is shown in {numref}`clr_flow_sheet`.
+The disadvantage of the CLR process is an increased dispersion due to multiple passes through the pump and additional piping.
 
-```{figure} ./figures/clr_flow_sheet.png
-:name: clr_flow_sheet
+To improve the overall process performance, the CLR process is often combined with peak shaving.
+In this process, the initial and final regions of the chromatogram with sufficient purity are "shaved off" during each cycle.
+Peak shaving can reduce the number of recycling cycles required, since a decreasing amount of components must be pumped across the column.
 
-Flow sheet for closed-loop recycling process.
+```{figure} ./figures/clr_peak_shaving_events.png
+:name: clr_peak_shaving_events
+
+Events for closed-loop recycling process with peak shaving.
 ```
-
-To realize the recycling, the {attr}`~CADETProcess.processModel.FlowSheet.output_state` attribute of the column needs to be modified, leading to the following event structure:
-
-```{figure} ./figures/clr_events.png
-:name: clr_events
-
-Events for closed-loop recycling process.
-```
-
-To reduce the number of event times that need to be specified, event dependencies are specified which enforce that always either feed or eluent are being pumped through the column.
-
-Now, the cycle time is set to $10~min$ and the `feed_duration` to $1~min$.
-{numref}`clr_outlet` shows the concentration profiles at the column and system outlets, respectively.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -78,8 +68,8 @@ from cadetrdm import Options
 from process import setup_process, plot_results
 
 options = Options()
+options.enable_peak_shaving = True
 options.peak_shaving_cycles = 3
-options.enable_peak_shaving = False
 
 process = setup_process(options)
 
@@ -88,33 +78,46 @@ t_cycle = 9 * 60
 process.cycle_time = options.peak_shaving_cycles * t_cycle
 process.recycle_off_output_state.time = (options.peak_shaving_cycles - 1) * t_cycle
 
+process.start_a_output_state_0.time = 4.5 * 60
+process.end_a_output_state_0.time = 5.3 * 60
+# 1 B
+process.start_b_output_state_0.time = 7.0 * 60
+process.end_b_output_state_0.time = 9.0 * 60
+# 2 A
+process.start_a_output_state_1.time = 10.0 * 60
+process.end_a_output_state_1.time = 11.5 * 60
+# 2 B
+process.start_b_output_state_1.time = 13.0 * 60
+process.end_b_output_state_1.time = 14.5 * 60
+
 process_simulator = Cadet()
 
 simulation_results = process_simulator.simulate(process)
 fig, axs = plot_results(simulation_results)
-glue("clr_outlet", fig, display=False)
+glue("clr_peak_shaving", fig, display=False)
 
 ```
 
-```{glue:figure} clr_outlet
-:name: clr_outlet
+```{glue:figure} clr_peak_shaving
+:name: clr_peak_shaving
 :figwidth: 300px
 
 **Left:** Concentration at column outlet.
 **Right:** Concentration at system outlet.
 ```
 
-(clr_optimization)=
-## Optimization of CLR
+(clr_peak_shaving_optimization)=
+## Optimization of CLR with peak shaving
 
 Variables
 - Feed duration
 - Delay Reversal
 - Delay injection
+- peak shaving times
 - TODO: check variables
 - TODO: add linear constraints
 
-(clr_single)=
+(clr_peak_shaving_single)=
 ### Single-objective optimization
 
 Here we do some single-objective optimization.
@@ -122,24 +125,24 @@ Here we do some single-objective optimization.
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-so = cases["single-objective"]
+so = cases["single-objective_peak_shaving"]
 so_problem, _ = load_optimization_config(so)
 so_results = load_optimization_results(so)
 
 simulation_results = simulate_results(so_problem, so_results.x[0])
 fractionator = fractionate_results(so_problem, simulation_results)
-so_clr_fig, ax = fractionator.plot_fraction_signal()
+so_clr_ps_fig, ax = fractionator.plot_fraction_signal()
 
-glue("so_clr_fig", so_clr_fig, display=False)
+glue("so_clr_ps_fig", so_clr_ps_fig, display=False)
 
-so_clr_table = setup_so_results_table(so_results, fractionator)
+so_clr_ps_table = setup_so_results_table(so_results, fractionator)
 ```
 
-```{glue:figure} so_clr_fig
-:name: so_clr_chromatogram
+```{glue:figure} so_clr_ps_fig
+:name: so_clr_ps_chromatogram
 :figwidth: 300px
 
-Optimal chromatogram of single-objective optimization of clr process.
+Optimal chromatogram of single-objective optimization of clr process with peak shaving.
 ```
 
 ```{code-cell} ipython3
@@ -148,7 +151,10 @@ mystnb:
   markdown_format: myst
   remove_code_source: true
 ---
-display(Markdown(so_clr_table))
+display(Markdown(so_clr_ps_table))
 ```
 
-{numref}`so_clr_kpi` shows some values.
+{numref}`so_clr_ps_kpi` shows some values. @TODO: fix name for peak-shaving table
+
+
+Discuss: Not really robust in practice. Maybe better when combined with model predictive control.

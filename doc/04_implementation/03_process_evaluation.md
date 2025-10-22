@@ -22,7 +22,7 @@ from myst_nb import glue
 This chapter provides an overview of selected evaluation methods available in **CADET-Process**.
 
 (fractionation)=
-## Product Fractionation
+## Product fractionation
 
 To effectively quantify the performance of a chromatographic process, it is crucial to calculate KPIs such as purity or recovery yield from the chromatograms.
 As highlighted in {numref}`chapter %s <kpi>`, the key information for assessing the separation performance of a chromatographic process is derived from the amounts of target components in the collected product fractions.
@@ -89,7 +89,7 @@ It must include relevant details so that it is capable of accurately predicting 
 To demonstrate this module, consider a simple tracer pulse injection onto a chromatographic column.
 For this example, the full process configuration can be found {ref}`here <fit_column_transport>`.
 @TODO: Update reference
-As an initial guess, the bed porosity is set to $0.5$, and the axial dispersion to $1.0 \cdot 10^{-7} m^2 \cdot s^{-1}$.
+As an initial guess, the bed porosity is set to $0.5$, and the axial dispersion to $1.0 \times 10^{-7} m^2 \cdot s^{-1}$.
 After process simulation, the {class}`~CADETProcess.simulationResults.SimulationResults` needs to be passed to the {meth}`~CADETProcess.comparison.Comparator.evaluate` method of the {class}`~CADETProcess.comparison.Comparator`.
 Here, an SSE metric has been added for the interval $3 \to 6~\text{min}$.
 The difference is visualized in {numref}`chromatogram_comparison`.

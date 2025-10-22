@@ -1,5 +1,4 @@
-(case_studies)=
-# Case Studies
+# Case studies {.unnumbered}
 
 Chromatographic processes vary widely in complexity, ranging from simple batch elution to multi-column continuous systems.
 Depending on the separation task, different process configurations, evaluation methods, and optimization strategies are required.

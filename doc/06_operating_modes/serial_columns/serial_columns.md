@@ -55,7 +55,7 @@ As soon as breakthrough of the bound impurity is imminent, the pre-column can be
 Alternatively, the output of the pre-column can be dynamically directed either to waste or to the second column, depending on the component currently eluting.
 
 (serial_columns_process)=
-## Process Model
+## Process model
 
 {ref}`serial_columns_flow_sheet` shows the flow sheet for a process with columns connected in series.
 To prevent periods where no flow occurs through a column, a second eluent {class}`~CADETProcess.processModel.Inlet` is added to the system.

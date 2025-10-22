@@ -60,7 +60,7 @@ This operating concept aims to enhance both the resolution and efficiency of sep
 As illustrated in {ref}`@TODO: insert figure`, this cycle is repeated with successive injections and flow reversals, resulting in an alternating product collection scheme.
 
 (flip-flop_process)=
-## Process Model
+## Process model
 
 As mentioned above, flip-flop chromatography is best suited for scenarios in which components exhibit very different adsorption behavior.
 For this purpose, a linear isotherm with parameters listed in {numref}`flip_flop_parameters` will be used for this study.
@@ -118,16 +118,16 @@ process.flow_sheet.column.solution_recorder.write_solution_bulk = True
 process_simulator = Cadet()
 process_simulator.n_cycles = 1
 
-simulation_results_single = process_simulator.simulate(process)
-fig_single_cycle, _ = plot_results(simulation_results_single, n_times=12)
-glue("flip-flop_bulk", fig_single_cycle, display=False)
+simulation_results = process_simulator.simulate(process)
+fig_flip_flop_bulk, _ = plot_results(simulation_results, n_times=12)
+glue("flip-flop_bulk", fig_flip_flop_bulk, display=False)
 ```
 
 ```{glue:figure} flip-flop_bulk
 :name: flip-flop_bulk
 :figwidth: 300px
 
-**Left:** Bulk concentration at different times. The flow direction is indicated by the arrow. **Right:** concentration profile at the system outlet.
+**Left:** Concentration profile at the inllet of the column. **Center**: Bulk concentration at different times. The flow direction is indicated by the arrow. **Right:** concentration profile at the system outlet. @TODO: Add note about time scale (or axis); Also offset to better visualize injection
 ```
 
 (flip-flop_evaluation)=

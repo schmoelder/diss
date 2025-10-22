@@ -5,13 +5,13 @@ options:
   maxdepth: 3
 chapters:
   - file: 01_introduction/00_index
-  - file: 02_fundamentals/00_index
+  - file: 02_model_based_design/00_index
     sections:
-      - file: 02_fundamentals/01_chromatographic_principle
-      - file: 02_fundamentals/02_model_formulation
-      - file: 02_fundamentals/03_model_solution
-      - file: 02_fundamentals/04_design_formulation
-      - file: 02_fundamentals/05_design_solution
+      - file: 02_model_based_design/01_chromatographic_principle
+      - file: 02_model_based_design/02_model_formulation
+      - file: 02_model_based_design/03_model_solution
+      - file: 02_model_based_design/04_design_formulation
+      - file: 02_model_based_design/05_design_solution
   - file: 03_methods_software_design/00_index
     sections:
       - file: 03_methods_software_design/01_programming_principles
@@ -23,25 +23,29 @@ chapters:
       - file: 03_methods_software_design/07_software_licenses
   - file: 04_implementation/00_overview
     sections:
-      - file: 04_implementation/01_process
-      - file: 04_implementation/02_simulator
-      - file: 04_implementation/03_process_evaluation
-      - file: 04_implementation/04_optimization
-  - file: 05_case_studies/00_index
+    - file: 04_implementation/01_process
+    - file: 04_implementation/02_simulator
+    - file: 04_implementation/03_process_evaluation
+    - file: 04_implementation/04_optimization
+  - file: 05_characterization/00_index
     sections:
-      - file: 05_case_studies/characterization/characterization
-      - file: 05_case_studies/operating_modes/index
+      - file: 05_characterization/01_materials_and_methods
+      - file: 05_characterization/02_modeling_approach
+      - file: 05_characterization/03_system_periphery
+      - file: 05_characterization/04_column_parameters
+      - file: 05_characterization/05_ionic_capacity
+      - file: 05_characterization/06_adsorption_parameters
+  - file: 06_operating_modes/00_index
+    sections:
+      - file: 06_operating_modes/batch_elution/batch_elution
+      - file: 06_operating_modes/batch_elution_ternary/batch_elution_ternary
+      - file: 06_operating_modes/recycling_techniques/recycling_techniques
         sections:
-          - file: 05_case_studies/operating_modes/batch_elution/batch_elution
-          - file: 05_case_studies/operating_modes/batch_elution_ternary/batch_elution_ternary
-          - file: 05_case_studies/operating_modes/recycling_techniques/recycling_techniques
-            sections:
-            - file: 05_case_studies/operating_modes/recycling_techniques/clr
-            - file: 05_case_studies/operating_modes/recycling_techniques/clr_peak_shaving
-            - file: 05_case_studies/operating_modes/recycling_techniques/ssr
-          - file: 05_case_studies/operating_modes/flip_flop/flip_flop
-          - file: 05_case_studies/operating_modes/serial_columns/serial_columns
-          # - file: 05_case_studies/operating_modes/smb/smb
-  - file: 06_conclusion/00_index
-  - file: bibliography
-  - file: appendix/00_index
+          - file: 06_operating_modes/recycling_techniques/clr
+          - file: 06_operating_modes/recycling_techniques/clr_peak_shaving
+          - file: 06_operating_modes/recycling_techniques/ssr
+      - file: 06_operating_modes/flip_flop/flip_flop
+      - file: 06_operating_modes/serial_columns/serial_columns
+  - file: 07_conclusion/00_index
+  - file: 08_bibliography/00_index
+  - file: 99_appendix/00_index

@@ -46,7 +46,7 @@ cases = setup_cases(study)
 ```
 
 (ssr)=
-## Steady-State Recycling
+## Steady-state recycling
 
 In addition to the recycled fraction, fresh feed can also be injected in each cycle, resulting in the formation of a cyclic steady-state.
 This process, called closed-loop steady-state recycling (CL-SSR), can achieve higher productivity compared to CLR.
@@ -160,4 +160,4 @@ mystnb:
 display(Markdown(so_ssr_table))
 ```
 
-{numref}`so_ssr_kpi` shows some values.
+{numref}`so_mrssr_kpi` shows some values.

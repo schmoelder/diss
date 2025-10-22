@@ -58,7 +58,7 @@ The unit's {mod}`~CADETProcess.processModel.solutionRecorder` can be adjusted to
 For instance, {numref}`Figure %s <chromatogram>` was generated using the {meth}`~CADETProcess.solution.SolutionIO.plot` method of the {class}`~CADETProcess.solution.SolutionIO` class, which is used to store the inlet and outlet profiles of unit operations and provides utility methods such as plot methods.
 
 (stationarity)=
-## Cyclic Stationarity
+## Cyclic stationarity
 
 Preparative chromatographic separations are often operated in a repetitive fashion.
 In particular, processes that incorporate the recycling of streams, like steady-state-recycling (SSR) or simulated moving bed (SMB), have a distinct startup behavior that takes multiple cycles until a periodic steady state is reached {cite}`SchmidtTraub2020`.

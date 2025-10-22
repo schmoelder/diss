@@ -1,5 +1,5 @@
 (process_model)=
-# Process Model
+# Process model
 
 The starting point of process development is the setup of a {class}`~CADETProcess.processModel.Process` (see {numref}`Figure %s <framework_overview>`) model, i.e., the specific configuration of the chromatographic process.
 This is realized using {class}`UnitOperations <CADETProcess.processModel.UnitBaseClass>` as building blocks.
@@ -8,7 +8,7 @@ Finally, dynamic {class}`Events <CADETProcess.dynamicEvents.Event>` can be defin
 In this chapter, an overview about the different components of the {class}`~CADETProcess.processModel.Process` is given.
 
 (unit_operations)=
-## Unit Operations
+## Unit operations
 
 A {class}`UnitOperation <CADETProcess.processModel.UnitBaseClass>` represents the physico-chemical behavior of an apparatus and holds the model parameters.
 {numref}`unit_operation` displays a UML (Unified Modeling Language) diagram illustrating the unit operation's structure and relationships.
@@ -35,7 +35,7 @@ These include the simple {class}`~CADETProcess.processModel.Linear` adsorption i
 Moreover, {class}`ReactionModels <CADETProcess.processModel.ReactionBaseClass>` can be used to model chemical reactions.
 
 (flow_sheet)=
-## Flow Sheet
+## Flow sheet
 
 The connectivity of unit operations is defined in the {class}`~CADETProcess.processModel.FlowSheet` class.
 This class provides a directed graph structure that allows for the simple definition of configurations for multi-column or reactor-separator networks, even when they are cyclic.

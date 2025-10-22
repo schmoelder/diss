@@ -43,6 +43,10 @@ from run_all import (
 )
 study = setup_study(studies_root, "batch_elution_ternary")
 cases = setup_cases(study)
+
+# Dummy figure to avoid
+fig_dummy, ax = plt.subplots()
+glue("fig_dummy", fig_dummy, display=False)
 ```
 
 (batch_elution_ternary_study)=
@@ -59,7 +63,7 @@ Here we do some single-objective  optimization.
 <!-- ``` -->
 
 ```{code-cell} ipython3
-# :tags: [remove-cell]
+:tags: [remove-cell]
 
 so = cases["single-objective"]
 so_problem, _ = load_optimization_config(so)
@@ -81,7 +85,7 @@ so_batch_elution_ternary_table = setup_so_results_table(so_results, fractionator
 Optimal chromatogram of single-objective optimization of ternary batch elution process.
 ```
 
-TODO: why is this figure not showing?
+TODO: why is this figure not properly showing?
 
 ```{code-cell} ipython3
 ---

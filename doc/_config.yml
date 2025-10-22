@@ -100,6 +100,9 @@ sphinx:
         hmargin={0.7in,0.7in}, vmargin={1in,1in},
         HeaderFamily=\rmfamily\bfseries,
         InnerLinkColor={rgb}{0,0,0},
+        TableRowColorHeader={rgb}{1, 1, 1},
+        TableRowColorOdd={rgb}{1, 1, 1},
+        TableRowColorEven={rgb}{1, 1, 1},
       fncychap: "" # Don't use fancy chapter titles; see custom definition in preamble
       preamble: |
         % Enable @-symbol for macros; don't forget to turn off with \makeatother
@@ -118,9 +121,18 @@ sphinx:
         %% \renewcommand{\FV@FontSize}{\scriptsize}
 
         %% Tables:
-        \newcommand\originalSphinxAtTableStart{}
-        \let\originalSphinxAtTableStart\sphinxattablestart
-        \renewcommand{\sphinxattablestart}{\small \originalSphinxAtTableStart}
+        % Redefine the table start command to include \small
+        \let\originalsphinxattablestart\sphinxattablestart
+        \renewcommand{\sphinxattablestart}{%
+            \small
+            \originalsphinxattablestart
+        }
+
+        % Redefine the start paragraph command to do nothing
+        \let\originalsphinxAtStartPar\sphinxAtStartPar
+        \renewcommand{\sphinxAtStartPar}{%
+            \relax
+        }
 
         %% Basic caption configuration is via `usepackage` for multiple settings:
         % - Fontsize a bit smaller than the text
@@ -162,6 +174,34 @@ sphinx:
         \setlength{\cftchapnumwidth}{0.75cm}
         \setlength{\cftsecindent}{\cftchapnumwidth}
         \setlength{\cftsecnumwidth}{1.25cm}
+
+        % Part styling
+        % Make @ available for internal macros
+        \makeatletter
+
+        % Reset part counter, use Roman numerals if needed
+        \renewcommand{\thepart}{\Roman{part}}
+
+        % Fully redefine \part
+        \renewcommand{\part}[1]{%
+          \cleardoublepage
+          \thispagestyle{plain}
+          \refstepcounter{part}
+          \addcontentsline{toc}{part}{Part~\thepart: #1}
+          \vspace*{\fill}
+          \begin{center}
+            {\Huge\bfseries Part~\thepart \par}
+            \vspace{1em}
+            {\Huge\bfseries #1 \par}
+            \vspace{1em}
+            \titlerule
+          \end{center}
+          \vspace*{\fill}
+          \clearpage
+        }
+
+        \makeatother
+
 
         % Title styling
         \titleformat{\chapter}[display]{\normalfont\huge\bfseries\titlerule\vspace{0.25cm}}{\LARGE\chaptertitlename~\thechapter}{1em}{}[\vspace{0.25cm}\titlerule]
@@ -241,7 +281,8 @@ sphinx:
 
           \thispagestyle{empty}
           \section*{Acknogledgements}
-          foo bar
+
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
           \clearpage
 

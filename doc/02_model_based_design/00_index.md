@@ -13,27 +13,22 @@ Furthermore, models are used for robustness analysis, uncertainty quantification
 
 Several important steps are required to ensure a model's reliability and accuracy.
 First, a suitable model must be developed that is capable of addressing the problem at hand.
-This development phase often involves selecting an appropriate theoretical framework, defining key assumptions, and determining model parameters.
-Once developed, the model must be *verified* to ensure its theoretical soundness and its ability to represent the real-world system accurately.
-The verification process typically involves comparing model predictions to experimental data and refining parameters as needed to improve alignment.
-Subsequently, the software implementation of the model must undergo rigorous testing.
-This step ensures that the software is free of errors and that its operations are consistent with the mathematical formulation of the model.
+This development phase often involves selecting an appropriate theoretical framework, defining key assumptions, and identifying model parameters.
 
-The process of model *validation* then involves comparing the model's predictions with experimental data or benchmarks.
-This is essential for assessing its accuracy and reliability in simulating real-world scenarios.
-Following this, the model undergoes *calibration* of its parameters, a critical step for aligning the model with experimental data or other relevant sources of information, thereby enhancing its predictive accuracy.
+The model must then be *verified* to ensure its theoretical soundness and correct implementation through rigorous testing.
+This involves checking that the mathematical equations are solved correctly, the software implementation matches the theoretical formulation, and the model behaves as expected when compared to benchmarks and well-defined test cases.
 
-It is important to note that the development of new models is typically not a linear process but an iterative one.
-The model is continually refined and improved through repeated cycles of design, building, testing, and learning (DBTL) from the results.
-This iterative approach ensures that the model evolves and adapts to provide the most accurate and reliable outcomes possible.
+During model *calibration*, parameters are systematically adjusted to optimize alignment with experimental data, thereby enhancing predictive accuracy.
+Following successful calibration, the model undergoes *validation* using independent experimental datasets not used during calibration to rigorously assess its accuracy and reliability in real-world scenarios.
+It is important to note that model development typically follows an iterative DBTL cycle (design, build, test, learn) rather than a linear progression, allowing for continuous refinement through repeated cycles of calibration and validation.
 
-In this context, developing an accurate model for chromatographic processes requires a thorough understanding of their mechanistic principles.
+Consequently, developing accurate models for chromatographic processes requires a thorough understanding of their mechanistic principles.
 Aspects such as retention mechanisms and transport phenomena are particularly important, as discussed in {numref}`section %s <chromtographic_principle>`.
 Typically, chromatographic processes are mathematically described using partial differential equations, which are first parametrized to represent the specific system under study and then solved numerically.
 For a more in-depth discussion on the modeling approach and the numerical solutions to these equations, refer to sections {numref}`%s <model_formulation>` and {numref}`%s <model_solution>`.
 
 The primary focus of this work is to investigate various operating modes of chromatography and conduct a comprehensive comparison of their performance.
-For this analysis, it is assumed that the models being used have already undergone verification, validation, and calibrated.
+For this analysis, it is assumed that the models being used have already undergone verification, validation, and calibrated. @todo: this is no longer accurate; refer to verification / characterization chapters!
 These models then enable the determination of a range of metrics to evaluate the performance of specific chromatographic process scenarios, as detailed in {numref}`section %s <design_formulation>`.
 Subsequently, different optimization algorithms can be applied to identify optimal operating conditions by maximizing the defined performance metrics.
 A more detailed discussion of these optimization techniques can be found in {numref}`section %s <design_solution>`.

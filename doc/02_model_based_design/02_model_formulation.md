@@ -3,7 +3,7 @@
 
 This chapter provides an overview of the formulation of chromatographic process models, highlighting various aspects of their modeling approaches.
 It begins with models for retention mechanisms, followed by a description of the equations used to capture the phenomena occurring within the column and their coupling to adsorption isotherm models.
-Finally, the chapter considers effects that occur outside the column, in the system's periphery.
+Moreover, the chapter considers effects that occur outside the column, in the system's periphery.
 
 ## Digression: machine learning models
 
@@ -334,6 +334,9 @@ u \cdot c_{in,i}(t) = u \cdot c_i(t,0) \quad \forall t > 0,
 
 Here, $c_{in,i}(t)$ is the inlet concentration of component $i$, and $L$ is the length of the column.
 
+(dispersive_plug_flow_model)=
+### Dispersive plug flow reactor
+
 Due to non-idealities, axial dispersion often plays a significant role in the fluid dynamics of real chromatographic systems.
 The dispersion is the result from several factors, such as uneven fluid distribution, wall effects, and molecular diffusion.
 To account for this, axial dispersion can be incorporated into the model equations.
@@ -544,3 +547,8 @@ This is particularly valuable when certain parameters, such as dispersion coeffi
 Instead, these parameters can be inferred by analyzing simulation results.
 Once calibrated, reduced-order models can then be derived to optimize process design and enhance computational efficiency.
 This is especially important because fully spatially resolved simulations, while accurate, are computationally expensive and often impractical for routine optimization tasks.
+
+
+(cstr)=
+### Cstr
+TODO: Add model equations.
