@@ -23,10 +23,10 @@ chapters:
       - file: 03_methods_software_design/07_software_licenses
   - file: 04_implementation/00_overview
     sections:
-    - file: 04_implementation/01_process
-    - file: 04_implementation/02_simulator
-    - file: 04_implementation/03_process_evaluation
-    - file: 04_implementation/04_optimization
+      - file: 04_implementation/01_process
+      - file: 04_implementation/02_simulator
+      - file: 04_implementation/03_process_evaluation
+      - file: 04_implementation/04_optimization
   - file: 05_characterization/00_index
     sections:
       - file: 05_characterization/01_materials_and_methods
@@ -49,3 +49,5 @@ chapters:
   - file: 07_conclusion/00_index
   - file: 08_bibliography/00_index
   - file: 99_appendix/00_index
+    sections:
+      - file: 99_appendix/characterization

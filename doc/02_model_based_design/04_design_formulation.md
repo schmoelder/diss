@@ -16,7 +16,7 @@ The formulation of chromatographic design problems typically involves determinin
 These include parameters related to thermodynamics, fluid dynamics, dispersion effects, and mass transfer resistances.
 Model parameters can often be measured directly, obtained through correlations, or determined using inverse methods, where they are adjusted to align with experimental data or other sources of information.
 The accurate determination of model parameters is essential for developing precise chromatographic process models.
-However, as mentioned earlier, this work assumes that these parameters have already been estimated through prior research or experiments.
+For an example characterization procedure of a typical chromatographic laboratory system, refer to {numref}`characterization`.
 
 *Design parameters* define the overall setup and operational configuration of a chromatographic plant, which remain fixed during operation.
 These parameters include decisions about operating modes (e.g., batch elution or recycling techniques), column geometry (length and diameter), adsorbent type, and, for Simulated Moving Bed (SMB) systems, zone configurations such as the number of columns per zone.
@@ -26,7 +26,7 @@ While selecting the most suitable operating mode is a critical aspect of chromat
 *Operating parameters* refer to variables that can be adjusted during the operation of a chromatographic plant.
 These include flow rates, concentrations, and valve switch times, which are critical for fine-tuning the process to achieve optimal performance.
 The investigation and optimization of these operating parameters form the primary focus of this work.
-Detailed case studies demonstrating their application and impact in real-world scenarios are presented in {numref}`section %s <case_studies>`.
+Detailed case studies demonstrating their application and impact in real-world scenarios are presented in {numref}`operating_modes`.
 
 The following section introduces several key performance indicators (KPIs) that are commonly used to evaluate the performance of separation processes.
 These KPIs will later serve as objectives or constraints when formulating optimization problems.
@@ -48,8 +48,9 @@ The start time, $t_{start, j}$, and end time, $t_{end, j}$, for each product fra
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-from myst_nb import glue
+%config InlineBackend.figure_format = 'retina'
 
+from myst_nb import glue
 from examples.batch_elution.process import process
 
 from CADETProcess.simulator import Cadet
@@ -67,13 +68,13 @@ fractionator.add_fractionation_event('end_B', -1, 9*60)
 
 from CADETProcess import plotting
 
-fig, ax = fractionator.plot_fraction_signal(style='small', show=False)
+fig, ax = fractionator.plot_fraction_signal(show=False)
 glue("chromatogram_fractionation", fig, display=False)
 ```
 
 ```{glue:figure} chromatogram_fractionation
 :name: "chromatogram_fractionation"
-:figwidth: 300px
+:scale: 100%
 
 Fractionation of a chromatogram.
 Grey areas represent waste fractions.
@@ -87,7 +88,7 @@ These aspects are considered by defining the total product amount of a component
 
 ```{math}
 :label: mass
-m_{i} = \sum_{k=1}^{n_{chrom}} \sum_{j=1}^{n_{frac, k}^{i}}\int_{t_{start, j}}^{t_{end, j}} Q_k(t) \cdot c_{i,k}(t) dt, \\
+m_{i} = \sum_{k=1}^{n_{\text{chrom}}} \sum_{j=1}^{n_{\text{frac}, k}^{i}}\int_{t_{\text{start}, j}}^{t_{\text{end}, j}} Q_k(t) \cdot c_{i,k}(t) dt, \\
 ```
 
 where $n_{frac, k}^{i}$ is the number of fractions considered for component $i$ in chromatogram $k$, and $n_{chrom}$ is the total number of chromatograms evaluated.
@@ -96,38 +97,38 @@ Further performance criteria frequently used for evaluating and optimizing chrom
 
 ```{math}
 :label: productivity
-PR_{i} = \frac{m_i}{V_{solid} \cdot \Delta t_{cycle}},\\
+PR_{i} = \frac{m_i}{V_{\text{solid}} \cdot \Delta t_{\text{cycle}}},\\
 ```
 
 ```{math}
 :label: yield
-Y_{i} = \frac{m_i}{m_{feed, i}},\\
+Y_{i} = \frac{m_i}{m_{\text{feed}, i}},\\
 ```
 
 ```{math}
 :label: eluent_consumption
-EC_{i} = \frac{V_{solvent}}{m_i}.\\
+EC_{i} = \frac{V_{\text{solvent}}}{m_i}.\\
 ```
 
-Here, $V_{solid}$ represents the volume of the stationary phase, $V_{solvent}$ denotes the solvent volume introduced during a cycle of duration $\Delta t_{cycle}$, and $m_{feed, i}$ is the injected amount of the mixture containing component $i$ to be separated.
+Here, $V_{\text{solid}}$ represents the volume of the stationary phase, $V_{\text{solvent}}$ denotes the solvent volume introduced during a cycle of duration $\Delta t_{\text{cycle}}$, and $m_{\text{feed}, i}$ is the injected amount of the mixture containing component $i$ to be separated.
 
 The amounts of consumed feed and solvent can be calculated from multiple sources as follows:
 
 ```{math}
 :label: solvent_in
-V_{solvent} = \sum_{s=1}^{n_{solvents}} \int_{0}^{t_{cycle}} Q_s(t) dt,\\
+V_{\text{solvent}} = \sum_{s=1}^{n_{\text{solvents}}} \int_{0}^{t_{\text{cycle}}} Q_s(t) dt,\\
 ```
 
 ```{math}
 :label: feed_in
-m_{feed,i} = \sum_{f=1}^{n_{feeds}} \int_{0}^{t_{cycle}} Q_f(t) \cdot c_{f,i}(t) dt.\\
+m_{\text{feed},i} = \sum_{f=1}^{n_{\text{feeds}}} \int_{0}^{t_{\text{cycle}}} Q_f(t) \cdot c_{f,i}(t) dt.\\
 ```
 
 The cumulative product purity $PU_i$ is given by:
 
 ```{math}
 :label: purity
-PU_{i} = \frac{m_{i}^{i}}{\sum_{l=1}^{n_{comp}} m_{l}^{i}},\\
+PU_{i} = \frac{m_{i}^{i}}{\sum_{l=1}^{n_{\text{comp}}} m_{l}^{i}},\\
 ```
 
 where $n_{comp}$ is the number of mixture components, and $m_{l}^{i}$ is the mass of component $l$ in the target fraction $i$.
@@ -138,7 +139,7 @@ For instance, the physical properties of the separation system, such as column s
 Similarly, plant design factors, such as the number of columns in the process and the type of chromatography system, influence fixed costs, including capital investments, labor, and maintenance expenses.
 In addition, site-specific parameters, such as the availability and cost of utilities (e.g., water and electricity), can significantly affect total separation costs.
 
-The total separation costs for a given chromatographic process, $C_{i, total}$, are determined by summing the fixed and variable costs.
+The total separation costs for a given chromatographic process, $C_{i, \text{total}}$, are determined by summing the fixed and variable costs.
 Fixed costs are company-specific and include operating costs, $C_{operating}$, which cover overhead expenses such as wages and maintenance, as well as depreciation costs, $C_{depreciation}$, which allocate investment costs over time.
 In contrast, variable costs include the costs of operation such as eluent cost, feed cost, and adsorbent cost, which are dependent on the materials used in the chromatographic separation process.
 
@@ -146,37 +147,36 @@ This simple calculation provides a rough estimate of the total separation costs,
 
 ```{math}
 :label: total_cost
-C_{i, total} = C_{operating} + C_{depreciation} + C_{i, ads} + C_{i, Cel} + C_{i, feed}. \\
+C_{i,\ text{total}} = C_{\text{operating}} + C_{\text{depreciation}} + C_{i, \text{ads}} + C_{i,\ text{el}} + C_{i, \text{feed}}. \\
 ```
 
-The cost associated with the eluent, $C_{i, el}$, which is the solvent used to elute the target product from the adsorbent, is calculated as:
+The cost associated with the eluent, $C_{i, \text{el}}$, which is the solvent used to elute the target product from the adsorbent, is calculated as:
 
 ```{math}
 :label: eluent_cost
-C_{i, el} = EC_{i} \cdot \dot{m}_{i, annual} \cdot f_{el}, \\
+C_{i, \text{el}} = EC_{i} \cdot \dot{m}_{i, \text{annual}} \cdot f_{el}, \\
 ```
 
-where $EC_{i}$ is the eluent consumption in $m^3$ per kg of product, $\dot{m}_{i, annual}$ is the annual production rate in kg per year, and $f_{el}$ is the eluent price in $\euro$ per $m^3$.
+where $EC_{i}$ is the eluent consumption in $\text{m}^3$ per kg of product, $\dot{m}_{i, \text{annual}}$ is the annual production rate in kg per year, and $f_{el}$ is the eluent price in $\euro$ per $\text{m}^3$.
 
-The feed cost, $C_{i, feed}$, which reflects the cost of the feed material processed in the separation, is given by:
+The feed cost, $C_{i, \text{feed}}$, which reflects the cost of the feed material processed in the separation, is given by:
 
 ```{math}
 :label: feed_cost
-
-C_{i, feed} = \frac{1 - Y_i}{Y_i} \cdot \dot{m}_{i, annual} \cdot f_{feed}, \\
+C_{i, feed} = \frac{1 - Y_i}{Y_i} \cdot \dot{m}_{i, \text{annual}} \cdot f_{\text{feed}}, \\
 ```
 
-where $Y_i$ is the product yield, and $f_{feed}$ is the feed price in $\euro$ per $m^3$.
+where $Y_i$ is the product yield, and $f_{\text{feed}}$ is the feed price in $\euro$ per $\text{m}^3$.
 
-The adsorbent cost, $C_{i, ads}$, which reflects the cost of the adsorbent material used in the separation, can be calculated as:
+The adsorbent cost, $C_{i, \text{ads}}$, which reflects the cost of the adsorbent material used in the separation, can be calculated as:
 
 ```{math}
 :label: adsorbent_cost
 
-C_{i, ads} = \frac{1}{PR_i} \cdot \dot{m}_{i, annual} \cdot \frac{f_{ads}}{\Delta t_{life}}, \\
+C_{i, \text{ads}} = \frac{1}{PR_i} \cdot \dot{m}_{i, \text{annual}} \cdot \frac{f_{\text{ads}}}{\Delta t_{\text{life}}}, \\
 ```
 
-where $PR_i$ is the productivity in terms of kg of product per $m^3$ of adsorbent, $f_{ads}$ is the adsorbent price in $\euro$ per $m^3$, and $\Delta t_{life}$ is the lifetime of the adsorbent material.
+where $PR_i$ is the productivity in terms of kg of product per $\text{m}^3$ of adsorbent, $f_{\text{ads}}$ is the adsorbent price in $\euro$ per $\text{m}^3$, and $\Delta t_{\text{life}}$ is the lifetime of the adsorbent material.
 
 ## Objective functions
 
@@ -189,17 +189,17 @@ A commonly used objective function combines specific productivity, recovery yiel
 
 ```{math}
 :label: weighted_objective
-f(x) = \frac{PR_{weighted}(x) \cdot Y_{weighted}(x)}{EC_{weighted}(x)}
+f(x) = \frac{PR_{\text{weighted}}(x) \cdot Y_{\text{weighted}}(x)}{EC_{\text{weighted}}(x)}
 ```
 
-Here, $PR_{weighted}(x)$, $Y_{weighted}(x)$, and $EC_{weighted}(x)$ represent the weighted values of productivity, yield, and eluent consumption, respectively.
+Here, $PR_{\text{weighted}}(x)$, $Y_{\text{weighted}}(x)$, and $EC_{\text{weighted}}(x)$ represent the weighted values of productivity, yield, and eluent consumption, respectively.
 The term "weighted" reflects the process of assigning weighting factors to individual components, allowing their relative importance to be incorporated into the overall objective.
 When multiple target components are considered, their contributions to the objective function are combined using weighting factors $w_i$, which reflect the relative significance of each component.
-Each weighted performance indicator $KPI_{weighted}$ is then calculated as:
+Each weighted performance indicator $KPI_{\text{weighted}}$ is then calculated as:
 
 ```{math}
 :label: ranked_performance
-KPI_{weighted} = \frac{\sum_{i=1}^{n_comp} w_i \cdot KPI_i}{\sum_{i=1}^{n_comp} w_i}
+KPI_{\text{weighted}} = \frac{\sum_{i=1}^{n_{\text{comp}}} w_i \cdot KPI_i}{\sum_{i=1}^{n_{\text{comp}}} w_i}
 ```
 
 By assigning appropriate weights, this approach enables optimization to reflect specific priorities or goals, such as emphasizing yield of one component in some situation, while prioritizing productivity for another.

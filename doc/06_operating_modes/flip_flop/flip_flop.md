@@ -26,7 +26,7 @@ from myst_nb import glue
 
 # Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
-studies_root = diss_root / "studies"
+studies_root = diss_root / "studies" / "operating_modes"
 sys.path.insert(0, str(studies_root))
 
 from run_all import (
@@ -51,13 +51,13 @@ cases = setup_cases(study)
 Flip-flop chromatography, also known as flip-flow or two-way chromatography, refers to an operation mode in which the flow direction through the column is periodically reversed during the separation process.
 The operating mode was first proposed by Martin et al. (1979) as a method suitable for separating mixtures containing both highly adsorptive and fast-eluting components {cite}`Martin1979FlipflopChromatography`.
 Bailly and Tondeur later highlighted its effectiveness in improving resolution while reducing peak tailing and eluent consumption {cite}`Bailly1981TwowayChromatography`.
-Further development was carried out by Colin, Hilaireau, and Martin (1991) {cite}`Colin1991FlipFlopElution`.
+Further development was carried out by Colin et al. {cite}`Colin1991FlipFlopElution`.
 
 The fundamental principle is to inject the feed mixture at one end of the column and allow the early-eluting components to exit at the opposite end.
 Once these fast-eluting components have been withdrawn, the flow is reversed, and the remaining, more strongly retained components are eluted in the opposite direction.
 This operating concept aims to enhance both the resolution and efficiency of separations, particularly in cases involving mixtures with components of very different adsorption behaviors {cite}`SchmidtTraub2020`.
 
-As illustrated in {ref}`@TODO: insert figure`, this cycle is repeated with successive injections and flow reversals, resulting in an alternating product collection scheme.
+As illustrated in {ref}`flip-flop_bulk`, this cycle is repeated with successive injections and flow reversals, resulting in an alternating product collection scheme.
 
 (flip-flop_process)=
 ## Process model
@@ -68,9 +68,10 @@ For this purpose, a linear isotherm with parameters listed in {numref}`flip_flop
 ```{table} Parameters of column geometry, mass transport and binding of the model molecules ($i \in \{A, B\}$).
 :name: flip_flop_parameters
 :align: center
-| Catalog       | Symbol          | Description               | Value                | Unit                            |
-| ------------- | --------------- | ------------------------- | -------------------- | ------------------------------- |
-| **Binding**   | $k_{eq,i}$      | Equilibrium constant      | $[1, 20]$       | $m^{3} \cdot mol^{-1}$         |
+
+| Catalog     | Symbol            | Description          | Value   | Unit                           |
+| ----------- | ----------------- | -------------------- | ------- | ------------------------------ |
+| **Binding** | $k_{\text{eq},i}$ | Equilibrium constant | [1, 20] | $\text{m}^{3}~\text{mol}^{-1}$ |
 ```
 
 To model the flip-flop operating mode in **CADET-Process**, two {class}`Inlets <CADETProcess.processModel.Inlet>`, a column model (e.g., {class}`~CADETProcess.processModel.LumpedRateModelWithPores`), and an {class}`~CADETProcess.processModel.Outlet` are connected.
@@ -125,7 +126,7 @@ glue("flip-flop_bulk", fig_flip_flop_bulk, display=False)
 
 ```{glue:figure} flip-flop_bulk
 :name: flip-flop_bulk
-:figwidth: 300px
+:scale: 50%
 
 **Left:** Concentration profile at the inllet of the column. **Center**: Bulk concentration at different times. The flow direction is indicated by the arrow. **Right:** concentration profile at the system outlet. @TODO: Add note about time scale (or axis); Also offset to better visualize injection
 ```
@@ -168,7 +169,7 @@ so_flip_flop_table = setup_so_results_table(so_results, fractionator)
 
 ```{glue:figure} so_flip_flop_fig
 :name: so_flip_flop_chromatogram
-:figwidth: 300px
+:scale: 50%
 
 Optimal chromatogram of single-objective optimization of flip flop process.
 ```

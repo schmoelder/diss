@@ -60,8 +60,7 @@ For streams exiting a unit operation, the percent ratio to each of its destinati
 For a more practical example, typical for batch elution chromatography, refer to {numref}`Fig. %s <batch_elution_flow_sheet_intro>`.
 Here, the feed and eluent reservoirs can both be modeled as {class}`~CADETProcess.processModel.Inlet` unit operations, which are each connected to a column model unit operation, e.g. a {class}`~CADETProcess.processModel.LumpedRateModelWithPores`.
 This unit is then connected to an {class}`~CADETProcess.processModel.Outlet` unit, which represents the material leaving the process for further processing.
-Note that it is straightforward to also include internal recycles in the {class}`~CADETProcess.processModel.FlowSheet`, which is important for systems such as SSR or SMB processes (see example in {numref}`Section %s <stationarity>`).
-@Todo: update reference.
+Note that it is straightforward to also include internal recycles in the {class}`~CADETProcess.processModel.FlowSheet`, which is important for systems such as SSR or SMB processes (see example in {numref}`Section %s <ssr>`).
 
 ### A note on flow rates
 
@@ -92,7 +91,7 @@ For this purpose, an {class}`Event <CADETProcess.dynamicEvents.Event>` class is 
 
 {numref}`events` illustrates the events required to model and simulate a batch elution process.
 In addition to setting event times, it is also necessary to establish the overall duration of the process.
-As **CADET-Process** is designed to simulate cyclic processes as well, where the same sequence of events is repeated multiple times, this interval is referred to as the cycle time $\Delta t_{cycle}$ (see {numref}`stationarity`).
+As **CADET-Process** is designed to simulate cyclic processes as well, where the same sequence of events is repeated multiple times, this interval is referred to as the cycle time $\Delta t_{\text{cycle}}$ (see {numref}`stationarity`).
 
 ```{figure} ./figures/events.png
 :name: events
@@ -112,13 +111,13 @@ For simulations encompassing more than one cycle, the event time for all events,
 Consequently, the execution time $t_{j,n}$ of a dependent event $j$ during the $nth$ cycle is calculated using the following equation:
 
 $$
-t_{j,n} = \left( n - 1 \right) \Delta t_{cycle} + \sum_i^{n_{dep}} \lambda_i \cdot f_i(t_{dep,i}) ,
+t_{j,n} = \left( n - 1 \right) \Delta t_{\text{cycle}} + \sum_i^{n_{\text{dep}}} \lambda_i \cdot f_i(t_{\text{dep},i}) ,
 $$
 
-where $\Delta t_{cycle}$ represents the cycle time, $n_{dep}$ is the number of dependencies of event $j$, $t_{dep,i}$ is the time of dependency $i$, $\lambda_i$ is a linear factor, and $f_i$ is a transform function.
+where $\Delta t_{\text{cycle}}$ represents the cycle time, $n_{\text{dep}}$ is the number of dependencies of event $j$, $t_{\text{dep},i}$ is the time of dependency $i$, $\lambda_i$ is a linear factor, and $f_i$ is a transform function.
 
 By incorporating event dependencies into the batch elution process example, the feed is switched on every time the elution buffer is switched off, and vice versa.
-If the start time of the injection is set to $t = 0~min$, only the feed duration and cycle time need to be adjusted, which is particularly useful in process optimization scenarios (see {numref}`event_dependencies`).
+If the start time of the injection is set to $t = 0~\text{min}$, only the feed duration and cycle time need to be adjusted, which is particularly useful in process optimization scenarios (see {numref}`event_dependencies`).
 
 ```{figure} ./figures/event_dependencies.png
 :name: event_dependencies

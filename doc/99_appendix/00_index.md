@@ -1,3 +1,1 @@
 # Appendix
-
-Foo bar

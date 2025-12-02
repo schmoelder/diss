@@ -29,8 +29,9 @@ from cadetrdm import Study
 
 # Get the root directory of the Git repository
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
-studies_root = diss_root / "studies"
+studies_root = diss_root / "studies" / "operating_modes"
 sys.path.insert(0, str(studies_root))
+
 from run_all import (
     setup_study,
     setup_cases,
@@ -80,7 +81,7 @@ so_batch_elution_ternary_table = setup_so_results_table(so_results, fractionator
 
 ```{glue:figure} so_batch_elution_ternary_fig
 :name: so_batch_elution_ternary_chromatogram
-:figwidth: 300px
+:scale: 50%
 
 Optimal chromatogram of single-objective optimization of ternary batch elution process.
 ```

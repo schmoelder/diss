@@ -90,9 +90,7 @@ Despite the lower bound of $1 \times 10^{-9}$, few samples are drawn in that reg
 Due to this disparity in scales, porosity is best normalized linearly, while **axial dispersion** benefits from logarithmic normalization.
 Figure {ref}`fig_initial_values_normalized` presents 128 parameter combinations sampled uniformly from the normalized space. As seen, all scales are now appropriately sampled—an important characteristic for generating effective initial values.
 
-This normalization strategy allows the optimizer to work within a consistent domain—effectively optimizing two variables that both range from $0$ to $1$—while **CADET-Process** handles the inverse transformation back to the original scales for evaluation.
-
-urposes.
+This normalization strategy allows the optimizer to work within a consistent domain—effectively optimizing two variables that both range from $0$ to $1$—while **CADET-Process** handles the inverse transformation back to the original scales for evaluation purposes.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -127,6 +125,7 @@ glue("fig_initial_values_normalized", fig, display=False)
 
 ```{glue:figure} fig_initial_values
 :name: fig_initial_values
+:scale: 50%
 
 Regular parameter space.
 ```
@@ -137,6 +136,7 @@ Regular parameter space.
 
 ```{glue:figure} fig_initial_values_normalized
 :name: fig_initial_values_normalized
+:scale: 50%
 
 Normalized parameters.
 ```
@@ -155,7 +155,7 @@ This variable is then applied to the processes during pre-processing.
 In other scenarios, the ratio between model parameters might be critical.
 Consider the equilibrium constant $k_{eq} = k_a / k_d$ in an adsorption model, with $k_a$ as the adsorption rate and $k_d$ as the desorption rate.
 Optimizing both $k_a$ and $k_d$ separately is less efficient than optimizing $k_a$ and $k_{eq}$ {cite}`Heymann2022`.
-This method allows for the independent determination of equilibrium and kinetic parameters of the reaction (see also {numref}`fit_binding_parameters`).
+This method allows for the independent determination of equilibrium and kinetic parameters of the reaction (see also {numref}`adsorption_parameters`).
 
 (linear_constraints)=
 ### Linear constraints
@@ -189,7 +189,7 @@ Additionally, any number of nonlinear constraint functions can be incorporated i
 
 In many complex optimization cases, optimization variables cannot be directly inputted into an objective or nonlinear constraint function.
 Instead, a sequence of processing steps is required to derive the final values or metrics computed by these functions.
-Take, for example, the fitting of adsorption parameters (see {numref}`fit_binding_parameters`).
+Take, for example, the fitting of adsorption parameters (see {numref}`adsorption_parameters`).
 Here, the parameters are deeply nested within the {class}`~CADETProcess.processModel.Process` object, specifically as part of the binding model in one of the unit operations of the process flow sheet.
 Consequently, the optimization variable must be mapped to the corresponding parameter.
 Before calculating objectives, the process needs to be simulated, and the simulation results have to be passed to the {class}`~CADETProcess.comparison.Comparator` to compute the residual by comparing the output with experimental reference data (refer to {numref}`comparison`).
@@ -197,6 +197,7 @@ Before calculating objectives, the process needs to be simulated, and the simula
 
 ```{figure} ./figures/evaluation_example_comparator.png
 :name: evaluation_example_comparator
+:scale: 25%
 
 Steps required for calculating difference metrics, used as residual in an optimization problem.
 ```
@@ -212,7 +213,7 @@ Furthermore, a given optimization variable can be linked to either a single eval
 
 ```{figure} ./figures/evalobj_multiple_variables.png
 :name: multiple_evaluation_objects
-:height: 100px
+:scale: 25%
 
 Relationship between optimization variables and evaluation objects.
 Here, optimization variable $1$ is associated with both evaluation objects, while variable $2$ is specific to evaluation object $2$.
@@ -226,6 +227,7 @@ The application of this approach is illustrated in {numref}`evaluation_steps`.
 
 ```{figure} ./figures/evaluation_steps.png
 :name: evaluation_steps
+:scale: 25%
 
 Evaluation toolchain in **CADET-Process**.
 Optimization variables $v$ are associated with parameters of an evaluation object $e$, (e.g., a {class}`~CADETProcess.processModel.Process`).
@@ -242,6 +244,7 @@ Similar to objective and nonlinear constraint functions, callbacks usually invol
 
 ```{figure} ./figures/callbacks_evaluation.png
 :name: callbacks
+:scale: 25%
 
 Evaluation of user-defined callbacks $c$.
 The evalution toolchain is performed for every element in the Pareto front $p$.
@@ -324,7 +327,7 @@ glue("uniform_samples", fig, display=False)
 
 ```{glue:figure} uniform_samples
 :name: uniform_samples
-:figwidth: 200px
+:scale: 50%
 
 Example for uniform sampling of parameter space with linear inequality constraints, used for initial values.
 ```
@@ -359,7 +362,7 @@ glue("objectives", fig, display=False)
 
 ```{glue:figure} objectives
 :name: objectives
-:figwidth: 300px
+:scale: 50%
 
 Objective function values for all evaluated individuals.
 Darker shades represent individuals evaluated in later generations.
@@ -377,7 +380,7 @@ glue("pareto", fig, display=False)
 
 ```{glue:figure} pareto
 :name: pareto
-:figwidth: 150px
+:scale: 25%
 
 Pareto plot of all evaluated individuals.
 ```
@@ -393,7 +396,7 @@ glue("convergence", fig, display=False)
 
 ```{glue:figure} convergence
 :name: convergence
-:figwidth: 300px
+:scale: 50%
 
 Optimization algorithm progresses towards a solution over time.
 ```

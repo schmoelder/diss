@@ -10,7 +10,7 @@ execute:
   execute_notebooks: "cache"
 
 only_build_toc_files: true
-#
+
 # Parse and render settings
 parse:
   myst_enable_extensions:
@@ -119,6 +119,12 @@ sphinx:
 
         %% Code blocks: Override the fontsize command defined and used by fancyvrb (which implements Verbatim environments).
         %% \renewcommand{\FV@FontSize}{\scriptsize}
+        \setlength{\fboxsep}{0pt}
+        \renewenvironment{sphinxVerbatimOutput}
+          {\colorlet{VerbatimBorderColor}{CodeBlockOutputBorderColor}
+           \colorlet{VerbatimColor}{CodeBlockOutputColor}%
+           \begin{adjustwidth}{3pt}{}}
+          {\end{adjustwidth}}
 
         %% Tables:
         % Redefine the table start command to include \small

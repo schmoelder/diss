@@ -54,7 +54,7 @@ Due to the diverse shapes and forms that concentration profiles can exhibit, a t
 To address this need, the {mod}`~CADETProcess.fractionation` module provides a method to set up an {class}`~CADETProcess.optimization.OptimizationProblem`, which automatically identifies optimal cut times.
 Objective and constraint functions consider the fractions pooled from all chromatograms of the system.
 For every component, different purity requirements can be specified, and different objective functions may be applied.
-As initial values for the optimization, areas of the chromatogram with sufficient local purity are identified, i.e., intervals where $PU_i(t)=c_i(t)/\sum_j c_j(t)\geq PU_{min,i}$ {cite}`Shan2004`.
+As initial values for the optimization, areas of the chromatogram with sufficient local purity are identified, i.e., intervals where $PU_i(t)=c_i(t)/\sum_j c_j(t)\geq PU_{\text{min},i}$ {cite}`Shan2004`.
 These initial intervals are then expanded by the optimizer towards regions of lower purity while meeting the cumulative purity constraints.
 By default, the mass of the components is maximized under purity constraints, although alternative objective functions are equally viable.
 Currently, {class}`~CADETProcess.optimization.COBYLA`{cite}`Powell1994`from the *SciPy* library {cite}`SciPyContributors2020` is used as the optimizer, but other optimizers or heuristic algorithms may also be employed.
@@ -89,7 +89,7 @@ It must include relevant details so that it is capable of accurately predicting 
 To demonstrate this module, consider a simple tracer pulse injection onto a chromatographic column.
 For this example, the full process configuration can be found {ref}`here <fit_column_transport>`.
 @TODO: Update reference
-As an initial guess, the bed porosity is set to $0.5$, and the axial dispersion to $1.0 \times 10^{-7} m^2 \cdot s^{-1}$.
+As an initial guess, the bed porosity is set to $0.5$, and the axial dispersion to $1.0 \times 10^{-7} \text{m}^2 \text{s}^{-1}$.
 After process simulation, the {class}`~CADETProcess.simulationResults.SimulationResults` needs to be passed to the {meth}`~CADETProcess.comparison.Comparator.evaluate` method of the {class}`~CADETProcess.comparison.Comparator`.
 Here, an SSE metric has been added for the interval $3 \to 6~\text{min}$.
 The difference is visualized in {numref}`chromatogram_comparison`.
@@ -132,7 +132,7 @@ glue("chromatogram_comparison", figs[0], display=False)
 
 ```{glue:figure} chromatogram_comparison
 :name: chromatogram_comparison
-:figwidth: 300px
+:scale: 100%
 
 Comparison between (experimental) reference data (dashed) and simulation results (solid).
 ```

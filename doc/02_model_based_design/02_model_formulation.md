@@ -69,15 +69,15 @@ This behavior is described by the following equation:
 ```{math}
 :label: langmuir_single_equilibrium
 
-q = q_{max} \frac{b \cdot c}{1 + b \cdot c},
+q = q_{\text{max}} \frac{b \cdot c}{1 + b \cdot c},
 ```
 
-where $q_{max}$ represents the saturation capacity of the stationary phase, and $b$ is the equilibrium constant for adsorption.
+where $q_{\text{max}}$ represents the saturation capacity of the stationary phase, and $b$ is the equilibrium constant for adsorption.
 
 At low concentrations, the Langmuir isotherm simplifies to the linear model {cite}`SchmidtTraub2020`:
 
 ```{math}
-\lim_{c \to 0} q = q_{max} \cdot b \cdot c = a \cdot c.
+\lim_{c \to 0} q = q_{\text{max}} \cdot b \cdot c = a \cdot c.
 ```
 
 The binding models described above focus exclusively on the adsorption of a single substance.
@@ -87,7 +87,7 @@ As a result, both the competitive effects among molecules of a single component 
 ```{math}
 :label: langmuir_multi_equilibrium
 
-q_i = q_{max, i} \frac{b_i \cdot c_i}{1 + \sum_{j}^{n_{comp}} b_j \cdot c_j}.
+q_i = q_{\text{max}, i} \frac{b_i \cdot c_i}{1 + \sum_{j}^{n_{\text{comp}}} b_j \cdot c_j}.
 ```
 
 Similarly, the model can be reformulated in a kinetic form:
@@ -95,20 +95,20 @@ Similarly, the model can be reformulated in a kinetic form:
 ```{math}
 :label: langmuir_multi_kinetic
 
-\frac{\mathrm{d} q_i}{\mathrm{d} t} = k_{a, i} \cdot c_{i} \cdot q_{max, i} \left( 1 - \sum_{j=1}^{n_{comp}} \frac{q_j}{q_{max, j}} \right) - k_{d, i} \cdot q_i.
+\frac{\mathrm{d} q_i}{\mathrm{d} t} = k_{a, i} \cdot c_{i} \cdot q_{\text{max}, i} \left( 1 - \sum_{j=1}^{n_{\text{comp}}} \frac{q_j}{q_{\text{max}, j}} \right) - k_{d, i} \cdot q_i.
 ```
 
 (ldf)=
 ### Digression: linear driving force models
 
-The Linear Driving Force (LDF) approximation is sometimes used as an alternative to the native kinetic form of an isotherm {cite}`@TODO:Quelle`.
+The Linear Driving Force (LDF) approximation is sometimes used as an alternative to the native kinetic form of an isotherm {cite}`SchmidtTraub2020`.
 In the native approach, the rate of change of the amount of solute adsorbed, $\frac{\mathrm{d}q}{\mathrm{d}t}$, is an explicit function of the solute concentration $c$ and the amount adsorbed $q$.
 For example, in the Langmuir model:
 
 ```{math}
 :label: langmuir_native
 
-\frac{dq}{dt} = k_a \cdot c (q_{max} - q) - k_d \cdot q.
+\frac{dq}{dt} = k_a \cdot c (q_{\text{max}} - q) - k_d \cdot q.
 ```
 
 In the LDF approximation, the equilibrium concentration $q^*$ is used to calculate the rate of change of the amount of solute adsorbed for a given $c$.
@@ -117,7 +117,7 @@ For the Langmuir model, $q^*$ is defined as:
 ```{math}
 :label: langmuir_ldf_q
 
-q^* = \frac{q_{max} \cdot k_{eq} \cdot c}{1 + k_{eq} \cdot c},
+q^* = \frac{q_{\text{max}} \cdot k_{eq} \cdot c}{1 + k_{eq} \cdot c},
 ```
 
 where $k_{eq} = \frac{k_a}{k_d}$.
@@ -154,10 +154,10 @@ The kinetic formulation of the Bi-Langmuir isotherm is given by:
 ```{math}
 :label: bi-langmuir_kinetic
 
-\frac{\mathrm{d} q_{i, m}}{\mathrm{d} t} =  k_{a, i}^{m} \cdot c_{i} \cdot q_{max, i}^{m} \left( 1 - \sum_{j=1}^{n_{comp}} \frac{q_{j, m}}{q_{max, j}^{m}}\right) - k_{d, i}^{m} q_{i, m}
+\frac{\mathrm{d} q_{i, m}}{\mathrm{d} t} =  k_{a, i}^{m} \cdot c_{i} \cdot q_{\text{max}, i}^{m} \left( 1 - \sum_{j=1}^{n_{\text{comp}}} \frac{q_{j, m}}{q_{\text{max}, j}^{m}}\right) - k_{d, i}^{m} q_{i, m}
 ```
 
-where $k_{a, i}^{m}$ and $k_{d, i}^{m}$ are the adsorption and desorption rate constants, and $q_{max, i}^{m}$ is the maximum loading capacity of the $m$-th binding site.
+where $k_{a, i}^{m}$ and $k_{d, i}^{m}$ are the adsorption and desorption rate constants, and $q_{\text{max}, i}^{m}$ is the maximum loading capacity of the $m$-th binding site.
 
 
 ### Steric mass action law
@@ -190,7 +190,7 @@ The equilibrium with respect to a reference component $S$ is expressed as:
 ```{math}
 :label: sma_selectivity
 
-K_{i, 0} = \left( \frac{q_i}{c_i} \right)^{\nu_i} \left( \frac{c_0}{q_0} \right)^{\nu_0} \quad i = 1, \dots, N_{comp} - 1,
+K_{i, 0} = \left( \frac{q_i}{c_i} \right)^{\nu_i} \left( \frac{c_0}{q_0} \right)^{\nu_0} \quad i = 1, \dots, N_{\text{comp}} - 1,
 ```
 
 where $c_0$ and $q_0$ denote the concentrations of the reference component in the liquid and solid phases of the beads, respectively.
@@ -201,7 +201,7 @@ Due to the stronger interaction forces in chemisorption, electroneutrality must 
 ```{math}
 :label: sma_electroneutrality
 
-q_0 = \Lambda - \sum_{j=1}^{N_{comp} - 1} \nu_j q_j,
+q_0 = \Lambda - \sum_{j=1}^{N_{\text{comp}} - 1} \nu_j q_j,
 ```
 
 where $\Lambda$ is the total ionic capacity of the resin.
@@ -214,7 +214,7 @@ This can be accounted for by modifying the selectivity expression:
 ```{math}
 :label: sma_selectivity_steric
 
-K_{i, 0} = \left( \frac{q_i}{c_i} \right)^{\nu_i} \left( \frac{c_0}{\bar{q}_0} \right)^{\nu_0} \quad i = 1, \dots, N_{comp} - 1,
+K_{i, 0} = \left( \frac{q_i}{c_i} \right)^{\nu_i} \left( \frac{c_0}{\bar{q}_0} \right)^{\nu_0} \quad i = 1, \dots, N_{\text{comp}} - 1,
 ```
 
 To model steric shielding, a steric shielding factor $\sigma$ is introduced {cite}`Brooks1992`:
@@ -222,7 +222,7 @@ To model steric shielding, a steric shielding factor $\sigma$ is introduced {cit
 ```{math}
 :label: sma_free_sites
 
-\bar{q}_0 = q_0 - \sum_{j=1}^{N_{comp} - 1} \sigma_j q_j = \Lambda - \sum_{j=1}^{N_{comp} - 1} \left( \nu_j + \sigma_j \right) q_j
+\bar{q}_0 = q_0 - \sum_{j=1}^{N_{\text{comp}} - 1} \sigma_j q_j = \Lambda - \sum_{j=1}^{N_{\text{comp}} - 1} \left( \nu_j + \sigma_j \right) q_j
 ```
 
 The complete Steric Mass Action (SMA) model, which incorporates both kinetics and equilibrium, is then given as:
@@ -253,7 +253,7 @@ The net flux for component $i$ is expressed as:
 
 \begin{aligned}
  f_{\mathrm{react},i}\left(c\right) &= \sum_{j=0}^{N_{\mathrm{react}}-1} s_{i,j} \varphi_j\left(c\right), \\
- \varphi_j(c) &= k_{\mathrm{fwd},j} \prod_{\ell=0}^{N_{\mathrm{comp}}-1} \left(c_{\ell}\right)^{e_{\mathrm{fwd},\ell,j}} - k_{\mathrm{bwd},j} \prod_{\ell=0}^{N_{\mathrm{comp}}-1} \left(c_{\ell}\right)^{e_{\mathrm{bwd},\ell,j}},
+ \varphi_j(c) &= k_{\mathrm{fwd},j} \prod_{\ell=0}^{N_{\mathrm{\text{comp}}}-1} \left(c_{\ell}\right)^{e_{\mathrm{fwd},\ell,j}} - k_{\mathrm{bwd},j} \prod_{\ell=0}^{N_{\mathrm{\text{comp}}}-1} \left(c_{\ell}\right)^{e_{\mathrm{bwd},\ell,j}},
 \end{aligned}
 ```
 

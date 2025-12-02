@@ -26,7 +26,7 @@ from myst_nb import glue
 
 # Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
-studies_root = diss_root / "studies"
+studies_root = diss_root / "studies" / "operating_modes"
 sys.path.insert(0, str(studies_root))
 
 from run_all import (
@@ -91,7 +91,7 @@ glue("fig_batch_elution", fig_batch_elution, display=False)
 
 ```{glue:figure} fig_batch_elution
 :name: fig_batch_elution
-:figwidth: 300px
+:scale: 50%
 
 Batch elution chromatogram.
 ```
@@ -136,7 +136,7 @@ so_batch_elution_table = setup_so_results_table(so_results, fractionator)
 
 ```{glue:figure} so_batch_elution_fig
 :name: so_batch_elution_chromatogram
-:figwidth: 300px
+:scale: 50%
 
 Optimal chromatogram of single-objective optimization of batch elution process.
 ```

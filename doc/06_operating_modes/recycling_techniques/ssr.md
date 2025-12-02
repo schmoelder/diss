@@ -26,7 +26,7 @@ from myst_nb import glue
 
 # Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
-studies_root = diss_root / "studies"
+studies_root = diss_root / "studies" / "operating_modes"
 sys.path.insert(0, str(studies_root))
 
 from run_all import (
@@ -104,7 +104,7 @@ glue("ssr_overlay", fig_overlay, display=False)
 
 ```{glue:figure} ssr_last
 :name: ssr_last
-:figwidth: 300px
+:scale: 50%
 
 Example SSR process in mixed-recycle operation for the separation of two components (blue and red) reaching cyclic steady state after 35 cycles.
 **Left:** Concentration profiles at the column’s outlet.
@@ -116,7 +116,7 @@ For this purpose, a {class}`~CADETProcess.stationarity.StationarityEvaluator` is
 
 ```{glue:figure} ssr_overlay
 :name: ssr_overlay
-:figwidth: 300px
+:scale: 50%
 
 Overlay of concentration profiles of all cycles, showing the transient towards stationarity.
 ```
@@ -146,7 +146,7 @@ so_ssr_table = setup_so_results_table(so_results, fractionator)
 
 ```{glue:figure} so_ssr_fig
 :name: so_ssr_chromatogram
-:figwidth: 300px
+:scale: 50%
 
 Optimal chromatogram of single-objective optimization of ssr process.
 ```

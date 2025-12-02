@@ -26,7 +26,7 @@ from myst_nb import glue
 
 # Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
-studies_root = diss_root / "studies"
+studies_root = diss_root / "studies" / "operating_modes"
 sys.path.insert(0, str(studies_root))
 
 from run_all import (
@@ -100,7 +100,7 @@ glue("clr_peak_shaving", fig, display=False)
 
 ```{glue:figure} clr_peak_shaving
 :name: clr_peak_shaving
-:figwidth: 300px
+:scale: 50%
 
 **Left:** Concentration at column outlet.
 **Right:** Concentration at system outlet.
@@ -140,7 +140,7 @@ so_clr_ps_table = setup_so_results_table(so_results, fractionator)
 
 ```{glue:figure} so_clr_ps_fig
 :name: so_clr_ps_chromatogram
-:figwidth: 300px
+:scale: 50%
 
 Optimal chromatogram of single-objective optimization of clr process with peak shaving.
 ```

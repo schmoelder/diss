@@ -38,15 +38,15 @@ The chromatography system used in this thesis is a *Knauer* system. @TODO: Which
 The system consists of two buffer flasks ($A$ and $B$) with different salt concentrations.
 Each buffer is connected to a pump via tubing.
 Both pumps are further connected to a static mixer.
-The valve is equipped with a $50~mL$ sample loop to inject a well-defined amount of sample into the system.
-The valve is connected to a *SP Sepharose High Performance* column @TODO: which model?
-The column is a strong cation exchanger with an $SO_3^{-}$ functional group and a column volume (CV) of $4.7~mL$.
-The average particle size, $d50v$, is provided by the manufacturer *Cytiva* as $34~μm$, with an ionic capacity between $0.15$ and $0.2~mM~H^{+}$.
-The column outlet is connected to a UV detector which measures the absorbance at $280~m$ to detect tracer and protein.
+The valve is equipped with a $50~\text{mL}$ sample loop to inject a well-defined amount of sample into the system.
+The valve is connected to a *SP Sepharose HP* column.
+The column is a strong cation exchanger with an $\ce{SO_3}^{-}$ functional group and a column volume (CV) of $4.7~\text{mL}$.
+The average particle size, $d50v$, is provided by the manufacturer *Cytiva* as $34~\text{μm}$, with an ionic capacity between $0.15$ and $0.2~\text{mM}~\ce{H}^{+}$.
+The column outlet is connected to a UV detector which measures the absorbance at $280~\text{m}$ to detect tracer and protein.
 The outlet of the UV sensor is connected to a conductivity sensor to measure ionic strength.
 The outflow of the system is then sent to a waste flask.
-A computer is connected to the system with the software *PurityChrom 5* to operate the system, capture, process, and view the measured data.
-All internal tubing has an inner diamter of $0.75~mm$.
+A computer is connected to the system with the software *PurityChrom 5* to operate the system, capture, process, and view the measured data {cite}`PurityChrom5.
+All internal tubing has an inner diameter of $0.75~\text{mm}$.
 
 ```{figure} ./figures/knauer_pid.png
 :name: knauer_pid
@@ -54,10 +54,10 @@ All internal tubing has an inner diamter of $0.75~mm$.
 P&ID of Knauer system.
 ```
 
-Acetone and Blue Dextran $2000~kDa$ were used as tracers in this thesis, along with lysozyme from chicken egg white with a molar weight of $14.3~kDa$.
-The buffers consist of a low salt buffer $A$ with $20~mM$ sodium acetate ($C_2H_3NaO_2$), whereas the high salt buffer $B$ consists of $20~mM$ sodium acetate and additional $1~M$ sodium chloride ($NaCl$).
-Both buffers are adjusted with hydrochloric acid ($HCl$) of $4~M$ and sodium hydroxide ($NaOH$) of $1~M$ to the desired pH.
-Furthermore, acetic acid with a $pH$ of $3$ is used in this thesis for resin titration.
+Acetone and Blue Dextran $2000~\text{kDa}$ were used as tracers in this thesis, along with lysozyme from chicken egg white with a molar weight of $14.3~\text{kDa}$.
+The buffers consist of a low salt buffer $A$ with $20~\text{mM}$ sodium acetate ($\ce{C_2H_3NaO_2}$), whereas the high salt buffer $B$ consists of $20~\text{mM}$ sodium acetate and additional $1~\text{M}$ sodium chloride ($\ce{NaCl}$).
+Both buffers are adjusted with hydrochloric acid ($\ce{HCl}$) of $4~\text{M}$ and sodium hydroxide ($\ce{NaOH}$) of $1~\text{M}$ to the desired pH.
+Furthermore, acetic acid with a pH of 3 is used in this thesis for resin titration.
 The manufacturer of the material can be found in {numref}`materials`.
 
 ```{table} Materials used in characterization experiments
@@ -87,11 +87,10 @@ $$
 $$
 
 where $A$ is the conductor’s cross-sectional area, $l$ is its length, and $R$ is the resistance.
-Conductivity is measured in siemens per meter ($S \cdot \text{m}^{-1}$), where $[S] = [\Omega^{-1}] = [A/V]$ @TODO: cite.
-Higher ion density increases conductivity @TODO: cite.
+Conductivity is measured in siemens per meter ($S \text{m}^{-1}$), where $[\text{S}] = [\Omega^{-1}] = [\text{A/V}]$.
 
 To quantify the relationship between salt concentration and conductivity, a calibration curve is recorded by measuring the conductivity of solutions with varying salt concentrations at a constant pH of 5.
-Conductivity values are recorded over one minute at predefined salt concentrations ($20~mM$, $270~mM$, $570~mM$, $770~mM$, and $1020~mM$).
+Conductivity values are recorded over one minute at predefined salt concentrations ($20~\text{mM}$, $270~\text{mM}$, $570~\text{mM}$, $770~\text{mM}$, and $1020~\text{mM}$).
 Since the relationship between salt concentration and conductivity is nonlinear, a quadratic function is fitted to the measured data using the least squares method.
 This function is then used to determine salt concentration from conductivity in subsequent analyses.
 
@@ -105,9 +104,9 @@ glue("fig_conductivity", fig, display=False)
 
 ```{glue:figure} fig_conductivity
 :name: fig_conductivity
-:figwidth: 200px
+:scale: 50%
 
-Calibration curve for conductivity sensor
+Calibration curve for conductivity sensor.
 ```
 
 (uv_calibration)=
@@ -126,20 +125,20 @@ Baseline correction is also applied by adjusting the UV signal to zero if necess
 
 {numref}`tab_experiments` summarizes all experiments performed in this study.
 The individual results will be discussed in the following chapters.
-Note, for this work, all experiments, except where noted, were performed at $pH 5$.
+Note, for this work, all experiments, except where noted, were performed at pH 5.
 
 ```{table} Overview of experiments performed for model calibration
 :name: tab_experiments
 
-| ID  | Goal                                 | Parameters                                                             | Bypass                               | Injected component       | Volume     | Eluent              | Measurement |
-| --- | ------------------------------------ | ---------------------------------------------------------------------- | ------------------------------------ | ------------------------ | ---------- | ------------------- | ----------- |
-| E1  | Determine tubing characteristics     | Tubing length and axial dispersion                                     | column, post-column tubing, detector | $1\%~w/w$ Acetone        | $50~\mu L$ | $A$                 | UV          |
-| E2  | Determine tubing characteristics     | Tubing length and axial dispersion                                     | column, detector                     | $1\%~w/w$ Acetone        | $50~\mu L$ | $A$                 | UV          |
-| E3  | Determine tubing characteristics     | Tubing length and axial dispersion                                     | column                               | $1020~mM$ Salt           | $50~\mu L$ | $A$                 | Cond        |
-| E4  | Determine mixer characteristics      | Mixer volume, tubing length and axial dispersion                       | column                               | -                        | -          | $A$ → $B$ (step)    | Cond        |
-| E5  | Determine bed properties             | Bed porosity and axial dispersion                                      | -                                    | $0.0005~mM$ Blue Dextran | $50~\mu L$ | $A$                 | UV          |
-| E6  | Determine particle properties        | Particle porosity, total porosity, axial dispersion                    | -                                    | $1\%~w/w$ Acetone        | $50~\mu L$ | $A$                 | UV          |
-| E7  | Determine diffusion characteristics  | Particle porosity, film diffusion, pore diffusion                      | -                                    | $0.2~mM$ Lysozyme        | $50~\mu L$ | $B$                 | UV          |
-| E8  | Determine capacity                   | Capacity                                                               | -                                    | -                        | -          | A                   | Cond        |
-| E9  | Determine adsorption characteristics | Adsorption rate, desorption rate, characteristic charge, steric factor | -                                    | $0.2 mM$ Lysozyme        | $50~\mu L$ | $A$ -> $B$ (Gradient: 4, 8, 12, 16 CV) | UV, Cond    |
+| ID  | Goal                                 | Parameters                                                             | Bypass                               | Injected component              | Volume           | Eluent                                        | Measurement |
+| --- | ------------------------------------ | ---------------------------------------------------------------------- | ------------------------------------ | ------------------------------- | ---------------- | --------------------------------------------- | ----------- |
+| E1  | Determine tubing characteristics     | Tubing length and axial dispersion                                     | column, post-column tubing, detector | $1\%~\text{w/w}$ Acetone        | $50~\mu\text{L}$ | $A$                                           | UV          |
+| E2  | Determine tubing characteristics     | Tubing length and axial dispersion                                     | column, detector                     | $1\%~\text{w/w}$ Acetone        | $50~\mu\text{L}$ | $A$                                           | UV          |
+| E3  | Determine tubing characteristics     | Tubing length and axial dispersion                                     | column                               | $1020~\text{mM}$ Salt           | $50~\mu\text{L}$ | $A$                                           | Cond        |
+| E4  | Determine mixer characteristics      | Mixer volume, tubing length and axial dispersion                       | column                               | -                               | -                | $A \rightarrow B$ (step)                      | Cond        |
+| E5  | Determine bed properties             | Bed porosity and axial dispersion                                      | -                                    | $0.0005~\text{mM}$ Blue Dextran | $50~\mu\text{L}$ | $A$                                           | UV          |
+| E6  | Determine particle properties        | Particle porosity, total porosity, axial dispersion                    | -                                    | $1\%~\text{w/w}$ Acetone        | $50~\mu\text{L}$ | $B$                                           | UV          |
+| E7  | Determine diffusion characteristics  | Particle porosity, film diffusion, pore diffusion                      | -                                    | $0.2~\text{mM}$ Lysozyme        | $50~\mu\text{L}$ | $B$                                           | UV          |
+| E8  | Determine capacity                   | Capacity                                                               | -                                    | -                               | -                | $A$                                           | Cond        |
+| E9  | Determine adsorption characteristics | Adsorption rate, desorption rate, characteristic charge, steric factor | -                                    | $0.2~\text{mM}$ Lysozyme        | $50~\mu\text{L}$ | $A \rightarrow B$ (Gradient: 4, 6, 8, 12, 14, 16 CV) | UV, Cond    |
 ```

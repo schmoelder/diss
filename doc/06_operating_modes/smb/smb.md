@@ -137,10 +137,10 @@ glue("smb_outlets", fig_outlets, display=False)
 
 ```{glue:figure} smb_bulk
 :name: smb_bulk
-:figwidth: 300px
+:scale: 50%
 ```
 
 ```{glue:figure} smb_outlets
 :name: smb_outlets
-:figwidth: 300px
+:scale: 50%
 ```

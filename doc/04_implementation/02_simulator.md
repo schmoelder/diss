@@ -12,6 +12,8 @@ execution:
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
+%config InlineBackend.figure_format = 'retina'
+
 from myst_nb import glue
 ```
 
@@ -71,8 +73,6 @@ Criteria such as the maximum absolute deviation in concentration profiles or the
 For process performance evaluation, only the last cycle is analyzed, as it provides representative key performance indicators of the process's behavior in subsequent cycles (see also {numref}`fractionation`).
 
 To illustrate this concept, consider an SSR process (see {ref}`here <ssr>` for the complete process configuration).
-@TODO: update reference
-
 In this example, the relative change in the integral of the chromatogram (area of the solution) between successive cycles is compared.
 The simulation continues until the relative change in area is less than $0.1~\%$.
 {numref}`chromatogram_stationarity` shows the concentration profile at the column outlet across all cycles.
@@ -111,7 +111,7 @@ glue("chromatogram_stationarity", fig, display=False)
 
 ```{glue:figure} chromatogram_stationarity
 :name: chromatogram_stationarity
-:figwidth: 300px
+:scale: 100%
 
 Concentration profile at column outlet for {glue:text}`n_cycles` cycles.
 ```

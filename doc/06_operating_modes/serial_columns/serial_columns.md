@@ -24,12 +24,11 @@ from IPython.display import display, Markdown
 from git import Repo
 from myst_nb import glue
 
-# Get the root directory of the Git repository
-diss_root = Path(Repo(search_parent_directories=True).working_dir)
-
 # Import the study module
-studies_root = diss_root / "studies"
+diss_root = Path(Repo(search_parent_directories=True).working_dir)
+studies_root = diss_root / "studies" / "operating_modes"
 sys.path.insert(0, str(studies_root))
+
 from run_all import (
     setup_study,
     setup_cases,
@@ -106,7 +105,7 @@ glue("serial_columns", fig, display=False)
 
 ```{glue:figure} serial_columns
 :name: serial_columns_chromatogram
-:figwidth: 300px
+:scale: 50%
 
 **Left:** Concentration profile at outlet of first column.
 **Center:** Concentration profile at first system outlet.
@@ -152,7 +151,7 @@ so_serial_columns_table = setup_so_results_table(so_results, fractionator)
 
 ```{glue:figure} so_serial_columns_fig
 :name: so_serial_columns_chromatogram
-:figwidth: 300px
+:scale: 50%
 
 Optimal chromatogram of single-objective optimization of serial columns process.
 ```

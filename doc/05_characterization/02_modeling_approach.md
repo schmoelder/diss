@@ -11,7 +11,7 @@ The model shown in {numref}`knauer_model` can be summarized as follows:
 - The buffer flasks and pumps are modeled by {class}`~CADETProcess.processModel.Inlet` unit operations to define inlet concentrations and flow rates.
 - The mixer is approximated by combining a {class}`~CADETProcess.processModel.Cstr` with a {class}`~CADETProcess.processModel.TubularReactor` to model residence time and backmixing.
 - The sample loop is represented by a {class}`~CADETProcess.processModel.TubularReactor` unit operation with its corresponding volume.
-- Tubing sections before and after the column, as well as the segment between the UV and conductivity sensors, are modeled using {class}`~CADETProcess.processModel.TubularReactor` unit operations to account for additional residence time, backmixing, and the time difference between UV and conductivity signals.
+- Tubing sections before and after the column, as well as the segment between the UV and conductivity sensors, are modeled using {class}`~CADETProcess.processModel.TubularReactor` unit operations to account for additional residence time, backmixing, and the time difference between conductivity and UV signals.
 - The outlet of the post-column tubing is compared with the experimental UV signal.
 - The output of the detector tubing is compared with the experimental conductivity signal.
 

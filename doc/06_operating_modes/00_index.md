@@ -24,7 +24,7 @@ from git import Repo
 
 # Set up working directory
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
-studies_root = diss_root / "studies"
+studies_root = diss_root / "studies" / "operating_modes"
 studies_root.mkdir(parents=True, exist_ok=True)
 
 # Import the run_all module
@@ -43,8 +43,6 @@ for study, study_cases in cases.items():
     print(study)
     for name, case in study_cases.items():
         case.load()
-
-print("All repositories processed.")
 ```
 
 (operating_modes)=
@@ -60,22 +58,23 @@ With the applied moderately nonlinear conditions and an axial dispersion coeffic
 Independent of this, the optimization of such processes is always challenging, even for simple separations.
 For all optimization cases, the pymoo package (@TODO:cite) with a non-dominated sorting genetic algorithm was used.
 
+
 ```{table} Parameters of column geometry, mass transport and binding of the model molecules ($i \in \{A, B\}$).
 :name: model_parameters
 :align: center
 
-| Catalog       | Symbol          | Description               | Value               | Unit                           |
-| ------------- | --------------- | ------------------------- | ------------------- | ------------------------------ |
-| **Geometry**  | $L$             | Column length             | $0.6$               | $m$                            |
-|               | $d$             | Column diameter           | $0.024$             | $m$                            |
-|               | $d_r$           | Particle radius           | $1.0 \times 10^{-5}$ | $m$                            |
-|               | $\varepsilon_b$ | Bed porosity              | $0.3$               | –                              |
-|               | $\varepsilon_p$ | Particle porosity         | $0.6$               | –                              |
-| **Transport** | $D_{ax,i}$      | Axial dispersion coeff.   | $1.0 \times 10^{-6}$ | $m^{2} \cdot s^{-1}$           |
-|               | $k_{f,i}$       | Film mass transfer coeff. | $1.0 \times 10^{-3}$ | $m^{3} \cdot s^{-1}$           |
-| **Binding**   | $k_{eq,i}$      | Equilibrium constant      | $[0.02, 0.03]$      | $m^{3} \cdot mol^{-1}$         |
-|               | $q_{max,i}$     | Saturation capacities     | $[100, 100]$        | $mol \cdot m_{\text{sp}}^{-1}$ |
-| **Process**   | $Q$             | Flow rate                 | $[0.01, 0.05]$      | $m^{3} \cdot s^{-1}$           |
+| Catalog       | Symbol          | Description               | Value                | Unit                                   |
+| ------------- | --------------- | ------------------------- | -------------------- | -------------------------------------- |
+| **Geometry**  | $L$             | Column length             | $0.6$                | $\text{m}$                             |
+|               | $d$             | Column diameter           | $0.024$              | $\text{m}$                             |
+|               | $d_r$           | Particle radius           | $1.0 \times 10^{-5}$ | $\text{m}$                             |
+|               | $\varepsilon_b$ | Bed porosity              | $0.3$                | –                                      |
+|               | $\varepsilon_p$ | Particle porosity         | $0.6$                | –                                      |
+| **Transport** | $D_{ax,i}$      | Axial dispersion coeff.   | $1.0 \times 10^{-6}$ | $\text{m}^{2}~\text{s}^{-1}$           | 
+|               | $k_{f,i}$       | Film mass transfer coeff. | $1.0 \times 10^{-3}$ | $\text{m}~\text{s}^{-1}$               |
+| **Binding**   | $k_{eq,i}$      | Equilibrium constant      | $[0.02, 0.03]$       | $\text{m}^{3}~\text{mol}^{-1}$         |
+|               | $q_{max,i}$     | Saturation capacities     | $[100, 100]$         | $\text{mol}~\text{m}_{\text{sp}}^{-1}$ |
+| **Process**   | $Q$             | Flow rate                 | $[0.01, 0.05]$       | $\text{m}^{3}~\text{s}^{-1}$           |
 ```
 
 To validate the processes, equilibrium theory is applied.

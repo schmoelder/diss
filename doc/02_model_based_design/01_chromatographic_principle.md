@@ -64,6 +64,8 @@ The concentration profile of the separated components at the column outlet is ty
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
+%config InlineBackend.figure_format = 'retina'
+
 from myst_nb import glue
 
 from examples.batch_elution.process import process
@@ -84,7 +86,7 @@ glue("chromatogram", fig, display=False)
 
 ```{glue:figure} chromatogram
 :name: "chromatogram"
-:figwidth: 300px
+:scale: 50%
 
 Left: Concentration profile at the column inlet.
 Right: Chromatogram recorded at the column outlet with components $A$ and $B$ partially separated.

@@ -98,9 +98,8 @@ Moreover, the "Zen of Python" was introduced in *PEP-20*, which includes 19 guid
 1. If the implementation is easy to explain, it may be a good idea.
 1. Namespaces are one honking great idea -- let's do more of those!
 
-While these principles serve as general guidelines, adhering to the specific coding conventions introduced in *PEP-8* are crucial to be followed to ensure consistency and readability.
-To enforce these conventions when writing code, several tools and packages exist.
-In this work, the [*pre-commit*](https://pre-commit.com/) package is utilized to automatically run scripts on every commit {cite}`precommit`.
-During this process, the [*black*](https://black.readthedocs.io/en/stable/the_black_code_style/index.html) package auto-formats the code according to *PEP-8* guidelines {cite}`black`.
-Finally, [*flake8*](https://flake8.pycqa.org/en/latest/) performs a final check on the code {cite}`flake8`.
-These packages help ensure that the code adheres to *PEP-8* recommendations and is consistent in style and readability.
+While these principles provide general guidance, adherence to the coding conventions outlined in *PEP 8* is essential for maintaining consistency and readability.
+To enforce these standards, several tools and packages are available.
+In this work, the [*pre-commit*](https://pre-commit.com/) package is employed to automatically execute scripts on each commit {cite}`precommit`.
+This includes using the [*ruff*](https://docs.astral.sh/ruff/) package to auto-format code according to *PEP 8* and to perform supplementary checks, such as verifying the presence of docstrings and type annotations {cite}`ruff`.
+Together, these tools ensure that the codebase remains consistent in style, readable, and compliant with *PEP 8* recommendations.
