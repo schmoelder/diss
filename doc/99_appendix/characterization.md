@@ -30,7 +30,7 @@ study_root = diss_root / "studies" / "parameter_estimation"
 sys.path.insert(0, str(study_root / "parameter_estimation"))
 
 from utils import (
-    final_parameters_branch, load_all_parameters, parameters_branch_e7_film_diffusion 
+    final_parameters_branch, load_all_parameters, parameters_branch_e7_film_diffusion
 )
 parameters_all = load_all_parameters(final_parameters_branch)
 
@@ -191,13 +191,13 @@ fig, ax = plot_meta_score(
     study_root,
     parameters_all["e9_lrmp_4_cv"]["branch_name"],
 )
- 
+
 glue("fig_e9_meta_scores", fig, display=False)
 ```
 
 ```{glue:figure} fig_e9_meta_scores
 :name: fig_e9_meta_scores
-:scale: 50%
+:scale: 100%
 
 Sum of NRMSE values for E9.
 ```

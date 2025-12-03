@@ -41,12 +41,13 @@ Both pumps are further connected to a static mixer.
 The valve is equipped with a $50~\text{mL}$ sample loop to inject a well-defined amount of sample into the system.
 The valve is connected to a *SP Sepharose HP* column.
 The column is a strong cation exchanger with an $\ce{SO_3}^{-}$ functional group and a column volume (CV) of $4.7~\text{mL}$.
-The average particle size, $d50v$, is provided by the manufacturer *Cytiva* as $34~\text{μm}$, with an ionic capacity between $0.15$ and $0.2~\text{mM}~\ce{H}^{+}$.
+The average particle size, $d50v$, is provided by the manufacturer *Cytiva* as $34~\text{μm}$, with an ionic capacity between $0.15$ and $0.2~\text{mmol}~\ce{H}^{+}~\text{mL}_{\text{packed bed}}^{-1}$.
 The column outlet is connected to a UV detector which measures the absorbance at $280~\text{m}$ to detect tracer and protein.
 The outlet of the UV sensor is connected to a conductivity sensor to measure ionic strength.
 The outflow of the system is then sent to a waste flask.
-A computer is connected to the system with the software *PurityChrom 5* to operate the system, capture, process, and view the measured data {cite}`PurityChrom5.
+A computer is connected to the system with the software *PurityChrom 5* to operate the system, capture, process, and view the measured data {cite}`PurityChrom5`.
 All internal tubing has an inner diameter of $0.75~\text{mm}$.
+All experiments were conducted at $0.5~\text{mL}~\text{min}^{-1}$.
 
 ```{figure} ./figures/knauer_pid.png
 :name: knauer_pid
