@@ -25,3 +25,6 @@ The process involves several key steps:
 - **Column properties**: Specific experiments investigate column properties such as porosity and axial dispersion.
 - **Protein-specific parameters**: Additional experiments estimate protein-specific particle porosity and transport parameters, aiding in selecting the appropriate column model.
 - **Binding parameters**: Experiments are conducted to determine binding parameters, considering factors like pH and salt concentration. These experiments involve linear gradients at various pH levels and column volumes for calibration and validation.
+
+@TODO: Migrate repo and add link to repo
+@TODO: Link to CADET-Process: Custom KnauerData/FlowSheet/Process/OptimizationProblems

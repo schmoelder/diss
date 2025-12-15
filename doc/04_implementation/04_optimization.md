@@ -13,6 +13,7 @@ execution:
 :tags: [remove-cell]
 
 from myst_nb import glue
+%config InlineBackend.figure_format = 'retina'
 ```
 
 (optimization)=
@@ -197,7 +198,7 @@ Before calculating objectives, the process needs to be simulated, and the simula
 
 ```{figure} ./figures/evaluation_example_comparator.png
 :name: evaluation_example_comparator
-:scale: 25%
+:scale: 50%
 
 Steps required for calculating difference metrics, used as residual in an optimization problem.
 ```
@@ -385,7 +386,7 @@ glue("pareto", fig, display=False)
 Pareto plot of all evaluated individuals.
 ```
 
-The {meth}`~CADETProcess.optimization.OptimizationResults.plot_convergence` method is a tool for visualizing the convergence of the optimization over time, where the objective value is plotted against the number of function evaluations (see {ref}`convergence`).
+The {meth}`~CADETProcess.optimization.OptimizationResults.plot_convergence` method is a tool for visualizing the convergence of the optimization over time, where the objective value is plotted against the number of function evaluations (see {numref}`convergence`).
 
 ```{code-cell} ipython3
 :tags: [remove-cell]

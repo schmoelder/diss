@@ -17,11 +17,15 @@ execution:
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
+%matplotlib inline
+%config InlineBackend.figure_format = 'retina'
+
 from pathlib import Path
 import sys
 
 from IPython.display import display, Markdown
 from git import Repo
+import matplotlib.pyplot as plt
 from myst_nb import glue
 
 # Import the study module
@@ -29,20 +33,17 @@ diss_root = Path(Repo(search_parent_directories=True).working_dir)
 studies_root = diss_root / "studies" / "operating_modes"
 sys.path.insert(0, str(studies_root))
 
-from run_all import (
-    setup_study,
-    setup_cases,
-    load_optimization_config,
-    load_optimization_results,
-    simulate_results,
-    simulate_and_plot,
-    fractionate_results,
-    embed_table_in_directive,
-    setup_so_results_table,
-)
-
+from run_all import create_figure_and_table, setup_study
 study = setup_study(studies_root, "serial_columns")
-cases = setup_cases(study)
+
+variable_units={
+    r"\Delta t_{\text{cycle}}": r"\text{s}",
+    r"\Delta t_{\text{feed}}": r"\text{s}",
+    r"t_{\text{serial, off}}": r"\text{s}",
+    r"t_{\text{serial, on}}": r"\text{s}",
+    r"L_{\text{c, 1}}": r"\text{m}",
+    r"L_{\text{c, 2}}": r"\text{m}",
+}
 ```
 
 (serial_columns)=
@@ -56,7 +57,7 @@ Alternatively, the output of the pre-column can be dynamically directed either t
 (serial_columns_process)=
 ## Process model
 
-{ref}`serial_columns_flow_sheet` shows the flow sheet for a process with columns connected in series.
+{numref}`serial_columns_flow_sheet` shows the flow sheet for a process with columns connected in series.
 To prevent periods where no flow occurs through a column, a second eluent {class}`~CADETProcess.processModel.Inlet` is added to the system.
 This inlet becomes active whenever flow is directed from the first column to the outlet.
 
@@ -130,31 +131,23 @@ After simulation, the {class}`~CADETProcess.simulationResults.SimulationResults`
 For this purpose, an {class}`~CADETProcess.optimization.OptimizationProblem` is formulated to maximize process performance.
 
 (serial_columns_single)=
-### Single-objective optimization
+## Single-objective optimization
 
 Here we do some single-objective optimization.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-so = cases["single-objective"]
-so_problem, _ = load_optimization_config(so)
-so_results = load_optimization_results(so)
-
-simulation_results = simulate_results(so_problem, so_results.x[0])
-fractionator = fractionate_results(so_problem, simulation_results)
-so_serial_columns_fig, axs = plot_results(simulation_results)
-glue("so_serial_columns_fig", so_serial_columns_fig, display=False)
-
-so_serial_columns_table = setup_so_results_table(so_results, fractionator)
+soo_chrom, ax, soo_table, soo_obj = create_figure_and_table(
+    studies_root,
+    "serial_columns",
+    "single-objective",
+    variable_units=variable_units,
+)
+glue("serial_columns_soo_chrom", soo_chrom, display=False)
 ```
 
-```{glue:figure} so_serial_columns_fig
-:name: so_serial_columns_chromatogram
-:scale: 50%
-
-Optimal chromatogram of single-objective optimization of serial columns process.
-```
+{numref}`serial_columns_soo_objectives` shows objective function values.
 
 ```{code-cell} ipython3
 ---
@@ -162,7 +155,73 @@ mystnb:
   markdown_format: myst
   remove_code_source: true
 ---
-display(Markdown(so_serial_columns_table))
+display(Markdown(soo_obj))
 ```
 
-{numref}`so_serial_columns_kpi` shows some values.
+{numref}`serial_columns_soo_kpi` summarizes results.
+
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
+display(Markdown(soo_table))
+```
+
+{numref}`serial_columns_soo_chrom` shows chromatogram of best value.
+
+```{glue:figure} serial_columns_soo_chrom
+:name: serial_columns_soo_chrom
+:scale: 100%
+
+Optimal chromatogram of single-objective optimization of serial columns process.
+```
+
+(serial_columns_multi)=
+## Multi-objective optimization
+
+Here we do some multi-objective optimization.
+
+```{code-cell} ipython3
+:tags: [remove-cell]
+
+moo_chrom, ax, moo_table, moo_obj = create_figure_and_table(
+    studies_root,
+    "serial_columns",
+    "multi-objective",
+    variable_units=variable_units,
+)
+glue("serial_columns_moo_chrom", moo_chrom, display=False)
+```
+
+{numref}`serial_columns_moo_objectives` shows objective function values.
+
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
+display(Markdown(moo_obj))
+```
+
+{numref}`serial_columns_moo_kpi` summarizes results.
+
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
+display(Markdown(moo_table))
+```
+
+{numref}`serial_columns_moo_chrom` shows optimal chromatograms.
+
+```{glue:figure} serial_columns_moo_chrom
+:name: serial_columns_moo_chrom
+:scale: 100%
+
+Optimal chromatogram of multi-objective optimization of serial columns process.
+```

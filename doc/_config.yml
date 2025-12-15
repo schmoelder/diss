@@ -51,6 +51,7 @@ sphinx:
     # List with examples 👇 https://de.overleaf.com/learn/latex/Bibtex_bibliography_styles
     bibtex_reference_style: label
     bibtex_default_style: "plain"
+    jblatex_load_imgconverter: true
     intersphinx_mapping:
       CADET-Process:
         - "https://cadet-process.readthedocs.io/en/latest/"
@@ -109,8 +110,10 @@ sphinx:
         \makeatletter
 
         % Load packages
-        \usepackage{mhchem}
         \usepackage{etoc}
+        \usepackage{mhchem}
+        \usepackage{pdflscape}
+        \usepackage{unicode-math}
 
         % Font Sizes
         %% Standard text

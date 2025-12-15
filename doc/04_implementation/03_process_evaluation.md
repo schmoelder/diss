@@ -13,6 +13,7 @@ execution:
 :tags: [remove-cell]
 
 from myst_nb import glue
+%config InlineBackend.figure_format = 'retina'
 ```
 
 (process_evaluation)=

@@ -22,6 +22,7 @@ import sys
 
 from git import Repo
 from myst_nb import glue
+%config InlineBackend.figure_format = 'retina'
 
 # Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
@@ -41,7 +42,7 @@ Both pumps are further connected to a static mixer.
 The valve is equipped with a $50~\text{mL}$ sample loop to inject a well-defined amount of sample into the system.
 The valve is connected to a *SP Sepharose HP* column.
 The column is a strong cation exchanger with an $\ce{SO_3}^{-}$ functional group and a column volume (CV) of $4.7~\text{mL}$.
-The average particle size, $d50v$, is provided by the manufacturer *Cytiva* as $34~\text{μm}$, with an ionic capacity between $0.15$ and $0.2~\text{mmol}~\ce{H}^{+}~\text{mL}_{\text{packed bed}}^{-1}$.
+The average particle size, $d50v$, is provided by the manufacturer *Cytiva* as $34~\text{µm}$, with an ionic capacity between $0.15$ and $0.2~\text{mmol}~\ce{H}^{+}~\text{mL}_{\text{packed bed}}^{-1}$.
 The column outlet is connected to a UV detector which measures the absorbance at $280~\text{m}$ to detect tracer and protein.
 The outlet of the UV sensor is connected to a conductivity sensor to measure ionic strength.
 The outflow of the system is then sent to a waste flask.
@@ -65,16 +66,16 @@ The manufacturer of the material can be found in {numref}`materials`.
 :name: materials
 :align: center
 
-| Material          | Purity/ Concentration | Manufacturer            |
-| ----------------- | --------------------- | ----------------------- |
-| Acetic Acid       | ≥ 99.7 %              | Merck KGaA              |
-| Acetone           | ≥ 99.5 %              | Carl Roth GmbH & Co. KG |
-| Blue Dextran      |                       | Merck KGaA              |
-| Hydrochloric Acid | 4 M ± 0.2 %           | Carl Roth GmbH & Co. KG |
-| Lysozyme          | ≥ 90 %                | Carl Roth GmbH & Co. KG |
-| Sodium Acetate    | ≥ 99 %                | Merck KGaA              |
-| Sodium Chloride   | ≥ 99 %                | Carl Roth GmbH & Co. KG |
-| Sodium Hydroxide  | 1 M ± 0.2 %           | Carl Roth GmbH & Co. KG |
+| Material          | Purity/ Concentration  | Manufacturer            |
+| ----------------- | ---------------------- | ----------------------- |
+| Acetic Acid       | $\geq~99.7\%$          | Merck KGaA              |
+| Acetone           | $\geq~99.5\%$          | Carl Roth GmbH & Co. KG |
+| Blue Dextran      |                        | Merck KGaA              |
+| Hydrochloric Acid | $4~\text{M} \pm~0.2\%$ | Carl Roth GmbH & Co. KG |
+| Lysozyme          | $\geq~90\%$            | Carl Roth GmbH & Co. KG |
+| Sodium Acetate    | $\geq~99\%$            | Merck KGaA              |
+| Sodium Chloride   | $\geq~99\%$            | Carl Roth GmbH & Co. KG |
+| Sodium Hydroxide  | $1~\text{M} \pm~0.2\%$ | Carl Roth GmbH & Co. KG |
 ```
 
 (conductivity_calibration)=
@@ -133,13 +134,13 @@ Note, for this work, all experiments, except where noted, were performed at pH 5
 
 | ID  | Goal                                 | Parameters                                                             | Bypass                               | Injected component              | Volume           | Eluent                                        | Measurement |
 | --- | ------------------------------------ | ---------------------------------------------------------------------- | ------------------------------------ | ------------------------------- | ---------------- | --------------------------------------------- | ----------- |
-| E1  | Determine tubing characteristics     | Tubing length and axial dispersion                                     | column, post-column tubing, detector | $1\%~\text{w/w}$ Acetone        | $50~\mu\text{L}$ | $A$                                           | UV          |
-| E2  | Determine tubing characteristics     | Tubing length and axial dispersion                                     | column, detector                     | $1\%~\text{w/w}$ Acetone        | $50~\mu\text{L}$ | $A$                                           | UV          |
-| E3  | Determine tubing characteristics     | Tubing length and axial dispersion                                     | column                               | $1020~\text{mM}$ Salt           | $50~\mu\text{L}$ | $A$                                           | Cond        |
+| E1  | Determine tubing characteristics     | Tubing length and axial dispersion                                     | column, post-column tubing, detector | $1\%~\text{w/w}$ Acetone        | $50~\text{µL}$ | $A$                                           | UV          |
+| E2  | Determine tubing characteristics     | Tubing length and axial dispersion                                     | column, detector                     | $1\%~\text{w/w}$ Acetone        | $50~\text{µL}$ | $A$                                           | UV          |
+| E3  | Determine tubing characteristics     | Tubing length and axial dispersion                                     | column                               | $1020~\text{mM}$ Salt           | $50~\text{µL}$ | $A$                                           | Cond        |
 | E4  | Determine mixer characteristics      | Mixer volume, tubing length and axial dispersion                       | column                               | -                               | -                | $A \rightarrow B$ (step)                      | Cond        |
-| E5  | Determine bed properties             | Bed porosity and axial dispersion                                      | -                                    | $0.0005~\text{mM}$ Blue Dextran | $50~\mu\text{L}$ | $A$                                           | UV          |
-| E6  | Determine particle properties        | Particle porosity, total porosity, axial dispersion                    | -                                    | $1\%~\text{w/w}$ Acetone        | $50~\mu\text{L}$ | $B$                                           | UV          |
-| E7  | Determine diffusion characteristics  | Particle porosity, film diffusion, pore diffusion                      | -                                    | $0.2~\text{mM}$ Lysozyme        | $50~\mu\text{L}$ | $B$                                           | UV          |
+| E5  | Determine bed properties             | Bed porosity and axial dispersion                                      | -                                    | $0.0005~\text{mM}$ Blue Dextran | $50~\text{µL}$ | $A$                                           | UV          |
+| E6  | Determine particle properties        | Particle porosity, total porosity, axial dispersion                    | -                                    | $1\%~\text{w/w}$ Acetone        | $50~\text{µL}$ | $B$                                           | UV          |
+| E7  | Determine diffusion characteristics  | Particle porosity, film diffusion, pore diffusion                      | -                                    | $0.2~\text{mM}$ Lysozyme        | $50~\text{µL}$ | $B$                                           | UV          |
 | E8  | Determine capacity                   | Capacity                                                               | -                                    | -                               | -                | $A$                                           | Cond        |
-| E9  | Determine adsorption characteristics | Adsorption rate, desorption rate, characteristic charge, steric factor | -                                    | $0.2~\text{mM}$ Lysozyme        | $50~\mu\text{L}$ | $A \rightarrow B$ (Gradient: 4, 6, 8, 12, 14, 16 CV) | UV, Cond    |
+| E9  | Determine adsorption characteristics | Adsorption rate, desorption rate, characteristic charge, steric factor | -                                    | $0.2~\text{mM}$ Lysozyme        | $50~\text{µL}$ | $A \rightarrow B$ (Gradient: 4, 6, 8, 12, 14, 16 CV) | UV, Cond    |
 ```

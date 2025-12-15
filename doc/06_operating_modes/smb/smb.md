@@ -18,6 +18,7 @@ import sys
 from git import Repo
 import matplotlib.pyplot as plt
 from myst_nb import glue
+%config InlineBackend.figure_format = 'retina'
 
 from cadetrdm import Options
 
@@ -103,7 +104,7 @@ Now, the switch time is assigned to the builder which determines after how much 
 By calling the {meth}`~CADETProcess.modelBuilder.CarouselBuilder.build_process` method, a regular {class}`~CADETProcess.processModel.Process` object is constructed which can be simulated just as usual using **CADET**.
 It contains the assembled flow sheet with all columns, as well as the events required for simulation.
 
-Since multi column systems often exhibit a transient startup behavior, it might be useful to simulate multiple cycles until cyclic stationarity is reached (see {ref}`stationarity_guide`).
+Since multi column systems often exhibit a transient startup behavior, it might be useful to simulate multiple cycles until cyclic stationarity is reached (see section {numref}`stationarity`).
 Because this simulation is computationally expensive, only a few simulations are run for the documentation.
 Please run this simulation locally to see the full results.
 

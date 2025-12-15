@@ -44,7 +44,7 @@ To account for these dynamics, the following kinetic formulation can be applied:
 ```{math}
 :label: linear_kinetic
 
-\frac{\mathrm{d} q}{\mathrm{d} t} = k_a \cdot c - k_d \cdot q,
+\frac{\text{d} q}{\text{d} t} = k_a \cdot c - k_d \cdot q,
 ```
 
 where $k_a$ is the adsorption rate constant and $k_d$ is the desorption rate constant.
@@ -95,14 +95,14 @@ Similarly, the model can be reformulated in a kinetic form:
 ```{math}
 :label: langmuir_multi_kinetic
 
-\frac{\mathrm{d} q_i}{\mathrm{d} t} = k_{a, i} \cdot c_{i} \cdot q_{\text{max}, i} \left( 1 - \sum_{j=1}^{n_{\text{comp}}} \frac{q_j}{q_{\text{max}, j}} \right) - k_{d, i} \cdot q_i.
+\frac{\text{d} q_i}{\text{d} t} = k_{a, i} \cdot c_{i} \cdot q_{\text{max}, i} \left( 1 - \sum_{j=1}^{n_{\text{comp}}} \frac{q_j}{q_{\text{max}, j}} \right) - k_{d, i} \cdot q_i.
 ```
 
 (ldf)=
 ### Digression: linear driving force models
 
 The Linear Driving Force (LDF) approximation is sometimes used as an alternative to the native kinetic form of an isotherm {cite}`SchmidtTraub2020`.
-In the native approach, the rate of change of the amount of solute adsorbed, $\frac{\mathrm{d}q}{\mathrm{d}t}$, is an explicit function of the solute concentration $c$ and the amount adsorbed $q$.
+In the native approach, the rate of change of the amount of solute adsorbed, $\frac{\text{d}q}{\text{d}t}$, is an explicit function of the solute concentration $c$ and the amount adsorbed $q$.
 For example, in the Langmuir model:
 
 ```{math}
@@ -127,11 +127,11 @@ The rate of change of the amount of solute adsorbed is then expressed as:
 ```{math}
 :label: langmuir_ldf_dq_dt
 
-\frac{\mathrm{d}q}{\mathrm{d}t} = k_{kin} \cdot (q^* - q).
+\frac{\text{d}q}{\text{d}t} = k_{kin} \cdot (q^* - q).
 ```
 
 Here, the flux is proportional to the difference between the actual amount adsorbed and the equilibrium amount, $q^*$.
-It is worth noting that the sign of $\frac{\mathrm{d}q}{\mathrm{d}t}$ ensures the flux acts toward equilibrium.
+It is worth noting that the sign of $\frac{\text{d}q}{\text{d}t}$ ensures the flux acts toward equilibrium.
 In this approximation, the original rate constants $k_a$ and $k_d$ are replaced by the equilibrium constant $k_{eq}$ and a new kinetic constant $k_{kin}$.
 
 It is important to note that not all isotherms have a native representation in terms of explicit functions of solute concentration and amount adsorbed.
@@ -154,7 +154,7 @@ The kinetic formulation of the Bi-Langmuir isotherm is given by:
 ```{math}
 :label: bi-langmuir_kinetic
 
-\frac{\mathrm{d} q_{i, m}}{\mathrm{d} t} =  k_{a, i}^{m} \cdot c_{i} \cdot q_{\text{max}, i}^{m} \left( 1 - \sum_{j=1}^{n_{\text{comp}}} \frac{q_{j, m}}{q_{\text{max}, j}^{m}}\right) - k_{d, i}^{m} q_{i, m}
+\frac{\text{d} q_{i, m}}{\text{d} t} =  k_{a, i}^{m} \cdot c_{i} \cdot q_{\text{max}, i}^{m} \left( 1 - \sum_{j=1}^{n_{\text{comp}}} \frac{q_{j, m}}{q_{\text{max}, j}^{m}}\right) - k_{d, i}^{m} q_{i, m}
 ```
 
 where $k_{a, i}^{m}$ and $k_{d, i}^{m}$ are the adsorption and desorption rate constants, and $q_{\text{max}, i}^{m}$ is the maximum loading capacity of the $m$-th binding site.
@@ -230,7 +230,7 @@ The complete Steric Mass Action (SMA) model, which incorporates both kinetics an
 ```{math}
 :label: sma_isotherm
 
-\frac{\mathrm{d} q_i}{\mathrm{d} t} = k_{a, i} c_{i} \bar{q}_0^{\nu_i} - k_{d, i}\cdot q_i\cdot c_{0}^{\nu_i}
+\frac{\text{d} q_i}{\text{d} t} = k_{a, i} c_{i} \bar{q}_0^{\nu_i} - k_{d, i}\cdot q_i\cdot c_{0}^{\nu_i}
 ```
 
 where $k_{a, i}$ and $k_{d, i}$ are the adsorption and desorption rate constants.
@@ -252,8 +252,8 @@ The net flux for component $i$ is expressed as:
 :label: mass_action
 
 \begin{aligned}
- f_{\mathrm{react},i}\left(c\right) &= \sum_{j=0}^{N_{\mathrm{react}}-1} s_{i,j} \varphi_j\left(c\right), \\
- \varphi_j(c) &= k_{\mathrm{fwd},j} \prod_{\ell=0}^{N_{\mathrm{\text{comp}}}-1} \left(c_{\ell}\right)^{e_{\mathrm{fwd},\ell,j}} - k_{\mathrm{bwd},j} \prod_{\ell=0}^{N_{\mathrm{\text{comp}}}-1} \left(c_{\ell}\right)^{e_{\mathrm{bwd},\ell,j}},
+ f_{\text{react},i}\left(c\right) &= \sum_{j=0}^{N_{\text{react}}-1} s_{i,j} \varphi_j\left(c\right), \\
+ \varphi_j(c) &= k_{\text{fwd},j} \prod_{\ell=0}^{N_{\text{\text{comp}}}-1} \left(c_{\ell}\right)^{e_{\text{fwd},\ell,j}} - k_{\text{bwd},j} \prod_{\ell=0}^{N_{\text{\text{comp}}}-1} \left(c_{\ell}\right)^{e_{\text{bwd},\ell,j}},
 \end{aligned}
 ```
 
@@ -261,15 +261,15 @@ Here:
 
 - $s_{i,j}$ are the stoichiometric coefficients of component $i$ in reaction $j$, which are negative for reactants and positive for products.
 - $\varphi_j(c)$ is the net flux of reaction $j$.
-- $k_{\mathrm{fwd},j}$ and $k_{\mathrm{bwd},j}$ are the forward and backward rate constants, respectively.
-- $e_{\mathrm{fwd},\ell,j}$ and $e_{\mathrm{bwd},\ell,j}$ are the reaction orders for the forward and backward reactions, respectively.
+- $k_{\text{fwd},j}$ and $k_{\text{bwd},j}$ are the forward and backward rate constants, respectively.
+- $e_{\text{fwd},\ell,j}$ and $e_{\text{bwd},\ell,j}$ are the reaction orders for the forward and backward reactions, respectively.
 
-The exponents $e_{\mathrm{fwd},\ell,j}$ and $e_{\mathrm{bwd},\ell,j}$ are derived from the stoichiometric coefficients using the following rules:
+The exponents $e_{\text{fwd},\ell,j}$ and $e_{\text{bwd},\ell,j}$ are derived from the stoichiometric coefficients using the following rules:
 
 ```{math}
 \begin{aligned}
- e_{\mathrm{fwd},\ell,j} &= \max(0, -s_{\ell,j}), \\
- e_{\mathrm{bwd},\ell,j} &= \max(0, s_{\ell,j}).
+ e_{\text{fwd},\ell,j} &= \max(0, -s_{\ell,j}), \\
+ e_{\text{bwd},\ell,j} &= \max(0, s_{\ell,j}).
 \end{aligned}
 ```
 
@@ -373,7 +373,7 @@ To account for chemical reactions within the (D)PFR, an additional term describi
 \frac{\partial c_i}{\partial t} = -u \cdot \frac{\partial c_i}{\partial z} + D_{ax,i} \frac{\partial^2 c_i}{\partial t^2} + f_{react}(c),
 ```
 
-where $f_{\mathrm{react},i}(c)$ represents the reaction flux for component $i$.
+where $f_{\text{react},i}(c)$ represents the reaction flux for component $i$.
 
 (equilibrium_model)=
 ### Equilibrium model
@@ -484,7 +484,7 @@ The flux through this boundary layer depends on the specific surface area, $a_s$
 ```{math}
 :label: specific_particle_surface
 
-a_s = \frac{\mathrm{d} A}{\mathrm{d} V} = \frac{3}{r^p} \cdot (1 - \varepsilon^b),
+a_s = \frac{\text{d} A}{\text{d} V} = \frac{3}{r^p} \cdot (1 - \varepsilon^b),
 ```
 
 where $r^p$ is the particle radius.

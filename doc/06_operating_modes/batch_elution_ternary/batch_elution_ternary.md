@@ -17,6 +17,9 @@ execution:
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
+%config InlineBackend.figure_format = 'retina'
+%matplotlib inline
+
 from pathlib import Path
 import sys
 
@@ -25,68 +28,41 @@ from git import Repo
 import matplotlib.pyplot as plt
 from myst_nb import glue
 
-from cadetrdm import Study
-
-# Get the root directory of the Git repository
+# Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
 studies_root = diss_root / "studies" / "operating_modes"
 sys.path.insert(0, str(studies_root))
 
-from run_all import (
-    setup_study,
-    setup_cases,
-    load_optimization_config,
-    load_optimization_results,
-    simulate_results,
-    fractionate_results,
-    process_so_results,
-    setup_so_results_table,
-)
+from run_all import create_figure_and_table, setup_study
 study = setup_study(studies_root, "batch_elution_ternary")
-cases = setup_cases(study)
 
-# Dummy figure to avoid
-fig_dummy, ax = plt.subplots()
-glue("fig_dummy", fig_dummy, display=False)
+variable_units={
+    r"\Delta t_{\text{cycle}}": r"\text{s}",
+    r"\Delta t_{\text{feed}}": r"\text{s}",
+}
 ```
 
 (batch_elution_ternary_study)=
 # Ternary Batch Elution Chromatography
 
 (batch_elution_ternary_single)=
-## Single-objective Optimziation
+## Single-objective optimization
 
-Here we do some single-objective  optimization.
-<!-- ```{figure} ./results_single/single-objective/figures/objectives.png -->
-<!-- :name: batch_elution_single_objectives -->
-
-<!-- Objective space; each dot represents an evaluation. -->
-<!-- ``` -->
+Here we do some single-objective optimization.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-so = cases["single-objective"]
-so_problem, _ = load_optimization_config(so)
-so_results = load_optimization_results(so)
-
-simulation_results = simulate_results(so_problem, so_results.x[0])
-fractionator = fractionate_results(so_problem, simulation_results)
-so_batch_elution_ternary_fig, ax = fractionator.plot_fraction_signal()
-
-glue("so_batch_elution_ternary_fig", so_batch_elution_ternary_fig, display=False)
-
-so_batch_elution_ternary_table = setup_so_results_table(so_results, fractionator)
+soo_chrom, ax, soo_table, soo_obj = create_figure_and_table(
+    studies_root,
+    "batch_elution_ternary",
+    "single-objective",
+    variable_units=variable_units,
+)
+glue("batch_elution_ternary_soo_chrom", soo_chrom, display=False)
 ```
 
-```{glue:figure} so_batch_elution_ternary_fig
-:name: so_batch_elution_ternary_chromatogram
-:scale: 50%
-
-Optimal chromatogram of single-objective optimization of ternary batch elution process.
-```
-
-TODO: why is this figure not properly showing?
+{numref}`batch_elution_ternary_soo_objectives` shows objective function values.
 
 ```{code-cell} ipython3
 ---
@@ -94,24 +70,73 @@ mystnb:
   markdown_format: myst
   remove_code_source: true
 ---
-display(Markdown(so_batch_elution_ternary_table))
+display(Markdown(soo_obj))
 ```
 
-{numref}`so_batch_elution_ternary_kpi` shows some values.
+{numref}`batch_elution_ternary_soo_kpi` summarizes results.
+
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
+display(Markdown(soo_table))
+```
+
+{numref}`batch_elution_ternary_soo_chrom` shows chromatogram of best value.
+
+```{glue:figure} batch_elution_ternary_soo_chrom
+:name: batch_elution_ternary_soo_chrom
+:scale: 100%
+
+Optimal chromatogram of single-objective optimization of ternary batch elution process.
+```
 
 (batch_elution_ternary_multi)=
 ## Multi-objective optimization
 
 Here we do some multi-objective optimization.
 
-<!-- ```{figure} ./results_multi/multi-objective/figures/objectives.png -->
-<!-- :name: batch_elution_multi_objectives -->
+```{code-cell} ipython3
+:tags: [remove-cell]
 
-<!-- Objective space; each dot represents an evaluation. -->
-<!-- ``` -->
+moo_chrom, ax, moo_table, moo_obj = create_figure_and_table(
+    studies_root,
+    "batch_elution_ternary",
+    "multi-objective",
+    variable_units=variable_units,
+)
+glue("batch_elution_ternary_moo_chrom", moo_chrom, display=False)
+```
 
-<!-- ```{figure} ./results_multi/multi-objective/figures/pareto.png -->
-<!-- :name: batch_elution_multi_pareto -->
+{numref}`batch_elution_ternary_moo_objectives` shows objective function values.
 
-<!-- Pareto Front -->
-<!-- ``` -->
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
+display(Markdown(moo_obj))
+```
+
+{numref}`batch_elution_ternary_moo_kpi` summarizes results.
+
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
+display(Markdown(moo_table))
+```
+
+{numref}`batch_elution_ternary_moo_chrom` shows optimal chromatograms.
+
+```{glue:figure} batch_elution_ternary_moo_chrom
+:name: batch_elution_ternary_moo_chrom
+:scale: 100%
+
+Optimal chromatogram of multi-objective optimization of ternary batch elution process.
+```

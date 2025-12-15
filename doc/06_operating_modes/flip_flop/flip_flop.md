@@ -17,11 +17,15 @@ execution:
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
+%config InlineBackend.figure_format = 'retina'
+%matplotlib inline
+
 from pathlib import Path
 import sys
 
 from IPython.display import display, Markdown
 from git import Repo
+import matplotlib.pyplot as plt
 from myst_nb import glue
 
 # Import the study module
@@ -29,20 +33,14 @@ diss_root = Path(Repo(search_parent_directories=True).working_dir)
 studies_root = diss_root / "studies" / "operating_modes"
 sys.path.insert(0, str(studies_root))
 
-from run_all import (
-    setup_study,
-    setup_cases,
-    load_optimization_config,
-    load_optimization_results,
-    simulate_results,
-    simulate_and_plot,
-    fractionate_results,
-    embed_table_in_directive,
-    setup_so_results_table,
-)
-
+from run_all import create_figure_and_table, setup_study
 study = setup_study(studies_root, "flip_flop")
-cases = setup_cases(study)
+
+variable_units={
+    r"\Delta t_{\text{feed}}": r"\text{s}",
+    r"\Delta t_{\text{delay, flip}}": r"\text{s}",
+    r"\Delta t_{\text{delay, inject}}": r"\text{s}",
+}
 ```
 
 (flip_flop)=
@@ -57,13 +55,14 @@ The fundamental principle is to inject the feed mixture at one end of the column
 Once these fast-eluting components have been withdrawn, the flow is reversed, and the remaining, more strongly retained components are eluted in the opposite direction.
 This operating concept aims to enhance both the resolution and efficiency of separations, particularly in cases involving mixtures with components of very different adsorption behaviors {cite}`SchmidtTraub2020`.
 
-As illustrated in {ref}`flip-flop_bulk`, this cycle is repeated with successive injections and flow reversals, resulting in an alternating product collection scheme.
+As illustrated in {ref}`flip_flop_bulk`, this cycle is repeated with successive injections and flow reversals, resulting in an alternating product collection scheme.
 
-(flip-flop_process)=
+(flip_flop_process)=
 ## Process model
 
 As mentioned above, flip-flop chromatography is best suited for scenarios in which components exhibit very different adsorption behavior.
 For this purpose, a linear isotherm with parameters listed in {numref}`flip_flop_parameters` will be used for this study.
+@TODO: That's not true anymore. We use it to demonstrate, but not to optimize
 
 ```{table} Parameters of column geometry, mass transport and binding of the model molecules ($i \in \{A, B\}$).
 :name: flip_flop_parameters
@@ -77,7 +76,7 @@ For this purpose, a linear isotherm with parameters listed in {numref}`flip_flop
 To model the flip-flop operating mode in **CADET-Process**, two {class}`Inlets <CADETProcess.processModel.Inlet>`, a column model (e.g., {class}`~CADETProcess.processModel.LumpedRateModelWithPores`), and an {class}`~CADETProcess.processModel.Outlet` are connected.
 
 ```{figure} ./figures/flow_sheet.png
-:name: flip-flop_flow_sheet
+:name: flip_flop_flow_sheet
 
 Flow sheet for the flip-flop process.
 ```
@@ -121,22 +120,19 @@ process_simulator.n_cycles = 1
 
 simulation_results = process_simulator.simulate(process)
 fig_flip_flop_bulk, _ = plot_results(simulation_results, n_times=12)
-glue("flip-flop_bulk", fig_flip_flop_bulk, display=False)
+glue("flip_flop_bulk", fig_flip_flop_bulk, display=False)
 ```
 
-```{glue:figure} flip-flop_bulk
-:name: flip-flop_bulk
+```{glue:figure} flip_flop_bulk
+:name: flip_flop_bulk
 :scale: 50%
 
 **Left:** Concentration profile at the inllet of the column. **Center**: Bulk concentration at different times. The flow direction is indicated by the arrow. **Right:** concentration profile at the system outlet. @TODO: Add note about time scale (or axis); Also offset to better visualize injection
 ```
 
-(flip-flop_evaluation)=
-## Process evaluation
-
 After simulation, the {class}`~CADETProcess.simulationResults.SimulationResults` can be analyzed to determine optimal fractionation times using the {mod}`~CADETProcess.fractionation` module.
 
-(flip-flop_optimization)=
+(flip_flop_optimization)=
 ## Process optimization
 
 Variables
@@ -154,25 +150,16 @@ Here we do some single-objective optimization.
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-so = cases["single-objective"]
-so_problem, _ = load_optimization_config(so)
-so_results = load_optimization_results(so)
-
-simulation_results = simulate_results(so_problem, so_results.x[0])
-fractionator = fractionate_results(so_problem, simulation_results)
-so_flip_flop_fig, ax = fractionator.plot_fraction_signal()
-
-glue("so_flip_flop_fig", so_flip_flop_fig, display=False)
-
-so_flip_flop_table = setup_so_results_table(so_results, fractionator)
+soo_chrom, ax, soo_table, soo_obj = create_figure_and_table(
+    studies_root,
+    "flip_flop",
+    "single-objective",
+    variable_units=variable_units,
+)
+glue("flip_flop_soo_chrom", soo_chrom, display=False)
 ```
 
-```{glue:figure} so_flip_flop_fig
-:name: so_flip_flop_chromatogram
-:scale: 50%
-
-Optimal chromatogram of single-objective optimization of flip flop process.
-```
+{numref}`flip_flop_soo_objectives` shows objective function values.
 
 ```{code-cell} ipython3
 ---
@@ -180,12 +167,76 @@ mystnb:
   markdown_format: myst
   remove_code_source: true
 ---
-display(Markdown(so_flip_flop_table))
+display(Markdown(soo_obj))
 ```
 
-{numref}`so_flip_flop_kpi` shows the optimized variable some values.
+{numref}`flip_flop_soo_kpi` summarizes results.
 
-### Multi-objective
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
+display(Markdown(soo_table))
+```
+
+{numref}`flip_flop_soo_chrom` shows chromatogram of best value.
+
+```{glue:figure} flip_flop_soo_chrom
+:name: flip_flop_soo_chrom
+:scale: 100%
+
+Optimal chromatogram of single-objective optimization of flip-flop process.
+```
+
+(flip_flop_multi)=
+## Multi-objective optimization
+
+Here we do some multi-objective optimization.
+
+```{code-cell} ipython3
+:tags: [remove-cell]
+
+moo_chrom, ax, moo_table, moo_obj = create_figure_and_table(
+    studies_root,
+    "flip_flop",
+    "multi-objective",
+    variable_units=variable_units,
+)
+glue("flip_flop_moo_chrom", moo_chrom, display=False)
+```
+
+{numref}`flip_flop_moo_objectives` shows objective function values.
+
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
+display(Markdown(moo_obj))
+```
+
+{numref}`flip_flop_moo_kpi` summarizes results.
+
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
+display(Markdown(moo_table))
+```
+
+{numref}`flip_flop_moo_chrom` shows optimal chromatograms.
+
+```{glue:figure} flip_flop_moo_chrom
+:name: flip_flop_moo_chrom
+:scale: 100%
+
+Optimal chromatogram of multi-objective optimization of flip-flop process.
+```
 
 ## Summary
 Despite its potential, the flip-flop mode has seen limited adoption—possibly due to concerns about column design, complexity, or the mechanical stability of packing materials under repeated flow reversals.

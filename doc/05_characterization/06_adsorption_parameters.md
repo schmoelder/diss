@@ -23,6 +23,7 @@ import sys
 from IPython.display import display, Markdown
 from git import Repo
 from myst_nb import glue
+%config InlineBackend.figure_format = 'retina'
 
 # Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
@@ -114,3 +115,5 @@ For the equilibrium constant, {glue:text}`k_eq` $\text{m}_\text{l}^3~\text{m}_\t
 Considering the complexity of the determination procedure and the fact that these studies were conducted in independent laboratories, this can be considered a sucessfull replication.
 While the values are generally close, the differences can be explained by factors such as varying approaches to determining the specific capacity.
 As noted, the choice of particle porosity affects the volume-specific capacity used in the model equations.
+
+@TODO: Summarize / transition to next study

@@ -65,8 +65,8 @@ The concentration profile of the separated components at the column outlet is ty
 :tags: [remove-cell]
 
 %config InlineBackend.figure_format = 'retina'
-
 from myst_nb import glue
+%config InlineBackend.figure_format = 'retina'
 
 from examples.batch_elution.process import process
 

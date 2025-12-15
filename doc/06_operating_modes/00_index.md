@@ -1,63 +1,30 @@
----
-jupytext:
-  formats: md:myst,py:percent
-  text_representation:
-    extension: .md
-    format_name: myst
-    format_version: 0.13
-    jupytext_version: 1.14.5
-kernelspec:
-  display_name: Python 3
-  language: python
-  name: python3
-execution:
-  timeout: 600
----
-
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-import sys
-from pathlib import Path
-
-from git import Repo
-
-# Set up working directory
-diss_root = Path(Repo(search_parent_directories=True).working_dir)
-studies_root = diss_root / "studies" / "operating_modes"
-studies_root.mkdir(parents=True, exist_ok=True)
-
-# Import the run_all module
-sys.path.insert(0, str(studies_root))
-from run_all import setup_studies, setup_cases
-
-# Fetch all data
-studies = setup_studies(studies_root)
-
-cases = {
-    name: setup_cases(study, debug=True, push=False)
-    for name, study in studies.items()
-}
-
-for study, study_cases in cases.items():
-    print(study)
-    for name, case in study_cases.items():
-        case.load()
-```
-
 (operating_modes)=
 # Optimization of advanced operating concepts
 
-To demonstrate the application and capabilities of the framework, several case studies were conducted.
-The scripts to recreate the simulations and optimizations reported below can be found in the supplementary material and online: (@TODO: add links)
-In the case studies, preparative separations of mixtures with two or three components were considered using processes of different complexity and different optimization variables.
-In all cases, a lumped rate model with pores (see {numref}`lumped_rate_model_without_pores`) with competitive Langmuir binding (see {numref}`langmuir_model`) in rapid equilibrium.
-All processes are run in flow-through mode and the solvent does not have any impact on the binding.
-The parameters used are summarized in {numref}`model_parameters`.
-With the applied moderately nonlinear conditions and an axial dispersion coefficient that corresponds to several theoretical stages of around 400 and 2000, respectively, the separation difficulty of the examples can be regarded as “modest” (@TODO: check number).
-Independent of this, the optimization of such processes is always challenging, even for simple separations.
-For all optimization cases, the pymoo package (@TODO:cite) with a non-dominated sorting genetic algorithm was used.
+@TODO: Improve transition from previous study
 
+This chapter demonstrates the flexibility of the framework to model and optimize a range of chromatographic operating modes.
+These studies focus on preparative separations of binary and ternary mixtures using operating modes of varying complexity and optimization variables.
+The goal is to showcase the flexibility of the framework in modeling and optimizing different chromatographic operating modes, including batch elution, recycling techniques, flip-flop chromatography, and serial columns.
+In all cases, a lumped rate model with pores ({numref}`lumped_rate_model_with_pores`) and a competitive Langmuir binding model in rapid equilibrium ({numref}`langmuir_model`) are employed.
+All processes operate in flow-through mode, assuming the solvent has no impact on binding.
+The parameters used are summarized in {numref}`model_parameters`.
+
+Given the moderately nonlinear conditions and an axial dispersion coefficient corresponding to approximately 2000 theoretical stages, the separation difficulty of these examples is considered modest.
+By selecting appropriate operating conditions, such as injection volume and flow rate, the stationary phase can be utilized optimally for efficient separation.
+
+For each operating mode, the process configuration is presented using a {class}`~CADETProcess.processModel.FlowSheet` and various dynamic {class}`Events <CADETProcess.dymamicEvents.Event>`.
+To validate the configurations, simulation results are compared with equilibrium theory predictions, which assume a linear isotherm and negligible dispersion.
+
+In all cases, the following performance metrics were evaluated:
+- Productivity (eq. {eq}`productivity`)
+- Yield (eq. {eq}`yield`)
+- Eluent consumption (eq. {eq}`eluent_consumption`)
+
+These metrics were either combined into a weighted objective ({eq}`weighted_objective`) or addressed through multi-objective optimization.
+Additionally, a minimum purity requirement of $95\%$ ({eq}`purity`) was defined for all scenarios.
+All optimization problems were solved using the *pymoo* package with a non-dominated sorting genetic algorithm {cite}`pymoo2020`.
+Scripts to recreate the simulations and optimizations are available in the supplementary material and online (@TODO: add links).
 
 ```{table} Parameters of column geometry, mass transport and binding of the model molecules ($i \in \{A, B\}$).
 :name: model_parameters
@@ -70,13 +37,9 @@ For all optimization cases, the pymoo package (@TODO:cite) with a non-dominated 
 |               | $d_r$           | Particle radius           | $1.0 \times 10^{-5}$ | $\text{m}$                             |
 |               | $\varepsilon_b$ | Bed porosity              | $0.3$                | –                                      |
 |               | $\varepsilon_p$ | Particle porosity         | $0.6$                | –                                      |
-| **Transport** | $D_{ax,i}$      | Axial dispersion coeff.   | $1.0 \times 10^{-6}$ | $\text{m}^{2}~\text{s}^{-1}$           | 
+| **Transport** | $D_{ax,i}$      | Axial dispersion coeff.   | $1.0 \times 10^{-6}$ | $\text{m}^{2}~\text{s}^{-1}$           |
 |               | $k_{f,i}$       | Film mass transfer coeff. | $1.0 \times 10^{-3}$ | $\text{m}~\text{s}^{-1}$               |
 | **Binding**   | $k_{eq,i}$      | Equilibrium constant      | $[0.02, 0.03]$       | $\text{m}^{3}~\text{mol}^{-1}$         |
 |               | $q_{max,i}$     | Saturation capacities     | $[100, 100]$         | $\text{mol}~\text{m}_{\text{sp}}^{-1}$ |
 | **Process**   | $Q$             | Flow rate                 | $[0.01, 0.05]$       | $\text{m}^{3}~\text{s}^{-1}$           |
 ```
-
-To validate the processes, equilibrium theory is applied.
-An equivalent lumped rate model without pores but with the same total porosity is used.
-The equations are solved using an independent implementation of the analytic solution described in {cite}`Siitonen2011`.

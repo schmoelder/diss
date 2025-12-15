@@ -17,11 +17,15 @@ execution:
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
+%matplotlib inline
+%config InlineBackend.figure_format = 'retina'
+
 from pathlib import Path
 import sys
 
 from IPython.display import display, Markdown
 from git import Repo
+import matplotlib.pyplot as plt
 from myst_nb import glue
 
 # Import the study module
@@ -29,19 +33,18 @@ diss_root = Path(Repo(search_parent_directories=True).working_dir)
 studies_root = diss_root / "studies" / "operating_modes"
 sys.path.insert(0, str(studies_root))
 
-from run_all import (
-    setup_study,
-    setup_cases,
-    load_optimization_config,
-    load_optimization_results,
-    simulate_results,
-    fractionate_results,
-    process_so_results,
-    setup_so_results_table,
-)
-
+from run_all import create_figure_and_table, setup_study
 study = setup_study(studies_root, "clr")
-cases = setup_cases(study)
+
+variable_units = {
+    r"\Delta t_{\text{cycle}}": r"\text{s}",
+    r"\Delta t_{\text{feed}}": r"\text{s}",
+    r"t_{\text{recycle, off}}": r"\text{s}",
+    r"t_{\text{recycle, start A, 1}}": r"\text{s}",
+    r"t_{\text{recycle, end A, 1}}": r"\text{s}",
+    r"t_{\text{recycle, start B, 1}}": r"\text{s}",
+    r"t_{\text{recycle, end B, 1}}": r"\text{s}",
+}
 ```
 
 (clr_peak_shaving)=
@@ -118,32 +121,23 @@ Variables
 - TODO: add linear constraints
 
 (clr_peak_shaving_single)=
-### Single-objective optimization
+## Single-objective optimization
 
 Here we do some single-objective optimization.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-so = cases["single-objective_peak_shaving"]
-so_problem, _ = load_optimization_config(so)
-so_results = load_optimization_results(so)
-
-simulation_results = simulate_results(so_problem, so_results.x[0])
-fractionator = fractionate_results(so_problem, simulation_results)
-so_clr_ps_fig, ax = fractionator.plot_fraction_signal()
-
-glue("so_clr_ps_fig", so_clr_ps_fig, display=False)
-
-so_clr_ps_table = setup_so_results_table(so_results, fractionator)
+soo_chrom, ax, soo_table, soo_obj = create_figure_and_table(
+    studies_root,
+    "clr",
+    "single-objective_peak_shaving",
+    variable_units=variable_units,
+)
+glue("clr_ps_soo_chrom", soo_chrom, display=False)
 ```
 
-```{glue:figure} so_clr_ps_fig
-:name: so_clr_ps_chromatogram
-:scale: 50%
-
-Optimal chromatogram of single-objective optimization of clr process with peak shaving.
-```
+{numref}`clr_ps_soo_objectives` shows objective function values.
 
 ```{code-cell} ipython3
 ---
@@ -151,10 +145,75 @@ mystnb:
   markdown_format: myst
   remove_code_source: true
 ---
-display(Markdown(so_clr_ps_table))
+display(Markdown(soo_obj))
 ```
 
-{numref}`so_clr_ps_kpi` shows some values. @TODO: fix name for peak-shaving table
+{numref}`clr_ps_soo_kpi` summarizes results.
 
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
+display(Markdown(soo_table))
+```
+
+{numref}`clr_ps_soo_chrom` shows chromatogram of best value.
+
+```{glue:figure} clr_ps_soo_chrom
+:name: clr_ps_soo_chrom
+:scale: 100%
+
+Optimal chromatogram of single-objective optimization of CLR process with peak shaving.
+```
+
+(clr_ps_multi)=
+## Multi-objective optimization
+
+Here we do some multi-objective optimization.
+
+```{code-cell} ipython3
+:tags: [remove-cell]
+
+moo_chrom, ax, moo_table, moo_obj = create_figure_and_table(
+    studies_root,
+    "clr",
+    "multi-objective_peak_shaving",
+    variable_units=variable_units,
+)
+glue("clr_ps_moo_chrom", moo_chrom, display=False)
+```
+
+{numref}`clr_ps_moo_objectives` shows objective function values.
+
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
+display(Markdown(moo_obj))
+```
+
+{numref}`clr_ps_moo_kpi` summarizes results.
+
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
+display(Markdown(moo_table))
+```
+
+{numref}`clr_ps_moo_chrom` shows optimal chromatograms.
+
+```{glue:figure} clr_ps_moo_chrom
+:name: clr_ps_moo_chrom
+:scale: 100%
+
+Optimal chromatogram of multi-objective optimization of CLR process with peak shaving.
+```
 
 Discuss: Not really robust in practice. Maybe better when combined with model predictive control.

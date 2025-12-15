@@ -12,9 +12,8 @@ execution:
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-%config InlineBackend.figure_format = 'retina'
-
 from myst_nb import glue
+%config InlineBackend.figure_format = 'retina'
 ```
 
 (process_simulation)=

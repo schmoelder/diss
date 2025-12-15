@@ -17,11 +17,15 @@ execution:
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
+%matplotlib inline
+%config InlineBackend.figure_format = 'retina'
+
 from pathlib import Path
 import sys
 
 from IPython.display import display, Markdown
 from git import Repo
+import matplotlib.pyplot as plt
 from myst_nb import glue
 
 # Import the study module
@@ -29,24 +33,19 @@ diss_root = Path(Repo(search_parent_directories=True).working_dir)
 studies_root = diss_root / "studies" / "operating_modes"
 sys.path.insert(0, str(studies_root))
 
-from run_all import (
-    setup_study,
-    setup_cases,
-    load_optimization_config,
-    load_optimization_results,
-    simulate_results,
-    simulate_and_plot,
-    fractionate_results,
-    embed_table_in_directive,
-    setup_so_results_table,
-)
-
+from run_all import create_figure_and_table, setup_study
 study = setup_study(studies_root, "ssr")
-cases = setup_cases(study)
+
+variable_units={
+    r"\Delta t_{\text{cycle}}": r"\text{s}",
+    r"\Delta t_{\text{feed}}": r"\text{s}",
+    r"t_{\text{recycle, on}}": r"\text{s}",
+    r"t_{\text{recycle, off}}": r"\text{s}",
+}
 ```
 
 (ssr)=
-## Steady-state recycling
+# Steady-state recycling
 
 In addition to the recycled fraction, fresh feed can also be injected in each cycle, resulting in the formation of a cyclic steady-state.
 This process, called closed-loop steady-state recycling (CL-SSR), can achieve higher productivity compared to CLR.
@@ -112,7 +111,7 @@ Example SSR process in mixed-recycle operation for the separation of two compone
 ```
 
 Since the process shows a startup behavior before reaching steady state, multiple cycles need to be simulated.
-For this purpose, a {class}`~CADETProcess.stationarity.StationarityEvaluator` is used (see {ref}`stationarity_guide`).
+For this purpose, a {class}`~CADETProcess.stationarity.StationarityEvaluator` is used (see section {numref}`stationarity`).
 
 ```{glue:figure} ssr_overlay
 :name: ssr_overlay
@@ -121,35 +120,24 @@ For this purpose, a {class}`~CADETProcess.stationarity.StationarityEvaluator` is
 Overlay of concentration profiles of all cycles, showing the transient towards stationarity.
 ```
 
-### Optimization of SSR
-
 (ssr_single)=
-### Single-objective optimization
+## Single-objective optimization
 
 Here we do some single-objective optimization.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-so = cases["single-objective"]
-so_problem, _ = load_optimization_config(so)
-so_results = load_optimization_results(so)
-
-simulation_results = simulate_results(so_problem, so_results.x[0])
-fractionator = fractionate_results(so_problem, simulation_results)
-so_ssr_fig, ax = fractionator.plot_fraction_signal()
-
-glue("so_ssr_fig", so_ssr_fig, display=False)
-
-so_ssr_table = setup_so_results_table(so_results, fractionator)
+soo_chrom, ax, soo_table, soo_obj = create_figure_and_table(
+    studies_root,
+    "ssr",
+    "single-objective",
+    variable_units=variable_units,
+)
+glue("ssr_soo_chrom", soo_chrom, display=False)
 ```
 
-```{glue:figure} so_ssr_fig
-:name: so_ssr_chromatogram
-:scale: 50%
-
-Optimal chromatogram of single-objective optimization of ssr process.
-```
+{numref}`ssr_soo_objectives` shows objective function values.
 
 ```{code-cell} ipython3
 ---
@@ -157,7 +145,73 @@ mystnb:
   markdown_format: myst
   remove_code_source: true
 ---
-display(Markdown(so_ssr_table))
+display(Markdown(soo_obj))
 ```
 
-{numref}`so_mrssr_kpi` shows some values.
+{numref}`ssr_soo_kpi` summarizes results.
+
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
+display(Markdown(soo_table))
+```
+
+{numref}`ssr_soo_chrom` shows chromatogram of best value.
+
+```{glue:figure} ssr_soo_chrom
+:name: ssr_soo_chrom
+:scale: 100%
+
+Optimal chromatogram of single-objective optimization of SSR process.
+```
+
+(ssr_multi)=
+## Multi-objective optimization
+
+Here we do some multi-objective optimization.
+
+```{code-cell} ipython3
+:tags: [remove-cell]
+
+moo_chrom, ax, moo_table, moo_obj = create_figure_and_table(
+    studies_root,
+    "ssr",
+    "multi-objective",
+    variable_units=variable_units,
+)
+glue("ssr_moo_chrom", moo_chrom, display=False)
+```
+
+{numref}`ssr_moo_objectives` shows objective function values.
+
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
+display(Markdown(moo_obj))
+```
+
+{numref}`ssr_moo_kpi` summarizes results.
+
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
+display(Markdown(moo_table))
+```
+
+{numref}`ssr_moo_chrom` shows optimal chromatograms.
+
+```{glue:figure} ssr_moo_chrom
+:name: ssr_moo_chrom
+:scale: 100%
+
+Optimal chromatogram of multi-objective optimization of SSR process.
+```

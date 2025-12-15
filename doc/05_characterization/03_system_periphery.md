@@ -23,6 +23,7 @@ import sys
 from IPython.display import display, Markdown
 from git import Repo
 from myst_nb import glue
+%config InlineBackend.figure_format = 'retina'
 
 # Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)

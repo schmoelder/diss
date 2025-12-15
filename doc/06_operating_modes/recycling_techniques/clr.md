@@ -17,11 +17,15 @@ execution:
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
+%matplotlib inline
+%config InlineBackend.figure_format = 'retina'
+
 from pathlib import Path
 import sys
 
 from IPython.display import display, Markdown
 from git import Repo
+import matplotlib.pyplot as plt
 from myst_nb import glue
 
 # Import the study module
@@ -29,19 +33,14 @@ diss_root = Path(Repo(search_parent_directories=True).working_dir)
 studies_root = diss_root / "studies" / "operating_modes"
 sys.path.insert(0, str(studies_root))
 
-from run_all import (
-    setup_study,
-    setup_cases,
-    load_optimization_config,
-    load_optimization_results,
-    simulate_results,
-    fractionate_results,
-    process_so_results,
-    setup_so_results_table,
-)
-
+from run_all import create_figure_and_table, setup_study
 study = setup_study(studies_root, "clr")
-cases = setup_cases(study)
+
+variable_units={
+    r"\Delta t_{\text{cycle}}": r"\text{s}",
+    r"\Delta t_{\text{feed}}": r"\text{s}",
+    r"t_{\text{recycle, off}}": r"\text{s}",
+}
 ```
 
 (clr)=
@@ -122,25 +121,16 @@ Here we do some single-objective optimization.
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-so = cases["single-objective"]
-so_problem, _ = load_optimization_config(so)
-so_results = load_optimization_results(so)
-
-simulation_results = simulate_results(so_problem, so_results.x[0])
-fractionator = fractionate_results(so_problem, simulation_results)
-so_clr_fig, ax = fractionator.plot_fraction_signal()
-
-glue("so_clr_fig", so_clr_fig, display=False)
-
-so_clr_table = setup_so_results_table(so_results, fractionator)
+soo_chrom, ax, soo_table, soo_obj = create_figure_and_table(
+    studies_root,
+    "clr",
+    "single-objective",
+    variable_units=variable_units,
+)
+glue("clr_soo_chrom", soo_chrom, display=False)
 ```
 
-```{glue:figure} so_clr_fig
-:name: so_clr_chromatogram
-:scale: 50%
-
-Optimal chromatogram of single-objective optimization of clr process.
-```
+{numref}`clr_soo_objectives` shows objective function values.
 
 ```{code-cell} ipython3
 ---
@@ -148,7 +138,73 @@ mystnb:
   markdown_format: myst
   remove_code_source: true
 ---
-display(Markdown(so_clr_table))
+display(Markdown(soo_obj))
 ```
 
-{numref}`so_clr_kpi` shows some values.
+{numref}`clr_soo_kpi` summarizes results.
+
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
+display(Markdown(soo_table))
+```
+
+{numref}`clr_soo_chrom` shows chromatogram of best value.
+
+```{glue:figure} clr_soo_chrom
+:name: clr_soo_chrom
+:scale: 100%
+
+Optimal chromatogram of single-objective optimization of CLR process.
+```
+
+(clr_multi)=
+## Multi-objective optimization
+
+Here we do some multi-objective optimization.
+
+```{code-cell} ipython3
+:tags: [remove-cell]
+
+moo_chrom, ax, moo_table, moo_obj = create_figure_and_table(
+    studies_root,
+    "clr",
+    "multi-objective",
+    variable_units=variable_units,
+)
+glue("clr_moo_chrom", moo_chrom, display=False)
+```
+
+{numref}`clr_moo_objectives` shows objective function values.
+
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
+display(Markdown(moo_obj))
+```
+
+{numref}`clr_moo_kpi` summarizes results.
+
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
+display(Markdown(moo_table))
+```
+
+{numref}`clr_moo_chrom` shows optimal chromatograms.
+
+```{glue:figure} clr_moo_chrom
+:name: clr_moo_chrom
+:scale: 100%
+
+Optimal chromatogram of multi-objective optimization of CLR process.
+```

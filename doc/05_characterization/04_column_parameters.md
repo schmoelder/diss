@@ -24,6 +24,7 @@ from git import Repo
 from IPython.display import display, Markdown
 import numpy as np
 from myst_nb import glue
+%config InlineBackend.figure_format = 'retina'
 
 # Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
@@ -55,11 +56,11 @@ The column length and diameter are provided by the manufacturer, as well as the 
 :name: column_geometry
 :align: center
 
-| Parameter         | Value  | Unit |
-| ----------------- | ------ | ---- |
-| Column volume     | 4.7    | mL   |
-| Column length     | 0.1    | m    |
-| Particle diameter | 34     | µm   |
+| Parameter         | Value  | Unit           |
+| ----------------- | ------ | -------------- |
+| Column volume     | 4.7    | $\text{mL}$     |
+| Column length     | 0.1    | $\text{m}$     |
+| Particle diameter | 34     | $\text{µm}$ |
 ```
 
 To determine the missing parameters, additional experiments were performed (see {numref}`tab_experiments`):
