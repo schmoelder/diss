@@ -74,6 +74,52 @@ In a time of need, they offered me scientific refuge and a desk free from distra
 
 {raw-latex}`\clearpage`
 
+## Published work
+
+Parts of this thesis were and are being published as in peer-reviewed journals, at conferences, in supervised students' theses and in the form of open source software packages.
+Any thought, methodology, result, conclusion and direct or indirect contribution to this work is considered as properly cited by the following listing:
+
+**Articles:**
+- Dienstbier et al.
+- Schmölder et al.
+- Breuer et al., (DG)
+- Leweke et al., (JOSS)
+- @TODO: what else?
+
+**Conference and symposium talks:**
+- SPICA Wien
+- SPICA Darmstadt
+- ProcessNet Köln
+- Prep? (not really part of this thesis)
+
+**Conference posters:**
+- ProcessNet Aachen: Schmölder et al.
+
+**Code repositories and software packages**:
+- CADET-Process
+- CADET-Core
+- CADET-RDM
+
+**Datasets**:
+- Characterization @TODO
+- Batch Elution @TODO
+
+**Supervised and co-supervised student projects**:
+- Johanna Ullrich
+- Fabian Popp
+- Stefan Wolf
+- Felix Derleth
+- Simon Cortelezzi
+- Carola Schlumberger
+- Eliane Tauber
+- Jana Dienstbier
+- Jan Breuer
+- Lukas Thiel
+- Daniel Klaus
+- Florian Hülsmann
+
+{raw-latex}`\clearpage`
+
 ## Zusammenfassung
 
 Dies und das hab ich gemacht.
