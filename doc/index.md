@@ -10,6 +10,21 @@
 \pagenumbering{gobble}
 ```
 
+% Epigraph
+```{raw} latex
+\clearpage
+\epigraph{\itshape
+  And what is good, Phaedrus, And what is not good ---\\
+  Need we ask anyone to tell us these things?
+}{
+  ---Robert M. Pirsig, \\
+  \textit{
+    Zen and the Art of Motorcycle Maintenance: \\
+    An Inquiry Into Values
+  }
+}
+\clearpage
+```
 
 
 

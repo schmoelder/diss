@@ -115,6 +115,11 @@ sphinx:
         \usepackage{pdflscape}
         \usepackage{unicode-math}
 
+        % Epigraph
+        \usepackage{epigraph}
+        \setlength\epigraphwidth{.8\textwidth}
+        \setlength\epigraphrule{0pt}
+
         % Font Sizes
         %% Standard text
         \usepackage{setspace}
