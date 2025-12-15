@@ -39,6 +39,7 @@ parameters_all = load_all_parameters(final_parameters_branch)
 Adsorption parameters are estimated using four experiments with gradient slopes of 4, 8, 12, and 16 CV, which are compared to simulation results.
 The objective is to adjust the characteristic charge $\nu$ and the equilibrium constant $k_{\text{eq}}$ to minimize the discrepancy between simulations and experiments.
 The steric factor $\sigma$ is not adjusted, as its effects are typically observed in breakthrough curves {cite}`Osberghaus2012`.
+Consequently, it is set to 0.
 Rapid equilibrium is assumed throughout the simulations.
 
 A separate simulation is run for each experiment, and the resulting outlet profiles are compared.
@@ -76,7 +77,6 @@ fig_validation, ax_lysozyme, ax_salt = plot_lysozyme(
     use_validation=True,
 )
 glue("fig_lysozyme_validation", fig_validation, display=False)
-print("update")
 ```
 
 ```{code-cell} ipython3

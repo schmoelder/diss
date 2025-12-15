@@ -55,7 +55,6 @@ glue("fig_comparison_without_column", fig, display=False)
 
 from comparison_plots import create_system_table
 tab_system_periphery = create_system_table(parameters_all["e4"])
-print("update")
 ```
 
 ```{code-cell} ipython3
@@ -69,7 +68,7 @@ display(Markdown(tab_system_periphery))
 
 {numref}`tab_system_periphery` presents the fitted parameter values.
 The determined tubing length and volume are of the same order of magnitude as those in the Knauer system.
-However, the axial dispersion coefficients exceed those reported by Kumar et al. ($10^{-6}~\text{m}^2~\text{s}^{-1}$) {cite}`Kumar2022`, indicating potential additional mixing effects in the Knauer system.
+However, the axial dispersion coefficients exceed those reported by Kumar et al. ($\approx 10^{-6}~\text{m}^2~\text{s}^{-1}$, on an ÄKTA AVANT 25) {cite}`Kumar2022`, indicating potential additional mixing effects in the Knauer system.
 Despite this, the simulation results are in good agreement with the reference experiments ({numref}`fig_comparison_without_column`).
 Given the small tubing volume, the overall impact of dispersion on the final chromatograms is likely minimal.
 Crucially, the model accurately captures the time offset.

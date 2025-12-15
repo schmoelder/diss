@@ -80,7 +80,6 @@ fig, *_ = plot_comparison_with_column(
 )
 glue("fig_comparison_with_column", fig, display=False)
 tab_column_parameters = create_column_table(parameters_all["e9_lrmp_4_cv"])
-print("update")
 ```
 
 A {class}`~CADETProcess.processModel.LumpedRateModelWithPores` was used for experiment `E5`, with the film diffusion coefficient of Blue Dextran set to $0~\text{m}~\text{s}^{-1}$ to model size exclusion.
@@ -116,5 +115,5 @@ display(Markdown(tab_column_parameters))
 :name: fig_comparison_with_column
 :scale: 100%
 
-Comparison of simulation results with corresponding reference experiments.
+Comparison of simulation results (solid lines) with corresponding reference experiments (dashed)
 ```

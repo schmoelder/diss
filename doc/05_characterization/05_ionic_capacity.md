@@ -35,24 +35,24 @@ parameters_all = load_all_parameters(final_parameters_branch)
 (ionic_capacity)=
 # Estimation of the ionic capacity of the resin
 
-To determine the ionic capacity of the resin, a titration experiment is conducted as follows:
-The column is first flushed with water, then equilibrated with $20~\text{CV}$ of acetic acid at pH 3, during which acetic acid exchanges counter-ions with $n_{\ce{H}^+}$ protons.
-After equilibration, the column is flushed with $10~\text{CV}$ of water to remove unbound acetic acid.
-Finally, the resin is titrated with a $\ce{NaOH}$ solution.
+To determine the ionic capacity of the resin, a titration experiment is conducted as follows: the column is first flushed with water, then equilibrated with $20~\text{CV}$ of acetic acid at pH 3.
+During this step, the protons ($\ce{H+}$) from the acetic acid exchange with the resin’s bound counter-ions, displacing them into the effluent.
+After equilibration, the column is flushed with $10~\text{CV}$ of water to remove any unbound acetic acid and displaced ions.
+Finally, the resin is titrated with a $\ce{NaOH}$ solution to quantify the number of bound protons, thereby determining the resin’s ionic capacity.
 
 The amount of $\ce{NaOH}$ consumed is determined by analyzing the breakthrough curve via conductivity measurement ({numref}`fig_resin_titration`).
-The breakthrough time point, $t_{\text{bt 10}}$, is defined as the time at which $10\%$ of the breakthrough occurs.
+The breakthrough time point, $t_{\text{bt, 10}}$, is defined as the time at which $10\%$ of the breakthrough occurs.
 Using the flow rate $Q$, the volume and concentration of $\ce{NaOH}$, the amount of exchanged sodium ions, $n_{\ce{Na}^+}$, is calculated as:
 
 $$
 n_{\ce{Na}^+} = V_{\ce{NaOH}} \cdot c_{\ce{NaOH}} = Q \cdot t_{\text{bt, 10}} \cdot c_{\ce{NaOH}}
 $$
 
-It is assumed that the number of sodium ions is equal to the total capacity of the column.
-The volume specific ionic capacity $\Lambda$ is then calculated by dividing the exchanged sodium ions by the solid volume of the resin:
+It is assumed that the number of sodium ions equals the total capacity of the column.
+The volume-specific ionic capacity, $\Lambda$, is then calculated by dividing the exchanged sodium ions by the solid volume of the resin:
 
 $$
-\Lambda = \frac{n_{\ce{Na}^+}}{V_{\text{c}} \cdot (1 - \varepsilon_{\text{total}})}
+\Lambda = \frac{n_{\ce{Na}^+}}{V_{\text{C}} \cdot (1 - \varepsilon_{\text{total}})}
 $$
 
 The total porosity, $\varepsilon_{\text{total}}$, is determined using the column porosity $\varepsilon_c$ and the particle porosity $\varepsilon_p$, which are estimated from the previous tracer experiments.
@@ -68,7 +68,6 @@ $$
 from comparison_plots import plot_resin_titration
 fig, *_ = plot_resin_titration(plot_single=True)
 glue("fig_resin_titration", fig, display=False)
-print("update")
 
 # @TODO: use proper values when rerunning
 # glue("system_dead_volume", round(parameters_all["e8"]["system_dead_volume"]*1e6, 2))
@@ -117,5 +116,6 @@ When normalized by the total column volume, the capacity is {glue:text}`manufact
 
 Given that lysozyme is large and may not penetrate all pores, and considering that ligands may not be uniformly distributed throughout the pore depth, the exact accessible capacity cannot be precisely determined.
 To avoid assumptions about pore accessibility, the total capacity is assumed constant.
-For further calculations, the capacity is normalized by the solid phase volume, resulting in a specific capacity of {glue:text}`lambda_lysozyme` mol m$_{\text{s}}^{-3}$.
-For reference, normalization using acetone's porosity would yield a specific capacity of {glue:text}`lambda_acetone` mol m$_{\text{s}}^{-3}$.
+For further calculations, the capacity is normalized by the corresponding apparent solid phase volume.
+This results in a specific capacity of {glue:text}`lambda_lysozyme` mol m$_{\text{s}}^{-3}$ when considering lysozyme.
+For reference, normalization using acetone's apparent porosity would yield a specific capacity of {glue:text}`lambda_acetone` mol m$_{\text{s}}^{-3}$.
