@@ -17,6 +17,8 @@ execution:
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
+print("update")
+
 from pathlib import Path
 import sys
 
@@ -77,5 +79,5 @@ Crucially, the model accurately captures the time offset.
 :name: fig_comparison_without_column
 :scale: 100%
 
-Comparison of simulation results with corresponding reference experiments.
+Comparison of simulation results using estimated parameters (solid lines) with reference experiments (dotted lines) for system periphery experiments.
 ```

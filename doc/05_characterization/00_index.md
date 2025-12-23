@@ -27,4 +27,3 @@ The process involves several key steps:
 - **Binding parameters**: Experiments are conducted to determine binding parameters, considering factors like pH and salt concentration. These experiments involve linear gradients at various pH levels and column volumes for calibration and validation.
 
 @TODO: Migrate repo and add link to repo
-@TODO: Link to CADET-Process: Custom KnauerData/FlowSheet/Process/OptimizationProblems

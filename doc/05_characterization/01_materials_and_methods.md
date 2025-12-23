@@ -94,22 +94,8 @@ Conductivity is measured in Siemens per meter ($\text{S}~\text{m}^{-1}$), where 
 To quantify the relationship between salt concentration and conductivity, a calibration curve is recorded by measuring the conductivity of solutions with varying salt concentrations at a constant pH of 5.
 Conductivity values are recorded over one minute at predefined salt concentrations ($20~\text{mM}$, $270~\text{mM}$, $570~\text{mM}$, $770~\text{mM}$, and $1020~\text{mM}$).
 Since the relationship between salt concentration and conductivity is nonlinear, a quadratic function is fitted to the measured data using the least squares method.
+The results are shown in {numref}`fig_conductivity`.
 This function is then used to determine salt concentration from conductivity in subsequent analyses.
-
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-from e0 import plot
-fig, ax = plot()
-glue("fig_conductivity", fig, display=False)
-```
-
-```{glue:figure} fig_conductivity
-:name: fig_conductivity
-:scale: 50%
-
-Calibration curve for conductivity sensor.
-```
 
 (uv_calibration)=
 ## Rescaling of the UV signal
@@ -137,6 +123,6 @@ Note, for this work, all experiments, except where noted, were performed at pH 5
 | E5  | Determine bed properties             | Bed porosity and axial dispersion                                      | -                                    | $0.0005~\text{mM}$ Blue Dextran | $50~\text{µL}$ | $A$                                                  |
 | E6  | Determine particle properties        | Particle porosity, total porosity, axial dispersion                    | -                                    | $1\%~\text{w/w}$ Acetone        | $50~\text{µL}$ | $B$                                                  |
 | E7  | Determine diffusion characteristics  | Particle porosity, film diffusion, pore diffusion                      | -                                    | $0.2~\text{mM}$ Lysozyme        | $50~\text{µL}$ | $B$                                                  |
-| E8  | Determine capacity                   | Capacity                                                               | -                                    | -                               | -              | $A$                                                  |
+| E8  | Determine capacity                   | Capacity                                                               | -                                    | $18.2~\text{mM}$ $\ce{NaOH}$    | -              | Water $\rightarrow$ $\ce{NaOH}$ (step)               |
 | E9  | Determine adsorption characteristics | Adsorption rate, desorption rate, characteristic charge, steric factor | -                                    | $0.2~\text{mM}$ Lysozyme        | $50~\text{µL}$ | $A \rightarrow B$ (Gradient: 4, 6, 8, 12, 14, 16 CV) |
 ```

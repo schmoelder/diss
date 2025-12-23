@@ -116,4 +116,4 @@ Considering the complexity of the determination procedure and the fact that thes
 While the values are generally close, the differences can be explained by factors such as varying approaches to determining the specific capacity.
 As noted, the choice of particle porosity affects the volume-specific capacity used in the model equations.
 
-@TODO: Summarize / transition to next study
+@TODO: Disuss meta scores / MOO

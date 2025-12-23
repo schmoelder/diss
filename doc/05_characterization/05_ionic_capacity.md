@@ -41,11 +41,11 @@ After equilibration, the column is flushed with $10~\text{CV}$ of water to remov
 Finally, the resin is titrated with a $\ce{NaOH}$ solution to quantify the number of bound protons, thereby determining the resin’s ionic capacity.
 
 The amount of $\ce{NaOH}$ consumed is determined by analyzing the breakthrough curve via conductivity measurement ({numref}`fig_resin_titration`).
-The breakthrough time point, $t_{\text{bt, 10}}$, is defined as the time at which $10\%$ of the breakthrough occurs.
+The breakthrough time point, $t_{\text{bt,10}}$, is defined as the time at which $10\%$ of the breakthrough occurs.
 Using the flow rate $Q$, the volume and concentration of $\ce{NaOH}$, the amount of exchanged sodium ions, $n_{\ce{Na}^+}$, is calculated as:
 
 $$
-n_{\ce{Na}^+} = V_{\ce{NaOH}} \cdot c_{\ce{NaOH}} = Q \cdot t_{\text{bt, 10}} \cdot c_{\ce{NaOH}}
+n_{\ce{Na}^+} = V_{\ce{NaOH}} \cdot c_{\ce{NaOH}} = Q \cdot t_{\text{bt,10}} \cdot c_{\ce{NaOH}}
 $$
 
 It is assumed that the number of sodium ions equals the total capacity of the column.
