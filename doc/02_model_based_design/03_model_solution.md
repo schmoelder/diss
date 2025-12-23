@@ -35,9 +35,46 @@ As a result, numerical approaches are commonly employed to approximate the solut
 Despite their limitations, analytical solutions remain valuable in the context of numerical simulations.
 They can serve as benchmark and test cases to validate the implementation of numerical schemes (see also {numref}`software_tests`).
 For instance, the [CADET-Semi-analytic](https://github.com/modsim/CADET-semi-analytic) framework computes reference solutions for the general rate model with proven error bounds using analytical solutions in the Laplace domain combined with numerical inversion {cite}`Leweke2016`.
-Although this method is restricted to the linear isotherm, it is particularly useful due to the modular nature of the CADET-Core code.
-In CADET, binding models represent only a small fraction of the overall source code.
+Although this method is restricted to the linear isotherm, it is particularly useful due to the modular nature of the **CADET-Core** code.
+In **CADET**, binding models represent only a small fraction of the overall source code.
 As such, analytical solutions can still validate critical aspects of the code, including convection, diffusion, and networks of unit operations.
+
+To validate the connectivity and dynamic events of the operating modes described later in this work, equilibrium theory for single columns is applied (see {numref}`equilibrium_model`) to determine propagation velocities and corresponding elution times {cite}`SchmidtTraub2020`.
+By accounting for additional events such as recycling times, switching flow direction, virtually extending the column length, or re-injecting recycled fractions, simple chromatograms for advanced operating modes can be calculated.
+These are then compared to the numerical solutions obtained from CADET Core.
+
+Using the chain rule, the time derivative of the solid phase concentration can be expressed in terms of the isotherm slope and the liquid phase time derivative:
+
+```{math}
+:label: solid_phase_derivative_chain_rule
+
+\frac{\partial q_i}{\partial t} = \left. \frac{d q_i}{d c_i} \right|_{c_i^+} \cdot \frac{\partial c_i}{\partial t}.
+```
+
+Rearranging {eq}`mass_balance_em` and substituting {eq}`solid_phase_derivative_chain_rule` yields the propagation velocity of a concentration front $w(c_i^+)$:
+
+```{math}
+:label: propagation_velocity
+
+w(c_i^+) = \frac{u}{1 + F \cdot \left. \frac{d q_i}{d c_i} \right|_{c_i^+}}.
+```
+
+By considering the column length $L_c$, the retention time for a concentration $t_{\text{R},i}(c_i^+)$ can be derived as:
+
+```{math}
+:label: retention_time
+
+t_{\text{R},i}(c_i^+) = \frac{L_c}{w(c_i^+)} = t_{0,t} \cdot \left( 1 + F \cdot \left. \frac{d q_i}{d c_i} \right|_{c_i^+} \right),
+```
+
+where $t_{0,t} = L_c / u$ is the column dead time.
+For a linear isotherm, where $\frac{d q_i}{d c_i} = a_i$ (Henry coefficient), this simplifies to:
+
+```{math}
+:label: retention_time_linear
+
+t_{\text{R,lin},i} = t_{0,t} \cdot \left( 1 + F \cdot a_i \right).
+```
 
 
 (numerical_solutions)=
