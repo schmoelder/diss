@@ -28,7 +28,7 @@ This chapter provides an overview of selected evaluation methods available in **
 To effectively quantify the performance of a chromatographic process, it is crucial to calculate KPIs such as purity or recovery yield from the chromatograms.
 As highlighted in {numref}`chapter %s <kpi>`, the key information for assessing the separation performance of a chromatographic process is derived from the amounts of target components in the collected product fractions.
 For this purpose, the {mod}`~CADETProcess.fractionation` module provides the {class}`~CADETProcess.fractionation.Fractionator` class.
-Moreover, a method for the automatic determination (or optimization?) of fractionation times is included in the software.
+Moreover, a method for the automatic determination (or optimization? @TODO) of fractionation times is included in the software.
 
 ### Fractionator
 
@@ -58,7 +58,7 @@ For every component, different purity requirements can be specified, and differe
 As initial values for the optimization, areas of the chromatogram with sufficient local purity are identified, i.e., intervals where $PU_i(t)=c_i(t)/\sum_j c_j(t)\geq PU_{\text{min},i}$ {cite}`Shan2004`.
 These initial intervals are then expanded by the optimizer towards regions of lower purity while meeting the cumulative purity constraints.
 By default, the mass of the components is maximized under purity constraints, although alternative objective functions are equally viable.
-Currently, {class}`~CADETProcess.optimization.COBYLA`{cite}`Powell1994`from the *SciPy* library {cite}`SciPyContributors2020` is used as the optimizer, but other optimizers or heuristic algorithms may also be employed.
+Currently, {class}`~CADETProcess.optimization.COBYLA` {cite}`Powell1994` from the *SciPy* library {cite}`SciPyContributors2020` is used as the optimizer, but other optimizers or heuristic algorithms may also be employed.
 
 To the best of the author's knowledge, this flexible automatic approach for determining fractionation times is a novel contribution that has not been previously discussed in literature.
 This method addresses an important gap in the toolchain necessary for the analysis and optimization of advanced chromatographic processes.

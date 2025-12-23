@@ -24,8 +24,8 @@ In his book "Clean Code: A Handbook of Agile Software Craftsmanship", Robert Mar
 - Self-Validating: Tests should not depend on manual checks by the developer but instead either pass or fail.
 - Timely: Tests should be written before the code is included in the production code.
 
-One effective way to apply these principles in practice is through a programming practice called *test-driven development*.
-In *test-driven development*, the usual programming workflow is inverted: first, a test is written that clearly defines the interface and tests for use cases to cover all requirements and exception conditions.
+One effective way to apply these principles in practice is through a programming practice called *test-driven development* (TDD)
+In TDD, the usual programming workflow is inverted: first, a test is written that clearly defines the interface and tests for use cases to cover all requirements and exception conditions.
 Only if the corresponding function passes the test will it be included in the working branch of the software {cite}`Martin2008`.
 
 To demonstrate these principles, consider a function that calculates the area of a circle using the radius as an input argument.

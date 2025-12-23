@@ -101,7 +101,7 @@ Similarly, the model can be reformulated in a kinetic form:
 (ldf)=
 ### Digression: linear driving force models
 
-The Linear Driving Force (LDF) approximation is sometimes used as an alternative to the native kinetic form of an isotherm {cite}`SchmidtTraub2020`.
+The linear driving force (LDF) approximation is sometimes used as an alternative to the native kinetic form of an isotherm {cite}`SchmidtTraub2020`.
 In the native approach, the rate of change of the amount of solute adsorbed, $\frac{\text{d}q}{\text{d}t}$, is an explicit function of the solute concentration $c$ and the amount adsorbed $q$.
 For example, in the Langmuir model:
 
@@ -329,10 +329,11 @@ u \cdot c_{in,i}(t) = u \cdot c_i(t,0) \quad \forall t > 0,
 
 ```{math}
 :label: danckwerts_out_pfr
-\frac{\partial c_i}{\partial z}(t, L) = 0 \quad \forall t > 0,
+
+\frac{\partial c_i}{\partial z}(t, L_c) = 0 \quad \forall t > 0,
 ```
 
-Here, $c_{in,i}(t)$ is the inlet concentration of component $i$, and $L$ is the length of the column.
+Here, $c_{in,i}(t)$ is the inlet concentration of component $i$, and $L_c$ is the length of the column.
 
 (dispersive_plug_flow_model)=
 ### Dispersive plug flow reactor
@@ -417,7 +418,7 @@ where:
 The relationship between $c$ and $q$ is defined by the adsorption isotherm (see {numref}`isotherm_models`):
 
 ```{math}
-0 = f_{ads} \left( c, q \right).
+0 = f_{\text{ads}} \left( c, q \right).
 ```
 
 (lumped_rate_model_without_pores)=
@@ -448,7 +449,7 @@ Conversely, the Thomas model considers finite adsorption rates as discussed in {
 with
 
 ```{math}
-\frac{\partial q_i}{\partial t} = f_{ads}\left( c, q \right) .
+\frac{\partial q_i}{\partial t} = f_{\text{ads}}\left( c, q \right) .
 ```
 
 These models, collectively referred to as transport models, form the basis for describing chromatographic processes under non-ideal conditions.
@@ -457,7 +458,7 @@ To simplify model naming and establish a unified framework, consistent with the 
 This framework allows for independent specification of dispersion and adsorption dynamics:
 
 - The equilibrium model corresponds to the LRM with $D_{ax} = 0$ and rapid equilibrium.
-- The transport-dispersive model corresponds to the LRM with dynamic binding ($f_{ads}$) and $D_{ax} > 0$.
+- The transport-dispersive model (TDM) corresponds to the LRM with dynamic binding ($f_{\text{ads}}$) and $D_{ax} > 0$.
 
 
 (lumped_rate_model_with_pores)=
@@ -502,8 +503,8 @@ The lumped rate model with pores (LRMP) combines these considerations into the f
 ```{math}
 :label: mass_balance_lrmp
 
-\frac{\partial c^b_i}{\partial t} = -u \cdot \frac{\partial c^b_i}{\partial z} + D_{ax,i} \frac{\partial^2 c^b_i}{\partial z^2} - F \cdot \frac{3}{r^p} \cdot k_{f,i} \left(c^b_i - c^p_i \right) + f_{react}(c^b) , \\
-\frac{\partial c^p_i}{\partial t} + \frac{1 - \varepsilon^p}{\varepsilon^p} \cdot \frac{\partial q}{\partial t} = \frac{3}{\varepsilon^p r^p} \cdot k_{f,i} \left(c^b_i - c^p_i \right) + f^p_{react}(c^p, q) + \frac{1 - \varepsilon^p}{\varepsilon^p} f^s_{react}(c^p, q).
+\frac{\partial c^b_i}{\partial t} = -u \cdot \frac{\partial c^b_i}{\partial z} + D_{ax,i} \frac{\partial^2 c^b_i}{\partial z^2} - F \cdot \frac{3}{r^p} \cdot k_{f,i} \left(c^b_i - c^p_i \right) + f_{\text{react}}(c^b) , \\
+\frac{\partial c^p_i}{\partial t} + \frac{1 - \varepsilon^p}{\varepsilon^p} \cdot \frac{\partial q}{\partial t} = \frac{3}{\varepsilon^p r^p} \cdot k_{f,i} \left(c^b_i - c^p_i \right) + f^p_{\text{react}}(c^p, q) + \frac{1 - \varepsilon^p}{\varepsilon^p} f^s_{\text{react}}(c^p, q).
 ```
 
 where:
@@ -518,17 +519,17 @@ The adsorption process in this model can be described in either a quasi-stationa
 :label: adsorption_dynamics
 
 \begin{aligned}
-    \text{quasi-stationary: } \quad 0 &= f_{ads} \left( c^p, q \right), \\
-    \text{dynamic: } \quad \frac{\partial q_i}{\partial t} &= f_{ads} \left( c^p, q \right) + f^s_{react}(c^p, q).
+    \text{quasi-stationary: } \quad 0 &= f_{\text{ads}} \left( c^p, q \right), \\
+    \text{dynamic: } \quad \frac{\partial q_i}{\partial t} &= f_{\text{ads}} \left( c^p, q \right) + f^s_{\text{react}}(c^p, q).
 \end{aligned}
 ```
 
 Here:
 
-- $f_{ads}(c^p, q)$ is the adsorption isotherm model equation (describing binding dynamics),
-- $f_{react}^s(c^p, q)$ accounts for surface reactions on the stationary phase.
+- $f_{\text{ads}}(c^p, q)$ is the adsorption isotherm model equation (describing binding dynamics),
+- $f_{\text{react}}^s(c^p, q)$ accounts for surface reactions on the stationary phase.
 
-
+(hdr)=
 ### High definition models
 
 The general rate model (GRM) is often regarded as the most comprehensive chromatography model.
@@ -547,7 +548,6 @@ This is particularly valuable when certain parameters, such as dispersion coeffi
 Instead, these parameters can be inferred by analyzing simulation results.
 Once calibrated, reduced-order models can then be derived to optimize process design and enhance computational efficiency.
 This is especially important because fully spatially resolved simulations, while accurate, are computationally expensive and often impractical for routine optimization tasks.
-
 
 (cstr)=
 ### Cstr

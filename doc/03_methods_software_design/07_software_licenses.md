@@ -13,7 +13,7 @@ However, to get patent protection, the inventor must first apply for and be gran
 
 Finally, a *trademark* is a word, phrase, symbol, or design that identifies and distinguishes the source of the goods of one party from those of others.
 It prevents others from using similar marks in a way that would cause confusion about the origin of the goods.
-Unlike copyright and patents, trademark rights can be re-registered as long as the marks are actively used {cite}trips.
+Unlike copyright and patents, trademark rights can be re-registered as long as the marks are actively used {cite}`trips`.
 
 ## Licenses
 

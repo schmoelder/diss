@@ -42,7 +42,7 @@ KPIs are frequently employed in process optimization studies to identify areas f
 
 A key measure of separation performance in chromatography is the amount of target components collected in the product fractions $j$ (see eq. {eq}`mass`).
 While a chromatogram is traditionally defined at the outlet of a single column, here the term is used more generally to describe concentration profiles $c_{i,k}(t)$ at the outlets $k$ of a process.
-The start time, $t_{start, j}$, and end time, $t_{end, j}$, for each product fraction $j$ must be selected to ensure that product purity constraints are satisfied.
+The start time, $t_{\text{start}, j}$, and end time, $t_{\text{end}, j}$, for each product fraction $j$ must be selected to ensure that product purity constraints are satisfied.
 {numref}`Figure %s <chromatogram_fractionation>` provides an example of a chromatogram from a batch elution process, illustrating how suitable fractions are selected.
 
 ```{code-cell} ipython3
@@ -147,7 +147,8 @@ This simple calculation provides a rough estimate of the total separation costs,
 
 ```{math}
 :label: total_cost
-C_{i,\ text{total}} = C_{\text{operating}} + C_{\text{depreciation}} + C_{i, \text{ads}} + C_{i,\ text{el}} + C_{i, \text{feed}}. \\
+
+C_{i,\text{total}} = C_{\text{operating}} + C_{\text{depreciation}} + C_{i,\text{ads}} + C_{i,\text{el}} + C_{i,\text{feed}}. \\
 ```
 
 The cost associated with the eluent, $C_{i, \text{el}}$, which is the solvent used to elute the target product from the adsorbent, is calculated as:
@@ -163,7 +164,7 @@ The feed cost, $C_{i, \text{feed}}$, which reflects the cost of the feed materia
 
 ```{math}
 :label: feed_cost
-C_{i, feed} = \frac{1 - Y_i}{Y_i} \cdot \dot{m}_{i, \text{annual}} \cdot f_{\text{feed}}, \\
+C_{i, \text{feed}} = \frac{1 - Y_i}{Y_i} \cdot \dot{m}_{i, \text{annual}} \cdot f_{\text{feed}}, \\
 ```
 
 where $Y_i$ is the product yield, and $f_{\text{feed}}$ is the feed price in $\euro$ per $\text{m}^3$.
@@ -173,7 +174,7 @@ The adsorbent cost, $C_{i, \text{ads}}$, which reflects the cost of the adsorben
 ```{math}
 :label: adsorbent_cost
 
-C_{i, \text{ads}} = \frac{1}{PR_i} \cdot \dot{m}_{i, \text{annual}} \cdot \frac{f_{\text{ads}}}{\Delta t_{\text{life}}}, \\
+C_{i,\text{ads}} = \frac{1}{PR_i} \cdot \dot{m}_{i,\text{annual}} \cdot \frac{f_{\text{ads}}}{\Delta t_{\text{life}}}, \\
 ```
 
 where $PR_i$ is the productivity in terms of kg of product per $\text{m}^3$ of adsorbent, $f_{\text{ads}}$ is the adsorbent price in $\euro$ per $\text{m}^3$, and $\Delta t_{\text{life}}$ is the lifetime of the adsorbent material.

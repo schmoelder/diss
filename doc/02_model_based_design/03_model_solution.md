@@ -48,15 +48,16 @@ Using the chain rule, the time derivative of the solid phase concentration can b
 ```{math}
 :label: solid_phase_derivative_chain_rule
 
-\frac{\partial q_i}{\partial t} = \left. \frac{d q_i}{d c_i} \right|_{c_i^+} \cdot \frac{\partial c_i}{\partial t}.
+\frac{\partial q_i}{\partial t} = \left. \frac{\text{d} q_i}{\text{d} c_i} \right|_{c_i^+} \cdot \frac{\partial c_i}{\partial t}.
 ```
 
-Rearranging {eq}`mass_balance_em` and substituting {eq}`solid_phase_derivative_chain_rule` yields the propagation velocity of a concentration front $w(c_i^+)$:
+Rearranging eq. {eq}`mass_balance_em` and substituting eq. {eq}`solid_phase_derivative_chain_rule` yields the propagation velocity $w(c_i^+)$
+of a concentration front $c_i^+$:
 
 ```{math}
 :label: propagation_velocity
 
-w(c_i^+) = \frac{u}{1 + F \cdot \left. \frac{d q_i}{d c_i} \right|_{c_i^+}}.
+w(c_i^+) = \frac{u}{1 + F \cdot \left. \frac{\text{d} q_i}{\text{d} c_i} \right|_{c_i^+}}.
 ```
 
 By considering the column length $L_c$, the retention time for a concentration $t_{\text{R},i}(c_i^+)$ can be derived as:
@@ -64,18 +65,17 @@ By considering the column length $L_c$, the retention time for a concentration $
 ```{math}
 :label: retention_time
 
-t_{\text{R},i}(c_i^+) = \frac{L_c}{w(c_i^+)} = t_{0,t} \cdot \left( 1 + F \cdot \left. \frac{d q_i}{d c_i} \right|_{c_i^+} \right),
+t_{\text{R},i}(c_i^+) = \frac{L_c}{w(c_i^+)} = t_{0,t} \cdot \left( 1 + F \cdot \left. \frac{\text{d} q_i}{\text{d} c_i} \right|_{c_i^+} \right),
 ```
 
 where $t_{0,t} = L_c / u$ is the column dead time.
-For a linear isotherm, where $\frac{d q_i}{d c_i} = a_i$ (Henry coefficient), this simplifies to:
+For a linear isotherm, where $\frac{\text{d} q_i}{\text{d} c_i} = a_i$ (Henry coefficient), this simplifies to:
 
 ```{math}
 :label: retention_time_linear
 
 t_{\text{R,lin},i} = t_{0,t} \cdot \left( 1 + F \cdot a_i \right).
 ```
-
 
 (numerical_solutions)=
 ## Numerical solution
@@ -131,8 +131,8 @@ Despite these drawbacks, FDM remains widely used, as its simplicity and efficien
 
 % Finite Volume
 Unlike FDM, which computes solutions at discrete points, the finite volume method (FVM) defines a grid of cells and computes spatially averaged values within each cell.
-For chromatographic models, interstitial concentrations are averaged over $j \in { 0, \dots, N_z - 1 }$ uniform cells with a grid spacing $\Delta z = L / N_z$.
-This creates a staircase function representation of the solution and defines a local Riemann problem at each cell interface {cite}Guiochon2006.
+For chromatographic models, interstitial concentrations are averaged over $j \in { 0, \dots, N_z - 1 }$ uniform cells with a grid spacing $\Delta z = L_c / N_z$.
+This creates a staircase function representation of the solution and defines a local Riemann problem at each cell interface {cite}`Guiochon2006`.
 The flux across these interfaces is approximated using a numerical flux function $F$, leading to the following semi-discretized formulation in 1D:
 
 ```{math}
@@ -154,14 +154,14 @@ For these reasons, the WENO scheme is currently implemented in **CADET** and is 
 The WENO scheme is currently implemented in CADET and is used in this work {cite}`Leweke2018`, as it balances accuracy, stability, and robustness, particularly in systems with sharp concentration gradients.
 
 % Finite Elements Method
-The finite element method (FEM) divides the spatial domain into cells, similar to the finite volume method (FVM).
+The finite element method (FEM) divides the spatial domain into cells, similar to the FVM.
 However, FEM introduces a polynomial of arbitrary order for each cell, enabling high accuracy with a relatively low number of cells, provided the solution is sufficiently smooth {cite}`SchmidtTraub2020`.
 
-The classical FEM approach, known as the continuous Galerkin (CG) method, enforces continuity across cell interfaces, resulting in a tightly coupled system of ordinary differential equations (ODEs).
+The classical FEM approach, known as the continuous Galerkin (CG) method, enforces continuity across cell interfaces, resulting in a tightly coupled system of ODEs.
 This method, however, has several drawbacks.
 FEM is not inherently conservative, making it challenging to ensure mass conservation.
 Additionally, retaining high-order accuracy at boundaries can be difficult, and the implementation is generally more complex compared to FVM.
-Nonetheless, CG is currently implemented in Cytiva's commercial GoSilico™ Chromatography Modeling Software, where a streamline-upwind Petrov-Galerkin stabilization (SUPG) technique is applied to improve numerical stability {cite}Hahn2015.
+Nonetheless, CG is currently implemented in Cytiva's commercial GoSilico™ Chromatography Modeling Software, where a streamline-upwind Petrov-Galerkin stabilization (SUPG) technique is applied to improve numerical stability {cite}`Hahn2015`.
 
 In contrast, the discontinuous Galerkin (DG) method allows for discontinuities at cell interfaces, combining elements of FVM and FEM.
 This flexibility permits the use of numerical fluxes to solve the local Riemann problem, introducing artificial numerical dispersion into the scheme.
@@ -173,7 +173,7 @@ Recent studies have demonstrated that DG can achieve high computational performa
 (time_integration)=
 ### Time integration
 
-As previously discussed, the spatial semi-discretization of the underlying equations transforms them into a system of coupled ordinary differential equations (ODEs) or differential-algebraic equations (DAEs) in time.
+As previously discussed, the spatial semi-discretization of the underlying equations transforms them into a system of coupled ODEs or differential-algebraic equations (DAEs) in time.
 For time integration, both explicit and implicit schemes are available, each with distinct advantages and limitations.
 
 Explicit methods provide a formulation for the future state of the system that depends only on its current state and known derivatives.
@@ -197,9 +197,9 @@ Higher-order BDF methods can improve computational efficiency by reducing the nu
 Additionally, adaptive time stepping can be applied with both Runge-Kutta and BDF methods.
 This technique dynamically adjusts the time step size based on the stiffness of the problem, thereby enhancing both the accuracy and efficiency of the simulation.
 
-In CADET, time integration is performed using the SUNDIALS IDAS solver {cite}`Hindmarsh2005`, which implements backward differentiation formulas (BDF) combined with adaptive time stepping {cite}`Hindmarsh2005`.
+In CADET, time integration is performed using the SUNDIALS IDAS solver {cite}`Hindmarsh2005`, which implements BDF combined with adaptive time stepping {cite}`Hindmarsh2005`.
 
-(unit_operation_networks)
+(unit_operation_networks)=
 ## Solution of the system of unit operations
 
 Before the model equations of a unit operation can be solved, the inlet profiles, which act as boundary conditions, must first be determined from the outputs of upstream units.

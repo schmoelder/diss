@@ -97,7 +97,7 @@ display(Markdown(tab_lysozyme))
 Comparison of experimental data with simulation results at pH 5 for 4, 8, 12, and 16 CV gradients.
 ```
 
-To further validate the model, two additional gradient experiments using 6 and 14 column volumes (CV) were conducted, independent of the parameter estimation process.
+To further validate the model, two additional gradient experiments using 6 and 14 CV were conducted, independent of the parameter estimation process.
 {numref}`fig_lysozyme_validation` demonstrates that the estimated parameters yield simulations remaining in very good agreement with the experimental data.
 
 ```{glue:figure} fig_lysozyme_validation

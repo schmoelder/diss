@@ -23,7 +23,7 @@ Keeping changes in sync becomes increasingly difficult as the project grows, emp
 
 ## Version control systems
 
-Version control systems (VCS) start with a base version of the document and then sequentially record all changes made.
+Version control systems start with a base version of the document and then sequentially record all changes made.
 The master copy of the code is never modified directly.
 Instead, changes are made to a local copy of the project, and once they are completed, they are committed to the master copy.
 Commit messages should include a description of the changes made and the reason for the modification to provide context for future readers.
@@ -47,7 +47,7 @@ According to Open Hub, *Git* has a market share of $\gt 70~\%$ {cite}`openhub`.
 
 ## Software releases
 
-Although using a version control system (VCS) is crucial for developing stable software, it may not be convenient for end-users.
+Although using a version control system is crucial for developing stable software, it may not be convenient for end-users.
 Instead, it is useful to periodically create software releases - deployable software versions that are considered stable enough to be made available for a wider audience to download and use.
 These versions can be deployed to package managers like *PyPI* or *conda*, making it easier to install the software.
 For example, to install **CADET-Process**, users can use the following command which will automatically install the package along with all its dependencies:

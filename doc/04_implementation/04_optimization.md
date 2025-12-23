@@ -89,9 +89,9 @@ Figure {numref}`fig_initial_values` shows 128 parameter combinations uniformly s
 Despite the lower bound of $1 \times 10^{-9}$, few samples are drawn in that region; instead, the majority are biased toward the higher end of the range.
 
 Due to this disparity in scales, porosity is best normalized linearly, while **axial dispersion** benefits from logarithmic normalization.
-Figure {ref}`fig_initial_values_normalized` presents 128 parameter combinations sampled uniformly from the normalized space. As seen, all scales are now appropriately sampled—an important characteristic for generating effective initial values.
+Figure {numref}`fig_initial_values_normalized` presents 128 parameter combinations sampled uniformly from the normalized space. As seen, all scales are now appropriately sampled—an important characteristic for generating effective initial values.
 
-This normalization strategy allows the optimizer to work within a consistent domain—effectively optimizing two variables that both range from $0$ to $1$—while **CADET-Process** handles the inverse transformation back to the original scales for evaluation purposes.
+This normalization strategy allows the optimizer to work within a consistent domain, effectively optimizing two variables that both range from $0$ to $1$, while **CADET-Process** handles the inverse transformation back to the original scales for evaluation purposes.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]

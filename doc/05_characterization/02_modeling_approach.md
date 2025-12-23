@@ -4,8 +4,7 @@
 As shown in {numref}`knauer_pid`, the chromatographic system comprises more than the chromatographic column.
 Incorporating the system periphery into the model enhances its accuracy by accounting for time delays and additional dispersion caused by tubings and valves.
 Without this detailed modeling, these peripheral effects would be incorrectly attributed to column parameters such as bed porosity or axial dispersion.
-
-The periphery can be modeled using combinations of continuously stirred-tank reactors (CSTRs) or dispersive plug flow reactors (DPFRs) (see {numref}`model_formulation`).
+The periphery can be modeled using combinations of CSTRs or DPFRs (see {numref}`model_formulation`).
 
 The model shown in {numref}`knauer_model` can be summarized as follows:
 - The buffer flasks and pumps are modeled by {class}`~CADETProcess.processModel.Inlet` unit operations to define inlet concentrations and flow rates.

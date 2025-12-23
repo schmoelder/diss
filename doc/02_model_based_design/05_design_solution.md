@@ -68,7 +68,7 @@ Some common classes include:
 
 - Linear programming (LP): Finding the optimal solution to a linear objective function subject to linear equality and inequality constraints.
 - Quadratic programming (QP): Finding the optimal solution to a quadratic objective function subject to linear equality and inequality constraints.
-- Constrained optimization (COP): Solving an objective function subject to one or more constraints on the variables.
+- Constrained optimization programming (COP): Solving an objective function subject to one or more constraints on the variables.
 - Nonlinear programming (NLP): Finding the optimal solution to a nonlinear objective function subject to nonlinear equality and inequality constraints.
 - Integer linear programming (ILP): Finding the optimal solution to an objective function where variables are constrained to be integers, with linear constraints.
 - Mixed integer linear programming (MIP): Finding the optimal solution to an objective function where some or all variables are constrained to be integers, with linear constraints.
@@ -86,10 +86,10 @@ Different solvers excel depending on the problem characteristics.
 Gradient-based solvers, for example, can efficiently find local optima but may struggle with flat objective functions or non-convex landscapes.
 On the other hand, derivative-free solvers, while often better at handling non-convex functions, generally require significantly more computational effort.
 
-Gradient-based nonlinear programming (NLP) solvers, such as interior-point methods {cite}`Kawajiri2006`, sequential programming {cite}`Arkell2018`, and simplex algorithms {cite}`GarciaPalacios2009`, have been widely used for process optimization.
+Gradient-based NLP solvers, such as interior-point methods {cite}`Kawajiri2006`, sequential programming {cite}`Arkell2018`, and simplex algorithms {cite}`GarciaPalacios2009`, have been widely used for process optimization.
 Additionally, derivative-free approaches, including genetic algorithms {cite}`Heinonen2014,Schmoelder2020` and Gaussian process regression {cite}`Freier2018,Jaepel2022`, have proven effective for complex, non-convex problems.
 
-For optimization problems involving both continuous and discrete variables, mixed-integer nonlinear programming (MINLP) has been successfully applied.
+For optimization problems involving both continuous and discrete variables, MINLP has been successfully applied.
 Methods such as extended cutting plane algorithms {cite}`Emet2008`, outer approximation {cite}`Kaspereit2012`, and evolutionary algorithms {cite}`GarciaPalacios2011` have been employed to address challenges related to structural decision variables and general process optimization.
 
 In the following sections, the specific algorithms used in this work will be presented.
