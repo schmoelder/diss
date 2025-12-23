@@ -208,3 +208,14 @@ display(Markdown(moo_table))
 
 Optimal chromatogram of multi-objective optimization of CLR process.
 ```
+
+**Summary**
+
+@TODO: Success!
+
+However, the CLR process has the disadvantage of increased dispersion due to multiple passes through the pump and additional piping.
+To improve overall process performance, it is often combined with peak shaving, where the initial and final regions of the chromatogram with sufficient purity are "shaved off" during each cycle.
+This approach reduces the number of recycling cycles required, as a decreasing amount of components needs to be pumped across the column.
+However, peak shaving is not robust in practice, as it is highly sensitive to disturbances.
+Additionally, the complexity introduced by multiple optimization variables makes implementation challenging.
+While combining the process with model predictive control might improve robustness, this approach is not considered in this work.

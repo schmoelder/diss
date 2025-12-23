@@ -42,7 +42,6 @@ chapters:
       - file: 06_operating_modes/recycling_techniques/recycling_techniques
         sections:
           - file: 06_operating_modes/recycling_techniques/clr
-          - file: 06_operating_modes/recycling_techniques/clr_peak_shaving
           - file: 06_operating_modes/recycling_techniques/ssr
       - file: 06_operating_modes/flip_flop/flip_flop
       - file: 06_operating_modes/serial_columns/serial_columns
