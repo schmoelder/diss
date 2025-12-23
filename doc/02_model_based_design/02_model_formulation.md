@@ -550,5 +550,21 @@ Once calibrated, reduced-order models can then be derived to optimize process de
 This is especially important because fully spatially resolved simulations, while accurate, are computationally expensive and often impractical for routine optimization tasks.
 
 (cstr)=
-### Cstr
-TODO: Add model equations.
+### Continuous stirred tank reactor model (CSTR)
+
+In addition to chromatographic columns and (D)PFRs, the continuous stirred tank reactor model is another fundamental building block in unit operation networks, often used to model system void volume or holdup tanks.
+Its mass balance is given by
+
+```{math}
+:label: mass_balance_cstr
+
+\frac{\text{d}}{\text{d}t} (V c_i) = F_{\text{in}} c_{\text{in},i} - F_{\text{out}} c_i.
+```
+
+Note, in contrast to other unit operations, the volume of the CSTR can vary over time.
+The change of the tank volume is given by
+
+```{math}
+:label: volume_balance_cstr
+
+\frac{\text{d}V^{\ell}}{\text{d}t}= F_{\text{in}} - F_{\text{out}}.
