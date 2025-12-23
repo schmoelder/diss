@@ -13,16 +13,17 @@ The parameters used are summarized in {numref}`model_parameters`.
 Given the moderately nonlinear conditions and an axial dispersion coefficient corresponding to approximately 2000 theoretical stages, the separation difficulty of these examples is considered modest.
 By selecting appropriate operating conditions, such as injection volume and flow rate, the stationary phase can be utilized optimally for efficient separation.
 
-For each operating mode, the process configuration is presented using a {class}`~CADETProcess.processModel.FlowSheet` and various dynamic {class}`Events <CADETProcess.dymamicEvents.Event>`.
-To validate the configurations, simulation results are compared with equilibrium theory predictions, which assume a linear isotherm and negligible dispersion.
+For each operating mode, the process configuration is presented using a {class}`~CADETProcess.processModel.FlowSheet` and various dynamic {class}`Events <CADETProcess.dymamicEvents.Event>`, which are then simulated using **CADET-Core**.
+To validate this configuration, simulation results are compared with equilibrium theory predictions under simplified conditions, assuming a linear isotherm with the same Henry coefficient and neglecting axial dispersion and other transport-limiting effects.
+These assumptions enable direct comparison with analytical solutions, ensuring the correct implementation of the process configuration (see {numref}`analytical_solutions`).
 
 In all cases, the following performance metrics were evaluated:
 - Productivity (eq. {eq}`productivity`)
 - Yield (eq. {eq}`yield`)
 - Eluent consumption (eq. {eq}`eluent_consumption`)
 
-These metrics were either combined into a weighted objective ({eq}`weighted_objective`) or addressed through multi-objective optimization.
-Additionally, a minimum purity requirement of $95\%$ ({eq}`purity`) was defined for all scenarios.
+These metrics were either combined into a weighted objective (eq. {eq}`weighted_objective`) or addressed through multi-objective optimization.
+Additionally, a minimum purity requirement of $95\%$ (eq. {eq}`purity`) was defined for all scenarios.
 All optimization problems were solved using the *pymoo* package with a non-dominated sorting genetic algorithm {cite}`pymoo2020`.
 Scripts to recreate the simulations and optimizations are available in the supplementary material and online (@TODO: add links).
 

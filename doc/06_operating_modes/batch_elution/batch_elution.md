@@ -40,6 +40,7 @@ variable_units={
     r"\Delta t_{\text{cycle}}": r"\text{s}",
     r"\Delta t_{\text{feed}}": r"\text{s}",
 }
+from et_simulator import compare_cadet_with_et, convert_binding_to_linear, convert_column_to_lrm
 ```
 
 (batch_elution_study)=
@@ -67,26 +68,32 @@ The events and durations are depicted in {numref}`batch_elution_events`.
 Events of batch elution process with event dependencies.
 ```
 
-After simulation, the {class}`~CADETProcess.simulationResults.SimulationResults` can be analyzed to determine optimal fractionation times using the {mod}`~CADETProcess.fractionation` module.
-A typical chromatogram for a batch-elution process is illustrated in {numref}`fig_batch_elution`.
+{numref}`fig_batch_elution` compares the concentration profile at the column outlet, demonstrating good agreement between the simulation results and equilibrium theory.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-from CADETProcess.simulator import Cadet
+from CADETProcess.modelBuilder import BatchElution
 
-import sys
 from process import setup_process
 
 process = setup_process()
 
-process.cycle_time = 600
-process.feed_duration.time = 60
+column_lrm = convert_column_to_lrm(process.flow_sheet.column)
+column_lrm.binding_model = convert_binding_to_linear(column_lrm.binding_model)
 
-process_simulator = Cadet()
+c_feed = process.flow_sheet.feed.c[:, 0]
+flow_rate = process.feed_on.state
 
-simulation_results = process_simulator.simulate(process)
-fig_batch_elution, ax = simulation_results.solution.column.outlet.plot()
+batch_process = BatchElution(
+    column_lrm,
+    c_feed,
+    flow_rate,
+    feed_duration=60,
+    cycle_time=600,
+)
+
+fig_batch_elution, ax = compare_cadet_with_et(batch_process)
 glue("fig_batch_elution", fig_batch_elution, display=False)
 ```
 
@@ -94,8 +101,13 @@ glue("fig_batch_elution", fig_batch_elution, display=False)
 :name: fig_batch_elution
 :scale: 100%
 
-Batch elution chromatogram.
+Comparison of the batch elution simulation chromatogram (solid line) with the analytical equilibrium theory solution (dashed line), assuming a linear binding model and neglecting axial dispersion and other transport-limiting effects.
 ```
+
+## Process evaluation
+
+After simulation, the {class}`~CADETProcess.simulationResults.SimulationResults` can be analyzed to determine optimal fractionation times using the {mod}`~CADETProcess.fractionation` module.
+
 The highest product recovery is obtained through baseline separation, where component peaks from the same injection do not overlap at the column outlet.
 Additionally, minimizing the time between injections improves productivity.
 By allowing waste fractions to be collected between product fractions or between peaks of consecutive injections, productivity and eluent consumption can be further optimized at the cost of lower recovery.
