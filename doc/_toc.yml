@@ -21,6 +21,7 @@ chapters:
       - file: 03_methods_software_design/05_version_control
       - file: 03_methods_software_design/06_ci_cd
       - file: 03_methods_software_design/07_software_licenses
+      - file: 03_methods_software_design/08_rdm
   - file: 04_implementation/00_overview
     sections:
       - file: 04_implementation/01_process

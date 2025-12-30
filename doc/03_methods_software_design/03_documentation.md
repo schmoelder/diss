@@ -8,10 +8,6 @@ It is important to note that if the code is too complex, it should be simplified
 Good documentation should also include user manuals with installation instructions, tutorials for beginners, and troubleshooting guides.
 By following these documentation practices, developers can create software that is more easily understandable, maintainable, and reusable.
 
-Moreover, documentation plays a crucial role in ensuring compliance with the *FAIR* principles for scientific data management and stewardship.
-The *FAIR* principles (Findable, Accessible, Interoperable, and Reusable) provide guidelines for making data and software more discoverable and useful to researchers, and have been adopted as a major focus by national and international research funding organizations {cite}`Wilkinson2016`.
-Proper documentation of code and software can help meet these principles and increase the impact and reuse of research output.
-
 In the following sections, the usage of docstrings in Python to document functions, classes, and modules will be discussed.
 Docstrings are special string literals that can be used to provide documentation for Python code.
 Additionally, the usage of documentation generation tools like Sphinx to automatically generate documentation from docstrings will be covered.
