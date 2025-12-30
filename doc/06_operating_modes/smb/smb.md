@@ -111,7 +111,7 @@ Please run this simulation locally to see the full results.
 The results can now be plotted.
 For example, this is how the concentration profiles of the raffinate and extract outlets are plotted:
 
-It is important to note that for the purpose of simplifying the implementation, each `Zone` internally has an inlet and an outlet which are modelled using a {class}`~CADETProcess.processModel.Cstr` with a very small volume.
+It is important to note that for the purpose of simplifying the implementation, each `Zone` internally has an inlet and an outlet which are modeled using a {class}`~CADETProcess.processModel.Cstr` with a very small volume.
 The concentration of these in and outlets can also be plotted.
 These units get a `_inlet` and `_outlet` suffix.
 

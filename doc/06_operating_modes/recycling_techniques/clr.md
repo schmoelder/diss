@@ -39,7 +39,7 @@ study = setup_study(studies_root, "clr")
 variable_units={
     r"\Delta t_{\text{cycle}}": r"\text{s}",
     r"\Delta t_{\text{feed}}": r"\text{s}",
-    r"t_{\text{recycle, off}}": r"\text{s}",
+    r"t_{\text{recycle,off}}": r"\text{s}",
 }
 ```
 

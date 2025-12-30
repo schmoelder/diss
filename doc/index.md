@@ -146,132 +146,199 @@ This and that I did.
 ```{glossary}
 BDF
     Backward differentiation formula
+
 CC
     Creative Commons
+
 CG
     Continuous Galerking method
+
 CI/CD
     Continuous integration/Continuous deployment
+
 CLR
     Closed-loop recycling
+
 COBYLA
     Constrained optimization by linear approximation algorithm
+
 COP
     Constrained optimization programming
+
 CSTR
     Continuous stirred tank reactor model
+
 CV
     Column volume
+
 DAE
     Differential-algebraic equation
+
 DBTL cycle
     Design, build, test, learn cycle
+
 DG
     Discontinuous Galerking method
+
 DoE
     Design of experiments
+
 DOF
     Degrees of freedom
+
 DRY
     Don't repeat yourself
+
 ET
     Equilibrium theory
+
 EM
     Equilibrium model
+
 EDM
     Equilibrium-dispersive model
+
 FAIR
     Findable, Accessible, Interoperable, Reusable
+
 FDM
     Finite difference method
+
 FEM
     Finite elements method
+
 FIRST
     Fast, independent, repeatable, self-validating, timely
+
 FOSS
     Free and open-source
+
 FVM
     Finite volume method
+
 GA
     Genetic algorithm
+
 GC
     Gas chromatography
+
 GRM
     General rate model
+
 GPL
     GNU General Public License
+
 ILP
     Integer linear programming
+
 KISS
     Keep it simple, stupid
+
 LC
     Liquid chromatography
+
 LDF
     Linear driving force
+
 LP
     Linear programming
+
 LRM
     Lumped rate model without pores
+
 LRMP
     Lumped rate model with pores
+
 KPI
     Key performance indicator
+
 SMB
     Simulated moving bed
+
 MCMC
     Markov Chain Monte Carlo
+
 MIP
     Mixed-integer linear programming
+
 MINLP
     Mixed-integer nonlinear programming
+
 ML
     Machine learning
+
 MOO
     Multi-objective optimization
+
 MR-SSR
     Mixed-recycle steady-state recycling
+
 NLP
     Nonlinear programming
+
 NRMSE
     Normalized root mean square error
+
 ODE
     Ordinary differential equation
+
 OOP
     Object-oriented programming
+
 (D)PFR
     (Dispersive) Plug flow reactor
+
 RDM
     Research data management
+
 RK
     Runge-Kutta
+
 RSE
     Research software engineering
+
 QP
     Quadratic programming
+
 SFC
     Supercritical fluid chromatography
+
 SMA
     Steric mass action law
+
 SOO
     Single-objective optimization
+
 SSE
     Sum squared errors
+
 SUPG
     Streamline-upwind Petrov-Galerkin stabilization
+
 PD(A)E
     Partial differential (algebraic) equation
+
 PEP
     Python Enhancement Proposal
+
 TB
     True moving bed
+
 TDD
     Test-driven development
+
 TDM
     Transport-dispersive model
+
+TRIPS
+    Trade-Related Aspects of Intellectual Property Rights
+
 UML
     Unified Modeling Language
+
 VCS
     Version control system
+
 WENO
     Weighted essentially non-oscillatory
 ```

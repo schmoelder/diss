@@ -39,10 +39,10 @@ study = setup_study(studies_root, "serial_columns")
 variable_units={
     r"\Delta t_{\text{cycle}}": r"\text{s}",
     r"\Delta t_{\text{feed}}": r"\text{s}",
-    r"t_{\text{serial, off}}": r"\text{s}",
-    r"t_{\text{serial, on}}": r"\text{s}",
-    r"L_{\text{c, 1}}": r"\text{m}",
-    r"L_{\text{c, 2}}": r"\text{m}",
+    r"t_{\text{serial,off}}": r"\text{s}",
+    r"t_{\text{serial,on}}": r"\text{s}",
+    r"L_{\text{c,1}}": r"\text{m}",
+    r"L_{\text{c,2}}": r"\text{m}",
 }
 ```
 

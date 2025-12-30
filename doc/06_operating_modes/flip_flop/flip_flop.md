@@ -38,8 +38,8 @@ study = setup_study(studies_root, "flip_flop")
 
 variable_units={
     r"\Delta t_{\text{feed}}": r"\text{s}",
-    r"\Delta t_{\text{delay, flip}}": r"\text{s}",
-    r"\Delta t_{\text{delay, inject}}": r"\text{s}",
+    r"\Delta t_{\text{delay,flip}}": r"\text{s}",
+    r"\Delta t_{\text{delay,inject}}": r"\text{s}",
 }
 ```
 
@@ -47,22 +47,18 @@ variable_units={
 # Flip-flop chromatography
 
 Flip-flop chromatography, also known as flip-flow or two-way chromatography, refers to an operation mode in which the flow direction through the column is periodically reversed during the separation process.
-The operating mode was first proposed by Martin et al. (1979) as a method suitable for separating mixtures containing both highly adsorptive and fast-eluting components {cite}`Martin1979FlipflopChromatography`.
-Bailly and Tondeur later highlighted its effectiveness in improving resolution while reducing peak tailing and eluent consumption {cite}`Bailly1981TwowayChromatography`.
-Further development was carried out by Colin et al. {cite}`Colin1991FlipFlopElution`.
+The operating mode was first proposed by Martin et al. (1979) as a method suitable for separating mixtures containing both highly adsorptive and fast-eluting components {cite}`Martin1979`.
+Bailly and Tondeur later highlighted its effectiveness in improving resolution while reducing peak tailing and eluent consumption {cite}`Bailly1981`.
+Further development was carried out by Colin et al. {cite}`Colin1991`.
 
 The fundamental principle is to inject the feed mixture at one end of the column and allow the early-eluting components to exit at the opposite end.
 Once these fast-eluting components have been withdrawn, the flow is reversed, and the remaining, more strongly retained components are eluted in the opposite direction.
 This operating concept aims to enhance both the resolution and efficiency of separations, particularly in cases involving mixtures with components of very different adsorption behaviors {cite}`SchmidtTraub2020`.
 
-As illustrated in {ref}`flip_flop_bulk`, this cycle is repeated with successive injections and flow reversals, resulting in an alternating product collection scheme.
-
-(flip_flop_process)=
-## Process model
+As illustrated in {numref}`flip_flop_bulk`, this cycle is repeated with successive injections and flow reversals, resulting in an alternating product collection scheme.
 
 As mentioned above, flip-flop chromatography is best suited for scenarios in which components exhibit very different adsorption behavior.
 For this purpose, a linear isotherm with parameters listed in {numref}`flip_flop_parameters` will be used for this study.
-@TODO: That's not true anymore. We use it to demonstrate, but not to optimize
 
 ```{table} Parameters of column geometry, mass transport and binding of the model molecules ($i \in \{A, B\}$).
 :name: flip_flop_parameters

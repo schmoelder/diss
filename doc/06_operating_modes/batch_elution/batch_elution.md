@@ -58,7 +58,7 @@ The flow sheet is demonstrated in {numref}`batch_elution_flow_sheet`.
 Flow sheet for the batch elution process.
 ```
 
-To model the injection valve, {class}`Events <CADETProcess.dymamicEvents.Event>` are introduced to modify the {attr}`~CADETProcess.processModel.Inlet.flow_rate` attribute of the {class}`~CADETProcess.processModel.Inlet` unit operations.
+To model the injection, {class}`Events <CADETProcess.dymamicEvents.Event>` are introduced to modify the {attr}`~CADETProcess.processModel.Inlet.flow_rate` attribute of the {class}`~CADETProcess.processModel.Inlet` unit operations.
 To reduce the degrees of freedom that need to be explicitly specified, event dependencies are added to ensure that either feed or eluent is always flowing through the column.
 The events and durations are depicted in {numref}`batch_elution_events`.
 
@@ -68,7 +68,7 @@ The events and durations are depicted in {numref}`batch_elution_events`.
 Events of batch elution process with event dependencies.
 ```
 
-{numref}`fig_batch_elution` compares the concentration profile at the column outlet, demonstrating good agreement between the simulation results and equilibrium theory.
+{numref}`fig_batch_elution` compares the concentration profile of the ideal model at the column outlet, demonstrating good agreement between the simulation results and equilibrium theory.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -104,22 +104,22 @@ glue("fig_batch_elution", fig_batch_elution, display=False)
 Comparison of the batch elution simulation chromatogram (solid line) with the analytical equilibrium theory solution (dashed line), assuming a linear binding model and neglecting axial dispersion and other transport-limiting effects.
 ```
 
-## Process evaluation
+To optimize the batch elution process, the decision variables are
+- Feed duration, $\Delta t_{\text{feed}} \in [10, 300]\,\text{s}$
+- Cycle time, $\Delta t_{\text{cycle}} \in [10, 600]\,\text{s}$
 
-After simulation, the {class}`~CADETProcess.simulationResults.SimulationResults` can be analyzed to determine optimal fractionation times using the {mod}`~CADETProcess.fractionation` module.
+In addition, the linear constraint
 
-The highest product recovery is obtained through baseline separation, where component peaks from the same injection do not overlap at the column outlet.
-Additionally, minimizing the time between injections improves productivity.
-By allowing waste fractions to be collected between product fractions or between peaks of consecutive injections, productivity and eluent consumption can be further optimized at the cost of lower recovery.
-
-These operating conditions can be adjusted using model-based design.
-For this purpose, an {class}`~CADETProcess.optimization.OptimizationProblem` is formulated to maximize process performance.
-This can be achieved either by combining multiple parameters into a single objective (see {numref}`batch_elution_single`) or by setting up a multi-objective optimization problem (see {numref}`batch_elution_multi`).
+$$
+\Delta t_{\text{cycle}} \ge \Delta t_{\text{feed}}
+$$
+is imposed.
 
 (batch_elution_single)=
 ## Single-objective optimization
 
 Here we do some single-objective optimization.
+Very interesting
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
