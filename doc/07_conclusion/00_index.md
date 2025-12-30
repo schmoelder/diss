@@ -1,31 +1,29 @@
 (conclusion)=
 # Conclusion
 
-The development and optimal design of advanced chromatographic processes is challenging due to their distinct nonlinear dynamics, periodic operation, and a multitude of design variables.
-A software platform was developed that greatly simplifies this by decoupling the main design tasks into interchangeable modules for process modeling, simulation, product fractionation, and process optimization.
-This enables flexible and fast adjustment of process and column configurations, chromatographic interaction mechanisms, and design goals or constraints.
-The software was implemented using the programming language Python and includes an interface to the open-source simulation tool *CADET*, a fast and accurate numerical solver for chromatographic processes.
-This makes the program, denoted as **CADET-Process**, directly applicable to developing advanced processes for demanding applications in, for example, the separation of biomolecules, nanoparticles, and the like, where complex interaction mechanisms and various dispersive effects need to be considered.
+The presented work enables systematic modeling, simulation, and optimization of both standard and advanced chromatographic operating modes, achieved through a modular software design tailored for this purpose.
+While the primary objective of this thesis was to introduce the framework and validate it against experimental and analytical solutions, its practical relevance is demonstrated through representative case studies.
 
-The `FlowSheet` of the chromatographic systems could be described by connecting `UnitOperations` in a directed graph which represents the material flow between them.
-The dynamic behavior typical for chromatography, especially for advanced operating modes, was modeling by defining events that change the state of the system at given times.
-The introduction of dependencies of the event times reduces the complexity of modeling advanced operating concepts.
-Features, such as the assertion of cyclic stationarity, as well as the automatic determination of optimal fractionation times proved crucial for an efficient implementation of the simulation module and provide standalone functionality that can also be used outside the framework.
+First, the framework enabled accurate parameter estimation for typical laboratory-scale chromatographic systems, highlighting its utility in model calibration and validation.
+Second, it was applied to optimize advanced operating concepts, such as batch chromatography with cycle-to-cycle overlap and interlocked peak operation, revealing highly efficient and non-intuitive process designs.
+The optimized operating strategies further demonstrate novel process concepts, including waste fraction management and the handling of strongly binding components.
+These results emphasize the potential of model-based optimization to systematically identify process designs that are both efficient and otherwise non-obvious.
 
-Several case studies for the optimization of binary and ternary separations were performed on single- and multicolumn systems with and without recycling.
-It was shown how the choice of optimization variables and product ranking can lead to different optimal process designs.
-Although the main purpose of the case studies was to introduce and demonstrate the applicability of the framework, the results feature  optimal designs of new operating strategies, like batch chromatography with optimal cycle-to-cycle overlap and waste fractions, as well as interlocked peaks for separation problems with strongly binding components.
+In addition, this work demonstrates best practices in research software engineering, illustrating how modularity, extensibility, and reproducibility can be achieved in complex scientific software while maintaining computational efficiency and numerical robustness.
+The framework serves as a fully featured toolbox for modeling and optimizing chromatographic processes, providing a solid foundation for the systematic development of novel operating strategies.
+Its modular architecture allows the straightforward exchange of process models, numerical solvers, and optimization algorithms, facilitating future extensions with minimal structural changes.
+This flexibility supports the implementation of new operating concepts, optimization variables, and objective functions as research and industrial needs evolve.
 
-% Outlook
-Various extensions of the software can be envisaged, some of them are already in progress.
+Several extensions of the framework are envisaged, some of which are already under active development.
+These include the integration of additional unit operations, compartment-based modeling approaches, and fully integrated process models, extending the framework beyond chromatography and enabling its application across a wider range of chemical and biological processes.
+For example, bioreactors incorporating cell growth and enzymatic reactions could be modeled in combination with compartment models derived from computational fluid dynamics, allowing simultaneous capture of mixing effects and kinetic reactions {cite}`Li2026`.
+Other unit operations, such as filtration and membrane separations, present distinct modeling challenges, including pressure-driven transport and highly concentrated systems, where concentration polarization and the volume of particulate substances must be explicitly accounted for.
 
-- Other unit operations
-- compartment modeling
-- integrated processes
+This development aligns with ongoing improvements in **CADET-Core**, particularly regarding model equations and numerical solution methods.
+On the **CADET-Process** side, further enhancements can be achieved through advanced pre- and post-processing strategies.
+In addition, several "lessons learned" previously implemented in **CADET-Process**, such as a more modular interface structure, explicit event ordering, and pre-processing of flow rates, will be migrated and integrated into the **CADET-Core** package.
 
-Furthermore, the normalization of optimization variables with different orders of magnitude can greatly improve the performance of the optimization, as can other, more complex parameter transforms.
-
-The presented framework is a fully-featured toolbox for modeling and optimizing chromatographic processes which is the base for more systematic and targeted development of novel chromatographic processes.
-
-More operating concepts, optimization variables, and objective functions can easily be implemented.
-The framework's modular approach in general enables a straightforward exchange of process models, numeric solvers, and optimizers for future extension of the software.
+Finally, future research will explore surrogate modeling techniques to better understand the relationships between high-dimensional input parameters and relevant output metrics.
+These models will enable more efficient optimization studies, including conditional optimization.
+The framework is also well suited for computationally demanding tasks, such as MCMC simulations for rigorous uncertainty quantification {cite}`Heymann2023`.
+Together, these extensions will enable more comprehensive, efficient, and insightful studies of complex biological and chemical processes.
