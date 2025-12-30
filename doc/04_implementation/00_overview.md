@@ -2,11 +2,11 @@
 # Implementation of the CADET-Process framework
 
 The software developed for this work was released under the name **CADET-Process**.
-The source code is freely available on [*GitHub*](https://github.com/fau-advanced-separations/CADET-Process) {cite}`cadet_process_source`, and a scientific paper, detailing its design and application, has been published in [*MDPI Processes*](https://doi.org/10.3390/pr8010065) {cite}`Schmoelder2020`.
+The source code is freely available on [*GitHub*](https://github.com/fau-advanced-separations/CADET-Process) {cite}`CADET-Process_source`, and a scientific paper, detailing its design and application, has been published in [*MDPI Processes*](https://doi.org/10.3390/pr8010065) {cite}`Schmoelder2020`.
 The framework is written in *Python*, a free and open-source programming language that gained a lot of popularity in the scientific community in recent years.
 One of the main advantages of *Python* is the easy integration of other scientific and numerical packages.
 This makes it especially useful for a modular approach, as the one adopted by this work.
-**CADET-Process** is available on the *Python Package Index* ([*PyPI*)](https://pypi.org/project/CADET-Process) and can be installed via `pip` {cite}`cadet_process_pypi`.
+**CADET-Process** is available on the *Python Package Index* ([*PyPI*)](https://pypi.org/project/CADET-Process) and can be installed via `pip` {cite}`CADET-Process_pypi`.
 
 ```bash
 pip install CADET-Process
@@ -28,7 +28,7 @@ Its ability to configure complex optimization problems, including the definition
 
 This chapter introduces the core software architecture of **CADET-Process** and provides practical demonstrations of setting up chromatographic processes, simulation techniques, and tools for the evaluation of results.
 It also showcases how to configure optimization problems for the design of chromatographic processes.
-For a more comprehensive documentation, please visit the [CADET-Process documentation website](https://cadet-process.readthedocs.io/) {cite}`cadet_process_documentation`.
+For a more comprehensive documentation, please visit the [CADET-Process documentation website](https://cadet-process.readthedocs.io/) {cite}`CADET-Process_documentation`.
 
 ```{figure} ./figures/framework_overview.png
 :name: framework_overview

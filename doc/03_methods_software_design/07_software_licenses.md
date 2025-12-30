@@ -2,7 +2,7 @@
 # Software licenses
 
 In order to protect and encourage the creation of intellectual goods, intellectual property laws give creators property rights to the works they create.
-Internationally, these laws are regulated under the rules of the World Trade Organization's (WTO) Agreement on Trade-Related Aspects of Intellectual Property Rights, which requires WTO members to provide the rights to copyright, patents, and trademarks {cite}`WTO1994`.
+Internationally, these laws are regulated under the rules of the World Trade Organization's (WTO) Agreement on Trade-Related Aspects of Intellectual Property Rights (TRIPS), which requires WTO members to provide the rights to copyright, patents, and trademarks {cite}`trips_agreement`.
 
 *Copyright* automatically attaches to every novel expression of an idea, whether through text, sounds, or imagery, without the need for registration.
 The copyright laws grant the exclusive rights to reproduction, modification, and distribution of the work for a certain time.
@@ -13,7 +13,7 @@ However, to get patent protection, the inventor must first apply for and be gran
 
 Finally, a *trademark* is a word, phrase, symbol, or design that identifies and distinguishes the source of the goods of one party from those of others.
 It prevents others from using similar marks in a way that would cause confusion about the origin of the goods.
-Unlike copyright and patents, trademark rights can be re-registered as long as the marks are actively used {cite}`trips`.
+Unlike copyright and patents, trademark rights can be re-registered as long as the marks are actively used.
 
 ## Licenses
 
@@ -55,7 +55,7 @@ The following table gives an overview of the different rights that are granted t
 
 ```
 
-On their website, the Open Source Initiative lists more than 100 different software licenses {cite}`opensource`.
+On their website, the Open Source Initiative lists more than 100 different software licenses {cite}`OpenSourceInitiative`.
 The following section discusses some of the most significant licenses.
 
 The *GNU General Public License (GPL)* is the most popular open-source license.
@@ -78,7 +78,7 @@ Because some of the conditions are incompatible with other licenses, CC is usual
 There are multiple benefits of releasing software under an open-source license.
 Firstly, by making software freely available, the general public can benefit from the development work that has already been done.
 Secondly, opening up development to the public can encourage the adoption of standards, leading to increased outside contributions to the project and its ecosystem.
-Moreover, there is a growing movement advocating for publicly funded software to be made publicly accessible to everyone {cite}`UNESCO2021, Schiltz2007`.
+Moreover, there is a growing movement advocating for publicly funded software to be made publicly accessible to everyone {cite}`unesco_open_science, Schiltz2007`.
 Therefore, releasing software under an open-source license can be a great way to promote collaboration and innovation.
 
 In his book "Understanding Open Source and Free Software Licensing", author Andrew Laurent identifies three primary benefits of open distribution and modification of software {cite}`Laurent2004`.

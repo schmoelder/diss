@@ -72,7 +72,7 @@ The main tasks are:
 - Performing optimization of continuous variables, timed events, and potentially the process structure.
 
 % Existing tools
-Several commercial programs are available which provide parts of the aforementioned required functionalities, like Aspen Chromatography {cite}`aspen`, GoSilico (formally known as ChromX) by Cytiva {cite}`gosilico`, and Ypso-Ionic (formally known as as ChromWorks) by YpsoFacto {cite}`ypsoionic`.
+Several commercial programs are available which provide parts of the aforementioned required functionalities, like Aspen Chromatography {cite}`aspen`, GoSilico (formally known as ChromX) by Cytiva {cite}`GoSilico`, and Ypso-Proxima (formally known as as ChromWorks) by YpsoFacto {cite}`ypso-proxima`.
 Most of these programs are aimed at experimentalists and allow users to carry out simulations of simple processes without requiring programming expertise.
 In contrast, there exist many highly application-specific programs in academia which were developed to examine individual research questions.
 However, neither provide the flexibility and customizability required for the *ab initio* development of novel process concepts.

@@ -28,7 +28,7 @@ Currently, only **CADET-Core** is adapted, although other simulators can potenti
 mamba install -c conda-forge cadet
 ```
 
-For more information on **CADET-Core**, refer to the {ref}`CADET Documentation <cadet:contents>` {cite}`cadet_documentation`.
+For more information on **CADET-Core**, refer to the {ref}`CADET Documentation <cadet:contents>` {cite}`CADET-Core_documentation`.
 
 ## Solver configuration
 

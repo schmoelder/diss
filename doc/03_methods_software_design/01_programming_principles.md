@@ -100,6 +100,6 @@ Moreover, the "Zen of Python" was introduced in *PEP-20*, which includes 19 guid
 
 While these principles provide general guidance, adherence to the coding conventions outlined in *PEP 8* is essential for maintaining consistency and readability.
 To enforce these standards, several tools and packages are available.
-In this work, the [*pre-commit*](https://pre-commit.com/) package is employed to automatically execute scripts on each commit {cite}`precommit`.
+In this work, the [*pre-commit*](https://pre-commit.com/) package is employed to automatically execute scripts on each commit {cite}`pre-commit`.
 This includes using the [*ruff*](https://docs.astral.sh/ruff/) package to auto-format code according to *PEP 8* and to perform supplementary checks, such as verifying the presence of docstrings and type annotations {cite}`ruff`.
 Together, these tools ensure that the codebase remains consistent in style, readable, and compliant with *PEP 8* recommendations.
