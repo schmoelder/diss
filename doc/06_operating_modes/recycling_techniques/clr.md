@@ -11,15 +11,18 @@ kernelspec:
   language: python
   name: python3
 execution:
-  timeout: 600
+  timeout: 1200
 ---
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
+print("update 3")
+
 %matplotlib inline
 %config InlineBackend.figure_format = 'retina'
 
+import importlib
 from pathlib import Path
 import sys
 
@@ -30,23 +33,39 @@ from myst_nb import glue
 
 # Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
-studies_root = diss_root / "studies" / "operating_modes"
-sys.path.insert(0, str(studies_root))
+print(diss_root)
+study_root = diss_root / "studies" / "operating_modes"
+sys.path.insert(0, str(study_root))
 
-from run_all import create_figure_and_table, setup_study
-study = setup_study(studies_root, "clr")
+# Setup cases for operating mode
+from operating_modes.main import setup_process
+from operating_modes.post_processing import (
+    get_cases_by_operating_mode,
+    process_soo_results,
+    process_moo_results,
+    setup_overview,
+)
+```
 
-variable_units={
-    r"\Delta t_{\text{cycle}}": r"\text{s}",
-    r"\Delta t_{\text{feed}}": r"\text{s}",
-    r"t_{\text{recycle,off}}": r"\text{s}",
-}
+```{code-cell} ipython3
+:tags: [remove-cell]
+
+operating_mode = "CLR"
+case_module = importlib.import_module(
+    f"operating_modes.{operating_mode.lower().replace('-', '_')}"
+)
+cases = get_cases_by_operating_mode(
+    operating_mode,
+    index_by_name=True,
+    work_dir=study_root,
+    ignore_failed=True,
+)
 ```
 
 (clr)=
 # Closed-loop recycling
 
-In closed-loop recycling (CLR), the stock mixture is pumped over the column several times until the desired purity is achieved.
+In closed-loop recycling (CLR), the mixture is pumped through the column several times until the desired purity is achieved.
 The general structure of a CLR is shown in {numref}`clr_flow_sheet`.
 
 ```{figure} ./figures/clr_flow_sheet.png
@@ -55,7 +74,7 @@ The general structure of a CLR is shown in {numref}`clr_flow_sheet`.
 Flow sheet for closed-loop recycling process.
 ```
 
-To realize the recycling, the {attr}`~CADETProcess.processModel.FlowSheet.output_state` attribute of the column needs to be modified, leading to the following event structure:
+To realize the recycling, the {attr}`~CADETProcess.processModel.FlowSheet.output_state` attribute of the column needs to be modified, leading to the following event structure depicted in {numref}`clr_events`.
 
 ```{figure} ./figures/clr_events.png
 :name: clr_events
@@ -63,122 +82,103 @@ To realize the recycling, the {attr}`~CADETProcess.processModel.FlowSheet.output
 Events for closed-loop recycling process.
 ```
 
-To reduce the number of event times that need to be specified, event dependencies are specified which enforce that always either feed or eluent are being pumped through the column.
-
-Now, the cycle time is set to $10~min$ and the `feed_duration` to $1~min$.
-{numref}`clr_outlet` shows the concentration profiles at the column and system outlets, respectively.
+To minimize the number of explicitly defined event times, event dependencies are introduced:
+Recycling starts immediately after injection ends, and elution begins only after recycling concludes.
+{numref}`fig_clr_demo` depict the concentration profiles of a closed-loop recycling (CLR) process at the column outlet and system outlet, respectively.
+The profiles showcase how the recycled material does not fully exit the system before the end of the recycling phase.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
+# Setup process
+process_demo = setup_process(
+    case_module=case_module,
+    separation_problem="difficult",
+    convert_to_linear=True,
+    t_recycle_off=16*60,
+    cycle_time=25*60,
+)
+
 from CADETProcess.simulator import Cadet
-from cadetrdm import Options
-
-from process import setup_process, plot_results
-
-options = Options()
-options.peak_shaving_cycles = 3
-options.enable_peak_shaving = False
-
-process = setup_process(options)
-
-process.feed_duration.time = 40
-t_cycle = 9 * 60
-process.cycle_time = options.peak_shaving_cycles * t_cycle
-process.recycle_off_output_state.time = (options.peak_shaving_cycles - 1) * t_cycle
-
 process_simulator = Cadet()
 
-simulation_results = process_simulator.simulate(process)
-fig, axs = plot_results(simulation_results)
-glue("clr_outlet", fig, display=False)
-
+simulation_results = process_simulator.simulate(process_demo)
+fig_clr_demo, _ = case_module.plot_results(simulation_results)
+glue("fig_clr_demo", fig_clr_demo, display=False)
 ```
 
-```{glue:figure} clr_outlet
-:name: clr_outlet
-:scale: 50%
+```{glue:figure} fig_clr_demo
+:name: fig_clr_demo
+:scale: 100%
 
 **Left:** Concentration at column outlet.
 **Right:** Concentration at system outlet.
 ```
 
-(clr_optimization)=
-## Optimization of CLR
+(clr_validation)=
+## Process validation
 
-Variables
-- Feed duration
-- Delay Reversal
-- Delay injection
-- TODO: check variables
-- TODO: add linear constraints
-
-(clr_single)=
-### Single-objective optimization
-
-Here we do some single-objective optimization.
+{numref}`fig_clr_validation` compares the concentration profile of the ideal model at the column outlet, demonstrating good agreement between the simulation results and equilibrium theory.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-soo_chrom, ax, soo_table, soo_obj = create_figure_and_table(
-    studies_root,
-    "clr",
-    "single-objective",
-    variable_units=variable_units,
+# Setup process
+process_validation = setup_process(
+    case_module=case_module,
+    separation_problem="difficult",
+    apply_et_assumptions=True,
+    t_recycle_off=16*60,
+    cycle_time=25*60,
 )
-glue("clr_soo_chrom", soo_chrom, display=False)
+
+# Import tools
+from operating_modes.et_simulator import compare_cadet_with_et
+
+fig_clr_validation, ax = compare_cadet_with_et(process_validation)
+glue("fig_clr_validation", fig_clr_validation, display=False)
 ```
 
-{numref}`clr_soo_objectives` shows objective function values.
-
-```{code-cell} ipython3
----
-mystnb:
-  markdown_format: myst
-  remove_code_source: true
----
-display(Markdown(soo_obj))
-```
-
-{numref}`clr_soo_kpi` summarizes results.
-
-```{code-cell} ipython3
----
-mystnb:
-  markdown_format: myst
-  remove_code_source: true
----
-display(Markdown(soo_table))
-```
-
-{numref}`clr_soo_chrom` shows chromatogram of best value.
-
-```{glue:figure} clr_soo_chrom
-:name: clr_soo_chrom
+```{glue:figure} fig_clr_validation
+:name: fig_clr_validation
 :scale: 100%
 
-Optimal chromatogram of single-objective optimization of CLR process.
+Comparison of the CLR simulation chromatogram (solid line) with the analytical equilibrium theory solution (dashed line), assuming a linear binding model and neglecting axial dispersion and other transport-limiting effects.
 ```
 
-(clr_multi)=
-## Multi-objective optimization
+(clr_optimization)=
+## Process optimization
 
-Here we do some multi-objective optimization.
+To optimize the CLR process, in addition to the feed duration, the time at which the recycling is switched off, i.e., the time at which elution starts, needs to be optimized.
+A linear constraint is introduced that ensures that recycling can only end after the end of the injection.
+The ideal cycle time is again automatically determined *post hoc* by analyzing the concentration profiles.
+The problem is summarized in {numref}`clr_difficult_linear_auto-cycle_moo-pc_overview`.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-moo_chrom, ax, moo_table, moo_obj = create_figure_and_table(
-    studies_root,
-    "clr",
-    "multi-objective",
-    variable_units=variable_units,
-)
-glue("clr_moo_chrom", moo_chrom, display=False)
-```
+case = cases.get(f"{operating_mode}_difficult_linear_auto-cycle-time_multi-objective-per-component")
+overview = setup_overview(case)
 
-{numref}`clr_moo_objectives` shows objective function values.
+(
+    (moo_fig_obj, _, moo_fig_obj_caption),
+    (moo_fig_chrom, _, moo_fig_chrom_caption),
+    moo_table,
+    moo_results,
+    simulation_results,
+    fractionators,
+) = process_moo_results(
+    case,
+    load_kwargs={"allow_commit_hash_mismatch": True},
+    return_results=True,
+)
+
+glue("moo_fig_obj", moo_fig_obj, display=False)
+glue("moo_fig_obj_caption", moo_fig_obj_caption)
+
+glue("moo_fig_chrom", moo_fig_chrom, display=False)
+glue("moo_fig_chrom_caption", moo_fig_chrom_caption)
+```
 
 ```{code-cell} ipython3
 ---
@@ -186,10 +186,29 @@ mystnb:
   markdown_format: myst
   remove_code_source: true
 ---
-display(Markdown(moo_obj))
+display(Markdown(overview))
 ```
 
-{numref}`clr_moo_kpi` summarizes results.
+{numref}`clr_difficult_linear_auto-cycle_moo-pc_fig_obj` depicts the evaluated objective function values as a function of both feed duration and the recycle-off time.
+Generally, clear optimia could be found for all KPIs.
+The optimal variable values and KPIs for all Pareto edge points are summarized in {numref}`clr_difficult_linear_auto-cycle_moo-pc_kpi`, with the corresponding chromatograms provided in {numref}`clr_difficult_linear_auto-cycle_moo-pc_fig_chrom`.
+The extermely high values for the eluent consumption can be explained by the feed duration
+
+@TODO: Check if calculation of cycle time is correct: Eluent must flow *at least* for the amount of (full width - feed_duration), could this be handled via linear constraints or do we need to change the post-processing?
+
+To better understand, the concentration profiles at the column outlet of (a) and (c) are depiced in {numref}`clr_moo-pc_fig_outlet`.
+@TODO: Discuss number of internal recycles
+@TODO: Discuss peak shaving
+
+@TODO: Discuss stacked injection
+Note, because of the internal closed-loop, stacking multiple injections is less feasible / relevant.
+
+```{glue:figure} moo_fig_obj
+:name: clr_difficult_linear_auto-cycle_moo-pc_fig_obj
+:scale: 100%
+
+{glue:text}`moo_fig_obj_caption`
+```
 
 ```{code-cell} ipython3
 ---
@@ -200,13 +219,40 @@ mystnb:
 display(Markdown(moo_table))
 ```
 
-{numref}`clr_moo_chrom` shows optimal chromatograms.
-
-```{glue:figure} clr_moo_chrom
-:name: clr_moo_chrom
+```{glue:figure} moo_fig_chrom
+:name: clr_difficult_linear_auto-cycle_moo-pc_fig_chrom
 :scale: 100%
 
-Optimal chromatogram of multi-objective optimization of CLR process.
+{glue:text}`moo_fig_chrom_caption`
+```
+
+```{code-cell} ipython3
+:tags: [remove-cell]
+
+from CADETProcess import plotting
+from operating_modes.post_processing import (
+    convert_mm_ss_to_s,
+    get_best_individual,
+    simulate_and_plot,
+    slice_population
+)
+
+fig_column_outlet, axs = plotting.setup_figure(nrows=2, ncols=1, scale_with_subplots=True)
+
+simulation_results[0].solution.outlet.outlet.plot(ax=axs[0])
+plotting.add_text(axs[0], r"(a)")
+
+simulation_results[2].solution.outlet.outlet.plot(ax=axs[1])
+plotting.add_text(axs[1], r"(c)")
+
+glue("moo_fig_outlets", fig_column_outlet, display=False)
+```
+
+```{glue:figure} moo_fig_outlets
+:name: clr_moo-pc_fig_outlet
+:scale: 100%
+
+Concentration profiles at column outlets for Pareto edge points (a) and (c)
 ```
 
 **Summary**

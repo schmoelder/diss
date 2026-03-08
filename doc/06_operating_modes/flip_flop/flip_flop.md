@@ -11,15 +11,18 @@ kernelspec:
   display_name: Python 3
   name: python3
 execution:
-  timeout: 600
+  timeout: 1200
 ---
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-%config InlineBackend.figure_format = 'retina'
 %matplotlib inline
+%config InlineBackend.figure_format = 'retina'
 
+print("update 0")
+
+import importlib
 from pathlib import Path
 import sys
 
@@ -30,17 +33,32 @@ from myst_nb import glue
 
 # Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
-studies_root = diss_root / "studies" / "operating_modes"
-sys.path.insert(0, str(studies_root))
+study_root = diss_root / "studies" / "operating_modes"
+sys.path.insert(0, str(study_root))
 
-from run_all import create_figure_and_table, setup_study
-study = setup_study(studies_root, "flip_flop")
+# Setup cases for operating mode
+from operating_modes.main import setup_process
+from operating_modes.post_processing import (
+    get_cases_by_operating_mode,
+    process_soo_results,
+    process_moo_results,
+    setup_overview,
+)
+```
 
-variable_units={
-    r"\Delta t_{\text{feed}}": r"\text{s}",
-    r"\Delta t_{\text{delay,flip}}": r"\text{s}",
-    r"\Delta t_{\text{delay,inject}}": r"\text{s}",
-}
+```{code-cell} ipython3
+:tags: [remove-cell]
+
+operating_mode = "flip-flop"
+case_module = importlib.import_module(
+    f"operating_modes.{operating_mode.lower().replace('-', '_')}"
+)
+cases = get_cases_by_operating_mode(
+    operating_mode,
+    index_by_name=True,
+    work_dir=study_root,
+    ignore_failed=True,
+)
 ```
 
 (flip_flop)=
@@ -91,119 +109,97 @@ Events of flip-flop process with event dependencies.
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-from CADETProcess.simulator import Cadet
-
-from process import setup_process, plot_results
-
-process = setup_process()
-
+# Setup process
 feed_duration = 60
-process.feed_duration.time = feed_duration
-
 delay_flip = 325
-process.delay_flip.time = delay_flip
-
 delay_injection = 190
-process.delay_injection.time = delay_injection
-
 cycle_time = 2*(feed_duration + delay_flip + delay_injection)
-process.cycle_time = cycle_time
 
-process.flow_sheet.column.solution_recorder.write_solution_bulk = True
+process_demo = setup_process(
+    case_module=case_module,
+    separation_problem="simple",
+    convert_to_linear=True,
+    feed_duration=feed_duration,
+    delay_flip=delay_flip,
+    delay_injection=delay_injection,
+    cycle_time=cycle_time,
+)
+process_demo.flow_sheet.column.solution_recorder.write_solution_bulk = True
 
+from CADETProcess.simulator import Cadet
 process_simulator = Cadet()
-process_simulator.n_cycles = 1
 
-simulation_results = process_simulator.simulate(process)
-fig_flip_flop_bulk, _ = plot_results(simulation_results, n_times=12)
+simulation_results = process_simulator.simulate(process_demo)
+fig_flip_flop_bulk, _ = case_module.plot_results(simulation_results, n_times=12)
 glue("flip_flop_bulk", fig_flip_flop_bulk, display=False)
 ```
 
 ```{glue:figure} flip_flop_bulk
 :name: flip_flop_bulk
-:scale: 50%
-
-**Left:** Concentration profile at the inllet of the column. **Center**: Bulk concentration at different times. The flow direction is indicated by the arrow. **Right:** concentration profile at the system outlet. @TODO: Add note about time scale (or axis); Also offset to better visualize injection
-```
-
-After simulation, the {class}`~CADETProcess.simulationResults.SimulationResults` can be analyzed to determine optimal fractionation times using the {mod}`~CADETProcess.fractionation` module.
-
-(flip_flop_optimization)=
-## Process optimization
-
-Variables
-- Feed duration
-- Delay Reversal
-- Delay injection
-
-For this purpose, an {class}`~CADETProcess.optimization.OptimizationProblem` is formulated to maximize process performance.
-
-(flip_flop_single)=
-### Single-objective optimization
-
-Here we do some single-objective optimization.
-
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-soo_chrom, ax, soo_table, soo_obj = create_figure_and_table(
-    studies_root,
-    "flip_flop",
-    "single-objective",
-    variable_units=variable_units,
-)
-glue("flip_flop_soo_chrom", soo_chrom, display=False)
-```
-
-{numref}`flip_flop_soo_objectives` shows objective function values.
-
-```{code-cell} ipython3
----
-mystnb:
-  markdown_format: myst
-  remove_code_source: true
----
-display(Markdown(soo_obj))
-```
-
-{numref}`flip_flop_soo_kpi` summarizes results.
-
-```{code-cell} ipython3
----
-mystnb:
-  markdown_format: myst
-  remove_code_source: true
----
-display(Markdown(soo_table))
-```
-
-{numref}`flip_flop_soo_chrom` shows chromatogram of best value.
-
-```{glue:figure} flip_flop_soo_chrom
-:name: flip_flop_soo_chrom
 :scale: 100%
 
-Optimal chromatogram of single-objective optimization of flip-flop process.
+**Left:** Concentration profile at the inlet of the column. **Center**: Bulk concentration at different times. The flow direction is indicated by the arrow. **Right:** concentration profile at the system outlet. @TODO: Add note about time scale (or axis); Also offset to better visualize injection
 ```
 
-(flip_flop_multi)=
-## Multi-objective optimization
+(flip_flop_validation)=
+## Process validation
 
-Here we do some multi-objective optimization.
+{numref}`fig_flip_flop_validation` compares the concentration profile of the ideal model at the column outlet, demonstrating good agreement between the simulation results and equilibrium theory.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-moo_chrom, ax, moo_table, moo_obj = create_figure_and_table(
-    studies_root,
-    "flip_flop",
-    "multi-objective",
-    variable_units=variable_units,
+# Setup process
+process_validation = setup_process(
+    case_module=case_module,
+    separation_problem="simple",
+    convert_to_linear=True,
+    apply_et_assumptions=True,
+    cycle_time=40*60,
 )
-glue("flip_flop_moo_chrom", moo_chrom, display=False)
+
+# Import tools
+from operating_modes.et_simulator import compare_cadet_with_et
+
+fig_flip_flop_validation, ax = compare_cadet_with_et(process_validation)
+glue("fig_flip_flop_validation", fig_flip_flop_validation, display=False)
 ```
 
-{numref}`flip_flop_moo_objectives` shows objective function values.
+```{glue:figure} fig_flip_flop_validation
+:name: fig_flip_flop_validation
+:scale: 100%
+
+Comparison of the flip-flop simulation chromatogram (solid line) with the analytical equilibrium theory solution (dashed line), assuming a linear binding model and neglecting axial dispersion and other transport-limiting effects.
+```
+
+(flip-flop_multi)=
+## Multi-objective optimization of a simple linear separation problem
+
+To optimize the flip-flop process, in addition to the feed duration, the time at which the flow direction is switched needs to be optimized, as well as the time at which feed is injected need to be determined.
+In contrast to other processes, here the cycle time is automatically determined using a variable dependency.
+The problem is summarized in {numref}`flip-flop_simple_linear_auto-cycle_moo-pc_overview`.
+
+```{code-cell} ipython3
+:tags: [remove-cell]
+
+case = cases.get(f"{operating_mode}_simple_linear_auto-cycle-time_multi-objective-per-component")
+overview = setup_overview(case)
+
+(
+    (moo_fig_obj, _, moo_fig_obj_caption),
+    (moo_fig_chrom, _, moo_fig_chrom_caption),
+    moo_table ,
+) = process_moo_results(
+    case,
+    load_kwargs={"allow_commit_hash_mismatch": True},
+)
+
+glue("moo_fig_obj", moo_fig_obj, display=False)
+glue("moo_fig_obj_caption", moo_fig_obj_caption)
+
+glue("moo_fig_chrom", moo_fig_chrom, display=False)
+glue("moo_fig_chrom_caption", moo_fig_chrom_caption)
+```
 
 ```{code-cell} ipython3
 ---
@@ -211,10 +207,19 @@ mystnb:
   markdown_format: myst
   remove_code_source: true
 ---
-display(Markdown(moo_obj))
+display(Markdown(overview))
 ```
 
-{numref}`flip_flop_moo_kpi` summarizes results.
+{numref}`flip-flop_simple_linear_auto-cycle_moo-pc_fig_obj` shows objective function values.
+
+```{glue:figure} moo_fig_obj
+:name: flip-flop_simple_linear_auto-cycle_moo-pc_fig_obj
+:scale: 100%
+
+{glue:text}`moo_fig_obj_caption`
+```
+
+{numref}`flip-flop_simple_linear_auto-cycle_moo-pc_kpi` summarizes results.
 
 ```{code-cell} ipython3
 ---
@@ -225,13 +230,13 @@ mystnb:
 display(Markdown(moo_table))
 ```
 
-{numref}`flip_flop_moo_chrom` shows optimal chromatograms.
+{numref}`flip-flop_simple_linear_auto-cycle_moo-pc_fig_chrom` shows chromatogram of best value.
 
-```{glue:figure} flip_flop_moo_chrom
-:name: flip_flop_moo_chrom
+```{glue:figure} moo_fig_chrom
+:name: flip-flop_simple_linear_auto-cycle_moo-pc_fig_chrom
 :scale: 100%
 
-Optimal chromatogram of multi-objective optimization of flip-flop process.
+{glue:text}`moo_fig_chrom_caption`
 ```
 
 ## Summary

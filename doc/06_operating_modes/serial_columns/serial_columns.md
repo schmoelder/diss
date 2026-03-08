@@ -20,6 +20,9 @@ execution:
 %matplotlib inline
 %config InlineBackend.figure_format = 'retina'
 
+print("update 2")
+
+import importlib
 from pathlib import Path
 import sys
 
@@ -30,20 +33,33 @@ from myst_nb import glue
 
 # Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
-studies_root = diss_root / "studies" / "operating_modes"
-sys.path.insert(0, str(studies_root))
+print(diss_root)
+study_root = diss_root / "studies" / "operating_modes"
+sys.path.insert(0, str(study_root))
 
-from run_all import create_figure_and_table, setup_study
-study = setup_study(studies_root, "serial_columns")
+# Setup cases for operating mode
+from operating_modes.main import setup_process
+from operating_modes.post_processing import (
+    get_cases_by_operating_mode,
+    process_soo_results,
+    process_moo_results,
+    setup_overview,
+)
+```
 
-variable_units={
-    r"\Delta t_{\text{cycle}}": r"\text{s}",
-    r"\Delta t_{\text{feed}}": r"\text{s}",
-    r"t_{\text{serial,off}}": r"\text{s}",
-    r"t_{\text{serial,on}}": r"\text{s}",
-    r"L_{\text{c,1}}": r"\text{m}",
-    r"L_{\text{c,2}}": r"\text{m}",
-}
+```{code-cell} ipython3
+:tags: [remove-cell]
+
+operating_mode = "serial-columns"
+case_module = importlib.import_module(
+    f"operating_modes.{operating_mode.lower().replace('-', '_')}"
+)
+cases = get_cases_by_operating_mode(
+    operating_mode,
+    index_by_name=True,
+    work_dir=study_root,
+    ignore_failed=True,
+)
 ```
 
 (serial_columns)=
@@ -76,78 +92,106 @@ To reduce the number of event times that need to be specified, event dependencie
 ```{figure} ./figures/event_dependencies.png
 Events of serial columns process with event dependencies.
 ```
-
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
+# Setup process
+process_demo = setup_process(
+    case_module=case_module,
+    separation_problem="ternary",
+    split_ratio=1/3,
+    feed_duration=0.75*60,
+    t_serial_off=2.6*60,
+    t_serial_on=5.5*60,
+    cycle_time=15*60,
+)
+
 from CADETProcess.simulator import Cadet
-
-from process import setup_process, plot_results
-
-process = setup_process()
-
-process.flow_sheet.column_1.length = 0.2
-process.flow_sheet.column_2.length = 0.4
-
-process.cycle_time = 600
-process.feed_duration.time = 60
-process.serial_off.time = 200
-process.serial_on.time = 420
-
 process_simulator = Cadet()
-process_simulator.evaluate_stationarity = False
 
-simulation_results = process_simulator.simulate(process)
-
-fig, axs = plot_results(simulation_results)
-
-glue("serial_columns", fig, display=False)
+simulation_results = process_simulator.simulate(process_demo)
+fig_serial_columns, _ = case_module.plot_results(simulation_results)
+glue("fig_serial_columns", fig_serial_columns, display=False)
 ```
 
-```{glue:figure} serial_columns
-:name: serial_columns_chromatogram
-:scale: 50%
+{numref}`fig_serial_columns` shows a typical chromatogram of a batch-elution process.
 
+```{glue:figure} fig_serial_columns
+:name: fig_serial_columns
+:figwidth: 300px
+
+Typical chromatogram of a serial columns process.
 **Left:** Concentration profile at outlet of first column.
 **Center:** Concentration profile at first system outlet.
 **Right:** Concentration profile at the second column outlet.
 ```
 
-(serial_columns_evaluation)=
-## Process evaluation
+(serial_columns_validation)=
+## Process Validation
 
-After simulation, the {class}`~CADETProcess.simulationResults.SimulationResults` can be analyzed to determine optimal fractionation times using the {mod}`~CADETProcess.fractionation` module.
+Here we do some more validation.
+
+```{code-cell} ipython3
+:tags: [remove-cell]
+
+# Setup process
+process_validation = setup_process(
+    case_module=case_module,
+    separation_problem="ternary",
+    apply_et_assumptions=True,
+    split_ratio=1/3,
+    feed_duration=0.75*60,
+    t_serial_off=2.6*60,
+    t_serial_on=5.5*60,
+    cycle_time=15*60,
+)
+
+from operating_modes.et_simulator import compare_cadet_with_et
+fig_serial_validation, ax = compare_cadet_with_et(process_validation)
+glue("fig_serial_validation", fig_serial_validation, display=False)
+```
+
+```{glue:figure} fig_serial_validation
+:name: serial_columns_chromatogram
+:scale: 50%
+
+**Left:** Concentration profile at first system outlet.
+**Right:** Concentration profile at the second column outlet.
+```
 
 (serial_columns_optimization)=
-## Process optimization
+## Process Optimization
 
-- Feed duration
-- serial_on
-- serial_off
-- cycle time
-- column_1.length
-- column_2.length
-
-For this purpose, an {class}`~CADETProcess.optimization.OptimizationProblem` is formulated to maximize process performance.
-
-(serial_columns_single)=
-## Single-objective optimization
-
-Here we do some single-objective optimization.
+To optimize the process with columns connected in series, the decision variables include both the times at which the serial connection is cut and reconnected, as well as the individual column lengths.
+The total column length is kept constant during optimization.
+The problem is summarized in {numref}`serial-columns_ternary_auto-cycle_moo-pc_overview`.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-soo_chrom, ax, soo_table, soo_obj = create_figure_and_table(
-    studies_root,
-    "serial_columns",
-    "single-objective",
-    variable_units=variable_units,
+case = cases.get(f"{operating_mode}_ternary_auto-cycle-time_multi-objective-per-component")
+overview = setup_overview(case)
+
+(
+    (moo_fig_obj, _, moo_fig_obj_caption),
+    (moo_fig_chrom, _, moo_fig_chrom_caption),
+    moo_table,
+    moo_results,
+    simulation_results,
+    fractionators,
+) = process_moo_results(
+    case,
+    load_kwargs={"allow_commit_hash_mismatch": True},
+    return_results=True,
 )
-glue("serial_columns_soo_chrom", soo_chrom, display=False)
-```
 
-{numref}`serial_columns_soo_objectives` shows objective function values.
+glue("moo_fig_obj", moo_fig_obj, display=False)
+glue("moo_fig_obj_caption", moo_fig_obj_caption)
+
+glue("moo_fig_chrom", moo_fig_chrom, display=False)
+moo_fig_chrom_caption_1 = f"{moo_fig_chrom_caption[0:-1]} at outlet of column 1."
+glue("moo_fig_chrom_caption_1", moo_fig_chrom_caption_1)
+```
 
 ```{code-cell} ipython3
 ---
@@ -155,58 +199,19 @@ mystnb:
   markdown_format: myst
   remove_code_source: true
 ---
-display(Markdown(soo_obj))
+display(Markdown(overview))
 ```
 
-{numref}`serial_columns_soo_kpi` summarizes results.
+{numref}`serial-columns_ternary_auto-cycle_moo-pc_fig_obj` shows objective function values.
 
-```{code-cell} ipython3
----
-mystnb:
-  markdown_format: myst
-  remove_code_source: true
----
-display(Markdown(soo_table))
-```
-
-{numref}`serial_columns_soo_chrom` shows chromatogram of best value.
-
-```{glue:figure} serial_columns_soo_chrom
-:name: serial_columns_soo_chrom
+```{glue:figure} moo_fig_obj
+:name: serial-columns_ternary_auto-cycle_moo-pc_fig_obj
 :scale: 100%
 
-Optimal chromatogram of single-objective optimization of serial columns process.
+{glue:text}`moo_fig_obj_caption`
 ```
 
-(serial_columns_multi)=
-## Multi-objective optimization
-
-Here we do some multi-objective optimization.
-
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-moo_chrom, ax, moo_table, moo_obj = create_figure_and_table(
-    studies_root,
-    "serial_columns",
-    "multi-objective",
-    variable_units=variable_units,
-)
-glue("serial_columns_moo_chrom", moo_chrom, display=False)
-```
-
-{numref}`serial_columns_moo_objectives` shows objective function values.
-
-```{code-cell} ipython3
----
-mystnb:
-  markdown_format: myst
-  remove_code_source: true
----
-display(Markdown(moo_obj))
-```
-
-{numref}`serial_columns_moo_kpi` summarizes results.
+{numref}`serial-columns_ternary_auto-cycle_moo-pc_kpi` summarizes results.
 
 ```{code-cell} ipython3
 ---
@@ -217,11 +222,11 @@ mystnb:
 display(Markdown(moo_table))
 ```
 
-{numref}`serial_columns_moo_chrom` shows optimal chromatograms.
+{numref}`serial-columns_ternary_auto-cycle_moo-pc_fig_chrom` shows chromatogram of best value.
 
-```{glue:figure} serial_columns_moo_chrom
-:name: serial_columns_moo_chrom
+```{glue:figure} moo_fig_chrom
+:name: serial-columns_ternary_auto-cycle_moo-pc_fig_chrom
 :scale: 100%
 
-Optimal chromatogram of multi-objective optimization of serial columns process.
+{glue:text}`moo_fig_chrom_caption`
 ```
