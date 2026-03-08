@@ -78,9 +78,9 @@ simulation_results = simulator.simulate(process)
 import matplotlib.pyplot as plt
 fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(10, 4))
 
-simulation_results.solution.column.inlet.plot(fig=fig, ax=ax1, show=False)
+simulation_results.solution.column.inlet.plot(ax=ax1, show=False)
 
-simulation_results.solution.column.outlet.plot(fig=fig, ax=ax2, show=False)
+simulation_results.solution.column.outlet.plot(ax=ax2, show=False)
 glue("chromatogram", fig, display=False)
 ```
 

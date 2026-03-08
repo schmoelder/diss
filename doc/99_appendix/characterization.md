@@ -39,7 +39,7 @@ from comparison_plots import embed_figure_in_directive, plot_meta_score
 ```
 
 (characterization_appendix)=
-# A1: Characterization
+# Characterization
 
 ```{code-cell} ipython3
 :tags: [remove-cell]

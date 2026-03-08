@@ -69,7 +69,7 @@ To determine the missing parameters, additional experiments were performed (see 
 
 - Experiment `E5` used Blue Dextran, a molecule too large to penetrate pores, to determine bed porosity.
 - Experiment `E6` employed acetone injection to determine particle porosity.
-- Experiment `E7` involved lysozyme injection under non-binding conditions (*i.e.* high salt concentration) to determine particle porosity and film diffusion coefficients.
+- Experiment `E7` involved lysozyme injection under non-binding conditions (i.e. high salt concentration) to determine particle porosity and film diffusion coefficients.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]

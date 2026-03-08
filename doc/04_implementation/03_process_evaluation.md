@@ -84,7 +84,7 @@ To add a difference metric, the following information must be provided:
 Optionally, a start and end time can be specified to only evaluate the difference metric over that time interval.
 This is particularly useful if system noise (e.g. injection peaks) should be ignored or if prior knowledge is available about which peaks correspond to which components.
 
-Next to the experimental data, a reference model needs to be configured, *i.e.* a {class}`~CADETProcess.processModel.Process`.
+Next to the experimental data, a reference model needs to be configured, i.e. a {class}`~CADETProcess.processModel.Process`.
 It must include relevant details so that it is capable of accurately predicting the experimental system (e.g. tubing, valves etc.).
 
 To demonstrate this module, consider a simple tracer pulse injection onto a chromatographic column.
@@ -127,8 +127,8 @@ process.flow_sheet.column.axial_dispersion = 1e-7
 simulation_results = simulator.simulate(process)
 metrics = comparator.evaluate(simulation_results)
 
-figs, ax = comparator.plot_comparison(simulation_results)
-glue("chromatogram_comparison", figs[0], display=False)
+fig, ax = comparator.plot_comparison(simulation_results)
+glue("chromatogram_comparison", fig, display=False)
 ```
 
 ```{glue:figure} chromatogram_comparison

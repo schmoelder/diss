@@ -57,7 +57,8 @@ sphinx:
         - "https://cadet-process.readthedocs.io/en/latest/"
         - null
       cadet:
-        - "https://cadet.github.io/master/"
+        # - "https://cadet.github.io/master/"
+        - "https://cadet.github.io/v5.1.0"
         - null
     # Override the style how numrefs appear in the text
     numfig_format:
@@ -119,6 +120,12 @@ sphinx:
         \usepackage{epigraph}
         \setlength\epigraphwidth{.8\textwidth}
         \setlength\epigraphrule{0pt}
+
+        % Table floats
+        \usepackage{float}
+        \let\oldtable\table
+        \let\endoldtable\endtable
+        \renewenvironment{table}[1][H]{\oldtable[H]}{\endoldtable}
 
         % Font Sizes
         %% Standard text
@@ -211,8 +218,7 @@ sphinx:
 
         \makeatother
 
-
-        % Title styling
+        % Chapter title styling
         \titleformat{\chapter}[display]{\normalfont\huge\bfseries\titlerule\vspace{0.25cm}}{\LARGE\chaptertitlename~\thechapter}{1em}{}[\vspace{0.25cm}\titlerule]
         \titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
         \titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}

@@ -38,12 +38,18 @@ chapters:
       - file: 05_characterization/06_adsorption_parameters
   - file: 06_operating_modes/00_index
     sections:
-      - file: 06_operating_modes/batch_elution/batch_elution
-      - file: 06_operating_modes/batch_elution_ternary/batch_elution_ternary
+      - file: 06_operating_modes/batch_elution/00_index
+        sections:
+        - file: 06_operating_modes/batch_elution/01_soo_standard_linear_et_auto
+        - file: 06_operating_modes/batch_elution/02_soo_standard_auto
+        - file: 06_operating_modes/batch_elution/03_moo_pc_standard_auto
+        - file: 06_operating_modes/batch_elution/04_moo_pc_standard
+        # - file: 06_operating_modes/batch_elution/05_moo_pc_ternary_auto
+        - file: 06_operating_modes/batch_elution/06_moo_pc_ternary
       - file: 06_operating_modes/recycling_techniques/recycling_techniques
         sections:
           - file: 06_operating_modes/recycling_techniques/clr
-          - file: 06_operating_modes/recycling_techniques/ssr
+          - file: 06_operating_modes/recycling_techniques/mrssr
       - file: 06_operating_modes/flip_flop/flip_flop
       - file: 06_operating_modes/serial_columns/serial_columns
   - file: 07_conclusion/00_index

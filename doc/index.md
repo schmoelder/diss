@@ -6,9 +6,7 @@
 ```
 
 % Disable page numbers
-```{raw} latex
-\pagenumbering{gobble}
-```
+{raw-latex}`\pagenumbering{gobble}`
 
 % Epigraph
 ```{raw} latex

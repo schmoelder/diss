@@ -26,7 +26,7 @@ Model of Knauer system.
 To streamline the setup of the system model, a custom {class}`~CADETProcess.processModel.FlowSheet` class was implemented.
 This class automatically configures and connects the unit operations, and it includes additional arguments for specifying the sample loop volume and units that are bypassed during system periphery characterization, as described in the following section.
 Additionally, several custom {class}`~CADETProcess.processModel.Process` classes were implemented to automatically configure pulse injection, breakthrough curve, and gradient elution experiments.
-Classes were also developed to automatically convert experimental data from Knauer format to {class}`ReferenceIO` and facilitate calibration.
+Classes were also developed to automatically convert experimental data from Knauer format to {class}`~CADETProcess.reference.ReferenceIO` and facilitate calibration.
 
 For each experiment, a {class}`~CADETProcess.comparison.Comparator` was set up using the {class}`~CADETProcess.comparison.NRMSE` metric (see {numref}`comparison`).
 This comparator was added as an objective to the {class}`~CADETProcess.optimization.OptimizationProblem`, with the corresponding parameters defined as optimization variables (see {numref}`optimization`).
