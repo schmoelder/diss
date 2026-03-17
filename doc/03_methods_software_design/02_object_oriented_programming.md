@@ -10,9 +10,9 @@ kernelspec:
 (oop)=
 # Object oriented programming
 
-Object-oriented programming (OOP) aims to simplify the organization and structure of software while improving reusability, extendibility, and security.
-In this approach, data and functionality are grouped into units called objects, which provide procedures for accessing and modifying associated data.
-To create these objects, blueprints are used called classes that define the structure of the object, including properties and methods that modify its behavior.
+Object-oriented programming (OOP) aims to simplify software organization and structure while improving reusability, extendibility, and security.
+In OOP, data and functionality are encapsulated into units called objects, which provide methods for accessing and modifying their associated data.
+Objects are created from classes, which serve as blueprints defining the structure, properties, and methods of the object.
 
 Four general principles characterize object oriented languages:
 
@@ -122,7 +122,7 @@ While there are dozens of different design patterns, they can be grouped into th
 **Creational patterns** are patterns that provide various object creation mechanisms, which increase flexibility and reuse of existing code.
 The *Factory method* is an example of a creational design pattern that separates the process of object creation from the code that uses the objects when the exact types and dependencies of the objects are not known beforehand.
 It is often used when the process of object creation is complex and requires different steps or when objects are created dynamically.
-For example, **CADET-Process** provides a `CarouselBuilder` class which acts facilitates the creation of complex `Process` Scenarios.
+For example, **CADET-Process** provides a {class}`~CADETProcess.modelBuilder.CarouselBuilder` class which facilitates the creation of complex multi-column processes.
 
 **Structural patterns** are patterns that deal with object composition and allow developers to create more complex objects by combining simpler ones.
 For example, the *Adapter pattern* is a structural design pattern that allows incompatible classes to work together by implementing a converter acting as a translator which enables communication without having to change the classes themselves.

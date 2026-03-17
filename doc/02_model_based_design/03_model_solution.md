@@ -24,7 +24,7 @@ By offering this modular approach, the tool supports a broad range of applicatio
 For calculating concentration profiles in chromatographic processes, closed-form analytical solutions are highly desirable because they allow for accurate and fast computations.
 However, such analytical solutions are limited to specific models and rely on restrictive simplifying assumptions.
 For example, the equilibrium model can be solved analytically for the linear isotherm, as well as for the multicomponent Langmuir isotherm {cite}`SchmidtTraub2020`.
-Moreover, Fechtner et al. have demonstrated a semi-analytical approach applicable any implicit isotherm model in the equilibrium model {cite}`Fechtner2017`.
+Moreover, Fechtner et al. have demonstrated a semi-analytical approach applicable to any implicit isotherm model in the equilibrium model {cite}`Fechtner2017`.
 
 Additionally, even more complex models can be solved analytically when a linear adsorption isotherm is assumed {cite}`Qamar2014,Leweke2021`.
 However, the restrictive assumptions required for these solutions limit their utility as general-purpose modeling tools.
@@ -139,7 +139,7 @@ The flux across these interfaces is approximated using a numerical flux function
 \frac{d c_j(t)}{d t} \approx \frac{1}{\Delta z} (F(c_{j-1}, c_j) - F(c_j, c_{j+1}))
 ```
 
-for each control volume $j \in \{ 0, \dots, N_{z} - 1 \}$, with c_{-1}, c_{N_z} given by boundary conditions.
+for each control volume $j \in \{ 0, \dots, N_{z} - 1 \}$, with $c_{-1}, c_{N_z}$ given by boundary conditions.
 
 FVM offers key advantages over FDM, particularly due to its intrinsic conservation properties, ensuring that mass is preserved across cell interfaces.
 This property is especially important in chromatographic models, where conservation of mass is critical for obtaining accurate results.
@@ -149,7 +149,7 @@ To achieve higher accuracy, the finite volume method (FVM) can employ polynomial
 This stencil-based reconstruction enables high-order schemes that preserve mass conservation.
 However, as described by Godunov's theorem, linear high-order schemes cannot maintain monotonicity, resulting in oscillations near steep gradients {cite}`Godunov1959`.
 To address this issue, nonlinear reconstruction techniques are commonly applied, such as slope limiters {cite}`Blazek2015` or weighted essentially non-oscillatory (WENO) schemes {cite}`Lieres2010`.
-The WENO scheme is particularly suitable for chromatographic systems with sharp concentration gradients, as it balances accuracy, stability, and robustness.
+The WENO scheme is particularly suitable for chromatographic systems with sharp concentration fronts, as it balances accuracy, stability, and robustness.
 For these reasons, the WENO scheme is implemented in **CADET-Core** and used in this work {cite}`Leweke2018`.
 
 % Finite Elements Method

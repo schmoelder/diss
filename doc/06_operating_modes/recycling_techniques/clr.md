@@ -17,7 +17,7 @@ execution:
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-print("update 3")
+print("update 4")
 
 %matplotlib inline
 %config InlineBackend.figure_format = 'retina'
@@ -58,7 +58,6 @@ cases = get_cases_by_operating_mode(
     operating_mode,
     index_by_name=True,
     work_dir=study_root,
-    ignore_failed=True,
 )
 ```
 
@@ -74,7 +73,7 @@ The general structure of a CLR is shown in {numref}`clr_flow_sheet`.
 Flow sheet for closed-loop recycling process.
 ```
 
-To realize the recycling, the {attr}`~CADETProcess.processModel.FlowSheet.output_state` attribute of the column needs to be modified, leading to the following event structure depicted in {numref}`clr_events`.
+The {attr}`~CADETProcess.processModel.FlowSheet.output_states` attribute of the flow sheet, which controls the flow of unit operations downstream of the column, must be modified to realize the recycling.
 
 ```{figure} ./figures/clr_events.png
 :name: clr_events
@@ -197,8 +196,9 @@ The extermely high values for the eluent consumption can be explained by the fee
 @TODO: Check if calculation of cycle time is correct: Eluent must flow *at least* for the amount of (full width - feed_duration), could this be handled via linear constraints or do we need to change the post-processing?
 
 To better understand, the concentration profiles at the column outlet of (a) and (c) are depiced in {numref}`clr_moo-pc_fig_outlet`.
-@TODO: Discuss number of internal recycles
-@TODO: Discuss peak shaving
+For process (a), the components passed 10 times fully over the column.
+After the tenth cycle, the pure fraction of component $B$ was already "shaved off" while the rest of the mixture would pass one final time over the column.
+For process (c), the components passed 16 "and a half" times over the column.
 
 @TODO: Discuss stacked injection
 Note, because of the internal closed-loop, stacking multiple injections is less feasible / relevant.
@@ -239,10 +239,10 @@ from operating_modes.post_processing import (
 
 fig_column_outlet, axs = plotting.setup_figure(nrows=2, ncols=1, scale_with_subplots=True)
 
-simulation_results[0].solution.outlet.outlet.plot(ax=axs[0])
+simulation_results[0].solution.column.outlet.plot(ax=axs[0], end=55*60)
 plotting.add_text(axs[0], r"(a)")
 
-simulation_results[2].solution.outlet.outlet.plot(ax=axs[1])
+simulation_results[2].solution.column.outlet.plot(ax=axs[1], end=85*60)
 plotting.add_text(axs[1], r"(c)")
 
 glue("moo_fig_outlets", fig_column_outlet, display=False)

@@ -12,7 +12,7 @@ This makes it especially useful for a modular approach, as the one adopted by th
 pip install CADET-Process
 ```
 
-The [**CADET**](https://cadet.github.io) core simulator is a robust numerical engine that can simulate a wide range of physico-chemical models used in chromatography and other biochemical processes {cite}`Leweke2018`.
+The [**CADET-Core**](https://cadet.github.io) simulator is a robust numerical engine that can simulate a wide range of physico-chemical models used in chromatography and other biochemical processes {cite}`Leweke2018`.
 However, the configuration files of **CADET-Core** can be long and difficult to work with, particularly for integrated processes involving multiple unit operations.
 Moreover, the structure of these files may change during process optimization, such as when the sequence of dynamic events is altered, making direct use of **CADET-Core** challenging without an additional layer of abstraction.
 

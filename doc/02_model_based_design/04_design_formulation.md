@@ -19,7 +19,7 @@ The accurate determination of model parameters is essential for developing preci
 For an example characterization procedure of a typical chromatographic laboratory system, refer to {numref}`characterization`.
 
 *Design parameters* define the overall setup and operational configuration of a chromatographic plant, which remain fixed during operation.
-These parameters include decisions about operating modes (e.g., batch elution or recycling techniques), column geometry (length and diameter), adsorbent type, and, for Simulated Moving Bed (SMB) systems, zone configurations such as the number of columns per zone.
+These parameters include decisions about operating modes (e.g., batch elution or recycling techniques), column geometry (length and diameter), adsorbent type, and, for SMB systems, zone configurations such as the number of columns per zone.
 The selection of the operating mode itself is an important design parameter, which can be systematically addressed using superstructure optimization with discrete decision variables to evaluate various configurations.
 While selecting the most suitable operating mode is a critical aspect of chromatographic process design, this work focuses primarily on optimizing processes for a given configuration, rather than identifying the optimal operating mode.
 

@@ -85,11 +85,11 @@ Consider the characterization of a chromatographic column (refer also to {numref
 - **Bed porosity**, ranging from $0.1$ to $0.8$
 - **Axial dispersion**, ranging from $1 \times 10^{-9}$ to $1 \times 10^{-4}~\text{m}^2~\text{s}^{-1}$.
 
-Figure {numref}`fig_initial_values` shows 128 parameter combinations uniformly sampled from the unnormalized parameter space, plotted on a logarithmic scale.
+{numref}`fig_initial_values` shows 128 parameter combinations uniformly sampled from the unnormalized parameter space, plotted on a logarithmic scale.
 Despite the lower bound of $1 \times 10^{-9}$, few samples are drawn in that region; instead, the majority are biased toward the higher end of the range.
 
-Due to this disparity in scales, porosity is best normalized linearly, while **axial dispersion** benefits from logarithmic normalization.
-Figure {numref}`fig_initial_values_normalized` presents 128 parameter combinations sampled uniformly from the normalized space. As seen, all scales are now appropriately sampled—an important characteristic for generating effective initial values.
+Due to this disparity in scales, porosity is best normalized linearly, while axial dispersion benefits from logarithmic normalization.
+{numref}`fig_initial_values_normalized` presents 128 parameter combinations sampled uniformly from the normalized space. As seen, all scales are now appropriately sampled, an important characteristic for generating effective initial values.
 
 This normalization strategy allows the optimizer to work within a consistent domain, effectively optimizing two variables that both range from $0$ to $1$, while **CADET-Process** handles the inverse transformation back to the original scales for evaluation purposes.
 
@@ -128,7 +128,7 @@ glue("fig_initial_values_normalized", fig, display=False)
 :name: fig_initial_values
 :scale: 50%
 
-Regular parameter space.
+Uniform sampling of 128 parameter combinations in the unnormalized parameter space.
 ```
 ````
 
@@ -139,7 +139,7 @@ Regular parameter space.
 :name: fig_initial_values_normalized
 :scale: 50%
 
-Normalized parameters.
+Uniform sampling of 128 parameter combinations in normalized parameter space.
 ```
 ````
 

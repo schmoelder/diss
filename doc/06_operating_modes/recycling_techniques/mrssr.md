@@ -25,7 +25,7 @@ execution:
 %matplotlib inline
 %config InlineBackend.figure_format = 'retina'
 
-print("update 0")
+print("update 1")
 
 import importlib
 from pathlib import Path
@@ -62,7 +62,6 @@ cases = get_cases_by_operating_mode(
     operating_mode,
     index_by_name=True,
     work_dir=study_root,
-    ignore_failed=True,
 )
 ```
 
@@ -83,7 +82,7 @@ A schematic flow diagram of the MR-SSR process is shown below.
 Flow sheet for mixed-recycle steady-state recycling process.
 ```
 
-To implement recycling, the {attr}`~CADETProcess.processModel.FlowSheet.output_state` of the column must be modified.
+To implement recycling, the {attr}`~CADETProcess.processModel.FlowSheet.output_states` attribute of the flow sheet that controls the flow of unit operations downstream of the column must be modified.
 To minimize the number of explicitly defined event times, event dependencies are introduced:
 - Fresh feed is pumped into the mixing tank only after injection completes.
 - The eluent flow is automatically disabled at the start of injection and re-enabled upon its completion.

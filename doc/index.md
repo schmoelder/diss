@@ -196,6 +196,9 @@ EM
 EDM
     Equilibrium-dispersive model
 
+EULA
+    End-user license agreement
+
 FAIR
     Findable, Accessible, Interoperable, Reusable
 
@@ -237,6 +240,9 @@ LC
 
 LDF
     Linear driving force
+
+LFS
+    Large file system
 
 LP
     Linear programming

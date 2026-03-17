@@ -22,7 +22,7 @@ execution:
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-print("update 9")
+print("update 10")
 
 %matplotlib inline
 %config InlineBackend.figure_format = 'retina'
@@ -62,7 +62,6 @@ cases = get_cases_by_operating_mode(
     operating_mode,
     index_by_name=True,
     work_dir=study_root,
-    ignore_failed=True,
 )
 ```
 

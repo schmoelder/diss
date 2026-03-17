@@ -59,7 +59,6 @@ cases = get_cases_by_operating_mode(
     operating_mode,
     index_by_name=True,
     work_dir=study_root,
-    ignore_failed=True,
 )
 ```
 

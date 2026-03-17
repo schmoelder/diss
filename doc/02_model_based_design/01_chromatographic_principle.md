@@ -92,8 +92,8 @@ Left: Concentration profile at the column inlet.
 Right: Chromatogram recorded at the column outlet with components $A$ and $B$ partially separated.
 ```
 
-High product recoveries are typically achieved through 'baseline separation,' a state where the component peaks from the same injection do not overlap as they exit the column.
-By carefully selecting operating conditions, such as the amount of injected material and the flow rate, it is possible to create an efficient operating scenario where the stationary phase is utilized to with high efficiency.
+High product recoveries are typically achieved through "baseline separation", a state where the component peaks from the same injection do not overlap as they exit the column.
+By carefully selecting operating conditions, such as the amount of injected material and the flow rate, it is possible to create an efficient operating scenario where the stationary phase is utilized with high efficiency.
 Productivity can be increased, and eluent consumption reduced, by minimizing the interval between successive injections.
 Further gains in productivity and eluent efficiency can be realized by strategically collecting waste fractions between product fractions or between peaks of consecutive injections, although this may come at the expense of slightly lower recovery rates.
 

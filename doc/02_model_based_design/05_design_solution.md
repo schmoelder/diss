@@ -19,7 +19,7 @@ One notable shortcut method is the application of equilibrium theory.
 Although it assumes the absence of kinetic limitations - which may not hold for certain scenarios, such as the separation of larger molecules - it serves as a foundational concept in several design methods.
 Equilibrium theory provides inherent boundaries for process design, making it a valuable starting point {cite}`SchmidtTraub2020`.
 
-This approach is particularly useful in the design and operation of simulated moving bed (SMB) processes.
+This approach is particularly useful in the design and operation of SMB processes.
 The central idea is to determine an operating region for dimensionless flow rate ratios where a complete separation of a two-component mixture is achievable in a (theoretical) true moving bed (TMB) process.
 For linear isotherms, this operating region takes the shape of a triangle and is commonly referred to as the *triangle theory*.
 Originally developed for linear isotherms, this theory has since been extended to other isotherm models, such as the Langmuir isotherm {cite}`Mazzotti2006`.
@@ -79,7 +79,7 @@ The choice of optimization algorithm and solution method depends on the specific
 
 Optimization algorithms can generally be categorized into deterministic and stochastic solvers.
 Deterministic solvers follow predefined search patterns and do not rely on randomness, ensuring repeatable results.
-Stochastic solvers, such as genetic algorithms, incorporate randomness by e.g. by simulating biological evolution.
+Stochastic solvers, such as genetic algorithms, incorporate randomness, e.g. by simulating biological evolution.
 These algorithms adapt populations through mutations, crossover of genetic information, and selection, where better-performing solutions survive while inferior ones are eliminated.
 
 Different solvers excel depending on the problem characteristics.
@@ -95,7 +95,7 @@ Methods such as extended cutting plane algorithms {cite}`Emet2008`, outer approx
 In the following sections, the specific algorithms used in this work will be presented.
 
 (cobyla)=
-## Constrained optimization by linear approximation
+### Constrained optimization by linear approximation
 
 The constrained optimization by linear approximation algorithm (*COBYLA*) is a method designed for constrained problems where the derivative of the objective function is unknown {cite}`Powell1994`.
 This algorithm approximates both the objective function and constraints with linear problems.

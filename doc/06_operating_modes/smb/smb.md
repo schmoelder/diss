@@ -98,7 +98,7 @@ The {class}`~CADETProcess.modelBuilder.CarouselBuilder` can now be used like a r
 After initializing the {class}`~CADETProcess.modelBuilder.CarouselBuilder`, the column template is assigned and all units and zones are added.
 
 Now, the connections are added to the builder.
-To define split streams, the `output_state` is used which sets the ratio between outgoing streams of a unit operation in the flow sheet.
+To define split streams, `output_states` can be configured which set the ratio between outgoing streams of a unit operation in the flow sheet.
 
 Now, the switch time is assigned to the builder which determines after how much time a column is switched to the next position.
 By calling the {meth}`~CADETProcess.modelBuilder.CarouselBuilder.build_process` method, a regular {class}`~CADETProcess.processModel.Process` object is constructed which can be simulated just as usual using **CADET**.

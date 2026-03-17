@@ -19,7 +19,7 @@ A UML diagram is a visual representation that depicts the structure, relationshi
 
 UML diagram of a unit operation.
 The `UnitOperationBase` provides a unified interface for all its implementations.
-For example, a `LumpedRateModelWithPores` is shown that inherits from the base class and in addition specifies the parameter of the model
+Exemplary, a `LumpedRateModelWithoutPores` is shown that inherits from the base class and in addition specifies the parameter of the model
 equations, including their type (e.g. a float for the column length).
 Each unit operation also has information about components involved in the system.
 Optionally, unit operations can also be associated with binding and reaction models.

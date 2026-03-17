@@ -21,7 +21,7 @@ As such, this work focuses exclusively on mechanistic models.
 
 Adsorption isotherm models describe the accumulation of molecules on the surface of a stationary phase.
 Typically, the loading concentration $q$ of a component is expressed as a function of its concentration $c$ in the mobile phase.
-These models, often referred to as "binding models," provide the mathematical framework for understanding adsorption behavior.
+These models, often referred to as "binding models", provide the mathematical framework for understanding adsorption behavior.
 
 (linear_model)=
 ### Linear model
@@ -154,7 +154,7 @@ The kinetic formulation of the Bi-Langmuir isotherm is given by:
 ```{math}
 :label: bi-langmuir_kinetic
 
-\frac{\text{d} q_{i, m}}{\text{d} t} =  k_{a, i}^{m} \cdot c_{i} \cdot q_{\text{max}, i}^{m} \left( 1 - \sum_{j=1}^{n_{\text{comp}}} \frac{q_{j, m}}{q_{\text{max}, j}^{m}}\right) - k_{d, i}^{m} q_{i, m}
+\frac{\text{d} q_{i}^{m}}{\text{d} t} =  k_{a, i}^{m} \cdot c_{i} \cdot q_{\text{max}, i}^{m} \left( 1 - \sum_{j=1}^{n_{\text{comp}}} \frac{q_{j, m}}{q_{\text{max}, j}^{m}}\right) - k_{d, i}^{m} q_{i, m}
 ```
 
 where $k_{a, i}^{m}$ and $k_{d, i}^{m}$ are the adsorption and desorption rate constants, and $q_{\text{max}, i}^{m}$ is the maximum loading capacity of the $m$-th binding site.
@@ -534,7 +534,7 @@ Here:
 
 The general rate model (GRM) is often regarded as the most comprehensive chromatography model.
 It accounts for both intraparticle and surface diffusion.
-Although the GRM is not utilized in this work, readers are encouraged to refer to {cite:t}`Guiochon2006,SchmidtTraub2020` for a detailed description.
+Although the GRM is not utilized in this work, readers are encouraged to refer to {cite:t}`Guiochon2006` and {cite:t}`SchmidtTraub2020` for a detailed description.
 It is worth noting that even more sophisticated models than the GRM exist.
 
 For example, {cite:t}`Leweke2018` consider advanced features such as various particle geometries, polydisperse particle properties (e.g., particle size and adsorption isotherms), and pore accessibility factors.

@@ -22,7 +22,7 @@ from myst_nb import glue
 To simulate a {class}`~CADETProcess.processModel.Process`, a simulator must be configured.
 This simulator converts the {class}`~CADETProcess.processModel.Process` configuration into the API of the corresponding external simulator.
 Currently, only **CADET-Core** is adapted, although other simulators can potentially be implemented.
-**CADET-Core** needs to be installed separately from CADET-Process. This can be done, for example, using [mamba](https://mamba.readthedocs.io/en/latest/).
+**CADET-Core** needs to be installed separately from **CADET-Process**. This can be done, for example, using [mamba](https://mamba.readthedocs.io/en/latest/).
 
 ```bash
 mamba install -c conda-forge cadet
@@ -62,7 +62,7 @@ For instance, {numref}`Figure %s <chromatogram>` was generated using the {meth}`
 ## Cyclic stationarity
 
 Preparative chromatographic separations are often operated in a repetitive fashion.
-In particular, processes that incorporate the recycling of streams, like steady-state-recycling (SSR) or simulated moving bed (SMB), have a distinct startup behavior that takes multiple cycles until a periodic steady state is reached {cite}`SchmidtTraub2020`.
+In particular, processes that incorporate the recycling of streams, like SSR or SMB, have a distinct startup behavior that takes multiple cycles until a periodic steady state is reached {cite}`SchmidtTraub2020`.
 But also in conventional batch chromatography, several cycles are needed to attain stationarity in optimized situations where there is a cycle-to-cycle overlap of the elution profiles of consecutive injections.
 For this reason, the simulator is capable of simulating a process either for a fixed number of cycles or until cyclic stationarity has been reached.
 

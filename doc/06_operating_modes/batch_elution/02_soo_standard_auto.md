@@ -25,7 +25,7 @@ execution:
 %matplotlib inline
 %config InlineBackend.figure_format = 'retina'
 
-print("update 2")
+print("update 3")
 
 import importlib
 from pathlib import Path
@@ -62,7 +62,6 @@ cases = get_cases_by_operating_mode(
     operating_mode,
     index_by_name=True,
     work_dir=study_root,
-    ignore_failed=True,
 )
 ```
 

@@ -62,7 +62,6 @@ cases = get_cases_by_operating_mode(
     operating_mode,
     index_by_name=True,
     work_dir=study_root,
-    ignore_failed=True,
 )
 ```
 
@@ -245,9 +244,10 @@ glue("moo_fig_nodes", fig_nodes, display=False)
 
 Comparison of local productivity optima for component $A$ across different cycle times.
 Each row corresponds to a distinct cycle time scenario:
-- **First row ($\alpha$):** $\Delta t_{\text{cycle}} = 07\text{:}47~\text{min}$,
-- **Second row ($\beta$):** $\Delta t_{\text{cycle}} = 02\text{:}17~\text{min}$,
-- **Third row ($\gamma$):** $\Delta t_{\text{cycle}} = 03\text{:}47~\text{min}$.
+- $\alpha$: $\Delta t_{\text{cycle}} = \text{07:47}~\text{min}$,
+- $\beta$: $\Delta t_{\text{cycle}} = \text{03:47}~\text{min}$,
+- $\gamma$: $\Delta t_{\text{cycle}} = \text{02:17}~\text{min}$.
+
 **Left column:** Chromatograms for all cycles until cyclic stationarity is reached.
 **Right column:** Chromatograms for the last cycle, including fractionation times.
 ```
@@ -261,3 +261,7 @@ Gradient-based algorithms, for instance, would likely fail due to the presence o
 
 Bayesian optimization presents a promising alternative, as it balances exploration of the parameter space with exploitation of known high-performing regions.
 However, at the time of writing, such algorithms have not yet been fully integrated into the **CADET-Process** framework.
+
+**Summary**
+
+@TODO

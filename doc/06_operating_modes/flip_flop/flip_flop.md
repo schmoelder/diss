@@ -20,7 +20,7 @@ execution:
 %matplotlib inline
 %config InlineBackend.figure_format = 'retina'
 
-print("update 0")
+print("update 1")
 
 import importlib
 from pathlib import Path
@@ -57,7 +57,6 @@ cases = get_cases_by_operating_mode(
     operating_mode,
     index_by_name=True,
     work_dir=study_root,
-    ignore_failed=True,
 )
 ```
 
@@ -241,4 +240,4 @@ display(Markdown(moo_table))
 
 ## Summary
 Despite its potential, the flip-flop mode has seen limited adoption—possibly due to concerns about column design, complexity, or the mechanical stability of packing materials under repeated flow reversals.
-Alternatives worth considering include the use of pre-columns (@TODO: ref to serial columns), or gradient elution (@TODO: ref to gradient elution).
+Alternatives worth considering include the use of pre-columns (see {numref}`serial_columns`), or gradient elution processes where one of the buffer components (e.g. a salt) modulates the binding strength.

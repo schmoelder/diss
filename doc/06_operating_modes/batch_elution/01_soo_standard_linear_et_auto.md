@@ -25,7 +25,7 @@ execution:
 %matplotlib inline
 %config InlineBackend.figure_format = 'retina'
 
-print("update 6")
+print("update 7")
 
 import importlib
 from pathlib import Path
@@ -122,7 +122,7 @@ display(Markdown(overview))
 
 The cycle time, required for KPI calculation, is automatically derived from the resulting chromatograms.
 To ensure complete elution, each simulation is initialized with a sufficiently large cycle time.
-The final cycle time is then determined by truncating regions where the chromatogram concentration drops below $1\%$ of the feed concentration, thereby effectively simulating stacked injection with touching-band separation.
+The final cycle time is then determined by truncating regions where the chromatogram concentration drops below $0.1\%$ of the feed concentration, thereby effectively simulating stacked injection with touching-band separation.
 Under optimal conditions, the feed duration is expected to produce two pure component peaks with a cycle time that equals exactly twice the feed duration, as the injection volume is maximized until the eluting peaks just touch at the column outlet.
 
 <!-- @Note: It is currently not possible to use inline glue with LaEeX/Math formatting.  -->

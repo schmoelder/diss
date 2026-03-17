@@ -27,7 +27,7 @@ The copyright holder can demand at any point that the software no longer be used
 Therefore, a proper license should be added to the software as soon as it is shared with others.
 These licenses define the permissions and limitations of using and redistributing the software {cite}`Laurent2004`.
 
-Software licenses can be classified into two categories: (1) proprietary licenses and free and (2) open-source software (FOSS) licenses.
+Software licenses can be classified into two categories: (1) proprietary licenses and (2) free and open-source software (FOSS) licenses.
 In the case of proprietary software, users are typically required to accept an end-user license agreement (EULA) that specifies the terms and conditions for using the software, such as the number of allowed installations.
 In contrast, the copyright holders of FOSS grant users the freedom to use, study, modify, and distribute the software.
 
@@ -62,7 +62,7 @@ The *GNU General Public License (GPL)* is the most popular open-source license.
 It guarantees end-users the freedom to run, study, share, and modify the software.
 Its primary objective is to keep software free, making it a copyleft license.
 Any derivative work created must be published under the same license.
-This license, specifically *GPLv3* is also used for the release of **CADET-Processs** in the hope that other researchers may find it useful for their work.
+This license, specifically *GPLv3* is also used for the release of **CADET-Process** in the hope that other researchers may find it useful for their work.
 
 The *MIT* license is an example of a more lenient license with very few restrictions.
 It requires copyright to be reserved, limits liability, and allows re-licensing under any other license, including proprietary licenses.
@@ -89,4 +89,4 @@ Results cannot be verified by others without access to both the raw data and the
 And without validation, it's difficult to build further on such results reliably.
 
 Because intellectual property is protected through copyright laws and licenses, and there are tools available that remove many of the technical limitations to publishing software, more scientific software should be made open to everyone.
-Sharing knowledge and providing people with access to tools is the most effective ways to promote innovation and collaboration, particularly in a time of global inequality.
+Sharing knowledge and providing people with access to tools is the most effective way to promote innovation and collaboration, particularly in a time of global inequality.

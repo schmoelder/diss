@@ -8,40 +8,40 @@ In particular for such challenging separations, chromatography is a powerful alt
 
 The term *chromatography* was first used by Russian botanist Michail Tswett in the early 1900s to describe a method he developed for separating and analyzing chlorophyll extracts dissolved in organic solvents.
 When passing samples through a column packed with inulin, he observed that the mixture would separate into distinct colored bands which could be collected at the column outlet.
-He postulated that the separation is based on the ability of the dissolved components to physically interact with the immobilized inulin particles causing it to be retained longer on the column {cite}`Tswett1906`.
+He postulated that the separation is based on the ability of the dissolved components to physically interact with the immobilized inulin particles causing them to be retained longer on the column {cite}`Tswett1906`.
 
 However, the nonlinear effects inherent to these interactions, as well as the lack of sophisticated detectors posed difficulties in understanding and controlling the separation process.
 Furthermore, the technique initially suffered from low productivities — the ratio of purified product to the amount of packing material required — which made its application very inefficient and expensive.
-For these reasons, chromatography was not widely adapted until almost three decades later when Tswett's works were rediscovered and established as a preparative separation method for a broad spectrum of chemical compounds {cite}`Guiochon2006`.
+For these reasons, chromatography was not widely adapted until almost three decades later when Tswett's work was rediscovered and established as a preparative separation method for a broad spectrum of chemical compounds {cite}`Guiochon2006`.
 
 Since then, the technique and our understanding thereof have continuously been evolved and extended.
 Already early on, efforts to improve the process performance led to creative solutions in the process design.
 For example, when the method was applied on a large scale to purify rare earth materials required for nuclear research in the 1940s, cascading multi-column operations were considered to improve throughput.
 Furthermore, the buffer composition was taken into account to minimize the use of expensive chemicals while still ensuring a suitable pH for the separation {cite}`Spedding1947`.
-In the 1970s, when the oil industry started using chromatography for hydrocarbons, the bigger production scales led to the development of continuous operating concepts like simulated moving bed (SMB) which could operate at much higher productivities than conventional batch elution processes.
+In the 1960s, when the oil industry started using chromatography for hydrocarbons, the bigger production scales led to the development of continuous operating concepts like simulated moving bed (SMB) which could operate at much higher productivities than conventional batch elution processes {cite}`SchmidtTraub2020`.
 This was accompanied by theoretical modeling and advancements in numerical process simulation which are a prerequisite for better understanding the inherent complex process dynamics and for rigorous process design and optimization.
 Simultaneously, the advancements in material sciences meant that highly selective adsorbents could be manufactured which opened the doors to applications in the biopharmaceutical industry, a trend which continues to this day {cite}`SchmidtTraub2020`.
 
 Today, the technique is widely used, as many different adsorbents can be combined with a broad range of solvents.
-It has applications in performing complex separations in the biopharmaceutical industry, where there are stringent purity requirements and regulatory compliance, including Good Manufacturing Practice (GMP).
-Additionally, the technique is employed in the purification of basic bulk chemicals on a multi-ton scale.
+It is employed in the purification of basic bulk chemicals on a multi-ton scale.
 This includes the preparative separation of petrochemical isomers and sugars, as well as the purification of essential chemicals such as amino acids and pharmaceuticals {cite}`SchmidtTraub2020`.
+In addition, it has many applications in performing complex separations in the biopharmaceutical industry, where there are stringent requirements regarding purity and regulatory compliance.
 
 % Operating Concepts
 Most process-scale chromatographic separations are performed using a single column.
 In conventional elution mode, small amounts of the mixture are injected periodically onto the chromatographic column and the mixture components elute as separated peaks from its outlet.
-However, as previously hinted at, many advanced operating modes exist that can outperform conventional batch chromatography in terms of productivity, solvent consumption, and recovery yield.
+However, as previously mentioned, many advanced operating modes exist that can outperform conventional batch chromatography in terms of productivity, solvent consumption, and recovery yield.
 
 For example, operating concepts like closed-loop recycling {cite}`Bombaugh1969,Heuer1995` or steady-state recycling (SSR) {cite}`Bailly1982,Sainio2009,Kaspereit2011` incorporate different strategies for the recycling of unresolved fractions from the column outlet back to the inlet with the aim of improving yield, solvent consumption and/or productivity {cite}`Sainio2009`.
 If purity requirements are low, bypass streams can be advantageous {cite}`Siitonen2012`.
-Moreover, the use of multiple columns gives rise to various concepts ranging from clever series or parallel arrangements of columns {cite}`Ziomek2006,GarciaPalacios2009`, over pseudo-continuous processes, up to the many variants of the powerful continuous simulated moving bed (SMB) concept.
+Moreover, the use of multiple columns gives rise to various concepts ranging from serial or parallel arrangements of columns {cite}`Ziomek2006,GarciaPalacios2009`, over pseudo-continuous processes, up to the many variants of the powerful continuous SMB concept.
 More details on such advanced chromatographic operating modes are given in {numref}`chapter %s <chromtographic_principle>` and in {cite}`SchmidtTraub2020,Nicoud2015,Rodrigues2015`.
 
 % Challenges in Process Design
 Depending on the separation problem at hand, different operating concepts are better suited than others and the process selection usually involves a trade-off between multiple criteria.
 Simple systems are less expensive and more adaptable than complex multi-column systems which involve high capital investments.
 On the other hand, bigger, more complicated systems are often more robust in their operation and can lead to lower operating costs compared to single column processes.
-Another factor to consider is the distinctive startup behaviour of some operating concepts (see {numref}`chapter %s <stationarity>`) making them only viable for large separation campaigns where these losses can be absorbed {cite}`Rajendran2013`.
+Another factor to consider is the distinctive startup behavior of some operating concepts (see {numref}`chapter %s <stationarity>`) making them only viable for large separation campaigns where these losses can be absorbed {cite}`Rajendran2013`.
 This is to show that the selection of an appropriate operating mode is an important step in the design of the process.
 
 % Model-based design
@@ -50,15 +50,14 @@ While there are still many physico-chemical phenomena which are challenging to d
 Nowadays many wet lab experiments are only performed to calibrate these models {cite}`Rajendran2013`.
 
 The model-based design and optimization of chromatographic separations is, however, not trivial.
-This is due to the periodic operation and the distinct non-linear dynamics of chromatographic processes, as well as the many degrees of freedom involved such as column dimensions, valve switching times or operating conditions.
-For some of the operating modes, there exist simple shortcut methods that deliver rough initial design estimates (see e.g. {cite}`Siitonen2011` for batch chromatography, {cite}`Sainio2009,Kaspereit2011` for SSR systems, {cite}`Mazzotti2006` for SMB processes, or {cite}`Siitonen2015` for a common treatment).
-But these models often include many simplifications.
-For example, they might only work for certain isotherms, or only cover single column operation.
-Here, it should be considered that multiple chromatographic interactions mechanisms can be exploited, like adsorption, ionic interactions, binding to specific ligands, or size exclusion, to name only a few.
-Depending on the given system, further physical phenomena like axial dispersion, and film or pore diffusion may have to be accounted for.
+This is due to the periodic operation and the distinct non-linear dynamics of chromatographic processes, as well as the many degrees of freedom involved such as column dimensions, valve switching times, or operating conditions.
+For some of the operating modes, there exist simple shortcut methods that deliver rough initial design estimates (see e.g. {cite}`Siitonen2011` for batch chromatography, {cite}`Sainio2009,Kaspereit2011` for SSR systems, {cite}`Mazzotti2006` for SMB processes, or {cite}`Siitonen2015` for a common treatment), but these models often include many simplifications.
+For example, they might only work for certain binding models, neglect mass-transfer, or only cover single column operation.
+However, in many practical cases, a wide range of binding interaction mechanisms are relevant, including adsorption, ionic interactions, binding to specific ligands, or size exclusion.
+Furthermore, physical phenomena like axial dispersion, film diffusion, or pore diffusion often play a significant role and must be accounted for.
 As a result, rigorous process development often necessitates the utilization of more detailed models and advanced optimization schemes.
 Consequently, there exists a variety of different models in chromatography (see {numref}`chapter %s<model_formulation>`) as well as different numerical solvers (see {numref}`chapter %s<model_solution>`).
-Additionally, a variety of optimization approaches has been proposed for the design of certain chromatographic processes.
+A variety of optimization approaches has also been proposed for the design of certain chromatographic processes.
 An overview is given in sections {numref}`%s <design_formulation>` and {numref}`%s <design_solution>` and in {cite}`Kawajiri2020`.
 
 % Tool requirements
@@ -83,7 +82,7 @@ However, the software is primarily a numerical solver for the partial differenti
 This makes the definition of advanced operating concepts not only laborious but also limits the direct use of *CADET* for process optimization without another layer of abstraction for the definition of dynamic processes.
 
 % Approach
-In this context, a modular framework for the efficient modeling, simulation and optimization of advanced chromatographic processes was developed for this work.
+To address this, a modular framework for the efficient modeling, simulation and optimization of advanced chromatographic processes was developed in this work.
 The framework decouples the different tasks mentioned above in order to allow for a simple and independent manipulation and exchange of operating concept, modeling depth of the chromatographic column(s), solution of the model equations, performance evaluation, and optimization algorithms.
 These tasks are performed in separate modules which can be interchanged with other custom or third-party modules.
 
@@ -91,19 +90,23 @@ The platform is implemented in an object-oriented manner in the programming lang
 The implementation includes an interface to *CADET* as the main solver of the framework but it is generally possible to also use other solvers.
 Due to this powerful combination, the framework developed for this work was named *CADET-Process*.
 The software is open source and distributed under GPL version 3, and thus freely available to academia and industry.
-The code can be obtained from <https://github.com/fau-advanced-separations/CADET-Process>.
+The code can be obtained from [https://github.com/fau-advanced-separations/CADET-Process](https://github.com/fau-advanced-separations/CADET-Process).
 
-At this point, it is important to note that not only chromatography has been developed over the last decades, but also best practices for sustainable scientific software development have been established.
+Best practices for sustainable scientific software development have been applied throughout this work to ensure reliability and reproducibility of the code.
 Without the application of these modern standards of software design, reliability and reproducibility of the code cannot be ensured which is particularly important in a scientific context.
 Since process engineers are usually not trained in this field, a chapter of this work is dedicated to the introduction of important techniques such as version control, unit testing, and software documentation (see {numref}`chapter %s <methods_software_design>`).
 
 % Demonstrations
-To demonstrate the flexibility of the framework, several case studies are performed.
+To demonstrate the flexibility of the framework, several case studies are presented in this work.
+First, a model of a typical chromatographic laboratory system is developed, focusing on a protein purification step.
+The objectives here are to:
+- showcase parameter estimation methods for different problems,
+- validate **CADET-Process** using experimental data,
+- incorporate system periphery, including the influence of valves and tubing, which are often neglected in modeling,
+- demonstrate a load–wash–elute process for lysozyme using the steric mass-action binding model with a salt gradient, representing a common yet complex chromatographic procedure.
 
-First, a batch elution process is optimized, demonstrating process modeling and evaluation through fractionation to obtain key performance indicators.
-Single- and multi-objective optimization are applied to refine switch and cycle times.
-Next, a load-wash-elute process is examined, incorporating gradient elution.
-Parameter estimation is performed by comparing simulations with experimental data, followed by gradient optimization to enhance separation performance.
-Then, various recycling techniques are explored, analyzing cyclic stationarity and optimizing switching times to maximize yield and minimize solvent consumption.
-Finally, a simulated moving bed (SMB) process is studied, focusing on multi-column operation and steady-state performance.
-Optimization is applied to refine switching times, flow rates, and recycle ratios.
+Next, the optimization of advanced operating concepts is investigated through a set of synthetic case studies.
+These studies assume known model parameters and focus on preparative separations of binary and ternary mixtures.
+Operating modes of increasing complexity are examined, including batch elution, recycling strategies, flip-flop chromatography, and serial column configurations.
+For validation, process simulations are compared with equilibrium theory solutions.
+Single- and multi-objective optimization are used to optimize feed durations, valve switching and cycle times, and column geometry, aiming to maximize productivity and yield while minimizing solvent consumption.

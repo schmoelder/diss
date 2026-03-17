@@ -28,7 +28,7 @@ This chapter provides an overview of selected evaluation methods available in **
 To effectively quantify the performance of a chromatographic process, it is crucial to calculate KPIs such as purity or recovery yield from the chromatograms.
 As highlighted in {numref}`chapter %s <kpi>`, the key information for assessing the separation performance of a chromatographic process is derived from the amounts of target components in the collected product fractions.
 For this purpose, the {mod}`~CADETProcess.fractionation` module provides the {class}`~CADETProcess.fractionation.Fractionator` class.
-Moreover, a method for the automatic determination (or optimization? @TODO) of fractionation times is included in the software.
+Moreover, a method for the automatic determination of fractionation times is included in the software.
 
 ### Fractionator
 

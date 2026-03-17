@@ -14,13 +14,18 @@ execution:
   timeout: 1200
 ---
 
+% Create custom role for inserting raw latex
+```{role} raw-latex(raw)
+:format: latex
+```
+
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
 %matplotlib inline
 %config InlineBackend.figure_format = 'retina'
 
-print("update 2")
+print("update 5")
 
 import importlib
 from pathlib import Path
@@ -58,7 +63,6 @@ cases = get_cases_by_operating_mode(
     operating_mode,
     index_by_name=True,
     work_dir=study_root,
-    ignore_failed=True,
 )
 ```
 
@@ -67,7 +71,7 @@ cases = get_cases_by_operating_mode(
 
 In situations where one of the components exhibits very strong interaction with the stationary phase, the use of a short pre-column can be advantageous.
 By adding such a column, the strongly adsorbing component can be retained before entering the main column, thus avoiding excessively long elution times and reducing the risk of irreversible binding.
-As soon as breakthrough of the bound impurity is imminent, the pre-column can be regenerated, replaced, or repacked {cite}`SchmidtTraub2020`.
+As soon as breakthrough of the bound impurity is imminent, the pre-column can be regenerated, replaced, or repacked {cite}`SchmidtTraub2022`.
 Alternatively, the output of the pre-column can be dynamically directed either to waste or to the second column, depending on the component currently eluting.
 
 (serial_columns_process)=
@@ -189,8 +193,7 @@ glue("moo_fig_obj", moo_fig_obj, display=False)
 glue("moo_fig_obj_caption", moo_fig_obj_caption)
 
 glue("moo_fig_chrom", moo_fig_chrom, display=False)
-moo_fig_chrom_caption_1 = f"{moo_fig_chrom_caption[0:-1]} at outlet of column 1."
-glue("moo_fig_chrom_caption_1", moo_fig_chrom_caption_1)
+glue("moo_fig_chrom_caption", moo_fig_chrom_caption)
 ```
 
 ```{code-cell} ipython3
@@ -213,6 +216,11 @@ display(Markdown(overview))
 
 {numref}`serial-columns_ternary_auto-cycle_moo-pc_kpi` summarizes results.
 
+```{raw} latex
+\pagebreak
+\begin{landscape}
+```
+
 ```{code-cell} ipython3
 ---
 mystnb:
@@ -222,7 +230,12 @@ mystnb:
 display(Markdown(moo_table))
 ```
 
-{numref}`serial-columns_ternary_auto-cycle_moo-pc_fig_chrom` shows chromatogram of best value.
+```{raw} latex
+\end{landscape}
+\pagebreak
+```
+
+{numref}`serial-columns_ternary_auto-cycle_moo-pc_fig_chrom` shows chromatograms of best value.
 
 ```{glue:figure} moo_fig_chrom
 :name: serial-columns_ternary_auto-cycle_moo-pc_fig_chrom
