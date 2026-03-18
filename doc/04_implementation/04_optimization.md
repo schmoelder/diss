@@ -315,17 +315,10 @@ In such scenarios, users can input their own starting points, building on prior 
 
 import matplotlib.pyplot as plt
 
-x = optimization_problem.create_initial_values(n_samples=1000)
+x0 = optimization_problem.create_initial_values(n_samples=1000)
+pop = optimization_problem.create_population(x0)
 
-fig, ax = plt.subplots()
-ax.scatter(x[:, 0], x[:, 1])
-ax.set_xlabel(r'$x_0$')
-ax.set_ylabel(r'$x_1$')
-fig.tight_layout()
-
-# @TODO: Use plot_pairwise
-
-glue("uniform_samples", fig, display=False)
+fig, _ = pop.plot_pairwise(autoscale=True)
 ```
 
 ```{glue:figure} uniform_samples
@@ -359,7 +352,7 @@ optimizer = U_NSGA3()
 
 optimization_results = optimizer.optimize(optimization_problem, save_results=False)
 
-fig, axs = optimization_results.plot_objectives()
+fig, axs = optimization_results.plot_objectives(autoscale=False)
 glue("objectives", fig, display=False)
 ```
 

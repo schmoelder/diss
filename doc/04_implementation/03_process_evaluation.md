@@ -55,7 +55,110 @@ Due to the diverse shapes and forms that concentration profiles can exhibit, a t
 To address this need, the {mod}`~CADETProcess.fractionation` module provides a method to set up an {class}`~CADETProcess.optimization.OptimizationProblem`, which automatically identifies optimal cut times.
 Objective and constraint functions consider the fractions pooled from all chromatograms of the system.
 For every component, different purity requirements can be specified, and different objective functions may be applied.
-As initial values for the optimization, areas of the chromatogram with sufficient local purity are identified, i.e., intervals where $PU_i(t)=c_i(t)/\sum_j c_j(t)\geq PU_{\text{min},i}$ {cite}`Shan2004`.
+As initial values for the optimization, areas of the chromatogram with sufficient local purity are identified, i.e., intervals where $PU_i(t)=c_i(t)/\sum_j c_j(t)\geq PU_{\text{min},i}$ {cite}`Shan2004` (see also {numref}`fig_purity`).
+
+```{code-cell} ipython3
+:tags: [remove-cell]
+
+import importlib
+from pathlib import Path
+import sys
+
+from git import Repo
+from myst_nb import glue
+
+# Import the study module
+diss_root = Path(Repo(search_parent_directories=True).working_dir)
+study_root = diss_root / "studies" / "operating_modes"
+sys.path.insert(0, str(study_root))
+
+# Setup cases for operating mode
+from operating_modes.main import setup_process
+
+operating_mode = "batch-elution"
+case_module = importlib.import_module(
+    f"operating_modes.{operating_mode.lower().replace('-', '_')}"
+)
+
+process_purity = setup_process(
+    case_module=case_module,
+    separation_problem="standard",
+    feed_duration=60,
+    cycle_time=600,
+)
+
+from CADETProcess.simulator import Cadet
+process_simulator = Cadet()
+
+simulation_results = process_simulator.simulate(process_purity)
+
+from CADETProcess.fractionation import Fractionator
+from CADETProcess import plotting
+
+fig_purity, axs = plotting.setup_figure(
+    nrows=2,
+    scale_with_subplots=True,
+    sharex=True,
+)
+
+frac = Fractionator(simulation_results)
+frac.initial_values(0.95)
+chrom = frac.chromatograms[0]
+
+chrom.plot(ax=axs[0])
+chrom.plot_purity(ax=axs[1])
+
+start = frac.time[0]
+end = frac.time[-1]
+
+y_max = 0.95*100
+
+ax = axs[1]
+frac._fill_fraction_overlay(
+    ax,
+    chrom,
+    y_max,
+    x_axis_in_minutes=True,
+    start=frac.time[0],
+    end=frac.time[-1]
+)
+
+# Purity required
+offset = 24
+ax.hlines(y_max, start/60, end/60, "k")
+plotting.annotate(ax, r"$Pur_{\text{min}}$", xytext=(0, offset), xy=(0, 95))
+
+# A
+t = frac.event_times[0]/60
+plotting.annotate(
+    ax, r"$t_{A,\text{start}}$", xytext=(-1.5*offset, 1*offset), xy=(t, 95)
+)
+t = frac.event_times[1]/60
+plotting.annotate(
+    ax, r"$t_{A,\text{end}}$", xytext=(-offset, 1*offset), xy=(t, 95)
+)
+# A
+t = frac.event_times[2]/60
+plotting.annotate(
+    ax, r"$t_{B,\text{start}}$", xytext=(0, 1*offset), xy=(t, 95)
+)
+t = frac.event_times[3]/60
+plotting.annotate(
+    ax, r"$t_{B,\text{end}}$", xytext=(0, 1*offset), xy=(t, 95)
+)
+
+fig_purity.tight_layout()
+glue("fig_purity", fig_purity, display=False)
+```
+
+```{glue:figure} fig_purity
+:name: fig_purity
+:figwidth: 300px
+
+**Top:** Chromatogram of binary separation.
+**Bottom:** Local purity profile of the chromatogram with initial fraction start and end times indicated; color regions highlight intervals where local purity exceeds the minimum required threshold.
+```
+
 These initial intervals are then expanded by the optimizer towards regions of lower purity while meeting the cumulative purity constraints.
 By default, the mass of the components is maximized under purity constraints, although alternative objective functions are equally viable.
 Currently, {class}`~CADETProcess.optimization.COBYLA` {cite}`Powell1994` from the *SciPy* library {cite}`SciPyContributors2020` is used as the optimizer, but other optimizers or heuristic algorithms may also be employed.
@@ -63,7 +166,6 @@ Currently, {class}`~CADETProcess.optimization.COBYLA` {cite}`Powell1994` from th
 To the best of the author's knowledge, this flexible automatic approach for determining fractionation times is a novel contribution that has not been previously discussed in literature.
 This method addresses an important gap in the toolchain necessary for the analysis and optimization of advanced chromatographic processes.
 
-@TODO: Add figure here
 
 (comparison)=
 ## Comparison of simulation results with reference data

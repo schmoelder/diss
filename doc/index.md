@@ -77,44 +77,57 @@ In a time of need, they offered me scientific refuge and a desk free from distra
 Parts of this thesis were and are being published as in peer-reviewed journals, at conferences, in supervised students' theses and in the form of open source software packages.
 Any thought, methodology, result, conclusion and direct or indirect contribution to this work is considered as properly cited by the following listing:
 
-**Articles:**
-- Dienstbier et al.
-- Schmölder et al.
-- Breuer et al., (DG)
-- Leweke et al., (JOSS)
-- @TODO: what else?
+```{bibliography} ./references.bib
+:list: bullet
+:filter: false
+
+Dienstbier2020
+Schmoelder2020
+Breuer2023
+Leweke2025
+```
 
 **Conference and symposium talks:**
 - SPICA Wien
 - SPICA Darmstadt
 - ProcessNet Köln
-- Prep? (not really part of this thesis)
+- Prep? (@TODO: not really part of this thesis)
 
 **Conference posters:**
-- ProcessNet Aachen: Schmölder et al.
+- ProcessNet 2020 (online): Schmölder et al.
+- ProcessNet 202? Aachen: Schmölder et al.
+- Prep? (@TODO: not really part of this thesis)
 
 **Code repositories and software packages**:
-- CADET-Process
-- CADET-Core
-- CADET-RDM
+- **CADET-Process:** [https://github.com/fau-advanced-separations/CADET-Process](https://github.com/fau-advanced-separations/CADET-Process)
+- **CADET-Core:** [https://github.com/cadet/CADET-Core](https://github.com/cadet/CADET-Core)
+- **CADET-Python:** [https://github.com/cadet/CADET-Python](https://github.com/cadet/CADET-Python)
+- **CADET-RDM:** [https://github.com/cadet/CADET-RDM](https://github.com/cadet/CADET-RDM)
 
 **Datasets**:
-- Characterization @TODO
-- Batch Elution @TODO
+- This thesis [https://github.com/schmoelder/diss](https://github.com/schmoelder/diss)
+- Model of a typical chromatographic laboratory system [https://github.com/schmoelder/diss_parameter_estimation](https://github.com/schmoelder/diss_parameter_estimation)
+- Optimization of advanced operating concepts: [https://github.com/schmoelder/diss_operating_modes](https://github.com/schmoelder/diss_operating_modes)
 
 **Supervised and co-supervised student projects**:
-- Johanna Ullrich
-- Fabian Popp
-- Stefan Wolf
-- Felix Derleth
-- Simon Cortelezzi
-- Carola Schlumberger
-- Eliane Tauber
-- Jana Dienstbier
-- Jan Breuer
-- Lukas Thiel
-- Daniel Klaus
-- Florian Hülsmann
+
+```{bibliography} ./references.bib
+:list: bullet
+:filter: false
+
+Ullrich2017
+Wolf2017
+Popp2017
+Derleth2017
+Schlumberger2018
+Cortelezzi2018
+Dienstbier2019
+Tauber2019
+Breuer2022
+Thiel2023
+Klauß2024
+Hülsmann2025
+```
 
 {raw-latex}`\clearpage`
 
