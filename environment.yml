@@ -3,7 +3,7 @@ channels:
   - conda-forge
 dependencies:
   - python=3.14
-  - cadet>=5.1.0
+  - cadet>=5.1.0,<6.0
   - jupyter-book<2.0
   - jupyter_contrib_nbextensions
   - jupytext
@@ -16,4 +16,4 @@ dependencies:
   - pip
   - pip:
       - cadet-rdm>=1.0.0
-      - cadet-process>=0.11.1
+      - cadet-process>=0.11.1,<1.0
