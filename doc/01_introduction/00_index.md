@@ -75,7 +75,7 @@ Several commercial programs are available which provide parts of the aforementio
 Most of these programs are aimed at experimentalists and allow users to carry out simulations of simple processes without requiring programming expertise.
 In contrast, there exist many highly application-specific programs in academia which were developed to examine individual research questions.
 However, neither provide the flexibility and customizability required for the *ab initio* development of novel process concepts.
-A notable exception here is *CADET* by the Forschungszentrum Jülich {cite}`Leweke2018`.
+A notable exception here is **CADET** by the Forschungszentrum Jülich {cite}`Leweke2018,Leweke2025`.
 It offers a diverse family of different binding, reaction, and unit operation models which can be used to simulate a large range of separation processes.
 Moreover, multiple unit operations can be connected in a network which generally also allows modeling complicated process configurations.
 However, the software is primarily a numerical solver for the partial differential equations.
