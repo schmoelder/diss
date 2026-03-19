@@ -45,16 +45,16 @@ Preparative chromatography, on the other hand, is employed for the purification 
 This work primarily focuses on studying preparative liquid chromatography.
 Specifically, it aims to provide a comprehensive framework for modeling and optimizing the performance of different operating modes in which preparative liquid chromatography is performed.
 
-To introduce some fundamental concepts that are relevant for all chromatographic processes, consider a simple batch elution process.
-In a batch elution process, small quantities of a mixture are injected onto a chromatographic column.
+To introduce some fundamental concepts that are relevant for all chromatographic processes, consider a simple batch-elution process.
+In a batch-elution process, small quantities of a mixture are injected onto a chromatographic column.
 Following the injection, an eluent is pumped through the column, facilitating the separation of components based on the retention mechanisms previously discussed.
 As a result, these components elute from the column's outlet as distinct peaks.
-{numref}`Figure %s <batch_elution_flow_sheet_intro>` shows a typical flow sheet for a batch elution process.
+{numref}`Figure %s <batch_elution_flow_sheet_intro>` shows a typical flow sheet for a batch-elution process.
 
 ```{figure} ./figures/flow_sheet.png
 :name: batch_elution_flow_sheet_intro
 
-Flow sheet for batch elution process.
+Flow sheet for batch-elution process.
 The flow sheet is comprised of feed and eluent reservoirs, each with a pump capable of delivering the required flow rate against the pressure drop of the packed column, a valve for selecting whether feed or eluent is introduced into the column, the chromatographic column itself, and an outlet.
 ```
 

@@ -63,7 +63,7 @@ cases = get_cases_by_operating_mode(
 ```
 
 (batch_elution_study)=
-# Batch Elution Chromatography
+# Batch-elution chromatography
 
 A basic chromatographic batch-elution setup comprises `feed` and `eluent` reservoirs, a pump to deliver the required flow rate against the column's pressure drop, a valve to switch between feed and eluent, the column itself, and one or more valves for fraction collection.
 In CADET-Process, this setup is modeled by connecting two {class}`Inlets <CADETProcess.processModel.Inlet>` and a column unit operation (e.g., {class}`~CADETProcess.processModel.LumpedRateModelWithPores`).
@@ -74,7 +74,7 @@ The flow sheet is demonstrated in {numref}`batch_elution_flow_sheet`.
 ```{figure} ./figures/flow_sheet.png
 :name: batch_elution_flow_sheet
 
-Flow sheet for the batch elution process.
+Flow sheet for the batch-elution process.
 ```
 
 To model the injection, {class}`Events <CADETProcess.dynamicEvents.event.Event>` are introduced that modify the {attr}`~CADETProcess.processModel.Inlet.flow_rate` attribute of the {class}`~CADETProcess.processModel.Inlet` unit operations.
@@ -84,7 +84,7 @@ The events and durations are depicted in {numref}`batch_elution_events`.
 ```{figure} ./figures/event_dependencies.png
 :name: batch_elution_events
 
-Events of batch elution process with event dependencies.
+Events of batch-elution process with event dependencies.
 ```
 
 {numref}`fig_batch_elution` shows the chromatogram of a batch-elution process with incomplete separation, simulated using the parameters listed in {numref}`Table %s <model_parameters>` (standard binary Langmuir binding model).
@@ -145,7 +145,7 @@ glue("fig_batch_elution_validation", fig_batch_elution_validation, display=False
 :name: fig_batch_elution_validation
 :scale: 100%
 
-Comparison of a batch elution simulation chromatogram (solid line) with an analytical equilibrium theory solution (dashed line), assuming a linear binding model and neglecting axial dispersion and other transport-limiting effects.
+Comparison of a batch-elution simulation chromatogram (solid line) with an analytical equilibrium theory solution (dashed line), assuming a linear binding model and neglecting axial dispersion and other transport-limiting effects.
 ```
 
 ---

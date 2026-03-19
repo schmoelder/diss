@@ -18,7 +18,7 @@ Since then, the technique and our understanding thereof have continuously been e
 Already early on, efforts to improve the process performance led to creative solutions in the process design.
 For example, when the method was applied on a large scale to purify rare earth materials required for nuclear research in the 1940s, cascading multi-column operations were considered to improve throughput.
 Furthermore, the buffer composition was taken into account to minimize the use of expensive chemicals while still ensuring a suitable pH for the separation {cite}`Spedding1947`.
-In the 1960s, when the oil industry started using chromatography for hydrocarbons, the bigger production scales led to the development of continuous operating concepts like simulated moving bed (SMB) which could operate at much higher productivities than conventional batch elution processes {cite}`SchmidtTraub2020`.
+In the 1960s, when the oil industry started using chromatography for hydrocarbons, the bigger production scales led to the development of continuous operating concepts like simulated moving bed (SMB) which could operate at much higher productivities than conventional batch-elution processes {cite}`SchmidtTraub2020`.
 This was accompanied by theoretical modeling and advancements in numerical process simulation which are a prerequisite for better understanding the inherent complex process dynamics and for rigorous process design and optimization.
 Simultaneously, the advancements in material sciences meant that highly selective adsorbents could be manufactured which opened the doors to applications in the biopharmaceutical industry, a trend which continues to this day {cite}`SchmidtTraub2020`.
 
@@ -88,8 +88,8 @@ This makes it difficult to compare different operating modes or exchange individ
 
 % Approach
 To address these limitations, a modular framework for the efficient modeling, simulation and optimization of advanced chromatographic processes was developed for this work.
-The framework systematically separates process configuration, simulation, evaluation, and optimization into interchangeable components.
-This design enables independent development and exchange of physico-chemical models, numerical solvers, process configurations, and optimization algorithms.
+The framework implements a modular architecture where process configuration, simulation, evaluation, and optimization exist as independent components that can be developed, tested, and exchanged separately.
+This design enables flexible combination of physico-chemical models, numerical solvers, process configurations, and optimization algorithms.
 
 The software is implemented in an object-oriented paradigm in the programming language **Python**.
 It provides an interface to **CADET-Core**, which serves as the primary solver within the framework; however, the architecture is sufficiently flexible to accommodate alternative solvers.
@@ -112,6 +112,6 @@ The objectives here are to:
 
 Next, the optimization of advanced operating concepts is investigated through a set of synthetic case studies.
 These studies assume known model parameters and focus on preparative separations of binary and ternary mixtures.
-Operating modes of increasing complexity are examined, including batch elution, recycling strategies, flip-flop chromatography, and serial column configurations.
+Operating modes of increasing complexity are examined, including batch-elution, recycling strategies, flip-flop chromatography, and serial column configurations.
 For validation, process simulations are compared with equilibrium theory solutions.
 Single- and multi-objective optimization are used to optimize feed durations, valve switching and cycle times, and column geometry, aiming to maximize productivity and yield while minimizing solvent consumption.

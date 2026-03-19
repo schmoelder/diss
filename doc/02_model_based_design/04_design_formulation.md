@@ -19,7 +19,7 @@ The accurate determination of model parameters is essential for developing preci
 For an example characterization procedure of a typical chromatographic laboratory system, refer to {numref}`characterization`.
 
 *Design parameters* define the overall setup and operational configuration of a chromatographic plant, which remain fixed during operation.
-These parameters include decisions about operating modes (e.g., batch elution or recycling techniques), column geometry (length and diameter), adsorbent type, and, for SMB systems, zone configurations such as the number of columns per zone.
+These parameters include decisions about operating modes (e.g., batch-elution or recycling techniques), column geometry (length and diameter), adsorbent type, and, for SMB systems, zone configurations such as the number of columns per zone.
 The selection of the operating mode itself is an important design parameter, which can be systematically addressed using superstructure optimization with discrete decision variables to evaluate various configurations.
 While selecting the most suitable operating mode is a critical aspect of chromatographic process design, this work focuses primarily on optimizing processes for a given configuration, rather than identifying the optimal operating mode.
 
@@ -43,7 +43,7 @@ KPIs are frequently employed in process optimization studies to identify areas f
 A key measure of separation performance in chromatography is the amount of target components collected in the product fractions $j$ (see eq. {eq}`mass`).
 While a chromatogram is traditionally defined at the outlet of a single column, here the term is used more generally to describe concentration profiles $c_{i,k}(t)$ at the outlets $k$ of a process.
 The start time, $t_{\text{start}, j}$, and end time, $t_{\text{end}, j}$, for each product fraction $j$ must be selected to ensure that product purity constraints are satisfied.
-{numref}`Figure %s <chromatogram_fractionation>` provides an example of a chromatogram from a batch elution process, illustrating how suitable fractions are selected.
+{numref}`Figure %s <chromatogram_fractionation>` provides an example of a chromatogram from a batch-elution process, illustrating how suitable fractions are selected.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
