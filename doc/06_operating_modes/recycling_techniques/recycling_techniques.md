@@ -6,4 +6,5 @@ To improve difficult separations, it may be necessary to increase the column's s
 However, using a longer column or smaller particles can result in an excessively high pressure drop.
 To overcome this issue, several recycling techniques exist to effectively improve the separation.
 By connecting the column's outlet to its inlet, the separation can pass through the column multiple times, without the need for a longer column or smaller particles, and hence, with a manageable pressure drop.
-In the following different recycling concepts are introduced.
+By selectively returning unresolved fractions to the column, these methods can improve separation of challenging separation problems and reduce overall solvent consumption.
+This chapter examines two recycling approaches: closed-loop recycling (CLR) and mixed-recycle steady-state recycling (MR-SSR).

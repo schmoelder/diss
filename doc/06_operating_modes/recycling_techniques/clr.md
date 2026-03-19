@@ -73,17 +73,18 @@ The general structure of a CLR is shown in {numref}`clr_flow_sheet`.
 Flow sheet for closed-loop recycling process.
 ```
 
-The {attr}`~CADETProcess.processModel.FlowSheet.output_states` attribute of the flow sheet, which controls the flow of unit operations downstream of the column, must be modified to realize the recycling.
-
 ```{figure} ./figures/clr_events.png
 :name: clr_events
 
 Events for closed-loop recycling process.
 ```
 
-To minimize the number of explicitly defined event times, event dependencies are introduced:
-Recycling starts immediately after injection ends, and elution begins only after recycling concludes.
-{numref}`fig_clr_demo` depict the concentration profiles of a closed-loop recycling (CLR) process at the column outlet and system outlet, respectively.
+The {attr}`~CADETProcess.processModel.FlowSheet.output_states` attribute of the flow sheet, which controls the flow of unit operations downstream of the column, must be modified to realize the recycling.
+To reduce the number of explicitly defined event times, event dependencies are introduced:
+Recycling starts immediately after injection ends, and elution begins once recycling concludes.
+For this demonstration, a difficult separation problem in the linear range is considered (see {numref}`model_parameters`).
+The components have similar binding affinities, creating a significant elution overlap that makes separation challenging for conventional methods.
+{numref}`fig_clr_demo` depicts the concentration profiles of a closed-loop recycling (CLR) process at the column outlet and system outlet, respectively.
 The profiles showcase how the recycled material does not fully exit the system before the end of the recycling phase.
 
 ```{code-cell} ipython3
@@ -148,10 +149,11 @@ Comparison of the CLR simulation chromatogram (solid line) with the analytical e
 (clr_optimization)=
 ## Process optimization
 
-To optimize the CLR process, in addition to the feed duration, the time at which the recycling is switched off, i.e., the time at which elution starts, needs to be optimized.
-A linear constraint is introduced that ensures that recycling can only end after the end of the injection.
-The ideal cycle time is again automatically determined *post hoc* by analyzing the concentration profiles.
-The problem is summarized in {numref}`clr_difficult_linear_auto-cycle_moo-pc_overview`.
+The CLR process requires optimization of both feed duration and the recycling end time.
+This optimization balances sufficient recycling periods for component separation against reasonable cycle times to maintain productivity.
+While longer recycling improves resolution of nearly-identical components, extended cycle times reduce overall productivity.
+A linear constraint is implemented to ensure recycling concludes only after injection completion.
+The optimization problem is summarized in {numref}`clr_difficult_linear_auto-cycle_moo-pc_overview`.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -188,20 +190,17 @@ mystnb:
 display(Markdown(overview))
 ```
 
-{numref}`clr_difficult_linear_auto-cycle_moo-pc_fig_obj` depicts the evaluated objective function values as a function of both feed duration and the recycle-off time.
-Generally, clear optimia could be found for all KPIs.
-The optimal variable values and KPIs for all Pareto edge points are summarized in {numref}`clr_difficult_linear_auto-cycle_moo-pc_kpi`, with the corresponding chromatograms provided in {numref}`clr_difficult_linear_auto-cycle_moo-pc_fig_chrom`.
-The extermely high values for the eluent consumption can be explained by the feed duration
+{numref}`clr_difficult_linear_auto-cycle_moo-pc_fig_obj` depicts the evaluated objective function values as a function of both feed duration and the recycling end time.
+Clear optima are found for all key performance indicators.
+The optimal variable values and corresponding KPIs for all Pareto edge points are summarized in {numref}`clr_difficult_linear_auto-cycle_moo-pc_kpi`, with the associated chromatograms provided in {numref}`clr_difficult_linear_auto-cycle_moo-pc_fig_chrom`.
 
-@TODO: Check if calculation of cycle time is correct: Eluent must flow *at least* for the amount of (full width - feed_duration), could this be handled via linear constraints or do we need to change the post-processing?
-
-To better understand, the concentration profiles at the column outlet of (a) and (c) are depiced in {numref}`clr_moo-pc_fig_outlet`.
-For process (a), the components passed 10 times fully over the column.
-After the tenth cycle, the pure fraction of component $B$ was already "shaved off" while the rest of the mixture would pass one final time over the column.
-For process (c), the components passed 16 "and a half" times over the column.
-
-@TODO: Discuss stacked injection
-Note, because of the internal closed-loop, stacking multiple injections is less feasible / relevant.
+To further analyze the results, {numref}`clr_moo-pc_fig_outlet` presents the concentration profiles at the column outlet for processes (a) and (c).
+In process (a), components complete 10 full column cycles before the pure B fraction is collected.
+The remaining mixture then undergoes one final pass.
+Process (c) shows 16.5 column cycles, demonstrating the optimizer's use of extended recycling for challenging separations.
+This recycling process is also limited by dispersion effects.
+As shown in the profiles, the front of component $A$ begins to overlap with the tail of component $B$ from the previous cycle.
+Additional recycling beyond this point would not improve separation but would cause peak smearing, effectively remixing the components.
 
 ```{glue:figure} moo_fig_obj
 :name: clr_difficult_linear_auto-cycle_moo-pc_fig_obj
@@ -257,11 +256,11 @@ Concentration profiles at column outlets for Pareto edge points (a) and (c)
 
 **Summary**
 
-@TODO: Success!
-
-However, the CLR process has the disadvantage of increased dispersion due to multiple passes through the pump and additional piping.
-To improve overall process performance, it is often combined with peak shaving, where the initial and final regions of the chromatogram with sufficient purity are "shaved off" during each cycle.
-This approach reduces the number of recycling cycles required, as a decreasing amount of components needs to be pumped across the column.
-However, peak shaving is not robust in practice, as it is highly sensitive to disturbances.
-Additionally, the complexity introduced by multiple optimization variables makes implementation challenging.
-While combining the process with model predictive control might improve robustness, this approach is not considered in this work.
+While this case study could successfully demonstrate that how CLR processes are capable of purifying challenging separation problems, the operating mode has inherent limitations.
+Multiple passes through the column, pump and additional piping increase dispersion, degrading the separation quality.
+Peak shaving is often employed to mitigate this by removing pure regions from chromatogram edges during each cycle, reducing the number of required recycling cycles.
+However, peak shaving often proves to be non-robust in practice due to high sensitivity to process disturbances.
+Additionally, the complexity introduced by multiple optimization variables makes the implementation of model-based design challenging.
+While combining the process with model predictive control might improve its robustness, this approach is not considered in this work.
+Moreover, the closed-loop configuration inherently limits productivity since fresh feed cannot be injected during recycling periods.
+This constraint makes injection stacking impractical for CLR processes.
