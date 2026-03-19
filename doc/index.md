@@ -133,13 +133,29 @@ Hülsmann2025
 
 ## Zusammenfassung
 
-Dies und das hab ich gemacht.
+@TODO: Translate Abstract
 
 {raw-latex}`\clearpage`
 
 ## Abstract
 
-This and that I did.
+Chromatography is a widely used separation techniques in the chemical, pharmaceutical, and biotechnological industries.
+Rigorous model-based design and optimization of chromatographic processes is, however, challenging: the nonlinear dynamics, periodic operation, and large number of degrees of freedom make process development difficult, while the diversity of operating concepts from batch-elution to multi-column continuous processes means that existing tools are either too narrowly scoped or too low-level to support the systematic exploration of novel process designs.
+
+This thesis presents a modular framework for modeling and optimizing chromatographic processes.
+The software called **CADET-Process** has been published under an open source license and has become part of the **CADET** software framework.
+**CADET-Core**, the numerical engine of **CADET**, provides a powerful solver for the physico-chemical models underlying chromatographic processes, but its direct use for advanced operating concepts requires substantial configuration effort and an additional abstraction layer for dynamic process definition.
+CADET-Process addresses this through a modular architecture where core tasks like process configuration, simulation, evaluation, and optimization exist as independent components that can be developed, tested, and exchanged separately.
+It provides an object-oriented interface for defining complex operating concepts including valve switching schemes, recycling configurations, and multi-column setups.
+Key performance indicators such as productivity, yield, and eluent consumption are evaluated automatically, and optimization problems including multi-objective formulations with nonlinear constraints can be configured and solved using third-party algorithms.
+The framework is developed following established research software engineering practices, including modular design, automated testing, continuous integration, and open licensing, to ensure reliability, reproducibility, and long-term maintainability.
+
+The framework is validated against experimental data through a detailed parameter estimation study of a laboratory-scale protein purification system using ion-exchange chromatography.
+Steric mass-action binding kinetics, column transport phenomena, and system periphery effects including valve and tubing contributions are characterized and incorporated into the model.
+Subsequently, the flexibility of the framework is demonstrated through a series of synthetic case studies covering operating modes of increasing complexity: batch-elution, closed-loop and steady-state recycling, flip-flop chromatography, and serial column configurations.
+Simulation results are validated against analytical equilibrium theory solutions.
+Single- and multi-objective optimization studies reveal non-intuitive operating strategies that simultaneously maximize productivity and yield while minimizing solvent consumption.
+Together, these contributions provide a robust and extensible foundation for the systematic, model-based development of advanced chromatographic separation processes.
 
 {raw-latex}`\clearpage`
 
