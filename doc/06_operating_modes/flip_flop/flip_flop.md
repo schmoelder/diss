@@ -64,29 +64,18 @@ cases = get_cases_by_operating_mode(
 # Flip-flop chromatography
 
 Flip-flop chromatography, also known as flip-flow or two-way chromatography, refers to an operation mode in which the flow direction through the column is periodically reversed during the separation process.
-The operating mode was first proposed by Martin et al. (1979) as a method suitable for separating mixtures containing both highly adsorptive and fast-eluting components {cite}`Martin1979`.
-Bailly and Tondeur later highlighted its effectiveness in improving resolution while reducing peak tailing and eluent consumption {cite}`Bailly1981`.
+The operating mode was first proposed by {cite:t}`Martin1979` as a method suitable for separating mixtures containing both highly adsorptive and fast-eluting components.
+{cite:t}`Bailly1981` later highlighted its effectiveness in improving resolution while reducing peak tailing and eluent consumption.
 Further development was carried out by Colin et al. {cite}`Colin1991`.
 
 The fundamental principle is to inject the feed mixture at one end of the column and allow the early-eluting components to exit at the opposite end.
-Once these fast-eluting components have been withdrawn, the flow is reversed, and the remaining, more strongly retained components are eluted in the opposite direction.
-This operating concept aims to enhance both the resolution and efficiency of separations, particularly in cases involving mixtures with components of very different adsorption behaviors {cite}`SchmidtTraub2020`.
+The flow reversal occurs when fast-eluting components have cleared the column, typically detected by UV monitoring.
+Once reversed, the more strongly retained components are eluted in the opposite direction.
+As illustrated in {numref}`flip_flop_bulk`, this cycle repeats with each injection, creating the characteristic alternating product collection pattern.
+This approach particularly benefits separations of components with large differences in binding affinity {cite}`SchmidtTraub2020`.
+Consequently, the simple separation problem with parameters listed in {numref}`model_parameters` is used for this study.
 
-As illustrated in {numref}`flip_flop_bulk`, this cycle is repeated with successive injections and flow reversals, resulting in an alternating product collection scheme.
-
-As mentioned above, flip-flop chromatography is best suited for scenarios in which components exhibit very different adsorption behavior.
-For this purpose, a linear isotherm with parameters listed in {numref}`flip_flop_parameters` will be used for this study.
-
-```{table} Parameters of column geometry, mass transport and binding of the model molecules ($i \in \{A, B\}$).
-:name: flip_flop_parameters
-:align: center
-
-| Catalog     | Symbol            | Description          | Value   | Unit                           |
-| ----------- | ----------------- | -------------------- | ------- | ------------------------------ |
-| **Binding** | $k_{\text{eq},i}$ | Equilibrium constant | [1, 20] | $\text{m}^{3}~\text{mol}^{-1}$ |
-```
-
-To model the flip-flop operating mode in **CADET-Process**, two {class}`Inlets <CADETProcess.processModel.Inlet>`, a column model (e.g., {class}`~CADETProcess.processModel.LumpedRateModelWithPores`), and an {class}`~CADETProcess.processModel.Outlet` are connected.
+To model the flip-flop operating mode in CADET-Process, two {class}`Inlets <CADETProcess.processModel.Inlet>`, a column model (e.g., {class}`~CADETProcess.processModel.LumpedRateModelWithPores`), and an {class}`~CADETProcess.processModel.Outlet` are connected (see {numref}`flip_flop_flow_sheet`).
 
 ```{figure} ./figures/flow_sheet.png
 :name: flip_flop_flow_sheet
@@ -94,14 +83,17 @@ To model the flip-flop operating mode in **CADET-Process**, two {class}`Inlets <
 Flow sheet for the flip-flop process.
 ```
 
-To model the injection, {class}`Events <CADETProcess.dynamicEvents.Event>` are introduced to modify the {attr}`~CADETProcess.processModel.Inlet.flow_rate` attribute of the {class}`~CADETProcess.processModel.Inlet` unit operations.
+To model injection and elution, {class}`Events <CADETProcess.dynamicEvents.Event>` are introduced to modify the {attr}`~CADETProcess.processModel.Inlet.flow_rate` attribute of the {class}`~CADETProcess.processModel.Inlet` unit operations.
 To reduce the number of event times that need to be specified, event dependencies are defined to ensure that either feed or eluent is always flowing through the column.
 Moreover, after a given $\Delta t_{reversal}$, the {attr}`~CADETProcess.processModel.LumpedRateModelWithPores.flow_direction` attribute of the {class}`~CADETProcess.processModel.LumpedRateModelWithPores` is set to $-1$, indicating a flow reversal.
-It is important to note that, by convention, in **CADET-Process** a full cycle requires that all parameters repeat.
+It is important to note that, by convention, in CADET-Process a full cycle requires that all parameters repeat.
 Consequently, a second injection is then executed, while the flow is still reversed.
 To ensure full elution of the strongly bound component, the injection is delayed by $\Delta t_{delay}$.
+The process events are depicted in {numref}`flip_flop_flow_events`.
 
 ```{figure} ./figures/event_dependencies.png
+:name: flip_flop_flow_events
+
 Events of flip-flop process with event dependencies.
 ```
 
@@ -137,7 +129,7 @@ glue("flip_flop_bulk", fig_flip_flop_bulk, display=False)
 :name: flip_flop_bulk
 :scale: 100%
 
-**Left:** Concentration profile at the inlet of the column. **Center**: Bulk concentration at different times. The flow direction is indicated by the arrow. **Right:** concentration profile at the system outlet. @TODO: Add note about time scale (or axis); Also offset to better visualize injection
+**Left:** Concentration profile at the inlet of the column. **Center**: Bulk concentration at different times. The flow direction is indicated by the arrow. **Right:** concentration profile at the system outlet.
 ```
 
 (flip_flop_validation)=
@@ -174,8 +166,7 @@ Comparison of the flip-flop simulation chromatogram (solid line) with the analyt
 (flip-flop_multi)=
 ## Multi-objective optimization of a simple linear separation problem
 
-To optimize the flip-flop process, in addition to the feed duration, the time at which the flow direction is switched needs to be optimized, as well as the time at which feed is injected need to be determined.
-In contrast to other processes, here the cycle time is automatically determined using a variable dependency.
+To optimize the flip-flop process, in addition to the feed duration, the delay at which the flow direction is reversed needs to be optimized, as well as the delay at which the next feed injection occurs on the other end of the column is injected need to be determined.
 The problem is summarized in {numref}`flip-flop_simple_linear_auto-cycle_moo-pc_overview`.
 
 ```{code-cell} ipython3
@@ -187,10 +178,14 @@ overview = setup_overview(case)
 (
     (moo_fig_obj, _, moo_fig_obj_caption),
     (moo_fig_chrom, _, moo_fig_chrom_caption),
-    moo_table ,
+    moo_table,
+    moo_results,
+    simulation_results,
+    fractionators,
 ) = process_moo_results(
     case,
     load_kwargs={"allow_commit_hash_mismatch": True},
+    return_results=True,
 )
 
 glue("moo_fig_obj", moo_fig_obj, display=False)
@@ -209,7 +204,20 @@ mystnb:
 display(Markdown(overview))
 ```
 
-{numref}`flip-flop_simple_linear_auto-cycle_moo-pc_fig_obj` shows objective function values.
+{numref}`flip-flop_simple_linear_auto-cycle_moo-pc_fig_obj` depicts the evaluated objective function values as a function of both feed duration and the flip-flop delay times.
+The optimal solutions and corresponding KPIs for all Pareto points are summarized in {numref}`flip-flop_simple_linear_auto-cycle_moo-pc_kpi`.
+The corresponding chromatograms are provided in {numref}`flip-flop_simple_linear_auto-cycle_moo-pc_fig_chrom`.
+
+The optimization results reveals well-defined optima for all performance indicators.
+When focusing on productivity maximization, the analysis identifies several characteristic operational behaviors.
+The process achieves extreme overloading conditions by operating at high feed volumes to maximize throughput.
+A touching band separation emerges where fast-eluting components exit the column first.
+Flow reversal then occurs before the slow components reach the original outlet.
+This causes the components to elute at what was originally the inlet (now functioning as the outlet).
+The components now elute at what was originally the inlet (now functioning as outlet), with minimal but existing waste fractions.
+The separation produces minimal but non-zero waste fractions.
+However, the current linear isotherm system may not fully capture realistic non-linear adsorption behaviors.
+This suggests that revisiting the component system choice could improve practical applicability.
 
 ```{glue:figure} moo_fig_obj
 :name: flip-flop_simple_linear_auto-cycle_moo-pc_fig_obj
@@ -217,8 +225,6 @@ display(Markdown(overview))
 
 {glue:text}`moo_fig_obj_caption`
 ```
-
-{numref}`flip-flop_simple_linear_auto-cycle_moo-pc_kpi` summarizes results.
 
 ```{code-cell} ipython3
 ---
@@ -229,8 +235,6 @@ mystnb:
 display(Markdown(moo_table))
 ```
 
-{numref}`flip-flop_simple_linear_auto-cycle_moo-pc_fig_chrom` shows chromatogram of best value.
-
 ```{glue:figure} moo_fig_chrom
 :name: flip-flop_simple_linear_auto-cycle_moo-pc_fig_chrom
 :scale: 100%
@@ -239,5 +243,6 @@ display(Markdown(moo_table))
 ```
 
 ## Summary
+
 Despite its potential, the flip-flop mode has seen limited adoption—possibly due to concerns about column design, complexity, or the mechanical stability of packing materials under repeated flow reversals.
 Alternatives worth considering include the use of pre-columns (see {numref}`serial_columns`), or gradient elution processes where one of the buffer components (e.g. a salt) modulates the binding strength.
