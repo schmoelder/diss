@@ -85,6 +85,7 @@ Dienstbier2020
 Schmoelder2020
 Breuer2023
 Leweke2025
+Li2026
 ```
 
 **Conference and symposium talks:**
@@ -125,7 +126,9 @@ Dienstbier2019
 Tauber2019
 Breuer2022
 Thiel2023
-Klauß2024
+Christiansen2022
+Klauß2024a
+Klauß2024b
 Hülsmann2025
 ```
 
