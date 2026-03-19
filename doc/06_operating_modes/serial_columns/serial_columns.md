@@ -118,7 +118,8 @@ fig_serial_columns, _ = case_module.plot_results(simulation_results)
 glue("fig_serial_columns", fig_serial_columns, display=False)
 ```
 
-{numref}`fig_serial_columns` shows a typical chromatogram of a batch-elution process.
+For this study a ternary separation problem with a Langmuir isotherm is considered (see {numref}`model_parameters`).
+{numref}`fig_serial_columns` shows the chromatogram of a process with columns in series.
 
 ```{glue:figure} fig_serial_columns
 :name: fig_serial_columns
@@ -168,6 +169,7 @@ glue("fig_serial_validation", fig_serial_validation, display=False)
 
 To optimize the process with columns connected in series, the decision variables include both the times at which the serial connection is cut and reconnected, as well as the individual column lengths.
 The total column length is kept constant during optimization.
+To aid the optimizer with the optimization, a variable dependency is introduced to calculate $t_{serial,on}$ from both $t_{serial,off}$ and $\Delta t_{serial}$.
 The problem is summarized in {numref}`serial-columns_ternary_auto-cycle_moo-pc_overview`.
 
 ```{code-cell} ipython3
@@ -205,7 +207,19 @@ mystnb:
 display(Markdown(overview))
 ```
 
-{numref}`serial-columns_ternary_auto-cycle_moo-pc_fig_obj` shows objective function values.
+{numref}`serial-columns_ternary_auto-cycle_moo-pc_fig_obj` presents the comprehensive optimization landscape showing objective function values across all decision variables.
+While space constraints in the printed version necessitate compact figure presentation, the digital format provides full-resolution visualization with interactive zoom capabilities for detailed analysis of the objective space.
+The Pareto-optimal solutions, including variable and KPI values, are documented in {numref}`serial-columns_ternary_auto-cycle_moo-pc_kpi`.
+Corresponding chromatograms are available in {numref}`serial-columns_ternary_auto-cycle_moo-pc_fig_chrom`.
+
+The multi-objective optimization yields several insights about serial-column operation.
+Well-defined optima emerge for most performance objectives and decision variables, indicating robust convergence behavior across the design space.
+Interestingly, the serial duration variable shows no significant sensitivity improvement compared to the individual $t_{\text{serial,on}}$ variable, contrasting with observations in {numref}`mrssr_auto-cycle_moo-pc_fig_obj`.
+This reduced sensitivity may be attributed to the inherent complexity of the ternary separation problem.
+Across all Pareto-optimal solutions, the chromatograms consistently demonstrate successful ternary separation with baseline resolution between all components.
+Particularly notable is the eluent consumption objective's strong dependence on serial switching times, which can be attributed to extreme overloading conditions experienced by component $C$ during certain operational phases.
+Additionally, the results reveal optimization potential in geometric column parameters, particularly column length.
+The optimal column length combination depends on both the target component and the dominant performance indicator.
 
 ```{glue:figure} moo_fig_obj
 :name: serial-columns_ternary_auto-cycle_moo-pc_fig_obj
@@ -213,8 +227,6 @@ display(Markdown(overview))
 
 {glue:text}`moo_fig_obj_caption`
 ```
-
-{numref}`serial-columns_ternary_auto-cycle_moo-pc_kpi` summarizes results.
 
 ```{raw} latex
 \pagebreak
@@ -235,11 +247,32 @@ display(Markdown(moo_table))
 \pagebreak
 ```
 
-{numref}`serial-columns_ternary_auto-cycle_moo-pc_fig_chrom` shows chromatograms of best value.
-
 ```{glue:figure} moo_fig_chrom
 :name: serial-columns_ternary_auto-cycle_moo-pc_fig_chrom
 :scale: 100%
 
 {glue:text}`moo_fig_chrom_caption`
 ```
+
+
+**Summary**
+
+This chapter demonstrates the framework's capability to handle a wide range of advanced chromatographic operating modes.
+All implemented processes have been validated against equilibrium theory solutions, confirming their theoretical soundness.
+The optimization results show excellent consistency with established literature, particularly for well-studied modes like batch elution and recycling techniques.
+
+Multi-objective optimization proves particularly valuable, revealing complex trade-offs between productivity, purity, recovery, and resource consumption.
+The framework successfully identifies several sophisticated operational strategies including:
+- waste fractions,
+- stacked injection
+- cycle-to-cycle overlaps, and
+- peak interlocking techniques
+
+A significant finding is the framework's ability to naturally converge to batch elution as a limiting case of more complex recycling processes.
+This capability suggests strong potential for superstructure optimization applications where the optimal operating mode must be selected from multiple alternatives.
+The results clearly demonstrate that process optimality depends heavily on both the specific separation system characteristics and the chosen objective function.
+Different component systems and performance priorities lead to fundamentally different optimal configurations.
+
+For future work, incorporating comprehensive economic objectives could provide more realistic optimization targets.
+Additionally, exploring additional operating modes and hybrid configurations may yield further performance improvements.
+The framework's demonstrated robustness makes it well-suited for these extended applications.
