@@ -112,9 +112,11 @@ display(Markdown(overview))
 ```
 
 {numref}`batch-elution_auto-cycle_soo_kpi` summarizes the results.
-The required purity is nearly met, with the remaining discrepancy caused by the fractionation optimizer's tolerances which could be tightened at the expense of computational speed.
+The required purity is nearly met, with the remaining discrepancy caused by the fractionation optimizer's tolerances.
+These tolerances could in theory be tightened, but at the cost of computational speed.
 Overall recovery decreases due to the larger waste fraction, as shown in {numref}`batch-elution_auto-cycle_soo_fig_chrom`.
-The chromatogram reveals both the characteristic "overshoot" of a competitive nonlinear binding model and the incomplete separation of components due to dispersive effects, contributing to the larger waste fraction as compared to the idealized study.
+The chromatogram reveals both the characteristic "overshoot" of competitive nonlinear binding and incomplete separation from dispersive effects.
+Unlike the idealized linear case, these physical phenomena create broader overlap regions that must be discarded as waste.
 
 ```{code-cell} ipython3
 ---

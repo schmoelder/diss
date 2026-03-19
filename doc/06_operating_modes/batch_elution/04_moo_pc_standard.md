@@ -118,7 +118,8 @@ The lack of evaluated points near this plateau for large feed durations, evident
 
 The optimal variable values and KPIs for all Pareto edge points are summarized in {numref}`batch-elution_moo-pc_kpi`.
 Compared to the previous study, where cycle-to-cycle overlaps were not accounted for ({numref}`batch-elution_auto-cycle_moo-pc_kpi`), higher KPI values could be achieved.
-Notably, productivity and eluent consumption are significantly improved, as the tailing end of component $B$ partially elutes into the subsequent peaks of component $A$, enhancing overall performance (see {numref}`batch-elution_moo-pc_fig_chrom`).
+Notably, productivity and eluent consumption show significant improvement because the tailing end of component B's peak from one injection overlaps with the leading edge of component A's peak from the subsequent injection.
+This cycle-to-cycle overlap creates more efficient use of the stationary phase, as demonstrated in {numref}`batch-elution_moo-pc_fig_chrom`.
 
 ```{glue:figure} moo_fig_obj
 :name: batch-elution_moo-pc_fig_obj

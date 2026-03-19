@@ -66,7 +66,7 @@ cases = get_cases_by_operating_mode(
 # Batch Elution Chromatography
 
 A basic chromatographic batch-elution setup comprises `feed` and `eluent` reservoirs, a pump to deliver the required flow rate against the column's pressure drop, a valve to switch between feed and eluent, the column itself, and one or more valves for fraction collection.
-In **CADET-Process**, this setup is modeled by connecting two {class}`Inlets <CADETProcess.processModel.Inlet>` and a column unit operation (e.g., {class}`~CADETProcess.processModel.LumpedRateModelWithPores`).
+In CADET-Process, this setup is modeled by connecting two {class}`Inlets <CADETProcess.processModel.Inlet>` and a column unit operation (e.g., {class}`~CADETProcess.processModel.LumpedRateModelWithPores`).
 In addition, an {class}`~CADETProcess.processModel.Outlet` is added to the {class}`~CADETProcess.processModel.FlowSheet`.
 This allows optimal fractionation times to be identified through chromatogram analysis (see {numref}`fractionation`), eliminating the need for predefined fractionation points and demonstrating a key advantage of model-based design.
 The flow sheet is demonstrated in {numref}`batch_elution_flow_sheet`.

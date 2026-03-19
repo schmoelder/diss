@@ -136,7 +136,7 @@ display(Markdown(rf"""
 When productivity is maximized, relatively large feed durations are selected ({feed_duration_prod_0} for component $A$ and {feed_duration_prod_1} for component $B$).
 This increases throughput but leads to overlapping peaks and reduced recovery, as visible in the corresponding chromatograms (a, b).
 For yield maximization, very small injections are employed to ensure baseline separation and near-complete recovery (c, d).
-Visual inspection of these chromatograms suggests complete product capture, implying that the slight deviation from $100\%$ recovery (values $\ge 99.8\%$) may stem from numerical limitations in the fractionation algorithm.
+Visual inspection of these chromatograms suggests complete product capture, indicating the slight recovery deviation from 100% (values ≥ 99.8%) likely results from the fractionation algorithm's numerical precision limits rather than physical separation issues.
 Eluent consumption minimization is achieved through even higher feed durations, resulting in injection plateaus (e, f).
 Although product is wasted, this approach does not affect the objective value; instead, more feed is beneficial because no eluent is used during feeding.
 """))

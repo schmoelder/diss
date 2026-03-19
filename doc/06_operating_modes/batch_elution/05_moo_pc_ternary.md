@@ -260,7 +260,9 @@ In this case, the use of a genetic algorithm, a somewhat inefficient but robust 
 Gradient-based algorithms, for instance, would likely fail due to the presence of many local optima and their dependence on initial values.
 
 Bayesian optimization presents a promising alternative, as it balances exploration of the parameter space with exploitation of known high-performing regions.
-However, at the time of writing, such algorithms have not yet been fully integrated into the **CADET-Process** framework.
+However, at the time of writing, such algorithms have not yet been fully integrated into the CADET-Process framework.
+
+---
 
 **Summary**
 

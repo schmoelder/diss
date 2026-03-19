@@ -155,8 +155,11 @@ mystnb:
 
 display(Markdown(rf"""
 {{numref}}`batch-elution_linear_et_auto-cycle_soo_kpi` summarizes the results.
-Although the required purity is met, the yield is slightly below $100\%$ due to numerical dispersion causing band broadening, resulting in a small waste fraction.
-Consequently, also the determined cycle time of {cycle_time} is slightly larger than the expected time of {cycle_time_expected}, as illustrated in the corresponding chromatogram ({{numref}}`batch-elution_linear_et_auto-cycle_soo_fig_chrom`).
+Although the required purity is met, the yield is slightly below $100\%$ due to numerical dispersion in the simulation.
+This artifact causes artificial band broadening, creating small overlap regions between component peaks.
+As a result, the fractionation algorithm identifies these overlapping regions as waste, reducing the overall yield.
+The band broadening also directly affects the determined cycle time.
+Consequently, the determined cycle time of {cycle_time} is slightly larger than the expected time of {cycle_time_expected}, as illustrated in the corresponding chromatogram ({{numref}}`batch-elution_linear_et_auto-cycle_soo_fig_chrom`).
 """))
 ```
 
