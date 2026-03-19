@@ -64,7 +64,7 @@ cases = get_cases_by_operating_mode(
 (clr)=
 # Closed-loop recycling
 
-In closed-loop recycling (CLR), the mixture is pumped through the column several times until the desired purity is achieved.
+In closed-loop recycling, the mixture is pumped through the column several times until the desired purity is achieved {cite}`Bombaugh1969,Heuer1995`.
 The general structure of a CLR is shown in {numref}`clr_flow_sheet`.
 
 ```{figure} ./figures/clr_flow_sheet.png
@@ -84,7 +84,7 @@ To reduce the number of explicitly defined event times, event dependencies are i
 Recycling starts immediately after injection ends, and elution begins once recycling concludes.
 For this demonstration, a difficult separation problem in the linear range is considered (see {numref}`model_parameters`).
 The components have similar binding affinities, creating a significant elution overlap that makes separation challenging for conventional methods.
-{numref}`fig_clr_demo` depicts the concentration profiles of a closed-loop recycling (CLR) process at the column outlet and system outlet, respectively.
+{numref}`fig_clr_demo` depicts the concentration profiles of a CLR process at the column outlet and system outlet, respectively.
 The profiles showcase how the recycled material does not fully exit the system before the end of the recycling phase.
 
 ```{code-cell} ipython3
