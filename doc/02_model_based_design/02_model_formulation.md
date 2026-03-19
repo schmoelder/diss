@@ -454,7 +454,7 @@ with
 
 These models, collectively referred to as transport models, form the basis for describing chromatographic processes under non-ideal conditions.
 
-To simplify model naming and establish a unified framework, consistent with the nomenclature of **CADET**, this family of models will be referred to as the lumped rate model without pores (LRM).
+To simplify model naming and establish a unified framework, consistent with the nomenclature of CADET, this family of models will be referred to as the lumped rate model without pores (LRM).
 This framework allows for independent specification of dispersion and adsorption dynamics:
 
 - The equilibrium model corresponds to the LRM with $D_{ax} = 0$ and rapid equilibrium.

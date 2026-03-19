@@ -70,6 +70,6 @@ In order to make the documentation readily available for both developers and use
 *Sphinx* can be customized with themes and extensions, enabling the embedding of additional materials such as images, diagrams, and mathematical notation to enhance the comprehensiveness of the documentation.
 
 By combining background information, tutorials, and advanced examples with the extracted docstrings, these reference manuals become a useful starting point for new users of a software package.
-For example, in the case of **CADET-Process**, the documentation can be found on [Read The Docs](https://readthedocs.org/projects/cadet-process), an online platform for hosting and publishing software documentation that also supports *Sphinx*.
+For example, in the case of CADET-Process, the documentation can be found on [Read The Docs](https://readthedocs.org/projects/cadet-process), an online platform for hosting and publishing software documentation that also supports *Sphinx*.
 The documentation is automatically updated when changes are made to the source code, ensuring that the documentation is always up-to-date and accurate (see {numref}`section %s<ci_cd>`).
 This makes it easier for both new and experienced users to access the information they need, ultimately leading to better code quality and more efficient development.

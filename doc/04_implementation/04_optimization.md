@@ -19,7 +19,7 @@ from myst_nb import glue
 (optimization)=
 # Optimization
 
-One of the main applications of **CADET-Process** is performing optimization studies.
+One of the main applications of CADET-Process is performing optimization studies.
 Optimization refers to the selection of a solution with regard to some criterion.
 In the simplest case, an optimization problem consists of minimizing some function $f(x)$ by systematically varying the input values $x$ and computing the value of that function.
 
@@ -46,7 +46,7 @@ where $g$ summarizes all inequality constraint functions, and $h$ equality const
 To decouple the problem formulation from the problem solution, two classes are provided:
 An {class}`~CADETProcess.optimization.OptimizationProblem` class to specify optimization variables, objectives and constraints.
 And an {class}`~CADETProcess.optimization.OptimizerBase` class which allows interfacing different external optimizers to solve the problem.
-In the following, the {mod}`~CADETProcess.optimization` module of **CADET-Process** is introduced and core features are discussed.
+In the following, the {mod}`~CADETProcess.optimization` module of CADET-Process is introduced and core features are discussed.
 
 (optimization_problem)=
 ## Optimization problem
@@ -62,7 +62,7 @@ To address this, parameter normalization is essential.
 It improves the efficiency and accuracy of the optimization process by ensuring a more balanced exploration of the solution space and reducing the risk of scale-induced biases.
 
 Normalization helps equalize the contribution of each parameter, leading to a more uniform search and a greater likelihood of identifying optimal solutions.
-To support this, **CADET-Process** allows for both linear and logarithmic normalization of variables.
+To support this, CADET-Process allows for both linear and logarithmic normalization of variables.
 
 The linear normalization maps the variable space from the lower and upper bound to a range between $0$ and $1$ by applying the following transformation:
 
@@ -91,7 +91,7 @@ Despite the lower bound of $1 \times 10^{-9}$, few samples are drawn in that reg
 Due to this disparity in scales, porosity is best normalized linearly, while axial dispersion benefits from logarithmic normalization.
 {numref}`fig_initial_values_normalized` presents 128 parameter combinations sampled uniformly from the normalized space. As seen, all scales are now appropriately sampled, an important characteristic for generating effective initial values.
 
-This normalization strategy allows the optimizer to work within a consistent domain, effectively optimizing two variables that both range from $0$ to $1$, while **CADET-Process** handles the inverse transformation back to the original scales for evaluation purposes.
+This normalization strategy allows the optimizer to work within a consistent domain, effectively optimizing two variables that both range from $0$ to $1$, while CADET-Process handles the inverse transformation back to the original scales for evaluation purposes.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -182,7 +182,7 @@ Therefore, it is often more practical to reduce the number of variables and mana
 
 Any callable function that accepts an input $x$ and returns objectives $f$ can be added to the {class}`~CADETProcess.optimization.OptimizationProblem`.
 These functions often utilize process evaluation methods, such as product fractionation (see {numref}`fractionation`) or comparison with experimental data (see {numref}`comparison`).
-As detailed in {numref}`multi_objective_optimization`, **CADET-Process** can also handle multi-objective optimization problems.
+As detailed in {numref}`multi_objective_optimization`, CADET-Process can also handle multi-objective optimization problems.
 Additionally, any number of nonlinear constraint functions can be incorporated into the problem.
 
 (evaluation_toolchains)=
@@ -203,7 +203,7 @@ Before calculating objectives, the process needs to be simulated, and the simula
 Steps required for calculating difference metrics, used as residual in an optimization problem.
 ```
 
-To simplify the definition of such complex problems, **CADET-Process** introduces *Evaluation Toolchains*.
+To simplify the definition of such complex problems, CADET-Process introduces *Evaluation Toolchains*.
 This concept refers to a sequence of preprocessing steps that are essential for calculating the values of objective or nonlinear constraint functions.
 These toolchains involve two main components: evaluation objects and evaluators.
 
@@ -222,7 +222,7 @@ Here, optimization variable $1$ is associated with both evaluation objects, whil
 
 Before integrating the objective and nonlinear constraint functions into the {class}`~CADETProcess.optimization.OptimizationProblem`, it is necessary to add further processing steps as evaluators.
 Any callable function can be used as an evaluator, provided it takes the result of the previous step as its first argument and returns a single result object for subsequent processing.
-To enhance efficiency, **CADET-Process** internally caches intermediate results.
+To enhance efficiency, CADET-Process internally caches intermediate results.
 This approach minimizes redundant computations in other objectives or constraints that involve similar evaluation steps.
 The application of this approach is illustrated in {numref}`evaluation_steps`.
 
@@ -230,7 +230,7 @@ The application of this approach is illustrated in {numref}`evaluation_steps`.
 :name: evaluation_steps
 :scale: 25%
 
-Evaluation toolchain in **CADET-Process**.
+Evaluation toolchain in CADET-Process.
 Optimization variables $v$ are associated with parameters of an evaluation object $e$, (e.g., a {class}`~CADETProcess.processModel.Process`).
 The evaluation objects are then passed to a chain of evaluators $s$ which process the input and return results.
 This procedure is repeated until the last results of the toolchain are handed to the objective / nonlinear constraint function(s) $f$ / $g$ which determine the final metrics $m$ of the corresponding objective or nonlinear constraint function.
@@ -260,7 +260,7 @@ Currently, adapters for {class}`Pymoo <CADETProcess.optimization.PymooInterface>
 
 Before starting the optimization, the optimizer must be initialized and configured.
 Some options are universal across all optimizers, including convergence criteria and tolerances for constraint violations.
-**CADET-Process** also facilitates the parallel evaluation of candidates; in this case, the number of cores to be used must be specified, i.e., if the optimizer supports parallel evaluation.
+CADET-Process also facilitates the parallel evaluation of candidates; in this case, the number of cores to be used must be specified, i.e., if the optimizer supports parallel evaluation.
 Each optimizer implementation offers additional configuration options, such as the population size for a genetic algorithm.
 
 To highlight some of the optimizer's features, consider the following (generic) multi-objective optimization problem which is solved using {class}`~CADETProcess.optimization.U_NSGA3`, a genetic algorithm {cite}`Seada2016`.
@@ -319,6 +319,7 @@ x0 = optimization_problem.create_initial_values(n_samples=1000)
 pop = optimization_problem.create_population(x0)
 
 fig, _ = pop.plot_pairwise(autoscale=True)
+glue("uniform_samples", fig, display=False)
 ```
 
 ```{glue:figure} uniform_samples

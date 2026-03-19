@@ -118,7 +118,7 @@ display(Markdown(e7_objectives))
 ```
 
 To address this, the data were refitted under the assumption of non-limiting film diffusion.
-Since **CADET** does not natively support this condition, a high numerical value of $1~\text{m}~\text{s}^{-1}$ was used to approximate non-limiting film diffusion.
+Since CADET does not natively support this condition, a high numerical value of $1~\text{m}~\text{s}^{-1}$ was used to approximate non-limiting film diffusion.
 Both fitting approaches resulted in similar particle porosities, and the objectives plot ({numref}`e7_objectives`) now shows a clear minimum for axial dispersion.
 To simplify the model and reduce parameter uncertainty, film diffusion was assumed to be non-limiting for all molecules in subsequent analyses.
 

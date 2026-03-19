@@ -122,7 +122,7 @@ While there are dozens of different design patterns, they can be grouped into th
 **Creational patterns** are patterns that provide various object creation mechanisms, which increase flexibility and reuse of existing code.
 The *Factory method* is an example of a creational design pattern that separates the process of object creation from the code that uses the objects when the exact types and dependencies of the objects are not known beforehand.
 It is often used when the process of object creation is complex and requires different steps or when objects are created dynamically.
-For example, **CADET-Process** provides a {class}`~CADETProcess.modelBuilder.CarouselBuilder` class which facilitates the creation of complex multi-column processes.
+For example, CADET-Process provides a {class}`~CADETProcess.modelBuilder.CarouselBuilder` class which facilitates the creation of complex multi-column processes.
 
 **Structural patterns** are patterns that deal with object composition and allow developers to create more complex objects by combining simpler ones.
 For example, the *Adapter pattern* is a structural design pattern that allows incompatible classes to work together by implementing a converter acting as a translator which enables communication without having to change the classes themselves.
@@ -133,7 +133,7 @@ In this work, an *Adapter Pattern* is used to translate the internal `Process` c
 One of the most commonly used behavioral patterns is the Strategy pattern.
 This pattern allows related algorithms for a particular action to be grouped under one abstraction, which can be switched out at runtime without modifying the client code.
 The key to the Strategy pattern is the definition of a common interface or abstraction for a family of algorithms, which allows them to be used interchangeably while ensuring consistent behavior of the overall system.
-An example of the Strategy pattern in **CADET-Process** is when different binding models are associated with unit operations.
+An example of the Strategy pattern in CADET-Process is when different binding models are associated with unit operations.
 In this case, the binding model is configured independently and then associated with the unit.
 By defining a common interface for binding models, different models can be swapped in and out at runtime without affecting the behavior of the unit operation.
 This results in a more flexible and maintainable codebase.

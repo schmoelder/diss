@@ -62,7 +62,7 @@ The *GNU General Public License (GPL)* is the most popular open-source license.
 It guarantees end-users the freedom to run, study, share, and modify the software.
 Its primary objective is to keep software free, making it a copyleft license.
 Any derivative work created must be published under the same license.
-This license, specifically *GPLv3* is also used for the release of **CADET-Process** in the hope that other researchers may find it useful for their work.
+This license, specifically *GPLv3* is also used for the release of CADET-Process in the hope that other researchers may find it useful for their work.
 
 The *MIT* license is an example of a more lenient license with very few restrictions.
 It requires copyright to be reserved, limits liability, and allows re-licensing under any other license, including proprietary licenses.

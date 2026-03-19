@@ -14,9 +14,9 @@ Typical difficulties include:
 
 Conventional ad-hoc approaches—such as manual documentation, loosely organized scripts, or monolithic repositories—do not scale well and often lead to loss of context or irreproducible results.
 
-To address these challenges, **[CADET-RDM](https://cadet-rdm.readthedocs.io/en/latest/)** was developed in collaboration with Ronald Jäpel {cite}`CADET-RDM_documentation`.
+To address these challenges, [**CADET-RDM**](https://cadet-rdm.readthedocs.io/en/latest/) was developed in collaboration with Ronald Jäpel {cite}`CADET-RDM_documentation`.
 While developed independently, the tool was explicitly designed to support the types of workflows encountered in this thesis.
-Accordingly, all case studies presented in this work were managed using **CADET-RDM**.
+Accordingly, all case studies presented in this work were managed using CADET-RDM.
 
 The system is based on a dual-repository *Git* architecture:
 1. **Project repository**: Maintains the evolving codebase (e.g., Python or C++ simulation components) under standard version control.

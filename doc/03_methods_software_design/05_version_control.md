@@ -49,7 +49,7 @@ According to Open Hub, *Git* has a market share of $\gt 70~\%$ {cite}`openhub` a
 Although using a version control system is crucial for developing stable software, it may not be convenient for end-users.
 Instead, it is useful to periodically create software releases - deployable software versions that are considered stable enough to be made available for a wider audience to download and use.
 These versions can be deployed to package managers like *PyPI* or *conda*, making it easier to install the software.
-For example, to install **CADET-Process**, users can use the following command which will automatically install the package along with all its dependencies:
+For example, to install CADET-Process, users can use the following command which will automatically install the package along with all its dependencies:
 
 ```bash
 pip install cadet-process
@@ -60,5 +60,5 @@ One commonly used scheme is called "Semantic Versioning" {cite}`semantic`.
 Semantic Versioning is a three-component number in the format of MAJOR.MINOR.PATCH.
 The MAJOR version number is incremented when incompatible changes are made to the API, the MINOR version number is incremented for backwards compatible functionality, and the PATCH version number is incremented for backwards compatible bug fixes.
 
-All releases of **CADET-Process** can be found on *[GitHub](https://github.com/fau-advanced-separations/CADET-Process/releases)*.
+All releases of CADET-Process can be found on *[GitHub](https://github.com/fau-advanced-separations/CADET-Process/releases)*.
 The page also includes a changelog describing new features or changes in the API introduced with that version.

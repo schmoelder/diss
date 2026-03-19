@@ -35,13 +35,13 @@ As a result, numerical approaches are commonly employed to approximate the solut
 Despite their limitations, analytical solutions remain valuable in the context of numerical simulations.
 They can serve as benchmark and test cases to validate the implementation of numerical schemes (see also {numref}`software_tests`).
 For instance, the [CADET-Semi-analytic](https://github.com/modsim/CADET-semi-analytic) framework computes reference solutions for the general rate model with proven error bounds using analytical solutions in the Laplace domain combined with numerical inversion {cite}`Leweke2016`.
-Although this method is restricted to the linear isotherm, it is particularly useful due to the modular nature of the **CADET-Core** code.
-In **CADET-Core**, binding models represent only a small fraction of the overall source code.
+Although this method is restricted to the linear isotherm, it is particularly useful due to the modular nature of the CADET-Core code.
+In CADET-Core, binding models represent only a small fraction of the overall source code.
 As such, analytical solutions can still validate critical aspects of the code, including convection, diffusion, and networks of unit operations.
 
 To validate the connectivity and dynamic events of the operating modes described later in this work, equilibrium theory for single columns is applied (see {numref}`equilibrium_model`) to determine propagation velocities and corresponding elution times {cite}`SchmidtTraub2020`.
 By accounting for additional events such as recycling times, switching flow direction, virtually extending the column length, or re-injecting recycled fractions, simple chromatograms for advanced operating modes can be calculated.
-These are then compared to the numerical solutions obtained from **CADET-Core**.
+These are then compared to the numerical solutions obtained from CADET-Core.
 
 Using the chain rule, the time derivative of the solid phase concentration can be expressed in terms of the isotherm slope and the liquid phase time derivative:
 
@@ -150,7 +150,7 @@ This stencil-based reconstruction enables high-order schemes that preserve mass 
 However, as described by Godunov's theorem, linear high-order schemes cannot maintain monotonicity, resulting in oscillations near steep gradients {cite}`Godunov1959`.
 To address this issue, nonlinear reconstruction techniques are commonly applied, such as slope limiters {cite}`Blazek2015` or weighted essentially non-oscillatory (WENO) schemes {cite}`Lieres2010`.
 The WENO scheme is particularly suitable for chromatographic systems with sharp concentration fronts, as it balances accuracy, stability, and robustness.
-For these reasons, the WENO scheme is implemented in **CADET-Core** and used in this work {cite}`Leweke2018`.
+For these reasons, the WENO scheme is implemented in CADET-Core and used in this work {cite}`Leweke2018`.
 
 % Finite Elements Method
 The finite element method (FEM) divides the spatial domain into cells, similar to the FVM.
@@ -196,7 +196,7 @@ Higher-order BDF methods can improve computational efficiency by reducing the nu
 Additionally, adaptive time stepping can be applied with both Runge-Kutta and BDF methods.
 This technique dynamically adjusts the time step size based on the stiffness of the problem, thereby enhancing both the accuracy and efficiency of the simulation.
 
-In **CADET-Core**, time integration is performed using the **SUNDIALS IDAS** solver which implements BDF combined with adaptive time stepping {cite}`Hindmarsh2005`.
+In CADET-Core, time integration is performed using the **SUNDIALS IDAS** solver which implements BDF combined with adaptive time stepping {cite}`Hindmarsh2005`.
 
 (unit_operation_networks)=
 ## Solution of the system of unit operations

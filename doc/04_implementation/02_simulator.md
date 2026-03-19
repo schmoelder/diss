@@ -21,27 +21,27 @@ from myst_nb import glue
 
 To simulate a {class}`~CADETProcess.processModel.Process`, a simulator must be configured.
 This simulator converts the {class}`~CADETProcess.processModel.Process` configuration into the API of the corresponding external simulator.
-Currently, only **CADET-Core** is adapted, although other simulators can potentially be implemented.
-**CADET-Core** needs to be installed separately from **CADET-Process**. This can be done, for example, using [mamba](https://mamba.readthedocs.io/en/latest/).
+Currently, only CADET-Core is adapted, although other simulators can potentially be implemented.
+CADET-Core needs to be installed separately from CADET-Process. This can be done, for example, using [mamba](https://mamba.readthedocs.io/en/latest/).
 
 ```bash
 mamba install -c conda-forge cadet
 ```
 
-For more information on **CADET-Core**, refer to the {ref}`CADET Documentation <cadet:contents>` {cite}`CADET-Core_documentation`.
+For more information on CADET-Core, refer to the {ref}`CADET Documentation <cadet:contents>` {cite}`CADET-Core_documentation`.
 
 ## Solver configuration
 
 Before a simulation can be run, the simulator must be configured.
 While reasonable default values are set for all simulator parameters, there are cases where adjustments are necessary.
-For instance, **CADET-Core** employs adaptive time stepping, dynamically adjusting the time step size.
+For instance, CADET-Core employs adaptive time stepping, dynamically adjusting the time step size.
 This approach balances simulation accuracy with computational efficiency by varying the time step size: it decreases when the error estimate exceeds a specified tolerance and increases when the error is smaller (see {numref}`time_integration`).
 Consequently, adjusting the absolute and relative tolerances may be required in scenarios demanding high accuracy or fast computation times.
 
 (simulation_results)=
 ## Simulation results
 
-To run the simulation, the {class}`~CADETProcess.processModel.Process` needs to be passed to the {meth}`~CADETProcess.simulator.Cadet.simulate` method which then internally calls **CADET-Core**.
+To run the simulation, the {class}`~CADETProcess.processModel.Process` needs to be passed to the {meth}`~CADETProcess.simulator.Cadet.simulate` method which then internally calls CADET-Core.
 After the simulation is completed, a {class}`~CADETProcess.simulationResults.SimulationResults` object is returned, which contains the results of the simulation.
 This includes:
 

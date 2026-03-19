@@ -19,9 +19,9 @@ These include the integration of additional unit operations, compartment-based m
 For example, bioreactors incorporating cell growth and enzymatic reactions could be modeled in combination with compartment models derived from computational fluid dynamics, allowing simultaneous capture of mixing effects and kinetic reactions {cite}`Li2026`.
 Other unit operations, such as filtration and membrane separations, present distinct modeling challenges, including pressure-driven transport and highly concentrated systems, where concentration polarization and the volume of particulate substances must be explicitly accounted for.
 
-This development aligns with ongoing improvements in **CADET-Core**, particularly regarding model equations and numerical solution methods.
-On the **CADET-Process** side, further enhancements can be achieved through advanced pre- and post-processing strategies.
-In addition, several "lessons learned" previously implemented in **CADET-Process**, such as a more modular interface structure, explicit event ordering, and pre-processing of flow rates, will be migrated and integrated into the **CADET-Core** package.
+This development aligns with ongoing improvements in CADET-Core, particularly regarding model equations and numerical solution methods.
+On the CADET-Process side, further enhancements can be achieved through advanced pre- and post-processing strategies.
+In addition, several "lessons learned" previously implemented in CADET-Process, such as a more modular interface structure, explicit event ordering, and pre-processing of flow rates, will be migrated and integrated into the CADET-Core package.
 
 Finally, future research will explore surrogate modeling techniques to better understand the relationships between high-dimensional input parameters and relevant output metrics.
 These models will enable more efficient optimization studies, including conditional optimization.

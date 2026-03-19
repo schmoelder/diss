@@ -16,7 +16,7 @@ The presented study builds upon work first published by Lukas Thiel in his maste
 While utilizing the same raw data, this work presents an independent modeling approach and fitting procedure.
 In contrast to Thiel's work, which aimed to model the influence of pH on protein adsorption, the primary goals of this chapter are:
 - showcasing parameter estimation methods for different problems,
-- validating **CADET-Process** using real experimental data,
+- validating CADET-Process using real experimental data,
 - modeling of system periphery, demonstrating the influence of valves and tubings which are often neglected in modeling,
 - demonstrating a load-wash-elute process with lysozyme using the steric mass-action binding model and incorporating a salt gradient - another common yet complex procedure in chromatography.
 

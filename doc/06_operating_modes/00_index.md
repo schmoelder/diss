@@ -38,7 +38,7 @@ The corresponding model parameters are summarized in {numref}`model_parameters`.
 ```
 
 For each operating mode, the process configuration is defined via a {class}`~CADETProcess.processModel.FlowSheet` in combination with dynamic {class}`Events <CADETProcess.dynamicEvents.Event>` that specify time-dependent boundary conditions, parameters, and valve switches.
-Simulations are carried out with **CADET-Core** (see {numref}`process_model`, {numref}`process_simulation`).
+Simulations are carried out with CADET-Core (see {numref}`process_model`, {numref}`process_simulation`).
 
 To verify the correctness of the configuration, results obtained from an idealized model variant are compared against equilibrium theory predictions under simplified assumptions: a linear isotherm with an identical Henry coefficient, negligible axial dispersion, and the absence of mass-transfer limitations.
 Under these conditions, analytical solutions are available, enabling a direct consistency check of the implemented process setup ({numref}`analytical_solutions`).

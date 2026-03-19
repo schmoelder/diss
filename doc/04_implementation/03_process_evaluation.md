@@ -19,8 +19,8 @@ from myst_nb import glue
 (process_evaluation)=
 # Process Evaluation
 
-**CADET-Process** offers multiple tools for evaluating simulation results.
-This chapter provides an overview of selected evaluation methods available in **CADET-Process**.
+CADET-Process offers multiple tools for evaluating simulation results.
+This chapter provides an overview of selected evaluation methods available in CADET-Process.
 
 (fractionation)=
 ## Product fractionation
@@ -172,7 +172,7 @@ This method addresses an important gap in the toolchain necessary for the analys
 
 Many research and design problems in chromatography can effectively be approached by formulating them as inverse problems.
 These problems involve determining system parameters by comparing simulation results with observed experimental data.
-For this purpose, the {mod}`~CADETProcess.comparison` module in **CADET-Process** provides tools to quantify the differences between simulation outputs and reference data, such as experimental data or prior simulation results.
+For this purpose, the {mod}`~CADETProcess.comparison` module in CADET-Process provides tools to quantify the differences between simulation outputs and reference data, such as experimental data or prior simulation results.
 
 The {class}`~CADETProcess.comparison.Comparator` class facilitates the comparison of results from two simulations or between simulation results and experimental data.
 It includes several methods for both visualizing and analyzing the differences between datasets.

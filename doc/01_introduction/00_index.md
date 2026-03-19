@@ -79,18 +79,23 @@ A notable exception here is *CADET* by the Forschungszentrum Jülich {cite}`Lewe
 It offers a diverse family of different binding, reaction, and unit operation models which can be used to simulate a large range of separation processes.
 Moreover, multiple unit operations can be connected in a network which generally also allows modeling complicated process configurations.
 However, the software is primarily a numerical solver for the partial differential equations.
-This makes the definition of advanced operating concepts not only laborious but also limits the direct use of *CADET* for process optimization without another layer of abstraction for the definition of dynamic processes.
+This makes the definition of advanced operating concepts not only laborious but also limits the direct use of CADET for process optimization without another layer of abstraction for the definition of dynamic processes.
+
+While these current tools provide useful functionality, they have limitations for advanced chromatographic process design.
+Existing commercial software lacks flexibility for complex process configurations, and academic tools often require specialized programming knowledge.
+No available framework systematically separates the key components: process setup, simulation, performance evaluation, and optimization.
+This makes it difficult to compare different operating modes or exchange individual components without extensive reimplementation.
 
 % Approach
-To address this, a modular framework for the efficient modeling, simulation and optimization of advanced chromatographic processes was developed in this work.
-The framework decouples the different tasks mentioned above in order to allow for a simple and independent manipulation and exchange of operating concept, modeling depth of the chromatographic column(s), solution of the model equations, performance evaluation, and optimization algorithms.
-These tasks are performed in separate modules which can be interchanged with other custom or third-party modules.
+To address these limitations, a modular framework for the efficient modeling, simulation and optimization of advanced chromatographic processes was developed for this work.
+The framework systematically separates process configuration, simulation, evaluation, and optimization into interchangeable components.
+This design enables independent development and exchange of physico-chemical models, numerical solvers, process configurations, and optimization algorithms.
 
-The platform is implemented in an object-oriented manner in the programming language Python.
-The implementation includes an interface to *CADET* as the main solver of the framework but it is generally possible to also use other solvers.
-Due to this powerful combination, the framework developed for this work was named *CADET-Process*.
-The software is open source and distributed under GPL version 3, and thus freely available to academia and industry.
-The code can be obtained from [https://github.com/fau-advanced-separations/CADET-Process](https://github.com/fau-advanced-separations/CADET-Process).
+The software is implemented in an object-oriented paradigm in the programming language **Python**.
+It provides an interface to **CADET-Core**, which serves as the primary solver within the framework; however, the architecture is sufficiently flexible to accommodate alternative solvers.
+This tight integration motivated the designation of the framework as **CADET-Process**.
+The code is open source and distributed under *GPL* version 3, making it freely accessible to both academic and industrial users.
+The repository is publicly available at [https://github.com/fau-advanced-separations/CADET-Process](https://github.com/fau-advanced-separations/CADET-Process).
 
 Best practices for sustainable scientific software development have been applied throughout this work to ensure reliability and reproducibility of the code.
 Without the application of these modern standards of software design, reliability and reproducibility of the code cannot be ensured which is particularly important in a scientific context.
@@ -101,7 +106,7 @@ To demonstrate the flexibility of the framework, several case studies are presen
 First, a model of a typical chromatographic laboratory system is developed, focusing on a protein purification step.
 The objectives here are to:
 - showcase parameter estimation methods for different problems,
-- validate **CADET-Process** using experimental data,
+- validate CADET-Process using experimental data,
 - incorporate system periphery, including the influence of valves and tubing, which are often neglected in modeling,
 - demonstrate a load–wash–elute process for lysozyme using the steric mass-action binding model with a salt gradient, representing a common yet complex chromatographic procedure.
 

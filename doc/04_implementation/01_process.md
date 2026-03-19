@@ -28,7 +28,7 @@ For unit operations in which binding models or reactions are not modeled, the `N
 ```
 
 To ensure that all parts of the process have the same number of components, a {class}`~CADETProcess.processModel.ComponentSystem` needs to be configured and added to all unit operations.
-These components can also be named, which later automatically adds legends to the plot methods of **CADET-Process**.
+These components can also be named, which later automatically adds legends to the plot methods of CADET-Process.
 All unit operations can be associated with {class}`BindingModels <CADETProcess.processModel.BindingBaseClass>` that describe the interaction of components with surfaces or chromatographic stationary phases.
 For this purpose, a variety of equilibrium relations can be selected.
 These include the simple {class}`~CADETProcess.processModel.Linear` adsorption isotherm, competitive forms of the {class}`~CADETProcess.processModel.Langmuir` and the {class}`~CADETProcess.processModel.BiLangmuir` models, as well as the competitive {class}`~CADETProcess.processModel.StericMassAction` law.
@@ -64,17 +64,17 @@ Note that it is straightforward to also include internal recycles in the {class}
 
 ### A note on flow rates
 
-In **CADET-Process**, the {class}`~CADETProcess.processModel.Inlet` model acts as source unit that "generates" flow.
+In CADET-Process, the {class}`~CADETProcess.processModel.Inlet` model acts as source unit that "generates" flow.
 This flow is then transported to subsequent unit operations downstream.
-Since all fluids in **CADET-Process** are considered incompressible, all flow entering a unit must also exit from it.
+Since all fluids in CADET-Process are considered incompressible, all flow entering a unit must also exit from it.
 A notable exception is the {class}`~CADETProcess.processModel.Cstr` model which can have a variable volume.
 Consequently, if the flow rate of a {class}`~CADETProcess.processModel.Cstr` is explicitly specified, the outgoing streams can be decoupled from the ingoing streams.
 This can be useful, e.g., to model holdup tanks.
-However, it is important that the volume of a {class}`~CADETProcess.processModel.Cstr` never becomes $0$ or **CADET** will raise an `Exception`.
+However, it is important that the volume of a {class}`~CADETProcess.processModel.Cstr` never becomes $0$ or CADET will raise an `Exception`.
 If not specified for a {class}`~CADETProcess.processModel.Cstr`, the unit is treated like all other unit operations models, and the outgoing flow rate equals the incoming flow rate.
 This can be useful, e.g., when modeling valves.
 
-Since internal recycles are also possible in **CADET-Process**, the actual flow rates for every unit operation need to be determined before simulation.
+Since internal recycles are also possible in CADET-Process, the actual flow rates for every unit operation need to be determined before simulation.
 This calculation is performed automatically for all time sections before running a simulation while accounting for dynamic changes of flow rates and output states.
 
 (process)=
@@ -91,7 +91,7 @@ For this purpose, an {class}`Event <CADETProcess.dynamicEvents.Event>` class is 
 
 {numref}`events` illustrates the events required to model and simulate a batch elution process.
 In addition to setting event times, it is also necessary to establish the overall duration of the process.
-As **CADET-Process** is designed to simulate cyclic processes as well, where the same sequence of events is repeated multiple times, this interval is referred to as the cycle time $\Delta t_{\text{cycle}}$ (see {numref}`stationarity`).
+As CADET-Process is designed to simulate cyclic processes as well, where the same sequence of events is repeated multiple times, this interval is referred to as the cycle time $\Delta t_{\text{cycle}}$ (see {numref}`stationarity`).
 
 ```{figure} ./figures/events.png
 :name: events
@@ -103,7 +103,7 @@ At $t = 1~min$, the flow of the `Feed` unit operation is turned off, while the f
 
 ### Event Dependencies
 
-To reduce complexity in process configurations within **CADET-Process**, dependencies between events can be specified.
+To reduce complexity in process configurations within CADET-Process, dependencies between events can be specified.
 These dependencies determine the occurrence times of one event based on the timings of other events.
 This method is particularly advantageous for advanced processes as it reduces the degrees of freedom and improves usability.
 Additionally, a {class}`~CADETProcess.dynamicEvents.Duration` can be defined to denote the time interval between two events.
