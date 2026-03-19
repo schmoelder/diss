@@ -44,8 +44,7 @@ chapters:
         - file: 06_operating_modes/batch_elution/02_soo_standard_auto
         - file: 06_operating_modes/batch_elution/03_moo_pc_standard_auto
         - file: 06_operating_modes/batch_elution/04_moo_pc_standard
-        # - file: 06_operating_modes/batch_elution/05_moo_pc_ternary_auto
-        - file: 06_operating_modes/batch_elution/06_moo_pc_ternary
+        - file: 06_operating_modes/batch_elution/05_moo_pc_ternary
       - file: 06_operating_modes/recycling_techniques/recycling_techniques
         sections:
           - file: 06_operating_modes/recycling_techniques/clr
