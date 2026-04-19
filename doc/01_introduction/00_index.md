@@ -97,8 +97,7 @@ This tight integration motivated the designation of the framework as **CADET-Pro
 The code is open source and distributed under *GPL* version 3, making it freely accessible to both academic and industrial users.
 The repository is publicly available at [https://github.com/fau-advanced-separations/CADET-Process](https://github.com/fau-advanced-separations/CADET-Process).
 
-Best practices for sustainable scientific software development have been applied throughout this work to ensure reliability and reproducibility of the code.
-Without the application of these modern standards of software design, reliability and reproducibility of the code cannot be ensured which is particularly important in a scientific context.
+Best practices for sustainable scientific software development have been applied throughout this work, as reliability and reproducibility are of particular importance in a scientific context where results must be verifiable by others.
 Since process engineers are usually not trained in this field, a chapter of this work is dedicated to the introduction of important techniques such as version control, unit testing, and software documentation (see {numref}`methods_software_design`).
 
 % Demonstrations
