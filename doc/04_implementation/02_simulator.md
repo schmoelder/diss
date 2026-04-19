@@ -19,16 +19,22 @@ from myst_nb import glue
 (process_simulation)=
 # Process Simulation
 
-To simulate a {class}`~CADETProcess.processModel.Process`, a simulator must be configured.
-This simulator converts the {class}`~CADETProcess.processModel.Process` configuration into the API of the corresponding external simulator.
-Currently, only CADET-Core is adapted, although other simulators can potentially be implemented.
-CADET-Core needs to be installed separately from CADET-Process. This can be done, for example, using [mamba](https://mamba.readthedocs.io/en/latest/).
+With a {class}`~CADETProcess.processModel.Process` configured, the next step is simulation.
+The chromatographic models introduced in {numref}`model_formulation` are solved numerically using the methods described in {numref}`model_solution`.
+CADET-Process provides a {class}`~CADETProcess.simulator.SimulatorBase` adapter that translates the internal process representation into the input format of an external solver and invokes it.
+Currently, CADET-Core is the only supported backend, although the adapter interface is designed to accommodate other solvers.
+CADET-Core must be installed separately, for example via [mamba](https://mamba.readthedocs.io/en/latest/):
 
 ```bash
 mamba install -c conda-forge cadet
 ```
 
 For more information on CADET-Core, refer to the {ref}`CADET Documentation <cadet:contents>` {cite}`CADET-Core_documentation`.
+
+This chapter covers three aspects of process simulation.
+First, the solver configuration parameters are described, including tolerance settings that control the accuracy of the adaptive time stepping scheme.
+Second, the structure of the {class}`~CADETProcess.simulationResults.SimulationResults` object returned after a successful simulation is introduced.
+Third, the cyclic stationarity detection mechanism is presented, which allows the simulator to automatically run a process until a periodic steady state is reached.
 
 ## Solver configuration
 

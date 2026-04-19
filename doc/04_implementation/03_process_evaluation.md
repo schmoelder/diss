@@ -19,8 +19,11 @@ from myst_nb import glue
 (process_evaluation)=
 # Process Evaluation
 
-CADET-Process offers multiple tools for evaluating simulation results.
-This chapter provides an overview of selected evaluation methods available in CADET-Process.
+Simulation results alone are not sufficient to assess whether a chromatographic process meets its design goals.
+A dedicated evaluation step is needed to extract the performance indicators defined in {numref}`kpi` and to quantify the agreement with experimental data as required for model calibration (see {numref}`model_calibration`), before those metrics can be used in optimization.
+CADET-Process provides two main tools for this purpose.
+The {mod}`~CADETProcess.fractionation` module determines optimal cut times and calculates KPIs such as purity, yield, and productivity from simulated chromatograms.
+The {mod}`~CADETProcess.comparison` module quantifies the difference between simulation results and reference data, enabling the formulation of inverse problems for parameter estimation.
 
 (fractionation)=
 ## Product fractionation
