@@ -29,20 +29,18 @@ Instead, changes are made to a local copy of the project, and once they are comp
 Commit messages should include a description of the changes made and the reason for the modification to provide context for future readers.
 This way, context is provided that helps the reader (often the same developer some time later) to follow the development history.
 The complete history of commits for a project makes up a repository, which can be kept in sync across different computers, facilitating collaboration among different people.
+Collaborators can update their local working copies to get current versions of the codebase.
 
 VCS also allow maintaining multiple versions of the code simultaneously through branches.
-Branches enable developers to work on separate features without compromising the integrity of the main branch, often called the master branch.
-Different branches can be easily compared, and changes can be merged back into the main branch once a feature is complete.
-
-Repositories enable synchronization across multiple computers, facilitating collaboration among teams.
-Collaborators can update their local working copies to get current versions of the codebase.
+Branches enable developers to work on separate features without compromising the integrity of the master branch.
+Different branches can be easily compared, and changes can be merged back into the master branch once a feature is complete.
 Modern version control systems automatically merge changes from files edited simultaneously by different users and include tools to resolve conflicts when they arise.
 Because of this, version control is most effective with text files, while its use with binary files, such as PDFs or JPGs, is limited.
 However, solutions like large file storage (LFS) systems help mitigate some of these limitations.
 
 VCS have been in use since the early 1980s, with early systems like *RCS* and *CVS*.
 However, more modern systems like *Git* and *SVN* have become the new standard due to their distributed architecture and advanced features.
-According to Open Hub, *Git* has a market share of $\gt 70~\%$ {cite}`openhub` and is also the system used in this work.
+According to Open Hub, *Git* has a market share of $\gt 70~\%$ {cite}`openhub` and is the system used for developing CADET-Process.
 
 ## Software releases
 
