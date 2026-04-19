@@ -71,9 +71,9 @@ As the simulation continues over multiple cycles, the final state of one cycle s
 Criteria such as the maximum absolute deviation in concentration profiles or the peak areas between consecutive cycles can be specified {cite}`Holmqvist2015`.
 For process performance evaluation, only the last cycle is analyzed, as it provides representative key performance indicators of the process's behavior in subsequent cycles (see also {numref}`fractionation`).
 
-To illustrate this concept, consider an SSR process (see {ref}`here <ssr>` for the complete process configuration).
-In this example, the relative change in the integral of the chromatogram (area of the solution) between successive cycles is compared.
-The simulation continues until the relative change in area is less than $0.1~\%$.
+To illustrate this concept, consider an SSR process (see {numref}`ssr` for the complete process configuration).
+In this example, the relative change in the integral of the chromatogram (area under the chromatogram) between successive cycles is compared.
+The simulation continues until the relative change in area is less than $0.1~\%$, or until a maximum number of cycles is reached as a safety limit.
 {numref}`chromatogram_stationarity` shows the concentration profile at the column outlet across all cycles.
 The distinct startup behavior is noticeable on the left side of the profile, while later cycles exhibit no significant visual difference, indicating cyclic stationarity.
 In this scenario, the evaluator stopped the simulator after {glue:text}`n_cycles` cycles.
@@ -112,5 +112,5 @@ glue("chromatogram_stationarity", fig, display=False)
 :name: chromatogram_stationarity
 :scale: 100%
 
-Concentration profile at column outlet for {glue:text}`n_cycles` cycles.
+Concentration profile at the column outlet across {glue:text}`n_cycles` simulated cycles, showing the startup transient and convergence to cyclic stationarity.
 ```
