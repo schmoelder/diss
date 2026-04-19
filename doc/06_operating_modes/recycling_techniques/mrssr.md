@@ -80,8 +80,7 @@ A schematic flow diagram of the MR-SSR process is shown below.
 Flow sheet for mixed-recycle steady-state recycling process.
 ```
 
-To implement recycling, the {attr}`~CADETProcess.processModel.FlowSheet.output_states` attribute of the flow sheet that controls the flow of unit operations downstream of the column must be modified.
-To realize the recycling, the {attr}`~CADETProcess.processModel.FlowSheet.output_states` attribute of flow sheet that controls the flow of unit operations downstream of the column must be modified.
+To implement recycling, the {attr}`~CADETProcess.processModel.FlowSheet.output_states` attribute of the flow sheet, which controls the flow of unit operations downstream of the column, must be modified.
 To minimize the number of explicitly defined event times, event dependencies are introduced:
 - Fresh feed is pumped into the mixing tank only after injection completes.
 - The eluent flow is automatically disabled at the start of injection and re-enabled upon its completion.

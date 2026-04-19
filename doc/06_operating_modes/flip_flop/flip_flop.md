@@ -213,9 +213,7 @@ When focusing on productivity maximization, the analysis identifies several char
 The process achieves extreme overloading conditions by operating at high feed volumes to maximize throughput.
 A touching band separation emerges where fast-eluting components exit the column first.
 Flow reversal then occurs before the slow components reach the original outlet.
-This causes the components to elute at what was originally the inlet (now functioning as the outlet).
-The components now elute at what was originally the inlet (now functioning as outlet), with minimal but existing waste fractions.
-The separation produces minimal but non-zero waste fractions.
+This causes the components to elute at what was originally the inlet (now functioning as the outlet), with minimal but non-zero waste fractions.
 However, the current linear isotherm system may not fully capture realistic non-linear adsorption behaviors.
 This suggests that revisiting the component system choice could improve practical applicability.
 
