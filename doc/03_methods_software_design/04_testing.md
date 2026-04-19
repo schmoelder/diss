@@ -22,9 +22,9 @@ In his book "Clean Code: A Handbook of Agile Software Craftsmanship", Robert Mar
 - Independent: Tests should not depend on the output of other tests.
 - Repeatable: Tests should be independent of the programming environment.
 - Self-Validating: Tests should not depend on manual checks by the developer but instead either pass or fail.
-- Timely: Tests should be written before the code is included in the production code.
+- Timely: Tests should be written before or alongside the production code, not added as an afterthought.
 
-One effective way to apply these principles in practice is through a programming practice called *test-driven development* (TDD)
+One effective way to apply these principles in practice is through a programming practice called *test-driven development* (TDD).
 In TDD, the usual programming workflow is inverted: first, a test is written that clearly defines the interface and tests for use cases to cover all requirements and exception conditions.
 Only if the corresponding function passes the test will it be included in the working branch of the software {cite}`Martin2008`.
 
@@ -89,10 +89,7 @@ def circle_area(r: float) -> float:
 ```
 
 Writing these kinds of tests incentivizes programmers to think about code modularization, programming towards cleaner interfaces (see {numref}`programming_principles`), and writing proper documentation (see {numref}`software_documentation`).
-Tests are essential for ensuring a working code base and identifying problems when they occur.
 
-In this project, tests for various functions can be found in the root directory of the *Git* repository.
-Using *Github Actions*, these tests are automatically run whenever the code is updated (see also sections {numref}`version_control` and {numref}`ci_cd`).
-
-By enforcing the "F.I.R.S.T." principles of testing, it can be ensured that the code is efficient, reliable, and maintainable.
-Writing tests as an integral part of the development process helps to catch bugs early on and saves time in the long run.
+In CADET-Process, tests are located in the `tests/` directory of the repository and cover both unit and integration tests using a combination of *Python*'s standard `unittest` module and *pytest* {cite}`pytest`.
+Using *Github Actions*, these tests are automatically run whenever the code is updated (see {numref}`ci_cd`), ensuring that new contributions do not break existing functionality.
+Test coverage, i.e. the fraction of source code executed by the test suite, is tracked using [*Codecov*](https://app.codecov.io/github/fau-advanced-separations/CADET-Process/tree/dev) and currently stands at approximately 73\% (as of April 2026).
