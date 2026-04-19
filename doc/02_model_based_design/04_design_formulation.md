@@ -14,9 +14,8 @@ The formulation of chromatographic design problems typically involves determinin
 
 *Model parameters* are inherent to the chosen chromatographic system and describe its physical and chemical properties.
 These include parameters related to thermodynamics, fluid dynamics, dispersion effects, and mass transfer resistances.
-Model parameters can often be measured directly, obtained through correlations, or determined using inverse methods, where they are adjusted to align with experimental data or other sources of information.
+Model parameters can often be measured directly, obtained through correlations, or determined using inverse methods, where they are adjusted to align with experimental data or other sources of information (see {numref}`model_calibration`).
 The accurate determination of model parameters is essential for developing precise chromatographic process models.
-For an example characterization procedure of a typical chromatographic laboratory system, refer to {numref}`characterization`.
 
 *Design parameters* define the overall setup and operational configuration of a chromatographic plant, which remain fixed during operation.
 These parameters include decisions about operating modes (e.g., batch-elution or recycling techniques), column geometry (length and diameter), adsorbent type, and, for SMB systems, zone configurations such as the number of columns per zone.
@@ -32,6 +31,29 @@ The following section introduces several key performance indicators (KPIs) that 
 These KPIs will later serve as objectives or constraints when formulating optimization problems.
 Optimization methods are essential for identifying the best process design that meets the desired performance criteria while balancing trade-offs between competing objectives, such as maximizing product purity and minimizing operating costs.
 Finally, the discussion will examine the merits and limitations of single-objective and multi-objective optimization approaches.
+
+(model_calibration)=
+## Model calibration
+
+Model calibration involves determining all parameters required for an accurate model, whether through direct measurement, peak analysis, or inverse methods based on experimental data.
+Not all model parameters require estimation from experimental data.
+Simple geometric parameters like column length and diameter can be measured directly, while others, such as equilibrium constants or mass transfer coefficients, may be obtained through peak analysis or other targeted measurements.
+For parameters that cannot be determined directly, the calibration can be formulated as an optimization problem where a comparison function (e.g., normalized root-mean-square error, NRMSE)
+
+```{math}
+:label: nrmse
+\text{NRMSE} = \frac{\sqrt{\sum_{t=1}^{T} (y_t - \hat{y}_t)^2}}{y_{\text{max}} - y_{\text{min}}}
+```
+
+computes residuals between model predictions $\hat{y}_t$ and experimental data $y_t$.
+Designing experiments to maximize information about each parameter ensures identifiability and efficient determination.
+For practical implementation, the {mod}`~CADETProcess.comparison` module provides tools for comparing simulation results with reference data, as described in {numref}`comparison`.
+For an example characterization procedure of a typical chromatographic laboratory system, refer to {numref}`characterization`.
+
+Note, parameter estimation alone does not account for uncertainty in the estimates.
+Quantifying uncertainty in parameter estimates is important, as chromatographic systems often exhibit nonlinear dynamics, non-Gaussian distributions, and correlated errors.
+In such cases, Markov Chain Monte Carlo (MCMC) methods are typically required {cite}`Heymann2022`.
+While this work focuses on parameter estimation rather than uncertainty analysis, the modular architecture of CADET-Process generally provides a foundation for future extensions in this direction.
 
 (kpi)=
 ## Key performance indicators

@@ -194,7 +194,7 @@ For this example, the full process configuration can be found {ref}`here <fit_co
 @TODO: Update reference
 As an initial guess, the bed porosity is set to $0.5$, and the axial dispersion to $1.0 \times 10^{-7} \text{m}^2 \text{s}^{-1}$.
 After process simulation, the {class}`~CADETProcess.simulationResults.SimulationResults` needs to be passed to the {meth}`~CADETProcess.comparison.Comparator.evaluate` method of the {class}`~CADETProcess.comparison.Comparator`.
-Here, an SSE metric has been added for the interval $3 \to 6~\text{min}$.
+Here, an NRMSE metric has been added for the interval $3 \to 6~\text{min}$.
 The difference is visualized in {numref}`chromatogram_comparison`.
 The comparison shows that there is still a large discrepancy between simulation and experiment.
 Instead of manually adjusting these parameters, an {class}`~CADETProcess.optimization.OptimizationProblem` can be set up, which automatically determines the parameter values.
@@ -215,7 +215,7 @@ comparator = Comparator()
 comparator.add_reference(reference)
 
 comparator.add_difference_metric(
-    'SSE', reference, 'column.outlet', start=3*60, end=6*60
+    'NRMSE', reference, 'column.outlet', start=3*60, end=6*60
 )
 
 from CADETProcess.simulator import Cadet

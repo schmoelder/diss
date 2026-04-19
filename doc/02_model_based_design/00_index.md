@@ -19,7 +19,7 @@ This development phase often involves selecting an appropriate theoretical frame
 The model must then be *verified* to ensure its theoretical soundness and correct implementation through rigorous testing.
 This involves checking that the mathematical equations are solved correctly, the software implementation matches the theoretical formulation, and the model behaves as expected when compared to benchmarks and well-defined test cases.
 
-During model *calibration*, parameters are systematically adjusted to optimize alignment with experimental data, thereby enhancing predictive accuracy.
+During model *calibration*, parameters are estimated to minimize residuals between model predictions and experimental data (see {numref}`model_calibration`), improving predictive accuracy.
 Following successful calibration, the model undergoes *validation* using independent experimental datasets not used during calibration to rigorously assess its accuracy and reliability in real-world scenarios.
 It is important to note that model development typically follows an iterative DBTL cycle (design, build, test, learn) rather than a linear progression, allowing for continuous refinement through repeated cycles of calibration and validation.
 
