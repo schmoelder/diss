@@ -6,8 +6,6 @@ However, documentation that simply restates the mechanics of the code is of limi
 Instead, documentation should provide an overview of the code's purpose and instructions on its usage, including explanations of design decisions, architectural structures, and interfaces.
 It is important to note that if the code is too complex, it should be simplified before documentation is added (see {numref}`programming_principles`).
 Good documentation should also include user manuals with installation instructions, tutorials for beginners, and troubleshooting guides.
-By following these documentation practices, developers can create software that is more easily understandable, maintainable, and reusable.
-
 In the following sections, the usage of docstrings in Python to document functions, classes, and modules will be discussed.
 Docstrings are special string literals that can be used to provide documentation for Python code.
 Additionally, the usage of documentation generation tools like Sphinx to automatically generate documentation from docstrings will be covered {cite}`sphinx`.
@@ -18,8 +16,7 @@ Most programming languages have conventions for writing string literals in the s
 Unlike conventional source code comments, docstrings are retained throughout the runtime of the program and can be used for interactive help systems.
 In Python, docstrings conventions were defined with *PEP-257* {cite}`PEP257`, which specifies how modules, functions, classes, or methods should be documented so they can be accessed with the special `__doc__` attribute of that object.
 
-There are several conventions for structuring docstrings into sections that describe different aspects of the function.
-To structure docstrings into sections that describe different aspects of a function, a one-line summary should first provide a brief description of the corresponding source code.
+A one-line summary should first provide a brief description of the corresponding source code.
 Relevant details of the code segment are then described in subsequent sections.
 In the following, some of the most important sections are presented using *Numpy*'s formatting convention {cite}`numpy_docstring`.
 
@@ -57,7 +54,7 @@ Details on which errors get raised and under what conditions:
 Raises
 ------
 ValueError
-    If method has been passed has an invalid value.
+    If the argument has an invalid value.
 ```
 
 In addition to the previously mentioned sections, there are several other commonly used sections in docstrings.
@@ -73,5 +70,5 @@ Its *autodoc* extension additionally reads type annotations (see {numref}`type_a
 
 By combining background information, tutorials, and advanced examples with the extracted docstrings, these reference manuals become a useful starting point for new users of a software package.
 For example, in the case of CADET-Process, the documentation can be found on [Read The Docs](https://readthedocs.org/projects/cadet-process), an online platform for hosting and publishing software documentation that also supports *Sphinx*.
-The documentation is automatically updated when changes are made to the source code, ensuring that the documentation is always up-to-date and accurate (see {numref}`ci_cd`).
-This makes it easier for both new and experienced users to access the information they need, ultimately leading to better code quality and more efficient development.
+The documentation is automatically updated when changes are made to the source code, ensuring that it is always up-to-date and accurate (see {numref}`ci_cd`).
+In CADET-Process, these documentation practices are applied throughout: all public classes and functions include docstrings following the NumPy convention, and the full reference documentation is published and continuously updated via Read The Docs.
