@@ -186,27 +186,27 @@ Additionally, any number of nonlinear constraint functions can be incorporated i
 (evaluation_toolchains)=
 ### Evaluation toolchains
 
-In many complex optimization cases, optimization variables cannot be directly inputted into an objective or nonlinear constraint function.
-Instead, a sequence of processing steps is required to derive the final values or metrics computed by these functions.
+In many complex optimization cases, optimization variables cannot be passed directly into an objective or nonlinear constraint function.
+Instead, a sequence of processing steps is required to derive the metrics computed by those functions.
 Take, for example, the fitting of adsorption parameters (see {numref}`adsorption_parameters`).
 Here, the parameters are deeply nested within the {class}`~CADETProcess.processModel.Process` object, specifically as part of the binding model in one of the unit operations of the process flow sheet.
-Consequently, the optimization variable must be mapped to the corresponding parameter.
-Before calculating objectives, the process needs to be simulated, and the simulation results have to be passed to the {class}`~CADETProcess.comparison.Comparator` to compute the residual by comparing the output with experimental reference data (refer to {numref}`comparison`).
-{numref}`evaluation_example_comparator` shows the steps required for calculating the difference metrics.
+Consequently, each optimization variable must be mapped to the corresponding model parameter.
+Before calculating objectives, the process needs to be simulated, and the simulation results have to be passed to the {class}`~CADETProcess.comparison.Comparator` to compute the difference metrics by comparing the output with experimental reference data (see {numref}`comparison`).
+{numref}`evaluation_example_comparator` shows the steps required for this calculation.
 
 ```{figure} ./figures/evaluation_example_comparator.png
 :name: evaluation_example_comparator
 :scale: 50%
 
-Steps required for calculating difference metrics, used as residual in an optimization problem.
+Steps required for calculating difference metrics in a parameter estimation problem.
 ```
 
 To simplify the definition of such complex problems, CADET-Process introduces *Evaluation Toolchains*.
-This concept refers to a sequence of preprocessing steps that are essential for calculating the values of objective or nonlinear constraint functions.
+This concept refers to a sequence of processing steps that are executed at each optimizer call to compute the values of objective or nonlinear constraint functions.
 These toolchains involve two main components: evaluation objects and evaluators.
 
-An evaluation object is responsible for managing an optimization variable's value within an optimization problem.
-In the example provided, before incorporating optimization variables into the {class}`~CADETProcess.optimization.OptimizationProblem`, it is essential to register the {class}`~CADETProcess.processModel.Process` as an evaluation object and specify the path to the parameter to be updated during optimization.
+An *evaluation object* wraps a model, such as a {class}`~CADETProcess.processModel.Process`, and is responsible for receiving the current optimization variable values and updating the corresponding model parameters before evaluation.
+In the adsorption parameter fitting example, the {class}`~CADETProcess.processModel.Process` is registered as an evaluation object, and the path to each parameter to be updated is specified.
 Multiple evaluation objects can be added for simultaneous optimization of different operating conditions.
 Furthermore, a given optimization variable can be linked to either a single evaluation object or multiple evaluation objects, as detailed in {numref}`multiple_evaluation_objects`.
 
@@ -218,35 +218,31 @@ Relationship between optimization variables and evaluation objects.
 Here, optimization variable $1$ is associated with both evaluation objects, while variable $2$ is specific to evaluation object $2$.
 ```
 
-Before integrating the objective and nonlinear constraint functions into the {class}`~CADETProcess.optimization.OptimizationProblem`, it is necessary to add further processing steps as evaluators.
-Any callable function can be used as an evaluator, provided it takes the result of the previous step as its first argument and returns a single result object for subsequent processing.
-To enhance efficiency, CADET-Process internally caches intermediate results.
-This approach minimizes redundant computations in other objectives or constraints that involve similar evaluation steps.
-The application of this approach is illustrated in {numref}`evaluation_steps`.
+*Evaluators* form the processing chain between evaluation objects and the objective or constraint functions.
+Any callable function can be used as an evaluator, provided it accepts the result of the previous step as its first argument and returns a single result object for subsequent processing.
+To enhance efficiency, CADET-Process internally caches intermediate results, minimizing redundant computations when multiple objectives or constraints share evaluation steps.
+The full toolchain is illustrated in {numref}`evaluation_steps`.
 
 ```{figure} ./figures/evaluation_steps.png
 :name: evaluation_steps
 :scale: 25%
 
 Evaluation toolchain in CADET-Process.
-Optimization variables $v$ are associated with parameters of an evaluation object $e$, (e.g., a {class}`~CADETProcess.processModel.Process`).
-The evaluation objects are then passed to a chain of evaluators $s$ which process the input and return results.
-This procedure is repeated until the last results of the toolchain are handed to the objective / nonlinear constraint function(s) $f$ / $g$ which determine the final metrics $m$ of the corresponding objective or nonlinear constraint function.
-Note that the total number of metrics depends on the number of evaluation objects, number of objectives / nonlinear constraint functions, as well as the number of metrics per objective / nonlinear constraint function.
+Optimization variables $v$ are mapped to parameters of an evaluation object $e$ (e.g., a {class}`~CADETProcess.processModel.Process`), which is then passed through a chain of evaluators $s$.
+The final results are handed to the objective and nonlinear constraint functions $f$ and $g$, which return the metrics $m$.
+The total number of metrics depends on the number of evaluation objects, objectives and nonlinear constraint functions, and metrics per function.
 ```
 
-To facilitate monitoring of the optimization progress, callback functions can be incorporated into the optimization problem.
-These functions enable direct user interaction with the optimization process, allowing for additional reporting or manual interventions.
-For instance, a simple callback function might be employed for plotting chromatograms.
-In single-objective optimization, the function is called with the best individual, whereas in multi-objective optimization, it is executed for every member of the Pareto front.
-Similar to objective and nonlinear constraint functions, callbacks usually involve the implementation of an evaluation toolchain (see {numref}`evaluation_steps`).
+Callback functions can also be incorporated into the optimization problem to facilitate monitoring of the optimization progress.
+Any callable can serve as a callback, for instance to plot chromatograms or log intermediate results.
+In single-objective optimization, the callback is called with the best individual found so far; in multi-objective optimization, it is called for every member of the current Pareto front.
+Like objective and nonlinear constraint functions, callbacks are typically implemented using an evaluation toolchain (see {numref}`evaluation_steps` and {numref}`callbacks`).
 
 ```{figure} ./figures/callbacks_evaluation.png
 :name: callbacks
 :scale: 25%
 
-Evaluation of user-defined callbacks $c$.
-The evaluation toolchain is executed for every element in the Pareto front $p$.
+Evaluation of user-defined callbacks $c$ for each member of the Pareto front $p$ in multi-objective optimization.
 ```
 
 (optimizer)=
