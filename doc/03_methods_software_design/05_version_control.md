@@ -46,19 +46,26 @@ According to Open Hub, *Git* has a market share of $\gt 70~\%$ {cite}`openhub` a
 
 ## Software releases
 
-Although using a version control system is crucial for developing stable software, it may not be convenient for end-users.
-Instead, it is useful to periodically create software releases - deployable software versions that are considered stable enough to be made available for a wider audience to download and use.
-These versions can be deployed to package managers like *PyPI* or *conda*, making it easier to install the software.
-For example, to install CADET-Process, users can use the following command which will automatically install the package along with all its dependencies:
+While a VCS tracks every change to the source code, end-users typically do not interact with the full development history.
+Instead, the development team periodically publishes *releases*: snapshots of the codebase that are considered stable and ready for general use.
+In *Git*, a release is associated with a tag that marks a specific commit as a named, stable version.
+These releases are then deployed to package managers such as *PyPI* or *conda*, allowing users to install the software without needing access to the source code repository.
+For example, CADET-Process can be installed with a single command that also resolves all dependencies automatically:
 
 ```bash
 pip install cadet-process
 ```
 
-Different conventions exist for naming releases.
-One commonly used scheme is called "Semantic Versioning" {cite}`semantic`.
-Semantic Versioning is a three-component number in the format of MAJOR.MINOR.PATCH.
-The MAJOR version number is incremented when incompatible changes are made to the API, the MINOR version number is incremented for backwards compatible functionality, and the PATCH version number is incremented for backwards compatible bug fixes.
+To install a specific version, for instance to reproduce results from a previous study, the version number can be specified explicitly:
 
-All releases of CADET-Process can be found on *[GitHub](https://github.com/fau-advanced-separations/CADET-Process/releases)*.
-The page also includes a changelog describing new features or changes in the API introduced with that version.
+```bash
+pip install cadet-process==0.11.1
+```
+
+Different conventions exist for naming releases.
+One widely used scheme is *Semantic Versioning* {cite}`semantic`, which encodes the nature of changes in a three-component version number of the form MAJOR.MINOR.PATCH.
+The MAJOR version is incremented when incompatible changes are made to the API, the MINOR version for backwards-compatible new functionality, and the PATCH version for backwards-compatible bug fixes.
+From a user perspective, updating to a new PATCH or MINOR version is generally safe, whereas a new MAJOR version may require changes to existing scripts or workflows.
+
+All releases of CADET-Process, together with a changelog describing new features or API changes, can be found on *[GitHub](https://github.com/fau-advanced-separations/CADET-Process/releases)*.
+The release process itself is automated as part of the CI/CD pipeline (see {numref}`ci_cd`).
