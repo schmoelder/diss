@@ -163,7 +163,7 @@ These initial intervals are then expanded by the optimizer towards regions of lo
 By default, the mass of the components is maximized under purity constraints, although alternative objective functions are equally viable.
 Currently, {class}`~CADETProcess.optimization.COBYLA` {cite}`Powell1994` from the *SciPy* library {cite}`SciPyContributors2020` is used as the optimizer, but other optimizers or heuristic algorithms may also be employed.
 
-To the best of the author's knowledge, this flexible automatic approach for determining fractionation times is a novel contribution that has not been previously discussed in literature.
+To the best of the author's knowledge, this flexible automatic approach for determining fractionation times is a novel contribution that has not been previously discussed in the literature.
 This method addresses an important gap in the toolchain necessary for the analysis and optimization of advanced chromatographic processes.
 
 

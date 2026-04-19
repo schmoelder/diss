@@ -63,7 +63,7 @@ For instance, {numref}`chromatogram` was generated using the {meth}`~CADETProces
 
 Preparative chromatographic separations are often operated in a repetitive fashion.
 In particular, processes that incorporate the recycling of streams, like SSR or SMB, have a distinct startup behavior that takes multiple cycles until a periodic steady state is reached {cite}`SchmidtTraub2020`.
-But also in conventional batch chromatography, several cycles are needed to attain stationarity in optimized situations where there is a cycle-to-cycle overlap of the elution profiles of consecutive injections.
+In conventional batch chromatography as well, several cycles are needed to attain stationarity in optimized situations where there is a cycle-to-cycle overlap of the elution profiles of consecutive injections.
 For this reason, the simulator is capable of simulating a process either for a fixed number of cycles or until cyclic stationarity has been reached.
 
 To automatically simulate until stationarity is reached, a {class}`~CADETProcess.stationarity.StationarityEvaluator` must be configured and added to the process simulator (see {numref}`framework_overview`).

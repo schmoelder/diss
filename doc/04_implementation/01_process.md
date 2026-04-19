@@ -5,7 +5,7 @@ The starting point of process development is the setup of a {class}`~CADETProces
 This is realized using {class}`UnitOperations <CADETProcess.processModel.UnitBaseClass>` as building blocks.
 Multiple {class}`UnitOperations <CADETProcess.processModel.UnitBaseClass>` can be connected in a {class}`~CADETProcess.processModel.FlowSheet`, which describes the mass transfer between the individual units.
 Finally, dynamic {class}`Events <CADETProcess.dynamicEvents.Event>` can be defined to model dynamic changes of model parameters, including flow rates and system connectivity.
-In this chapter, an overview about the different components of the {class}`~CADETProcess.processModel.Process` is given.
+In this chapter, an overview of the different components of the {class}`~CADETProcess.processModel.Process` is given.
 
 (unit_operations)=
 ## Unit operations

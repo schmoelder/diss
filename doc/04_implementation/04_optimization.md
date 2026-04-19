@@ -170,7 +170,7 @@ They are typically defined using linear functions of the optimization:
 A \cdot x \leq b,
 ```
 
-where $A$ is an $m \times n$ coefficient matrix and $b$ is an $m$-dimensional vector and $m$ denotes the number of constraints, and $n$ the number of variables, respectively.
+where $A$ is an $m \times n$ coefficient matrix, $b$ is an $m$-dimensional vector, $m$ denotes the number of constraints, and $n$ the number of variables.
 This method is especially useful for enforcing certain relationships between variables, like order or proportionality, ensuring solutions are mathematically optimal and practically viable.
 
 Equality constraints are useful for setting specific solution conditions, thereby refining the feasible solution space.
@@ -337,7 +337,7 @@ After optimization, a {class}`~CADETProcess.optimization.OptimizationResults` ob
 This includes:
 
 - {attr}`~CADETProcess.optimization.OptimizationResults.exit_flag`: Information about the optimizer termination.
-- {attr}`~CADETProcess.optimization.OptimizationResults.exit_message`: Additional information about the optimiz status.
+- {attr}`~CADETProcess.optimization.OptimizationResults.exit_message`: Additional information about the optimizer status.
 - {attr}`~CADETProcess.optimization.OptimizationResults.n_evals`: Number of evaluations.
 - {attr}`~CADETProcess.optimization.OptimizationResults.x`: Optimal points.
 - {attr}`~CADETProcess.optimization.OptimizationResults.f`: Optimal objective values.
@@ -363,7 +363,7 @@ glue("objectives", fig, display=False)
 
 Objective function values for all evaluated individuals.
 Darker shades represent individuals evaluated in later generations.
-The prominent minima indicative of a successful convergence towards the minima.
+The prominent minima are indicative of successful convergence.
 ```
 
 The {meth}`~CADETProcess.optimization.OptimizationResults.plot_pareto` method shows a pairwise Pareto plot, where each objective is plotted against every other objective in a scatter plot, allowing for a visualization of the trade-offs between the objectives (see {numref}`pareto`).
