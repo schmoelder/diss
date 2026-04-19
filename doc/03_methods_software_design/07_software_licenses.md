@@ -88,5 +88,4 @@ Another critical aspect, particularly relevant to this work, is the reproducibil
 Results cannot be verified by others without access to both the raw data and the libraries and tools required to analyze the data.
 And without validation, it's difficult to build further on such results reliably.
 
-Because intellectual property is protected through copyright laws and licenses, and there are tools available that remove many of the technical limitations to publishing software, more scientific software should be made open to everyone.
-Sharing knowledge and providing people with access to tools is the most effective way to promote innovation and collaboration, particularly in a time of global inequality.
+The choice of an open-source license for CADET-Process is therefore also a commitment to reproducibility: by making the framework freely available, results obtained with it can be independently verified and built upon by others.
