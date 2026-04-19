@@ -95,8 +95,8 @@ As a result, only the bed porosity was used for further simulations, and the axi
 
 Experiment `E7` was conducted to investigate protein-specific transport limitations.
 The data were fitted using a {class}`~CADETProcess.processModel.LumpedRateModelWithPores` ({numref}`lumped_rate_model_with_pores`).
-While axial dispersion exhibits a minimum, though not sharply defined, the film diffusion coefficient could not be determined definitively (see {numref}`e7_objectives_film_diffusion`).
-The analysis only indicates that the film diffusion coefficient must exceed $1~\times 10^{-5}~\text{m}~\text{s}^{-1}$.
+{numref}`e7_objectives_film_diffusion` plots the objective function value against each optimization variable: while axial dispersion and particle porosity both exhibited minima, the film diffusion coefficient converged toward large values without a clear optimum, indicating that it could not be determined definitively.
+The analysis only indicated that the film diffusion coefficient must exceed $1~\times 10^{-5}~\text{m}~\text{s}^{-1}$, suggesting that film diffusion is not rate-limiting under the experimental conditions.
 
 ```{code-cell} ipython3
 ---
@@ -112,15 +112,15 @@ e7_objectives = embed_figure_in_directive(
     parameters_branch_e7_film_diffusion,
     "figures/objectives.png",
     "e7_objectives_film_diffusion",
-    "Evaluated objective values per optimization variable in experiment E7.",
+    "Objective function values per optimization variable for experiment E7.",
 )
 display(Markdown(e7_objectives))
 ```
 
-To address this, the data were refitted under the assumption of non-limiting film diffusion.
-Since CADET does not natively support this condition, a high numerical value of $1~\text{m}~\text{s}^{-1}$ was used to approximate non-limiting film diffusion.
-Both fitting approaches resulted in similar particle porosities, and the objectives plot ({numref}`e7_objectives`) now shows a clear minimum for axial dispersion.
-To simplify the model and reduce parameter uncertainty, film diffusion was assumed to be non-limiting for all molecules in subsequent analyses.
+The data were therefore refitted under the assumption of non-limiting film diffusion.
+Since CADET does not natively support this condition, a high numerical value of $1~\text{m}~\text{s}^{-1}$ was used as an approximation.
+{numref}`e7_objectives` shows the resulting objective landscape: the minima for both axial dispersion and particle porosity are now more sharply defined.
+Both fitting approaches resulted in similar particle porosities, and film diffusion was assumed to be non-limiting for all molecules in subsequent analyses.
 
 ```{code-cell} ipython3
 ---
@@ -133,7 +133,7 @@ e7_objectives = embed_figure_in_directive(
     parameters_all["e7_lrmp"]["branch_name"],
     "figures/objectives.png",
     "e7_objectives",
-    "Evaluated objective values per optimization variable in experiment E7, assuming limiting film diffusion.",
+    "Objective function values per optimization variable for experiment E7, assuming non-limiting film diffusion.",
 )
 display(Markdown(e7_objectives))
 ```
