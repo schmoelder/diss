@@ -27,9 +27,10 @@ Aspects such as retention mechanisms and transport phenomena are particularly im
 Typically, chromatographic processes are mathematically described using partial differential equations, which are first parametrized to represent the specific system under study and then solved numerically.
 For a more in-depth discussion on the modeling approach and the numerical solutions to these equations, refer to sections {numref}`%s <model_formulation>` and {numref}`%s <model_solution>`.
 
-The primary focus of this work is to investigate various operating modes of chromatography and conduct a comprehensive comparison of their performance.
-For this analysis, it is assumed that the models being used have already undergone verification, validation, and calibration. @todo: this is no longer accurate; refer to verification / characterization chapters!
-These models then enable the determination of a range of metrics to evaluate the performance of specific chromatographic process scenarios, as detailed in {numref}`section %s <design_formulation>`.
+The primary focus of this work is to validate the CADET-Process framework for modeling and optimizing chromatographic processes.
+This validation includes parameter estimation and model calibration against experimental data, as demonstrated in {numref}`characterization`.
+The validated framework then enables the investigation of various operating modes and a comprehensive comparison of their performance.
+These models enable the determination of a range of metrics to evaluate the performance of specific chromatographic process scenarios, as detailed in {numref}`design_formulation`.
 Subsequently, different optimization algorithms can be applied to identify optimal operating conditions by maximizing the defined performance metrics.
 A more detailed discussion of these optimization techniques can be found in {numref}`section %s <design_solution>`.
 
