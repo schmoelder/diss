@@ -10,7 +10,7 @@ By following these documentation practices, developers can create software that 
 
 In the following sections, the usage of docstrings in Python to document functions, classes, and modules will be discussed.
 Docstrings are special string literals that can be used to provide documentation for Python code.
-Additionally, the usage of documentation generation tools like Sphinx to automatically generate documentation from docstrings will be covered @TODO: cite.
+Additionally, the usage of documentation generation tools like Sphinx to automatically generate documentation from docstrings will be covered {cite}`sphinx`.
 
 ## Docstrings
 
