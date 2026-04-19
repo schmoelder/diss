@@ -129,7 +129,7 @@ glue("flip_flop_bulk", fig_flip_flop_bulk, display=False)
 :name: flip_flop_bulk
 :scale: 100%
 
-**Left:** Concentration profile at the inlet of the column. **Center**: Bulk concentration at different times. The flow direction is indicated by the arrow. **Right:** concentration profile at the system outlet.
+**Left:** Concentration profile at the inlet of the column. **Center**: Bulk concentration at different times. The flow direction is indicated by the arrow. **Right:** Concentration profile at the system outlet.
 ```
 
 (flip_flop_validation)=
@@ -166,7 +166,7 @@ Comparison of the flip-flop simulation chromatogram (solid line) with the analyt
 (flip-flop_multi)=
 ## Multi-objective optimization of a simple linear separation problem
 
-To optimize the flip-flop process, in addition to the feed duration, the delay at which the flow direction is reversed needs to be optimized, as well as the delay at which the next feed injection occurs on the other end of the column is injected need to be determined.
+To optimize the flip-flop process, three variables need to be determined: the feed duration, the delay after which the flow direction is reversed, and the delay before the next injection is made at the opposite end of the column.
 The problem is summarized in {numref}`flip-flop_simple_linear_auto-cycle_moo-pc_overview`.
 
 ```{code-cell} ipython3
@@ -208,7 +208,7 @@ display(Markdown(overview))
 The optimal solutions and corresponding KPIs for all Pareto points are summarized in {numref}`flip-flop_simple_linear_auto-cycle_moo-pc_kpi`.
 The corresponding chromatograms are provided in {numref}`flip-flop_simple_linear_auto-cycle_moo-pc_fig_chrom`.
 
-The optimization results reveals well-defined optima for all performance indicators.
+The optimization results reveal well-defined optima for all performance indicators.
 When focusing on productivity maximization, the analysis identifies several characteristic operational behaviors.
 The process achieves extreme overloading conditions by operating at high feed volumes to maximize throughput.
 A touching band separation emerges where fast-eluting components exit the column first.
@@ -242,5 +242,5 @@ display(Markdown(moo_table))
 
 ## Summary
 
-Despite its potential, the flip-flop mode has seen limited adoption—possibly due to concerns about column design, complexity, or the mechanical stability of packing materials under repeated flow reversals.
+Despite its potential, the flip-flop mode has seen limited adoption, possibly due to concerns about column design, complexity, or the mechanical stability of packing materials under repeated flow reversals.
 Alternatives worth considering include the use of pre-columns (see {numref}`serial_columns`), or gradient elution processes where one of the buffer components (e.g. a salt) modulates the binding strength.
