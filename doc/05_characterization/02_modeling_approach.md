@@ -23,11 +23,8 @@ These will be discussed later in {numref}`column_parameters` and {numref}`adsorp
 Model of Knauer system.
 ```
 
-To streamline the setup of the system model, a custom {class}`~CADETProcess.processModel.FlowSheet` class was implemented.
-This class automatically configures and connects the unit operations, and it includes additional arguments for specifying the sample loop volume and units that are bypassed during system periphery characterization, as described in the following section.
-Additionally, several custom {class}`~CADETProcess.processModel.Process` classes were implemented to automatically configure pulse injection, breakthrough curve, and gradient elution experiments.
-Classes were also developed to automatically convert experimental data from Knauer format to {class}`~CADETProcess.reference.ReferenceIO` and facilitate calibration.
+To streamline the setup of the system model, a custom {class}`~CADETProcess.processModel.FlowSheet` subclass was implemented that automatically configures and connects the unit operations, with arguments for specifying the sample loop volume and any units bypassed during periphery characterization.
+Several custom {class}`~CADETProcess.processModel.Process` subclasses were also implemented to configure pulse injection, breakthrough curve, and gradient elution experiments, along with utilities to convert raw Knauer data into {class}`~CADETProcess.reference.ReferenceIO` objects.
 
-For each experiment, a {class}`~CADETProcess.comparison.Comparator` was set up using the {class}`~CADETProcess.comparison.NRMSE` metric (see {numref}`comparison`).
-This comparator was added as an objective to the {class}`~CADETProcess.optimization.OptimizationProblem`, with the corresponding parameters defined as optimization variables (see {numref}`optimization`).
+For each experiment, a {class}`~CADETProcess.comparison.Comparator` was set up using the {class}`~CADETProcess.comparison.NRMSE` metric (see {numref}`comparison`), and added as an objective to an {class}`~CADETProcess.optimization.OptimizationProblem` with the corresponding parameters as optimization variables (see {numref}`optimization`).
 All optimization problems were solved using the {class}`U-NSGA-3 <CADETProcess.optimization.U_NSGA3>` optimizer.
