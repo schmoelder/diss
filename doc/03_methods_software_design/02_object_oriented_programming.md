@@ -32,17 +32,17 @@ from abc import ABC, abstractmethod
 import math
 
 class Shape(ABC):
-    def __init__(self, color):
+    def __init__(self, color: str) -> None:
         self.color = color
 
     @property
     @abstractmethod
-    def area(self):
+    def area(self) -> float:
         pass
 
     @property
     @abstractmethod
-    def perimeter(self):
+    def perimeter(self) -> float:
         pass
 
 ```
@@ -52,35 +52,35 @@ These child classes can add their own attributes and methods as needed to specia
 
 ```{code-cell} ipython3
 class Circle(Shape):
-    def __init__(self, radius, *args, **kwargs):
+    def __init__(self, radius: float, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         self.radius = radius
 
     @property
-    def area(self):
+    def area(self) -> float:
         return math.pi * self.radius**2
 
     @property
-    def perimeter(self):
+    def perimeter(self) -> float:
         return 2 * math.pi * self.radius
 
 class Rectangle(Shape):
-    def __init__(self, length, width, *args, **kwargs):
+    def __init__(self, length: float, width: float, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
         self.length = length
         self.width = width
 
     @property
-    def area(self):
+    def area(self) -> float:
         return self.length * self.width
 
     @property
-    def perimeter(self):
+    def perimeter(self) -> float:
         return 2 * (self.length + self.width)
 ```
 
 `Circle` and `Rectangle` both inherit from `Shape`, which already provides a common interface for accessing the `color`, `area`, and `perimeter` attributes.
-To correctly compute `area` and `perimeter`, specific attributes are used (e.g. `radius` for `Circle`, `width` and `height` for `Rectangle`) to ensure that the correct value is always returned, even if the value of the specific attributes changes.
+To correctly compute `area` and `perimeter`, specific attributes are used (e.g. `radius` for `Circle`, `width` and `length` for `Rectangle`) to ensure that the correct value is always returned, even if the value of the specific attributes changes.
 This also demonstrates the principle of *Polymorphism*, where objects of different classes can share a common interface (in this case, the `Shape` class) but have different behavior based on their specific attributes and methods.
 This simplifies the code and makes it more modular, as objects of different classes can be treated as if they were the same type of object, thanks to inheritance.
 
@@ -112,6 +112,26 @@ print(rectangle.perimeter)
 
 The objects `circle` and `another_circle` are instances of the `Circle` class; `rectangle` is an instance of a `Rectangle`.
 They use the class templates that were previously defined and independently store values of their properties.
+
+(type_annotations)=
+## Type annotations
+
+Type annotations, introduced in *PEP-484* {cite}`PEP484`, allow developers to declare the expected types of function arguments and return values directly in the function signature.
+In the context of OOP, they serve as a precise specification of the interface contract: rather than relying on documentation or convention, the signature itself states what a method accepts and what it returns.
+
+This is particularly valuable for abstract base classes.
+In the `Shape` example above, the annotation `-> float` on the abstract `area` and `perimeter` properties makes the required contract of any subclass explicit:
+
+```python
+@property
+@abstractmethod
+def area(self) -> float:
+    pass
+```
+
+A concrete subclass that returns a string instead of a float violates this contract, and tools such as *mypy* or *ruff* can detect this statically, before the code is even run (see {numref}`style`).
+Beyond abstract classes, annotations improve the readability of any method signature by making the expected input and output types immediately apparent without having to consult the implementation or documentation.
+In CADET-Process, type annotations are enforced throughout the codebase and verified as part of the CI/CD pipeline (see {numref}`ci_cd`).
 
 ## Design patterns
 

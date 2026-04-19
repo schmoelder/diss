@@ -25,15 +25,16 @@ In the following, some of the most important sections are presented using *Numpy
 
 **Parameters**
 
-Description of the function arguments, keywords and their respective types.
+Description of the function arguments, keywords and their semantic meaning.
+When type annotations are present in the function signature (see {numref}`type_annotations`), the type does not need to be repeated here.
 
 ```
 Parameters
 ----------
-x : type
+x
     Description of parameter `x`.
 y
-    Description of parameter `y` (with type not specified).
+    Description of parameter `y`.
 
 ```
 
@@ -56,7 +57,7 @@ Details on which errors get raised and under what conditions:
 Raises
 ------
 ValueError
-    If value has an invalid value.
+    If method has been passed has an invalid value.
 ```
 
 In addition to the previously mentioned sections, there are several other commonly used sections in docstrings.
@@ -68,6 +69,7 @@ The "Examples" section is used to provide usage examples of the code segment, an
 In order to make the documentation readily available for both developers and users, documentation generator tools such as *Sphinx* have been developed to extract the docstrings from the source code and create reference manuals in readable forms such as HTML or PDF.
 *Sphinx* is widely used in the Python community and allows for the creation of rich and informative documentation.
 *Sphinx* can be customized with themes and extensions, enabling the embedding of additional materials such as images, diagrams, and mathematical notation to enhance the comprehensiveness of the documentation.
+Its *autodoc* extension additionally reads type annotations (see {numref}`type_annotations`) directly from the source code, integrating them into the generated reference documentation without requiring manual duplication.
 
 By combining background information, tutorials, and advanced examples with the extracted docstrings, these reference manuals become a useful starting point for new users of a software package.
 For example, in the case of CADET-Process, the documentation can be found on [Read The Docs](https://readthedocs.org/projects/cadet-process), an online platform for hosting and publishing software documentation that also supports *Sphinx*.

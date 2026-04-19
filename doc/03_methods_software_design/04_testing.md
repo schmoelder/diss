@@ -34,7 +34,7 @@ Templates for `TestCases` and assertion methods to write tests are provided by t
 In this case, the `assertAlmostEqual` method can be used to limit the number of significant figures and prevent false positive errors due to limited numerical precision.
 
 When writing the test, it may become apparent that the `circle_area` function should not be called with a negative radius argument, and an exception should be raised in such cases.
-Additionally, the function should only accept floats and integers as input arguments to yield valid results.
+Additionally, the function should only accept floats as input arguments to yield valid results.
 Tests can be written to validate these requirements, ensuring that the function works correctly and preventing potential errors in the code.
 
 ```{code-cell} ipython3
@@ -42,12 +42,12 @@ import unittest
 
 class TestCircleArea(unittest.TestCase):
     def test_area(self):
-        self.assertAlmostEqual(circle_area(1), math.pi)
-        self.assertAlmostEqual(circle_area(0), 0)
+        self.assertAlmostEqual(circle_area(1.0), math.pi)
+        self.assertAlmostEqual(circle_area(0.0), 0)
         self.assertAlmostEqual(circle_area(math.e), math.pi * math.e**2)
 
     def test_values(self):
-        self.assertRaises(ValueError, circle_area, -2)
+        self.assertRaises(ValueError, circle_area, -2.0)
 
     def test_types(self):
         self.assertRaises(TypeError, circle_area, 3+1.4j)
@@ -59,12 +59,12 @@ After the interface (i.e. the input and output parameters) of the function is en
 ```{code-cell} ipython3
 import math
 
-def circle_area(r):
+def circle_area(r: float) -> float:
     """Calculate the area of a circle.
 
     Parameters
     ----------
-    r : float or int
+    r
         Radius of the circle.
 
     Returns
@@ -75,12 +75,12 @@ def circle_area(r):
     Raises
     ------
     TypeError
-        If the radius is not a float or int
+        If the radius is not a float
     ValueError
         If the radius is negative.
 
     """
-    if not isinstance(r, (float, int)):
+    if not isinstance(r, float):
         raise TypeError("The radius has to be float.")
     if r < 0:
         raise ValueError("The radius cannot be negative.")
