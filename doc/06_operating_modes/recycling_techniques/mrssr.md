@@ -227,15 +227,15 @@ For the specified $95\%$ purity target, any recycling duration can satisfy recov
 This is evident from the plateau at $95\%$ purity in the objective function plots.
 These observations also align with previous findings {cite}`Dienstbier2020`.
 
-Only when focusing on eluent consumption minimization, the analysis reveals distinct recycling behavior
-By recycling partially resolved intermediate fractions, MR-SSR effectively reduces eluent requirements.
+Only when focusing on eluent consumption minimization does the analysis reveal distinct recycling behavior.
+By recycling partially resolved intermediate fractions, MR-SSR effectively reduces eluent consumption.
 This can be explained by large feed volumes overloading the column.
 The resulting unresolved fractions are then recycled rather than being discarded.
 Since no fresh eluent is used during the injection phase, this approach minimizes overall solvent consumption {cite}`Dienstbier2020`.
 While the optimization landscape shows less pronounced optima compared to productivity objectives, recycling effects remain clearly visible in the chromatograms.
 The chromatograms clearly show the broader, overloaded peaks that enable this efficient solvent reuse.
 
-The combined meta-objective optimization provides additional insights into the practical trade-offs.
+Optimizing the combined weighted objective ({eq}`weighted_objective`) provides additional insights into the practical trade-offs.
 Its optimal value effectively balances productivity and solvent consumption by employing a small but non-zero recycling fraction.
 However, the optimal operating parameters depend strongly on the specific process priorities and economic constraints.
 Incorporating comprehensive economic objectives, such as {eq}`total_cost`, could provide more realistic trade-off analysis.

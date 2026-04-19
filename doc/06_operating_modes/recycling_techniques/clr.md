@@ -85,7 +85,7 @@ Recycling starts immediately after injection ends, and elution begins once recyc
 For this demonstration, a difficult separation problem in the linear range is considered (see {numref}`model_parameters`).
 The components have similar binding affinities, creating a significant elution overlap that makes separation challenging for conventional methods.
 {numref}`fig_clr_demo` depicts the concentration profiles of a CLR process at the column outlet and system outlet, respectively.
-The profiles showcase how the recycled material does not fully exit the system before the end of the recycling phase.
+The profiles illustrate how the recycled material does not fully exit the system before the end of the recycling phase.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -256,7 +256,7 @@ Concentration profiles at column outlets for Pareto edge points (a) and (c)
 
 **Summary**
 
-While this case study could successfully demonstrate that how CLR processes are capable of purifying challenging separation problems, the operating mode has inherent limitations.
+While this case study successfully demonstrates how CLR processes are capable of purifying challenging separation problems, the operating mode has inherent limitations.
 Multiple passes through the column, pump and additional piping increase dispersion, degrading the separation quality.
 Peak shaving is often employed to mitigate this by removing pure regions from chromatogram edges during each cycle, reducing the number of required recycling cycles.
 However, peak shaving often proves to be non-robust in practice due to high sensitivity to process disturbances.
