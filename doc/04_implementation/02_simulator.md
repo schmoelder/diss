@@ -56,7 +56,7 @@ Concentration profiles for each unit operation are stored as instances of the {a
 This class provides methods for interpolating, plotting, and integrating the solution.
 By default, it stores only the inlet and outlet profiles of each unit.
 The unit's {mod}`~CADETProcess.processModel.solutionRecorder` can be adjusted to store additional solution types, such as bulk or solid phase concentrations.
-For instance, {numref}`Figure %s <chromatogram>` was generated using the {meth}`~CADETProcess.solution.SolutionIO.plot` method of the {class}`~CADETProcess.solution.SolutionIO` class, which is used to store the inlet and outlet profiles of unit operations and provides utility methods such as plot methods.
+For instance, {numref}`chromatogram` was generated using the {meth}`~CADETProcess.solution.SolutionIO.plot` method of the {class}`~CADETProcess.solution.SolutionIO` class, which is used to store the inlet and outlet profiles of unit operations and provides utility methods such as plot methods.
 
 (stationarity)=
 ## Cyclic stationarity

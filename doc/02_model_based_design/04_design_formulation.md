@@ -43,7 +43,7 @@ KPIs are frequently employed in process optimization studies to identify areas f
 A key measure of separation performance in chromatography is the amount of target components collected in the product fractions $j$ (see eq. {eq}`mass`).
 While a chromatogram is traditionally defined at the outlet of a single column, here the term is used more generally to describe concentration profiles $c_{i,k}(t)$ at the outlets $k$ of a process.
 The start time, $t_{\text{start}, j}$, and end time, $t_{\text{end}, j}$, for each product fraction $j$ must be selected to ensure that product purity constraints are satisfied.
-{numref}`Figure %s <chromatogram_fractionation>` provides an example of a chromatogram from a batch-elution process, illustrating how suitable fractions are selected.
+{numref}`chromatogram_fractionation` provides an example of a chromatogram from a batch-elution process, illustrating how suitable fractions are selected.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -82,7 +82,7 @@ Blue: Target fraction of component $A$.
 Red: Target fraction of component $B$.
 ```
 
-It is important to note that in advanced chromatographic process configurations outlet chromatograms can be much more complex than the example shown in {numref}`Fig. %s <chromatogram_fractionation>` and that multiple sections of the chromatogram may represent suitable fractions $j$ for collecting one target component $i$.
+It is important to note that in advanced chromatographic process configurations outlet chromatograms can be much more complex than the example shown in {numref}`chromatogram_fractionation` and that multiple sections of the chromatogram may represent suitable fractions $j$ for collecting one target component $i$.
 Moreover, flow sheets can have multiple outlets $k$ that have to be fractionated simultaneously, and the volumetric flow rate $Q_k$ at the outlets may depend on time.
 These aspects are considered by defining the total product amount of a component $i$ as.
 

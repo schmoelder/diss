@@ -87,7 +87,7 @@ The events and durations are depicted in {numref}`batch_elution_events`.
 Events of batch-elution process with event dependencies.
 ```
 
-{numref}`fig_batch_elution` shows the chromatogram of a batch-elution process with incomplete separation, simulated using the parameters listed in {numref}`Table %s <model_parameters>` (standard binary Langmuir binding model).
+{numref}`fig_batch_elution` shows the chromatogram of a batch-elution process with incomplete separation, simulated using the parameters listed in {numref}`model_parameters` (standard binary Langmuir binding model).
 
 ```{code-cell} ipython3
 :tags: [remove-cell]

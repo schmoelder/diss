@@ -49,7 +49,7 @@ To introduce some fundamental concepts that are relevant for all chromatographic
 In a batch-elution process, small quantities of a mixture are injected onto a chromatographic column.
 Following the injection, an eluent is pumped through the column, facilitating the separation of components based on the retention mechanisms previously discussed.
 As a result, these components elute from the column's outlet as distinct peaks.
-{numref}`Figure %s <batch_elution_flow_sheet_intro>` shows a typical flow sheet for a batch-elution process.
+{numref}`batch_elution_flow_sheet_intro` shows a typical flow sheet for a batch-elution process.
 
 ```{figure} ./figures/flow_sheet.png
 :name: batch_elution_flow_sheet_intro
@@ -59,7 +59,7 @@ The flow sheet is comprised of feed and eluent reservoirs, each with a pump capa
 ```
 
 The concentration profile of the separated components at the column outlet is typically recorded using various detectors, and this profile is commonly referred to as a chromatogram.
-{numref}`Figure %s <chromatogram>` depicts a typical chromatogram, as measured at the outlet of the chromatographic column.
+{numref}`chromatogram` depicts a typical chromatogram, as measured at the outlet of the chromatographic column.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -100,7 +100,7 @@ Further gains in productivity and eluent efficiency can be realized by strategic
 If parts of the component mixture are not fully separated after passing through the column, more advanced operating modes can further enhance separation.
 Popular concepts include fractional recycling techniques and multi-column processes, which are particularly effective in improving separation and overall performance.
 Additionally, innovative process concepts like flip-flow operations can significantly boost process productivity.
-Examples of these advanced operating modes are discussed in more detail in {numref}`section %s <operating_modes>`.
+Examples of these advanced operating modes are discussed in more detail in {numref}`operating_modes`.
 
 The operating parameters specific to different operating modes are often optimized to balance trade-offs between various performance metrics.
 Such optimization tasks can be efficiently performed using model-based design, offering a fast, accurate, and cost-effective approach.

@@ -282,7 +282,7 @@ The equilibrium thermodynamics, adsorption kinetics, and, where applicable, chem
 
 Dynamic column models are typically based on differential mass balances within a control volume of the fluid mobile phase and the stationary phase {cite}`SchmidtTraub2020`.
 This results in a system of partial differential equations (PDEs), which are usually solved using numerical methods.
-However, some simplified models allow for analytical solutions (see {numref}`section %s<model_solution>`).
+However, some simplified models allow for analytical solutions (see {numref}`model_solution`).
 
 To simplify the modeling process, various assumptions are often made:
 

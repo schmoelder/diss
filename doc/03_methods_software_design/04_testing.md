@@ -92,7 +92,7 @@ Writing these kinds of tests incentivizes programmers to think about code modula
 Tests are essential for ensuring a working code base and identifying problems when they occur.
 
 In this project, tests for various functions can be found in the root directory of the *Git* repository.
-Using *Github Actions*, these tests are automatically run whenever the code is updated (see also sections {numref}`%s <version_control>` and {numref}`%s <ci_cd>`).
+Using *Github Actions*, these tests are automatically run whenever the code is updated (see also sections {numref}`version_control` and {numref}`ci_cd`).
 
 By enforcing the "F.I.R.S.T." principles of testing, it can be ensured that the code is efficient, reliable, and maintainable.
 Writing tests as an integral part of the development process helps to catch bugs early on and saves time in the long run.

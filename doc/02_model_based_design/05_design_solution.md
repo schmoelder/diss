@@ -24,7 +24,7 @@ The central idea is to determine an operating region for dimensionless flow rate
 For linear isotherms, this operating region takes the shape of a triangle and is commonly referred to as the *triangle theory*.
 Originally developed for linear isotherms, this theory has since been extended to other isotherm models, such as the Langmuir isotherm {cite}`Mazzotti2006`.
 
-Equilibrium theory also finds application in the design of steady-state recycling (SSR) processes (see {numref}`section %s<ssr>`).
+Equilibrium theory also finds application in the design of steady-state recycling (SSR) processes (see {numref}`ssr`).
 In this context, it is used to predict the breakthrough of components and determine the optimal times to switch recycling valves and fractionation intervals {cite}`Kaspereit2005,Kaspereit2011`.
 For instance, Siitonen et al. generalized established design methods for various single- and multi-column processes by applying equilibrium theory.
 Their approach allowed for the direct prediction of multiple dimensionless operating parameters required to achieve the complete separation of a binary feed mixture, using the Langmuir isotherm {cite}`Siitonen2015`.

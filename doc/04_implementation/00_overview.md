@@ -42,8 +42,8 @@ An overview of the framework's modules and their relations is depicted in {numre
 The {class}`~CADETProcess.processModel.Process` class is an abstract representation of the chromatographic process configuration including the operational and design parameters.
 Processes can be simulated using a {class}`Simulator <CADETProcess.simulator.SimulatorBase>` which solves the underlying equations.
 The {class}`Simulator <CADETProcess.simulator.SimulatorBase>` adapter acts as an abstract interface to external solvers (e.g. CADET-Core) and translates the internal configuration to the corresponding format of the solver.
-After the computation is finished, the {class}`~CADETProcess.simulationResults.SimulationResults` are returned and can be further evaluated (see {numref}`Section %s <process_simulation>`).
-If a {class}`~CADETProcess.stationarity.StationarityEvaluator` is configured to test for cyclic stationarity, more chromatographic cycles are simulated until stationarity is reached (see {numref}`Section %s <stationarity>`).
+After the computation is finished, the {class}`~CADETProcess.simulationResults.SimulationResults` are returned and can be further evaluated (see {numref}`process_simulation`).
+If a {class}`~CADETProcess.stationarity.StationarityEvaluator` is configured to test for cyclic stationarity, more chromatographic cycles are simulated until stationarity is reached (see {numref}`stationarity`).
 
 Different modules are provided that process the {class}`~CADETProcess.simulationResults.SimulationResults`.
 For example, {class}`~CADETProcess.simulationResults.SimulationResults` can be compared to experimental data or other simulation results using the {class}`~CADETProcess.comparison.Comparator` class, which computes residuals such as the sum of squared errors (see also {numref}`comparison`).

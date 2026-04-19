@@ -1,7 +1,7 @@
 (process_model)=
 # Process model
 
-The starting point of process development is the setup of a {class}`~CADETProcess.processModel.Process` (see {numref}`Figure %s <framework_overview>`) model, i.e., the specific configuration of the chromatographic process.
+The starting point of process development is the setup of a {class}`~CADETProcess.processModel.Process` (see {numref}`framework_overview`) model, i.e., the specific configuration of the chromatographic process.
 This is realized using {class}`UnitOperations <CADETProcess.processModel.UnitBaseClass>` as building blocks.
 Multiple {class}`UnitOperations <CADETProcess.processModel.UnitBaseClass>` can be connected in a {class}`~CADETProcess.processModel.FlowSheet`, which describes the mass transfer between the individual units.
 Finally, dynamic {class}`Events <CADETProcess.dynamicEvents.Event>` can be defined to model dynamic changes of model parameters, including flow rates and system connectivity.
@@ -43,7 +43,7 @@ Furthermore, unit operation models can be used to model tubing and other externa
 
 Every unit operation can have any number of input and output streams except for {class}`Inlets <CADETProcess.processModel.Inlet>`, which represent streams entering the system, and {class}`Outlets <CADETProcess.processModel.Outlet>`, which represent those exiting.
 If a unit operation has more than one input, all ingoing streams are mixed before entering the unit.
-If a unit operation has multiple outputs, the distribution of those streams needs to be specified (see {numref}`Fig. %s <flow_demo>`).
+If a unit operation has multiple outputs, the distribution of those streams needs to be specified (see {numref}`flow_demo`).
 In the following, this distribution will be denoted as `output_state`.
 
 ```{figure} ./figures/flow_demo.png
@@ -57,10 +57,10 @@ Streams entering a unit operation are mixed.
 For streams exiting a unit operation, the percent ratio to each of its destinations must be specified.
 ```
 
-For a more practical example, typical for batch-elution chromatography, refer to {numref}`Fig. %s <batch_elution_flow_sheet_intro>`.
+For a more practical example, typical for batch-elution chromatography, refer to {numref}`batch_elution_flow_sheet_intro`.
 Here, the feed and eluent reservoirs can both be modeled as {class}`~CADETProcess.processModel.Inlet` unit operations, which are each connected to a column model unit operation, e.g. a {class}`~CADETProcess.processModel.LumpedRateModelWithPores`.
 This unit is then connected to an {class}`~CADETProcess.processModel.Outlet` unit, which represents the material leaving the process for further processing.
-Note that it is straightforward to also include internal recycles in the {class}`~CADETProcess.processModel.FlowSheet`, which is important for systems such as SSR or SMB processes (see example in {numref}`Section %s <ssr>`).
+Note that it is straightforward to also include internal recycles in the {class}`~CADETProcess.processModel.FlowSheet`, which is important for systems such as SSR or SMB processes (see example in {numref}`ssr`).
 
 ### A note on flow rates
 

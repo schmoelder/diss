@@ -1,6 +1,6 @@
 (model_solution)=
 # Solution of chromatographic process models
-The chromatographic models introduced in {numref}`section %s<model_formulation>` consist of systems of partial differential equations (PDEs) or partial differential-algebraic equations (PDAEs) in space and time.
+The chromatographic models introduced in {numref}`model_formulation` consist of systems of partial differential equations (PDEs) or partial differential-algebraic equations (PDAEs) in space and time.
 While highly detailed models that account for numerous transport effects can provide highly accurate approximations of chromatographic separation, they often require substantial computational resources, even with modern software and hardware {cite}`Puettmann2015`.
 However, it is often possible to achieve accurate results with simpler models, which focus on capturing only the essential transport and interaction phenomena necessary to describe the process accurately.
 For example, simplified models may neglect minor effects that have minimal influence on the outcome, reducing complexity while retaining predictive power.

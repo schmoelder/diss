@@ -25,7 +25,7 @@ It is important to note that model development typically follows an iterative DB
 Consequently, developing accurate models for chromatographic processes requires a thorough understanding of their mechanistic principles.
 Aspects such as retention mechanisms and transport phenomena are particularly important, as discussed in {numref}`chromatographic_principle`.
 Typically, chromatographic processes are mathematically described using partial differential equations, which are first parametrized to represent the specific system under study and then solved numerically.
-For a more in-depth discussion on the modeling approach and the numerical solutions to these equations, refer to sections {numref}`model_formulation` and {numref}`model_solution`.
+For a more in-depth discussion on the modeling approach and the numerical solutions to these equations, refer to sections {numref}`%s <model_formulation>` and {numref}`%s <model_solution>`.
 
 The primary focus of this work is to validate the CADET-Process framework for modeling and optimizing chromatographic processes.
 This validation includes parameter estimation and model calibration against experimental data, as demonstrated in {numref}`characterization`.

@@ -2,8 +2,10 @@
 # Conclusion
 
 The presented work enables systematic modeling, simulation, and optimization of both standard and advanced chromatographic operating modes through its modular architecture.
-The modular design, where components like process configuration and performance evaluation operate independently, enabled both the parameter estimation and real-world validation in {numref}`chapter %s <characterization>` and the exploration of advanced operating modes in {numref}`chapter %s <operating_modes>`.
-While the primary objective of this thesis was to introduce the modular architecture of CADET-Process, {numref}`chapter %s <characterization>` demonstrates its parameter estimation capabilities through a real-world laboratory system validation. Meanwhile, {numref}`chapter %s <operating_modes>` explores advanced operating modes while validating results against analytical equilibrium theory solutions. Together, these chapters showcase both practical application and theoretical validation.
+The modular design, where components like process configuration and performance evaluation operate independently, enabled both the parameter estimation and real-world validation in {numref}`characterization` and the exploration of advanced operating modes in {numref}`operating_modes`.
+While the primary objective of this thesis was to introduce the modular architecture of CADET-Process, {numref}`characterization` demonstrates its parameter estimation capabilities through a real-world laboratory system validation.
+Meanwhile, {numref}`operating_modes` explores advanced operating modes while validating results against analytical equilibrium theory solutions.
+Together, these chapters showcase both practical application and theoretical validation.
 
 First, the framework enabled accurate parameter estimation for typical laboratory-scale chromatographic systems, highlighting its utility in model calibration and validation.
 Second, it was applied to optimize advanced operating concepts, such as batch chromatography with cycle-to-cycle overlap and interlocked peak operation, revealing highly efficient and non-intuitive process designs.

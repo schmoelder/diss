@@ -35,7 +35,7 @@ However, as previously mentioned, many advanced operating modes exist that can o
 For example, operating concepts like closed-loop recycling {cite}`Bombaugh1969,Heuer1995` or steady-state recycling (SSR) {cite}`Bailly1982,Sainio2009,Kaspereit2011` incorporate different strategies for the recycling of unresolved fractions from the column outlet back to the inlet with the aim of improving yield, solvent consumption and/or productivity {cite}`Sainio2009`.
 If purity requirements are low, bypass streams can be advantageous {cite}`Siitonen2012`.
 Moreover, the use of multiple columns gives rise to various concepts ranging from serial or parallel arrangements of columns {cite}`Ziomek2006,GarciaPalacios2009`, over pseudo-continuous processes, up to the many variants of the powerful continuous SMB concept.
-More details on such advanced chromatographic operating modes are given in {numref}`chromtographic_principle` and in {cite}`SchmidtTraub2020,Nicoud2015,Rodrigues2015`.
+More details on such advanced chromatographic operating modes are given in {numref}`chromatographic_principle` and in {cite}`SchmidtTraub2020,Nicoud2015,Rodrigues2015`.
 
 % Challenges in Process Design
 Depending on the separation problem at hand, different operating concepts are better suited than others and the process selection usually involves a trade-off between multiple criteria.
@@ -99,7 +99,7 @@ The repository is publicly available at [https://github.com/fau-advanced-separat
 
 Best practices for sustainable scientific software development have been applied throughout this work to ensure reliability and reproducibility of the code.
 Without the application of these modern standards of software design, reliability and reproducibility of the code cannot be ensured which is particularly important in a scientific context.
-Since process engineers are usually not trained in this field, a chapter of this work is dedicated to the introduction of important techniques such as version control, unit testing, and software documentation (see {numref}`chapter %s <methods_software_design>`).
+Since process engineers are usually not trained in this field, a chapter of this work is dedicated to the introduction of important techniques such as version control, unit testing, and software documentation (see {numref}`methods_software_design`).
 
 % Demonstrations
 To demonstrate the flexibility of the framework, several case studies are presented in this work.
