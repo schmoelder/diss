@@ -1,10 +1,11 @@
 (fundamentals)=
 # Model-based design of chromatographic processes
 
-The complex and nonlinear behavior of chromatographic systems makes empirical design of such processes difficult and time-consuming.
-To address this challenge and optimize the performance of chromatographic processes, mathematical models and numerical simulations are increasingly being used to characterize the behavior of these systems and to identify optimal operating conditions.
-Models provide a framework for a deeper understanding of the underlying mechanisms of chromatography and have become more prevalent in recent years due to unprecedented availability of data and compute resources.
+The complex and nonlinear behavior of chromatographic systems makes empirical design of the processes difficult and time-consuming.
+To address this challenge and optimize the performance of chromatographic processes, mathematical models and numerical simulations are increasingly being used to characterize the behavior of the systems and to identify optimal operating conditions.
+This chapter reviews the fundamentals of chromatographic processes and model-based design.
 
+Models provide a framework for a deeper understanding of the underlying mechanisms of chromatography and have become more prevalent in recent years due to unprecedented availability of data and computational resources.
 These models are key in testing hypotheses to verify and refine the understanding of chromatographic processes and their dominating effects.
 They are also instrumental in the design and selection of experiments, which maximizes the information gained from each experiment.
 Moreover, models play a crucial role in evaluating the feasibility and value propositions of new potential processes.
