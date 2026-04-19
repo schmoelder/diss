@@ -24,15 +24,16 @@ This chapter introduces the core software architecture of CADET-Process and prov
 It also showcases how to configure optimization problems for the design of chromatographic processes.
 For a more comprehensive documentation, please visit the [CADET-Process documentation website](https://cadet-process.readthedocs.io/) {cite}`CADET-Process_documentation`.
 
+The framework follows a sequential workflow: a process is first configured, then simulated, the results evaluated, and finally an optimizer uses those evaluations to improve the process design.
+An overview of the corresponding modules and their relations is given in {numref}`framework_overview`.
+
 ```{figure} ./figures/framework_overview.png
 :name: framework_overview
 
 Overview of the framework modules and their relations.
-White boxes represent input configurations and solution objects, blue boxes represent internal tools and procedures, green boxes represent external tools and the orange box represents the core process model.
-For a detailed explanation, please refer to the main text.
+White boxes represent input configurations and solution objects, blue boxes represent internal tools and procedures, green boxes represent external tools, and the orange box represents the core process model.
 ```
 
-An overview of the framework's modules and their relations is depicted in {numref}`framework_overview`.
 The {class}`~CADETProcess.processModel.Process` class is an abstract representation of the chromatographic process configuration including the operational and design parameters.
 Processes can be simulated using a {class}`Simulator <CADETProcess.simulator.SimulatorBase>` which solves the underlying equations.
 The {class}`Simulator <CADETProcess.simulator.SimulatorBase>` adapter acts as an abstract interface to external solvers (e.g. CADET-Core) and translates the internal configuration to the corresponding format of the solver.
