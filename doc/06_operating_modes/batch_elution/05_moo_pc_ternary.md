@@ -266,4 +266,7 @@ However, at the time of writing, such algorithms have not yet been fully integra
 
 **Summary**
 
-@TODO
+This section introduced model-based process optimization using batch-elution chromatography as a starting point.
+Beginning from an idealized linear system, the framework was validated against equilibrium theory before gradually increasing complexity: realistic nonlinear binding, multi-objective formulation, cycle time as a design variable, and finally a ternary separation.
+At each step, results were discussed in terms of KPI trade-offs and physical interpretability.
+The progression demonstrates that the framework can recover known optimal solutions under simplified conditions and scale to more complex, practically relevant problems where the optimization landscape itself reveals non-obvious operating strategies.
