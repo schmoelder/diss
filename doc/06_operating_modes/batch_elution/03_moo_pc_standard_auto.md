@@ -120,7 +120,7 @@ display(Markdown(overview))
 ```
 
 {numref}`batch-elution_auto-cycle_moo-pc_fig_obj` shows the evaluated objective function values as a function of feed duration.
-As multi-objective optimization results in a Pareto front containing infinitely many trade-off solutions, the discussion is limited here to the Pareto edge points, i.e. non-dominated solutions extreme for each objective.
+As multi-objective optimization results in a Pareto front containing infinitely many trade-off solutions, the discussion is limited here to the Pareto edge points, i.e., the solutions at the extremes of the Pareto front, each optimal for a single objective.
 Unlike in single-objective studies, the location of those local maxima now depends on the individual objective.
 The optimal variable values and KPIs for these edge points are summarized in {numref}`batch-elution_auto-cycle_moo-pc_kpi`.
 

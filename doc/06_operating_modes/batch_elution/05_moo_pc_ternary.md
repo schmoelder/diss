@@ -69,7 +69,7 @@ cases = get_cases_by_operating_mode(
 # Multi-objective optimization of a ternary Langmuir separation problem including cycle time
 
 In this case study, a third component is introduced (see {numref}`model_parameters`).
-Again, the cycle time is considered as a design parameters.
+Again, the cycle time is considered as a design parameter.
 The full optimization problem is summarized in {numref}`batch-elution_ternary_moo-pc_overview`.
 
 ```{code-cell} ipython3

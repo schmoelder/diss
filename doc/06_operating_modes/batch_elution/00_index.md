@@ -150,7 +150,7 @@ Comparison of a batch-elution simulation chromatogram (solid line) with an analy
 
 ---
 
-The following presents a series of optimization scenarios of increasing complexity:
+The following sections present a series of optimization scenarios of increasing complexity:
 First, a simple batch-elution case with ideal assumptions is used to validate the optimization framework.
 Next, a more realistic separation problem is considered, followed by multi-objective optimization.
 The cycle time is then included as an optimization variable.

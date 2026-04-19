@@ -113,12 +113,10 @@ In contrast to the previous multi-objective study ({numref}`batch-elution_auto-c
 Consistent trends are observed: productivity shows a distinct optimum with respect to feed duration, while maximum yield is attained for short injections.
 A minimum cycle time is required to avoid excessive cycle-to-cycle overlap.
 Eluent consumption peaks as a function of cycle time but plateaus with increasing feed duration.
-The lack of evaluated points near this plateau for large feed durations, evident from the lighter color of early-generation evaluations (versus the darker blue of later generations), indicates that the optimizer ceased exploration in this region due to limited expected improvement for other objectives.
-(@TODO: Check if that's true.)
 
 The optimal variable values and KPIs for all Pareto edge points are summarized in {numref}`batch-elution_moo-pc_kpi`.
 Compared to the previous study, where cycle-to-cycle overlaps were not accounted for ({numref}`batch-elution_auto-cycle_moo-pc_kpi`), higher KPI values could be achieved.
-Notably, productivity and eluent consumption show significant improvement because the tailing end of component B's peak from one injection overlaps with the leading edge of component A's peak from the subsequent injection.
+Notably, productivity and eluent consumption show significant improvement because the tailing end of component $B$'s peak from one injection overlaps with the leading edge of component $A$'s peak from the subsequent injection.
 This cycle-to-cycle overlap creates more efficient use of the stationary phase, as demonstrated in {numref}`batch-elution_moo-pc_fig_chrom`.
 
 ```{glue:figure} moo_fig_obj
