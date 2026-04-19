@@ -12,6 +12,10 @@ These models are predominantly data-driven, meaning they rely less on a physical
 Machine learning approaches are particularly valuable in scenarios where the underlying mechanisms are not fully understood or when direct measurement of necessary parameters is challenging.
 In addition, ML models can be employed for surrogate modeling, providing simplified approximations of complex, computationally expensive models {cite}`Jaepel2022`.
 
+The modular architecture of CADET-Process naturally supports replacing individual modules with data-driven models.
+For example, the simulator could be replaced by a PINN, or surrogate models could be built to map optimization variables to KPIs.
+This hybrid approach allows combining mechanistic and data-driven elements.
+
 While machine learning offers powerful tools, mechanistic models remain essential, particularly in cases where they are used to inform or train machine learning models for chromatographic applications.
 Understanding the design criteria and defining the overall structure of mechanistic models are critical steps in optimizing chromatographic processes.
 As such, this work focuses exclusively on mechanistic models.
