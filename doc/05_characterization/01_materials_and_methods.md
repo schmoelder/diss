@@ -62,6 +62,7 @@ Both buffers were adjusted with hydrochloric acid ($\ce{HCl}$) of $4~\text{M}$ a
 Furthermore, acetic acid at pH 3 was used for resin titration.
 Information on the chemicals used can be found in {numref}`materials`.
 
+@TODO: Ensure table caption is not cut from body in PDF
 ```{table} Materials used in characterization experiments
 :name: materials
 :align: center
