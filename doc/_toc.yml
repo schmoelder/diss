@@ -4,6 +4,7 @@ options:
   numbered: true
   maxdepth: 3
 chapters:
+  # - file: 00_tinkering
   - file: 01_introduction/00_index
   - file: 02_model_based_design/00_index
     sections:

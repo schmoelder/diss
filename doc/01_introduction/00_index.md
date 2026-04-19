@@ -12,9 +12,9 @@ He postulated that the separation is based on the ability of the dissolved compo
 
 However, the nonlinear effects inherent to these interactions, as well as the lack of sophisticated detectors posed difficulties in understanding and controlling the separation process.
 Furthermore, the technique initially suffered from low productivities — the ratio of purified product to the amount of packing material required — which made its application very inefficient and expensive.
-For these reasons, chromatography was not widely adapted until almost three decades later when Tswett's work was rediscovered and established as a preparative separation method for a broad spectrum of chemical compounds {cite}`Guiochon2006`.
+For these reasons, chromatography was not widely adopted until almost three decades later when Tswett's work was rediscovered and established as a preparative separation method for a broad spectrum of chemical compounds {cite}`Guiochon2006`.
 
-Since then, the technique and our understanding thereof have continuously been evolved and extended.
+Since then, the technique and our understanding of it have continuously evolved and expanded.
 Already early on, efforts to improve the process performance led to creative solutions in the process design.
 For example, when the method was applied on a large scale to purify rare earth materials required for nuclear research in the 1940s, cascading multi-column operations were considered to improve throughput.
 Furthermore, the buffer composition was taken into account to minimize the use of expensive chemicals while still ensuring a suitable pH for the separation {cite}`Spedding1947`.
@@ -35,13 +35,13 @@ However, as previously mentioned, many advanced operating modes exist that can o
 For example, operating concepts like closed-loop recycling {cite}`Bombaugh1969,Heuer1995` or steady-state recycling (SSR) {cite}`Bailly1982,Sainio2009,Kaspereit2011` incorporate different strategies for the recycling of unresolved fractions from the column outlet back to the inlet with the aim of improving yield, solvent consumption and/or productivity {cite}`Sainio2009`.
 If purity requirements are low, bypass streams can be advantageous {cite}`Siitonen2012`.
 Moreover, the use of multiple columns gives rise to various concepts ranging from serial or parallel arrangements of columns {cite}`Ziomek2006,GarciaPalacios2009`, over pseudo-continuous processes, up to the many variants of the powerful continuous SMB concept.
-More details on such advanced chromatographic operating modes are given in {numref}`chapter %s <chromtographic_principle>` and in {cite}`SchmidtTraub2020,Nicoud2015,Rodrigues2015`.
+More details on such advanced chromatographic operating modes are given in {numref}`chromtographic_principle` and in {cite}`SchmidtTraub2020,Nicoud2015,Rodrigues2015`.
 
 % Challenges in Process Design
 Depending on the separation problem at hand, different operating concepts are better suited than others and the process selection usually involves a trade-off between multiple criteria.
 Simple systems are less expensive and more adaptable than complex multi-column systems which involve high capital investments.
 On the other hand, bigger, more complicated systems are often more robust in their operation and can lead to lower operating costs compared to single column processes.
-Another factor to consider is the distinctive startup behavior of some operating concepts (see {numref}`chapter %s <stationarity>`) making them only viable for large separation campaigns where these losses can be absorbed {cite}`Rajendran2013`.
+Another factor to consider is the distinctive startup behavior of some operating concepts (see {numref}`stationarity`) making them only viable for large separation campaigns where these losses can be absorbed {cite}`Rajendran2013`.
 This is to show that the selection of an appropriate operating mode is an important step in the design of the process.
 
 % Model-based design
@@ -56,7 +56,7 @@ For example, they might only work for certain binding models, neglect mass-trans
 However, in many practical cases, a wide range of binding interaction mechanisms are relevant, including adsorption, ionic interactions, binding to specific ligands, or size exclusion.
 Furthermore, physical phenomena like axial dispersion, film diffusion, or pore diffusion often play a significant role and must be accounted for.
 As a result, rigorous process development often necessitates the utilization of more detailed models and advanced optimization schemes.
-Consequently, there exists a variety of different models in chromatography (see {numref}`chapter %s<model_formulation>`) as well as different numerical solvers (see {numref}`chapter %s<model_solution>`).
+Consequently, there exists a variety of different models in chromatography (see {numref}`model_formulation`) as well as different numerical solvers (see {numref}`model_solution`).
 A variety of optimization approaches has also been proposed for the design of certain chromatographic processes.
 An overview is given in sections {numref}`%s <design_formulation>` and {numref}`%s <design_solution>` and in {cite}`Kawajiri2020`.
 

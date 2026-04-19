@@ -12,10 +12,11 @@
 ```{raw} latex
 \clearpage
 \epigraph{\itshape
-  And what is good, Phaedrus, And what is not good ---\\
+  And what is good, Phaedrus, \\
+  And what is not good---\\
   Need we ask anyone to tell us these things?
 }{
-  ---Robert M. Pirsig, \\
+  --- Robert M.~Pirsig, \\
   \textit{
     Zen and the Art of Motorcycle Maintenance: \\
     An Inquiry Into Values
@@ -142,7 +143,7 @@ Hülsmann2025
 
 ## Abstract
 
-Chromatography is a widely used separation techniques in the chemical, pharmaceutical, and biotechnological industries.
+Chromatography is a widely used separation technique in the chemical, pharmaceutical, and biotechnological industries.
 Rigorous model-based design and optimization of chromatographic processes is, however, challenging: the nonlinear dynamics, periodic operation, and large number of degrees of freedom make process development difficult, while the diversity of operating concepts from batch-elution to multi-column continuous processes means that existing tools are either too narrowly scoped or too low-level to support the systematic exploration of novel process designs.
 
 This thesis presents a modular framework for modeling and optimizing chromatographic processes.

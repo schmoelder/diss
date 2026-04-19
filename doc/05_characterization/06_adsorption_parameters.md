@@ -112,7 +112,7 @@ Osberghaus et al. report a characteristic charge for Lysozyme of 5.07, while Lad
 The value determined in this study, {glue:text}`nu`, aligns very well with Ladiwala et al., though it is slightly higher than the value reported by Osberghaus.
 For the equilibrium constant, {glue:text}`k_eq` $\text{m}_\text{l}^3~\text{m}_\text{s}^{-3}$ is again close to Ladiwala et al. (0.0763 $\text{m}_\text{l}^3~\text{m}_\text{s}^{-3}$), but lower than the value measured by Osberghaus et al. (0.118 $\text{m}_\text{l}^3~\text{m}_\text{s}^{-3}$).
 
-Considering the complexity of the determination procedure and the fact that these studies were conducted in independent laboratories, this can be considered a sucessfull replication.
+Considering the complexity of the determination procedure and the fact that these studies were conducted in independent laboratories, this can be considered a successful replication.
 While the values are generally close, the differences can be explained by factors such as varying approaches to determining the specific capacity.
 As noted, the choice of particle porosity affects the volume-specific capacity used in the model equations.
 

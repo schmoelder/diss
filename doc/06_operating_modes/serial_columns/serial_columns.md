@@ -254,8 +254,7 @@ display(Markdown(moo_table))
 {glue:text}`moo_fig_chrom_caption`
 ```
 
-
-**Summary**
+---
 
 This chapter demonstrates the framework's capability to handle a wide range of advanced chromatographic operating modes.
 All implemented processes have been validated against equilibrium theory solutions, confirming their theoretical soundness.

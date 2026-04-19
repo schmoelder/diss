@@ -91,7 +91,7 @@ These aspects are considered by defining the total product amount of a component
 m_{i} = \sum_{k=1}^{n_{\text{chrom}}} \sum_{j=1}^{n_{\text{frac}, k}^{i}}\int_{t_{\text{start}, j}}^{t_{\text{end}, j}} Q_k(t) \cdot c_{i,k}(t) dt, \\
 ```
 
-where $n_{frac, k}^{i}$ is the number of fractions considered for component $i$ in chromatogram $k$, and $n_{chrom}$ is the total number of chromatograms evaluated.
+where $n_{\text{frac}, k}^{i}$ is the number of fractions considered for component $i$ in chromatogram $k$, and $n_{\text{chrom}}$ is the total number of chromatograms evaluated.
 
 Further performance criteria frequently used for evaluating and optimizing chromatographic performance include specific productivity $PR_i$, recovery yield $Y_i$, and specific solvent consumption $EC_i$, all of which depend on the product amounts:
 
@@ -131,7 +131,7 @@ The cumulative product purity $PU_i$ is given by:
 PU_{i} = \frac{m_{i}^{i}}{\sum_{l=1}^{n_{\text{comp}}} m_{l}^{i}},\\
 ```
 
-where $n_{comp}$ is the number of mixture components, and $m_{l}^{i}$ is the mass of component $l$ in the target fraction $i$.
+where $n_{\text{comp}}$ is the number of mixture components, and $m_{l}^{i}$ is the mass of component $l$ in the target fraction $i$.
 
 Alongside process performance indicators, economic criteria play a crucial role in evaluating the performance of a chromatographic separation process.
 The calculation of total separation costs, however, is complex due to the influence of various parameters and cost structures, which depend on the specific circumstances and site-related factors.

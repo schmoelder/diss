@@ -248,7 +248,7 @@ Similar to objective and nonlinear constraint functions, callbacks usually invol
 :scale: 25%
 
 Evaluation of user-defined callbacks $c$.
-The evalution toolchain is performed for every element in the Pareto front $p$.
+The evaluation toolchain is executed for every element in the Pareto front $p$.
 ```
 
 (optimizer)=
@@ -363,7 +363,7 @@ glue("objectives", fig, display=False)
 
 Objective function values for all evaluated individuals.
 Darker shades represent individuals evaluated in later generations.
-The prominent minima indicative a successful converging towards the minima.
+The prominent minima indicative of a successful convergence towards the minima.
 ```
 
 The {meth}`~CADETProcess.optimization.OptimizationResults.plot_pareto` method shows a pairwise Pareto plot, where each objective is plotted against every other objective in a scatter plot, allowing for a visualization of the trade-offs between the objectives (see {numref}`pareto`).
@@ -395,7 +395,7 @@ glue("convergence", fig, display=False)
 :name: convergence
 :scale: 50%
 
-Optimization algorithm progresses towards a solution over time.
+The optimization algorithm progresses towards a solution over time.
 ```
 
 ```{code-cell} ipython3

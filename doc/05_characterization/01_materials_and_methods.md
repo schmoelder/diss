@@ -34,7 +34,7 @@ sys.path.insert(0, str(diss_root / "studies" / "parameter_estimation" / "paramet
 # Materials and methods
 
 All experiments were conducted by Lukas Thiel at the laboratory of Institute of Fluid Process Engineering at RWTH Aachen.
-The chromatography system used in this thesis is a *Knauer* system. @TODO: Which model?
+The chromatography system used in this thesis was a *Knauer* AZURA® system with two P6.1L pump heads and a DAD 2.1L diode array detector (Knauer Wissenschaftliche Geräte, Berlin, Germany).
 {numref}`knauer_pid` shows the process and instrumentation diagram of the *Knauer* chromatography system used in this work.
 The system consists of two buffer flasks ($A$ and $B$) with different salt concentrations.
 Each buffer is connected to a pump via tubing.

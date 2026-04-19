@@ -7,7 +7,7 @@ kernelspec:
   name: python3
 ---
 
-(chromtographic_principle)=
+(chromatographic_principle)=
 # Principles of preparative chromatography
 
 Chromatography is a thermal separation process widely used for the separation and purification of mixtures of (bio-)chemical species.
@@ -30,7 +30,7 @@ The size exclusion mechanism can also contribute to chromatographic separation.
 In this mechanism, larger molecules are unable to penetrate as deeply into the pores of the stationary phase as smaller molecules, leading to differential retention times.
 
 The attachment of molecules to a solid surface in chromatography can be quantitatively described using adsorption isotherm models.
-For more detailed information on different retention models, see section {numref}`isotherm_models`.
+For more detailed information on different retention models, see {numref}`isotherm_models`.
 
 Chromatographic separations can be classified based on different criteria, as outlined in Schmidt-Traub (2020) {cite}`SchmidtTraub2020`.
 One common classification criterion is the state of aggregation of the fluid phase.
