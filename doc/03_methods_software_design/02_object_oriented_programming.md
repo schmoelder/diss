@@ -16,7 +16,7 @@ Objects are created from classes, which serve as blueprints defining the structu
 
 Four general principles characterize object oriented languages:
 
-- *Inheritance* refers to a hierarchy in which subclasses inherit all procedures and data definitions of the parent class and can extend their functionality with additional properties and methods. It enables the reuse of code and helps to organize classes in a logical manner.
+- *Inheritance* refers to a hierarchy in which subclasses inherit all procedures and data definitions of the parent class and can extend their functionality with additional attributes and methods. It enables the reuse of code and helps to organize classes in a logical manner.
 - *Polymorphism* refers to the ability of objects to have different functionality while sharing a common interface. It enables code to be written in a more general way, making it easier to reuse and maintain.
 - *Abstraction* refers to hiding internal complexity in the background and providing a simple interface that requires only essential information to use the class's functionality. It simplifies the use of complex functionality by providing only what is necessary for the user.
 - *Encapsulation* refers to restricting access to certain properties and methods to ensure a consistent internal state of the object, preventing unintended side effects or errors. It enables developers to control how objects are used, providing security and reducing errors that can arise from unintended manipulation.
@@ -25,6 +25,7 @@ Four general principles characterize object oriented languages:
 
 To demonstrate these principles, consider a generic `Shape` class which defines that an object of this type has a `color` attribute, as well as two getter functions for accessing the values of its `area` and `perimeter`.
 Note that this parent class does not actually implement any methods but instead, the `area` and `perimeter` methods have to be provided by concrete implementations (i.e. sub-classes) of the interface.
+This is *abstraction* in practice: a user interacting with any `Shape` object only needs to know that `area` and `perimeter` exist and return a `float`, without needing to know how they are computed.
 For this example, the programming language *Python3* is used.
 
 ```{code-cell} ipython3
@@ -89,7 +90,7 @@ This encapsulates the computation of the area attribute within each class and re
 By using `@property`, read-only properties can be defined that can be accessed using dot notation, as if they were instance variables.
 However, setting these values is restricted which helps to ensure that the `Shape` object remains in a consistent and valid state, and reduces the risk of errors or unexpected behavior.
 
-Now that the classes are defined, instances of these classes can be instantiated and
+Now that the classes are defined, instances can be created and used as follows:
 
 ```{code-cell} ipython3
 circle = Circle(radius=1, color='red')
@@ -117,7 +118,7 @@ They use the class templates that were previously defined and independently stor
 ## Type annotations
 
 Type annotations, introduced in *PEP-484* {cite}`PEP484`, allow developers to declare the expected types of function arguments and return values directly in the function signature.
-In the context of OOP, they serve as a precise specification of the interface contract: rather than relying on documentation or convention, the signature itself states what a method accepts and what it returns.
+Building on the class definitions above, they serve as a precise specification of the interface contract: rather than relying on documentation or convention, the signature itself states what a method accepts and what it returns.
 
 This is particularly valuable for abstract base classes.
 In the `Shape` example above, the annotation `-> float` on the abstract `area` and `perimeter` properties makes the required contract of any subclass explicit:
@@ -162,3 +163,7 @@ By applying established design patterns, software developers can create more ada
 However, it is important to note that design patterns are not a universal solution and their use should be carefully considered in each specific context.
 Overusing design patterns can result in creating complex and less comprehensible code, which could impede software development and maintenance efforts.
 Therefore, it is crucial for developers to strike a balance between leveraging design patterns and maintaining code simplicity and readability.
+
+In CADET-Process, OOP principles are applied throughout the framework.
+Unit operations, binding models, and optimization algorithms each share common base classes that define their interfaces, allowing them to be combined and exchanged without modifying the surrounding code.
+This modularity is what enables the flexible process configurations described in {numref}`implementation`.
