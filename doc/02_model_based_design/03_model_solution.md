@@ -148,9 +148,9 @@ Additionally, FVM is monotonicity-preserving, which prevents unphysical oscillat
 To achieve higher accuracy, the finite volume method (FVM) can employ polynomial reconstructions to approximate values within each control volume using information from neighboring cells.
 This stencil-based reconstruction enables high-order schemes that preserve mass conservation.
 However, as described by Godunov's theorem, linear high-order schemes cannot maintain monotonicity, resulting in oscillations near steep gradients {cite}`Godunov1959`.
-To address this issue, nonlinear reconstruction techniques are commonly applied, such as slope limiters {cite}`Blazek2015` or weighted essentially non-oscillatory (WENO) schemes {cite}`Lieres2010`.
-The WENO scheme is particularly suitable for chromatographic systems with sharp concentration fronts, as it balances accuracy, stability, and robustness.
-For these reasons, the WENO scheme is implemented in CADET-Core and used in this work {cite}`Leweke2018`.
+To address this issue, nonlinear reconstruction techniques are commonly applied, such as slope limiters {cite}`Blazek2015` or weighted essentially non-oscillatory (WENO) schemes.
+The WENO scheme works by adaptively selecting between multiple polynomial reconstructions based on local smoothness, using lower-order approximations near discontinuities and higher-order ones in smooth regions.
+Given its ability to handle steep concentration fronts without sacrificing accuracy in smooth regions, the WENO scheme is implemented in CADET-Core and applied throughout this work {cite}`Lieres2010,Leweke2018`.
 
 % Finite Elements Method
 The finite element method (FEM) divides the spatial domain into cells, similar to the FVM.
