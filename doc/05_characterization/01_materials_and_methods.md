@@ -36,18 +36,18 @@ sys.path.insert(0, str(diss_root / "studies" / "parameter_estimation" / "paramet
 All experiments were conducted by Lukas Thiel at the laboratory of Institute of Fluid Process Engineering at RWTH Aachen.
 The chromatography system used in this thesis was a *Knauer* AZURA® system with two P6.1L pump heads and a DAD 2.1L diode array detector (Knauer Wissenschaftliche Geräte, Berlin, Germany).
 {numref}`knauer_pid` shows the process and instrumentation diagram of the *Knauer* chromatography system used in this work.
-The system consists of two buffer flasks ($A$ and $B$) with different salt concentrations.
-Each buffer is connected to a pump via tubing.
-Both pumps are further connected to a static mixer.
-The valve is equipped with a $50~\text{mL}$ sample loop to inject a well-defined amount of sample into the system.
-The valve is connected to a *SP Sepharose HP* column.
+The system consisted of two buffer flasks ($A$ and $B$) with different salt concentrations.
+Each buffer was connected to a pump via tubing.
+Both pumps were further connected to a static mixer.
+The valve was equipped with a $50~\text{mL}$ sample loop to inject a well-defined amount of sample into the system.
+The valve was connected to a *SP Sepharose HP* column.
 The column is a strong cation exchanger with an $\ce{SO_3}^{-}$ functional group and a column volume (CV) of $4.7~\text{mL}$.
 The average particle size, $d50v$, is provided by the manufacturer *Cytiva* as $34~\text{µm}$, with an ionic capacity between $0.15$ and $0.2~\text{mmol}~\ce{H}^{+}~\text{mL}_{\text{packed bed}}^{-1}$.
-The column outlet is connected to a UV detector which measures the absorbance at $280~\text{nm}$ to detect tracer and protein.
-The outlet of the UV sensor is connected to a conductivity sensor to measure ionic strength.
-The outflow of the system is then sent to a waste flask.
-A computer is connected to the system with the software *PurityChrom 5* to operate the system, capture, process, and view the measured data {cite}`PurityChrom5`.
-All internal tubing has an inner diameter of $0.75~\text{mm}$.
+The column outlet was connected to a UV detector measuring absorbance at $280~\text{nm}$ to detect tracer and protein.
+The outlet of the UV sensor was connected to a conductivity sensor to measure ionic strength.
+The outflow of the system was sent to a waste flask.
+A computer was connected to the system with the software *PurityChrom 5* to operate the system, capture, process, and view the measured data {cite}`PurityChrom5`.
+All internal tubing had an inner diameter of $0.75~\text{mm}$.
 All experiments were conducted at $0.5~\text{mL}~\text{min}^{-1}$.
 
 ```{figure} ./figures/knauer_pid.png
@@ -57,9 +57,9 @@ P&ID of Knauer system.
 ```
 
 Acetone and Blue Dextran $2000~\text{kDa}$ were used as tracers in this thesis, along with lysozyme from chicken egg white with a molar weight of $14.3~\text{kDa}$.
-The buffers consist of a low salt buffer $A$ with $20~\text{mM}$ sodium acetate ($\ce{C_2H_3NaO_2}$), whereas the high salt buffer $B$ consists of $20~\text{mM}$ sodium acetate and additional $1~\text{M}$ sodium chloride ($\ce{NaCl}$).
-Both buffers are adjusted with hydrochloric acid ($\ce{HCl}$) of $4~\text{M}$ and sodium hydroxide ($\ce{NaOH}$) of $1~\text{M}$ to the desired pH.
-Furthermore, acetic acid with a pH of 3 is used in this thesis for resin titration.
+Buffer $A$ was a low salt buffer consisting of $20~\text{mM}$ sodium acetate ($\ce{C_2H_3NaO_2}$), whereas buffer $B$ consisted of $20~\text{mM}$ sodium acetate and $1~\text{M}$ sodium chloride ($\ce{NaCl}$).
+Both buffers were adjusted with hydrochloric acid ($\ce{HCl}$) of $4~\text{M}$ and sodium hydroxide ($\ce{NaOH}$) of $1~\text{M}$ to the desired pH.
+Furthermore, acetic acid at pH 3 was used for resin titration.
 Information on the chemicals used can be found in {numref}`materials`.
 
 ```{table} Materials used in characterization experiments
@@ -81,7 +81,7 @@ Information on the chemicals used can be found in {numref}`materials`.
 (conductivity_calibration)=
 ## Calibration of conductivity sensor
 
-A conductivity detector is integrated into the chromatographic system to monitor salt concentration in real time during chromatography experiments.
+A conductivity detector was integrated into the chromatographic system to monitor salt concentration in real time during chromatography experiments.
 Conductivity $\kappa$ describes a solution's ability to conduct electricity and is defined as
 
 $$
@@ -91,16 +91,16 @@ $$
 where $A$ is the conductor’s cross-sectional area, $l$ is its length, and $R$ is the resistance.
 Conductivity is measured in Siemens per meter ($\text{S}~\text{m}^{-1}$), where $[\text{S}] = [\Omega^{-1}] = [\text{A/V}]$.
 
-To quantify the relationship between salt concentration and conductivity, a calibration curve is recorded by measuring the conductivity of solutions with varying salt concentrations at a constant pH of 5.
-Conductivity values are recorded over one minute at predefined salt concentrations ($20~\text{mM}$, $270~\text{mM}$, $570~\text{mM}$, $770~\text{mM}$, and $1020~\text{mM}$).
-Since the relationship between salt concentration and conductivity is nonlinear, a quadratic function is fitted to the measured data using the least squares method.
+To quantify the relationship between salt concentration and conductivity, a calibration curve was recorded by measuring the conductivity of solutions with varying salt concentrations at a constant pH of 5.
+Conductivity values were recorded over one minute at predefined salt concentrations ($20~\text{mM}$, $270~\text{mM}$, $570~\text{mM}$, $770~\text{mM}$, and $1020~\text{mM}$).
+Since the relationship between salt concentration and conductivity is nonlinear, a quadratic function was fitted to the measured data using the least squares method.
 The results are shown in {numref}`fig_conductivity`.
-This function is then used to determine salt concentration from conductivity in subsequent analyses.
+This function was then used to determine salt concentration from conductivity in subsequent analyses.
 
 (uv_calibration)=
 ## Rescaling of the UV signal
 
-To compare simulations with experimental data, the UV signal must be converted into concentration values.
+To compare simulations with experimental data, the UV signal had to be converted into concentration values.
 For each experiment, a known amount of protein was injected into the column, and the UV signal was rescaled so that its integral matched this amount.
 Peak boundaries were defined by start and stop times, and baseline correction was applied where necessary.
 
