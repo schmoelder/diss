@@ -131,7 +131,7 @@ Despite these drawbacks, FDM remains widely used, as its simplicity and efficien
 
 % Finite Volume
 Unlike FDM, which computes solutions at discrete points, the finite volume method (FVM) defines a grid of cells and computes spatially averaged values within each cell.
-For chromatographic models, interstitial concentrations are averaged over $j \in { 0, \dots, N_z - 1 }$ uniform cells with a grid spacing $\Delta z = L_c / N_z$.
+For chromatographic models, interstitial concentrations are averaged over $j \in \{ 0, \dots, N_z - 1 \}$ uniform cells with a grid spacing $\Delta z = L_c / N_z$.
 This creates a staircase function representation of the solution and defines a local Riemann problem at each cell interface {cite}`Guiochon2006`.
 The flux across these interfaces is approximated using a numerical flux function $F$, leading to the following semi-discretized formulation in 1D:
 
@@ -196,7 +196,7 @@ Higher-order BDF methods can improve computational efficiency by reducing the nu
 Additionally, adaptive time stepping can be applied with both Runge-Kutta and BDF methods.
 This technique dynamically adjusts the time step size based on the stiffness of the problem, thereby enhancing both the accuracy and efficiency of the simulation.
 
-In CADET-Core, time integration is performed using the **SUNDIALS IDAS** solver which implements BDF combined with adaptive time stepping {cite}`Hindmarsh2005`.
+In CADET-Core, time integration is performed using the SUNDIALS IDAS solver which implements BDF combined with adaptive time stepping {cite}`Hindmarsh2005`.
 
 (unit_operation_networks)=
 ## Solution of the system of unit operations

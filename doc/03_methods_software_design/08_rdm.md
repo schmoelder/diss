@@ -12,7 +12,7 @@ Typical difficulties include:
 - **Increasing workflow complexity**: Chained simulations, recycling of outputs as inputs, and the combination of experimental and simulated data introduce nontrivial dependencies.
 - **Scalability under FAIR constraints**: Large datasets and frequent iterations complicate efficient versioning while maintaining FAIR compliance.
 
-Conventional ad-hoc approaches—such as manual documentation, loosely organized scripts, or monolithic repositories—do not scale well and often lead to loss of context or irreproducible results.
+Conventional ad-hoc approaches, such as manual documentation, loosely organized scripts, or monolithic repositories, do not scale well and often lead to loss of context or irreproducible results.
 
 To address these challenges, [**CADET-RDM**](https://cadet-rdm.readthedocs.io/en/latest/) was developed in collaboration with Ronald Jäpel {cite}`CADET-RDM_documentation`.
 While developed independently, the tool was explicitly designed to support the types of workflows encountered in this thesis.
@@ -21,7 +21,7 @@ Accordingly, all case studies presented in this work were managed using CADET-RD
 The system is based on a dual-repository *Git* architecture:
 1. **Project repository**: Maintains the evolving codebase (e.g., Python or C++ simulation components) under standard version control.
 2. **Output repository**:
-   - Collects metadata—such as the current state of the project repository, call arguments, and environment snapshots—in the `main` branch, forming a persistent and self-documenting audit trail.
+   - Collects metadata (such as the current state of the project repository, call arguments, and environment snapshots) in the `main` branch, forming a persistent and self-documenting audit trail.
    - Stores results in **isolated, shallow branches**, each uniquely associated with a specific run identifier.
 
 Key features of CADET-RDM include:

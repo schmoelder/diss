@@ -65,10 +65,10 @@ Considering the many advanced operating modes mentioned above, this complexity g
 Against this background, a general-purpose tool is needed that allows an efficient and flexible handling of the different tasks in the development of optimal chromatographic processes.
 The main tasks are:
 
-- Setting up a model for the chromatographic system and the desired process structure,
-- Solving the model equations for simulating the process,
-- Determining process performance by evaluating the outgoing streams/chromatograms,
-- Performing optimization of continuous variables, timed events, and potentially the process structure.
+- setting up a model for the chromatographic system and the desired process structure,
+- solving the model equations for simulating the process,
+- determining process performance by evaluating the outlet concentration profiles, i.e. the chromatograms, of relevant unit operations,
+- performing optimization of continuous variables, timed events, and potentially the process structure.
 
 % Existing tools
 Several commercial programs are available which provide parts of the aforementioned required functionalities, like Aspen Chromatography {cite}`aspen`, GoSilico (formally known as ChromX) by Cytiva {cite}`GoSilico`, and Ypso-Proxima (formally known as as ChromWorks) by YpsoFacto {cite}`ypso-proxima`.

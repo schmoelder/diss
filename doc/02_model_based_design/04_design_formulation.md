@@ -99,9 +99,9 @@ glue("chromatogram_fractionation", fig, display=False)
 :scale: 100%
 
 Fractionation of a chromatogram.
-Grey areas represent waste fractions.
 Blue: Target fraction of component $A$.
 Red: Target fraction of component $B$.
+Grey areas represent waste fractions.
 ```
 
 It is important to note that in advanced chromatographic process configurations outlet chromatograms can be much more complex than the example shown in {numref}`chromatogram_fractionation` and that multiple sections of the chromatogram may represent suitable fractions $j$ for collecting one target component $i$.
