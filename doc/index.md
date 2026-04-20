@@ -80,6 +80,7 @@ Any thought, methodology, result, conclusion and direct or indirect contribution
 
 ```{bibliography} ./references.bib
 :list: bullet
+:style: unsrt
 :filter: false
 
 Dienstbier2020
@@ -90,15 +91,34 @@ Li2026
 ```
 
 **Conference and symposium talks:**
-- SPICA Wien
-- SPICA Darmstadt
-- ProcessNet Köln
-- Prep? (@TODO: not really part of this thesis)
+
+```{bibliography} ./references.bib
+:list: bullet
+:style: unsrt
+:filter: false
+
+Schmoelder2016
+Schmoelder2017
+Schmoelder2018Talk
+Schmoelder2019
+Schmoelder2021
+Hassan2022
+Breuer2024
+```
 
 **Conference posters:**
-- ProcessNet 2020 (online): Schmölder et al.
-- ProcessNet 202? Aachen: Schmölder et al.
-- Prep? (@TODO: not really part of this thesis)
+
+```{bibliography} ./references.bib
+:list: bullet
+:style: unsrt
+:filter: false
+
+Schmoelder2018Poster
+Schmoelder2020ProcessNet
+Schmoelder2022
+Li2024
+Schmoelder2024
+```
 
 **Code repositories and software packages**:
 - **CADET-Process:** [https://github.com/fau-advanced-separations/CADET-Process](https://github.com/fau-advanced-separations/CADET-Process)
@@ -115,6 +135,7 @@ Li2026
 
 ```{bibliography} ./references.bib
 :list: bullet
+:style: unsrt
 :filter: false
 
 Ullrich2017
