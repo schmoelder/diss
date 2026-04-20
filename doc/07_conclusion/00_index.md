@@ -1,32 +1,28 @@
 (conclusion)=
 # Conclusion
 
-The presented work enables systematic modeling, simulation, and optimization of both standard and advanced chromatographic operating modes through its modular architecture.
-The modular design, where components like process configuration and performance evaluation operate independently, enabled both the parameter estimation and real-world validation in {numref}`characterization` and the exploration of advanced operating modes in {numref}`operating_modes`.
-While the primary objective of this thesis was to introduce the modular architecture of CADET-Process, {numref}`characterization` demonstrates its parameter estimation capabilities through a real-world laboratory system validation.
-Meanwhile, {numref}`operating_modes` explores advanced operating modes while validating results against analytical equilibrium theory solutions.
-Together, these chapters showcase both practical application and theoretical validation.
+This work presents a modular framework for the systematic modeling, simulation, and optimization of chromatographic processes, covering both standard and advanced operating modes.
+The framework separates process configuration, simulation, performance evaluation, and optimization into independent components that can be developed, tested, and exchanged without structural changes to the rest of the system.
+The resulting open-source package, CADET-Process, has since been adopted in both academic and industrial settings.
+Its utility was demonstrated through two complementary case studies, each exercising a different aspect of this design.
 
-First, the framework enabled accurate parameter estimation for typical laboratory-scale chromatographic systems, highlighting its utility in model calibration and validation.
-Second, it was applied to optimize advanced operating concepts, such as batch chromatography with cycle-to-cycle overlap and interlocked peak operation, revealing highly efficient and non-intuitive process designs.
-The optimized operating strategies further demonstrate novel process concepts, including waste fraction management and the handling of strongly binding components.
-These results emphasize the potential of model-based optimization to systematically identify process designs that are both efficient and otherwise non-obvious.
+The characterization study demonstrated that the framework accurately reproduces the behavior of a real laboratory system, from system periphery effects through column transport to protein adsorption under a salt gradient.
+A progressive parameter estimation procedure, working from dead volume and dispersion through to binding parameters, proved effective and practically applicable to a typical ion-exchange purification setup.
 
-In addition, this work demonstrates best practices in research software engineering, illustrating how modularity enables extensibility and reproducibility in complex scientific software while maintaining computational efficiency and numerical robustness.
-CADET-Process serves as a fully featured toolbox for modeling and optimizing chromatographic processes, providing a solid foundation for the systematic development of novel operating strategies.
-Its modular architecture allows the straightforward exchange of process models, numerical solvers, and optimization algorithms, facilitating future extensions with minimal structural changes.
-This flexibility supports the implementation of new operating concepts, optimization variables, and objective functions as research and industrial needs evolve.
+The operating modes study showed that the same framework, without modification, can optimize processes of substantially greater structural complexity.
+Multi-objective optimization consistently identified non-intuitive operating strategies, including stacked injections, intermediate waste fractions, and peak interlocking under overloaded conditions.
+A notable emergent finding is that batch elution recovers as the productivity-optimal limiting case of more complex recycling configurations.
+This behavior was not enforced by the optimization formulation but arose naturally from the decision variable structure, pointing to the framework's suitability for superstructure optimization, where the operating mode itself is a design variable.
+
+Throughout this work, best practices in scientific software engineering, including version control, unit testing, and structured documentation, were applied to ensure reproducibility and long-term maintainability of the codebase.
 
 Several extensions of **CADET-Process** are envisaged, some of which are already under active development.
-These include the integration of additional unit operations, compartment-based modeling approaches, and fully integrated process models, extending the framework beyond chromatography and enabling its application across a wider range of chemical and biological processes.
+These include the integration of additional unit operations, compartment-based modeling approaches, and fully integrated process models extending the framework beyond chromatography.
 For example, bioreactors incorporating cell growth and enzymatic reactions could be modeled in combination with compartment models derived from computational fluid dynamics, allowing simultaneous capture of mixing effects and kinetic reactions {cite}`Li2026`.
-Other unit operations, such as filtration and membrane separations, present distinct modeling challenges, including pressure-driven transport and highly concentrated systems, where concentration polarization and the volume of particulate substances must be explicitly accounted for.
+Other unit operations, such as filtration and membrane separations, present distinct modeling challenges, including pressure-driven transport and highly concentrated systems where concentration polarization and the volume of particulate substances must be explicitly accounted for.
 
 This development aligns with ongoing improvements in CADET-Core, particularly regarding model equations and numerical solution methods.
-On the CADET-Process side, further enhancements can be achieved through advanced pre- and post-processing strategies.
-In addition, several "lessons learned" previously implemented in CADET-Process, such as a more modular interface structure, explicit event ordering, and pre-processing of flow rates, will be migrated and integrated into the CADET-Core package.
+Several design decisions previously implemented in CADET-Process, such as a more modular interface structure, explicit event ordering, and pre-processing of flow rates, will be migrated into CADET-Core to benefit the broader ecosystem.
 
-Finally, future research will explore surrogate modeling techniques to better understand the relationships between high-dimensional input parameters and relevant output metrics.
-These models will enable more efficient optimization studies, including conditional optimization.
-The framework is also well suited for computationally demanding tasks, such as MCMC simulations for rigorous uncertainty quantification {cite}`Heymann2023`.
-Together, these extensions will enable more comprehensive, efficient, and insightful studies of complex biological and chemical processes.
+Future research will also explore surrogate modeling techniques to characterize relationships between high-dimensional input parameters and process performance metrics, enabling more efficient optimization and conditional design studies.
+The framework is equally well suited for computationally demanding tasks such as MCMC simulations for rigorous uncertainty quantification {cite}`Heymann2023`.
