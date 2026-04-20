@@ -25,8 +25,6 @@ execution:
 %matplotlib inline
 %config InlineBackend.figure_format = 'retina'
 
-print("update 7")
-
 import importlib
 from pathlib import Path
 import sys
@@ -50,7 +48,6 @@ from operating_modes.post_processing import (
     process_moo_results,
     setup_overview,
 )
-
 ```
 
 ```{code-cell} ipython3

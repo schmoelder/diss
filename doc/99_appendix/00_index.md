@@ -1,5 +1,3 @@
-% Change page style for style for Appendix
-
 ```{raw} latex
 % Change page style for style for Appendix
 \titleformat{\chapter}[display]

@@ -107,8 +107,8 @@ Li2026
 - **CADET-RDM:** [https://github.com/cadet/CADET-RDM](https://github.com/cadet/CADET-RDM)
 
 **Datasets**:
-- This thesis [https://github.com/schmoelder/diss](https://github.com/schmoelder/diss)
-- Model of a typical chromatographic laboratory system [https://github.com/schmoelder/diss_parameter_estimation](https://github.com/schmoelder/diss_parameter_estimation)
+- This thesis: [https://github.com/schmoelder/diss](https://github.com/schmoelder/diss)
+- Model of a typical chromatographic laboratory system: [https://github.com/schmoelder/diss_parameter_estimation](https://github.com/schmoelder/diss_parameter_estimation)
 - Optimization of advanced operating concepts: [https://github.com/schmoelder/diss_operating_modes](https://github.com/schmoelder/diss_operating_modes)
 
 **Supervised and co-supervised student projects**:

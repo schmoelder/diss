@@ -1,4 +1,4 @@
-(overview)=
+(implementation)=
 # Implementation of the CADET-Process framework
 
 **CADET-Process** is a Python framework developed in this work for the modeling, simulation, and optimization of chromatographic processes.

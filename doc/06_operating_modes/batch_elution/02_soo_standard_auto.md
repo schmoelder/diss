@@ -25,7 +25,7 @@ execution:
 %matplotlib inline
 %config InlineBackend.figure_format = 'retina'
 
-print("update 3")
+print("update 0")
 
 import importlib
 from pathlib import Path

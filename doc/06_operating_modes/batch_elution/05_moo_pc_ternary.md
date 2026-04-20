@@ -22,7 +22,7 @@ execution:
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-print("update 5")
+print("update 0")
 
 %matplotlib inline
 %config InlineBackend.figure_format = 'retina'
