@@ -132,9 +132,10 @@ Typical chromatogram of a serial columns process.
 ```
 
 (serial_columns_validation)=
-## Process Validation
+## Process validation
 
-Here we do some more validation.
+{numref}`serial_columns_chromatogram` compares the concentration profiles at both system outlets under ideal model assumptions, demonstrating good agreement between the simulation and equilibrium theory.
+The ternary separation is validated simultaneously at both measurement points: the first outlet captures the early-eluting fraction collected directly from the first column, while the second column outlet shows the further resolved remaining components.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -160,8 +161,9 @@ glue("fig_serial_validation", fig_serial_validation, display=False)
 :name: serial_columns_chromatogram
 :scale: 50%
 
+Comparison of serial columns simulation chromatograms (solid lines) with the analytical equilibrium theory solution (dashed lines), assuming a linear binding model and neglecting axial dispersion and other transport-limiting effects.
 **Left:** Concentration profile at first system outlet.
-**Right:** Concentration profile at the second column outlet.
+**Right:** Concentration profile at second column outlet.
 ```
 
 (serial_columns_optimization)=
