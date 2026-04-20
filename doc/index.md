@@ -144,22 +144,19 @@ Hülsmann2025
 ## Abstract
 
 Chromatography is a widely used separation technique in the chemical, pharmaceutical, and biotechnological industries.
-Rigorous model-based design and optimization of chromatographic processes is, however, challenging: the nonlinear dynamics, periodic operation, and large number of degrees of freedom make process development difficult, while the diversity of operating concepts from batch-elution to multi-column continuous processes means that existing tools are either too narrowly scoped or too low-level to support the systematic exploration of novel process designs.
+Rigorous model-based design and optimization of chromatographic processes is, however, challenging: the nonlinear dynamics, periodic operation, and large number of degrees of freedom make process development difficult.
+At the same time, the diversity of operating concepts, from batch-elution to multi-column continuous processes, means that existing tools are either tailored to specific processes or too general-purpose to apply without extensive custom configuration.
 
-This thesis presents a modular framework for modeling and optimizing chromatographic processes.
-The software called **CADET-Process** has been published under an open source license and has become part of the **CADET** software framework.
-**CADET-Core**, the numerical engine of **CADET**, provides a powerful solver for the physico-chemical models underlying chromatographic processes, but its direct use for advanced operating concepts requires substantial configuration effort and an additional abstraction layer for dynamic process definition.
-CADET-Process addresses this through a modular architecture where core tasks like process configuration, simulation, evaluation, and optimization exist as independent components that can be developed, tested, and exchanged separately.
-It provides an object-oriented interface for defining complex operating concepts including valve switching schemes, recycling configurations, and multi-column setups.
-Key performance indicators such as productivity, yield, and eluent consumption are evaluated automatically, and optimization problems including multi-objective formulations with nonlinear constraints can be configured and solved using third-party algorithms.
-The framework is developed following established research software engineering practices, including modular design, automated testing, continuous integration, and open licensing, to ensure reliability, reproducibility, and long-term maintainability.
+This thesis presents a modular framework for modeling and optimizing chromatographic processes, implemented as the open-source package **CADET-Process**.
+The framework separates process configuration, simulation, performance evaluation, and optimization into independent components.
+It provides a flexible interface for defining complex operating concepts such as valve switching schemes, recycling configurations, and multi-column setups, and allows key performance indicators and optimization problems to be configured and solved without custom integration code.
+The framework is developed following established research software engineering practices to ensure reliability, reproducibility, and long-term maintainability, and has since been adopted in both academic and industrial settings as part of the broader **CADET** ecosystem.
 
-The framework is validated against experimental data through a detailed parameter estimation study of a laboratory-scale protein purification system using ion-exchange chromatography.
-Steric mass-action binding kinetics, column transport phenomena, and system periphery effects including valve and tubing contributions are characterized and incorporated into the model.
-Subsequently, the flexibility of the framework is demonstrated through a series of synthetic case studies covering operating modes of increasing complexity: batch-elution, closed-loop and steady-state recycling, flip-flop chromatography, and serial column configurations.
-Simulation results are validated against analytical equilibrium theory solutions.
-Single- and multi-objective optimization studies reveal non-intuitive operating strategies that simultaneously maximize productivity and yield while minimizing solvent consumption.
-Together, these contributions provide a robust and extensible foundation for the systematic, model-based development of advanced chromatographic separation processes.
+The framework is validated against experimental data through a parameter estimation study of a laboratory-scale protein purification system using ion-exchange chromatography.
+Steric mass-action binding kinetics, column transport phenomena, and system periphery effects including valve and tubing contributions are characterized and incorporated into the model progressively, illustrating how model complexity can be built up incrementally.
+A complementary series of synthetic case studies then demonstrates the framework's optimization capabilities across operating modes of increasing complexity: batch-elution, closed-loop and steady-state recycling, flip-flop chromatography, and serial column configurations.
+Simulation results are validated against analytical equilibrium theory solutions, and multi-objective optimization reveals non-intuitive operating strategies including stacked injections, intermediate waste fractions, and peak interlocking under overloaded conditions.
+A notable finding is that batch elution emerges as the productivity-optimal limiting case of more complex recycling configurations, a result that arises naturally from the optimization formulation and points to the framework's potential for superstructure optimization, where the operating mode itself is a design variable.
 
 {raw-latex}`\clearpage`
 
