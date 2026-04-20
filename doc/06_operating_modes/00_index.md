@@ -61,3 +61,4 @@ The decision variables include process-specific operating parameters, such as va
 
 All optimization problems were solved using the *pymoo* framework with a non-dominated sorting genetic algorithm {cite}`pymoo2020`.
 Scripts to reproduce the simulations and optimization studies are provided in the supplementary material and are publicly available at: [https://github.com/schmoelder/diss_operating_modes](https://github.com/schmoelder/diss_operating_modes).
+Figures showing optimization landscapes across multiple decision variables are scaled to fit the page format; the digital version of this thesis provides full resolution.
