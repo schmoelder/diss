@@ -137,7 +137,20 @@ Hülsmann2025
 
 ## Zusammenfassung
 
-@TODO: Translate Abstract
+Chromatographie ist ein weit verbreitetes Trennverfahren in der chemischen, pharmazeutischen und biotechnologischen Industrie.
+Die rigorose modellbasierte Auslegung und Optimierung chromatographischer Prozesse ist jedoch anspruchsvoll: Die nichtlineare Dynamik, der periodische Betrieb und die große Anzahl an Freiheitsgraden erschweren die Prozessentwicklung.
+Gleichzeitig führt die Vielfalt der Betriebskonzepte, von Batch-Elution Chromatographie bis hin zu kontinuierlichen Mehrkolonnenprozessen, dazu, dass bestehende Werkzeuge entweder auf spezifische Prozesse zugeschnitten oder zu allgemein gehalten sind, um ohne aufwändige benutzerdefinierte Konfiguration eingesetzt werden zu können.
+
+Diese Arbeit stellt ein modulares Framework zur Modellierung und Optimierung chromatographischer Prozesse vor, das als Open-Source-Paket **CADET-Process** implementiert wurde.
+Das Framework gliedert Prozesskonfiguration, Simulation, Leistungsbewertung und Optimierung in unabhängige Komponenten.
+Es stellt eine flexible Schnittstelle zur Definition komplexer Betriebskonzepte bereit, darunter Ventilschaltpläne, Recyclingkonfigurationen und Mehrkolonnenanordnungen, und ermöglicht die Konfiguration und Lösung von Leistungskennzahlen und Optimierungsaufgaben ohne benutzerdefinierten Integrationsaufwand.
+Das Framework wurde nach etablierten Prinzipien des wissenschaftlichen Software-Engineerings entwickelt, um Zuverlässigkeit, Reproduzierbarkeit und langfristige Wartbarkeit zu gewährleisten, und ist inzwischen sowohl im akademischen als auch im industriellen Umfeld als Teil des übergeordneten **CADET**-Ökosystems etabliert.
+
+Das Framework wird anhand experimenteller Daten durch eine Studie zur Parameterschätzung an einem Protein-Reinigungssystem im Labormaßstab mittels Ionenaustauschchromatographie validiert.
+Das sterische Massenwirkungsgesetz, Säulentransportphänomene sowie Systemperipherieeffekte einschließlich der Beiträge von Ventilen und Leitungen werden schrittweise charakterisiert und in das Modell integriert, was veranschaulicht, wie Modellkomplexität inkrementell aufgebaut werden kann.
+Eine weitere Serie synthetischer Fallstudien demonstriert anschließend die Optimierungsmöglichkeiten des Frameworks anhand von Betriebskonzepten zunehmender Komplexität: Batch-Elution, Closed-Loop- und Steady-State-Recycling, Flip-Flop-Chromatographie sowie Reihenschaltungen von Säulen.
+Die Simulationsergebnisse werden gegen analytische Lösungen der Gleichgewichtstheorie validiert, und die Mehrzielsoptimierung deckt nicht-intuitive Betriebsstrategien auf, darunter Serieninjektionen, intermediäre Abfallfraktionen und Peakverschachtelung unter überladenen Bediungungen.
+Ein bemerkenswertes Ergebnis ist, dass sich die Batch-Elution als produktivitätsoptimaler Grenzfall komplexerer Recyclingkonfigurationen erweist, ein Resultat, das sich natürlich aus der Optimierungsformulierung ergibt und auf das Potenzial des Frameworks für die Superstrukturoptimierung hinweist, bei der das Betriebskonzept selbst als Entwurfsvariable behandelt wird.
 
 {raw-latex}`\clearpage`
 
