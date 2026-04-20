@@ -219,27 +219,25 @@ This variable transformation creates a more favorable optimization landscape.
 The optimal variable values and corresponding KPIs for all Pareto edge points are summarized in {numref}`mrssr_auto-cycle_moo-pc_kpi`.
 The associated chromatograms are provided in {numref}`mrssr_auto-cycle_moo-pc_fig_chrom`.
 
-When focusing on productivity maximization, optimal solutions consistently show recycling duration approaching zero.
-This effectively results in a batch elution process, consistent with results from {cite}`Dienstbier2020`.
-For product recovery optimization, the same pattern emerges with minimal recycling durations.
-However, achieving $100\%$ recovery inherently produces $100\%$ purity, exceeding typical requirements.
-For the specified $95\%$ purity target, any recycling duration can satisfy recovery constraints.
-This is evident from the plateau at $95\%$ purity in the objective function plots.
-These observations also align with previous findings {cite}`Dienstbier2020`.
+When focusing on productivity maximization, optimal solutions consistently show recycling duration approaching zero, effectively resulting in a batch elution process {cite}`Dienstbier2020`.
+The physical reason is that recycling occupies column time processing previously injected material during which no new feed can be introduced; the overhead of recycling therefore reduces throughput unless the improvement in yield is sufficient to compensate.
+
+For yield maximization, a similar trend is observed, though the underlying reason differs.
+Under baseline separation conditions, near-complete recovery is already achievable without recycling.
+Achieving $100\%$ recovery in fact produces $100\%$ purity, which exceeds the specified $95\%$ requirement.
+As a result, for the given purity target, any recycling duration can satisfy the recovery constraint, which explains the plateau visible in the objective function plots {cite}`Dienstbier2020`.
 
 Only when focusing on eluent consumption minimization does the analysis reveal distinct recycling behavior.
-By recycling partially resolved intermediate fractions, MR-SSR effectively reduces eluent consumption.
-This can be explained by large feed volumes overloading the column.
-The resulting unresolved fractions are then recycled rather than being discarded.
-Since no fresh eluent is used during the injection phase, this approach minimizes overall solvent consumption {cite}`Dienstbier2020`.
-While the optimization landscape shows less pronounced optima compared to productivity objectives, recycling effects remain clearly visible in the chromatograms.
-The chromatograms clearly show the broader, overloaded peaks that enable this efficient solvent reuse.
+The optimizer selects large feed volumes that overload the column, producing partially unresolved fractions.
+Rather than discarding these fractions as waste, they are recycled via the mixing tank, so that no fresh eluent is consumed during the injection phase.
+This results in lower overall solvent consumption {cite}`Dienstbier2020`.
+The recycling effect is clearly visible in the resulting chromatograms as broader, overloaded peaks, while the optimization landscape for the recycling time variables shows less pronounced optima compared to productivity.
 
-Optimizing the combined weighted objective ({eq}`weighted_objective`) provides additional insights into the practical trade-offs.
-Its optimal value effectively balances productivity and solvent consumption by employing a small but non-zero recycling fraction.
-However, the optimal operating parameters depend strongly on the specific process priorities and economic constraints.
-Incorporating comprehensive economic objectives, such as {eq}`total_cost`, could provide more realistic trade-off analysis.
-This would better reflect actual operational decision-making where solvent costs, productivity requirements, and equipment utilization all factor into the optimal solution.
+Optimizing the combined weighted objective ({eq}`weighted_objective`) yields a solution with a small but non-zero recycling fraction, balancing the eluent savings of MR-SSR against the productivity penalty of extended cycle times.
+This suggests that a moderate recycling strategy may be preferable when both criteria matter, though the precise trade-off depends on economic factors such as solvent cost and throughput requirements.
+
+Compared to CLR (see {numref}`clr`), MR-SSR offers greater operational flexibility by decoupling the timing of fresh feed addition from the column recycling cycle via the mixing tank.
+Nevertheless, the results confirm that for productivity-focused objectives, batch elution remains the preferred operating mode even in an MR-SSR setup.
 
 ```{glue:figure} moo_fig_obj
 :name: mrssr_auto-cycle_moo-pc_fig_obj
