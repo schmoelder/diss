@@ -262,22 +262,16 @@ Eluent consumption is particularly sensitive to the switching times, driven by c
 
 ---
 
-This chapter demonstrates the framework's capability to handle a wide range of advanced chromatographic operating modes.
-All implemented processes have been validated against equilibrium theory solutions, confirming their theoretical soundness.
-The optimization results show excellent consistency with established literature, particularly for well-studied modes like batch elution and recycling techniques.
+This chapter demonstrates the framework's capability to handle a wide range of chromatographic operating modes, ranging from simple batch elution to complex multi-column setups with recycling.
+All implemented processes have been validated against equilibrium theory, confirming the correctness of the process models and event structures.
 
-Multi-objective optimization proves particularly valuable, revealing complex trade-offs between productivity, purity, recovery, and resource consumption.
-The framework successfully identifies several sophisticated operational strategies including:
+Multi-objective optimization consistently reveals non-trivial trade-offs between productivity, yield, and eluent consumption.
+The framework naturally identifies sophisticated operational strategies, including:
 - waste fractions,
-- stacked injection
-- cycle-to-cycle overlaps, and
-- peak interlocking techniques
+- stacked injections,
+- cycle-to-cycle peak overlaps, and
+- peak interlocking.
 
-A significant finding is the framework's ability to naturally converge to batch elution as a limiting case of more complex recycling processes.
-This capability suggests strong potential for superstructure optimization applications where the optimal operating mode must be selected from multiple alternatives.
-The results clearly demonstrate that process optimality depends heavily on both the specific separation system characteristics and the chosen objective function.
-Different component systems and performance priorities lead to fundamentally different optimal configurations.
-
-For future work, incorporating comprehensive economic objectives could provide more realistic optimization targets.
-Additionally, exploring additional operating modes and hybrid configurations may yield further performance improvements.
-The framework's demonstrated robustness makes it well-suited for these extended applications.
+A notable finding across the recycling case studies is that batch elution emerges as the productivity-optimal limiting case of more complex recycling processes.
+This behavior confirms the framework's robustness and points to its suitability for superstructure optimization, where the operating mode itself is a design variable.
+For processes with different objectives, such as minimizing eluent consumption, recycling or serial-column configurations can provide clear advantages, underscoring that process selection depends on both the separation system and the priority given to each performance indicator.
