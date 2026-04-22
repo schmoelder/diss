@@ -69,7 +69,7 @@ cases = get_cases_by_operating_mode(
 
 In situations where one of the components exhibits very strong interaction with the stationary phase, the use of a short pre-column can be advantageous.
 By adding such a column, the strongly adsorbing component can be retained before entering the main column, thus avoiding excessively long elution times and reducing the risk of irreversible binding.
-As soon as breakthrough of the bound impurity is imminent, the pre-column can be regenerated, replaced, or repacked {cite}`SchmidtTraub2020`.
+As soon as breakthrough of the bound impurity is imminent, the pre-column can be regenerated, replaced, or repacked {cite}`SchmidtTraub2020`.
 Alternatively, the output of the pre-column can be dynamically directed either to waste or to the second column, depending on the component currently eluting.
 
 (serial_columns_process)=

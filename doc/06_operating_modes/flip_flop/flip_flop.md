@@ -238,7 +238,7 @@ display(Markdown(moo_table))
 {glue:text}`moo_fig_chrom_caption`
 ```
 
-## Summary
+**Summary**
 
 Despite its potential, the flip-flop mode has seen limited adoption, possibly due to concerns about column design, complexity, or the mechanical stability of packing materials under repeated flow reversals.
 Alternatives worth considering include the use of pre-columns (see {numref}`serial_columns`), or gradient elution processes where one of the buffer components (e.g. a salt) modulates the binding strength.
