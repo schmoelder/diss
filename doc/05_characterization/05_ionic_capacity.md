@@ -24,6 +24,8 @@ from git import Repo
 from myst_nb import glue
 %config InlineBackend.figure_format = 'retina'
 
+print("update 0")
+
 # Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
 sys.path.insert(0, str(diss_root / "studies" / "parameter_estimation" / "parameter_estimation" ))
@@ -69,13 +71,9 @@ from comparison_plots import plot_resin_titration
 fig, *_ = plot_resin_titration(plot_single=True)
 glue("fig_resin_titration", fig, display=False)
 
-# @TODO: use proper values when rerunning
-# glue("system_dead_volume", round(parameters_all["e8"]["system_dead_volume"]*1e6, 2))
-# glue("V_NaOH_used", round(parameters_all["e8"]["V_NaOH_used"]*1e6, 2))
-# glue("V_NaOH", round(parameters_all["e8"]["V_NaOH"]*1e6, 2))
-glue("system_dead_volume", round(5.322519797764502e-06*1e6, 2))
-glue("V_NaOH_used", round(4.738833333333333e-05*1e6, 2))
-glue("V_NaOH", round(4.2065813535568824e-05*1e6, 2))
+glue("system_dead_volume", round(parameters_all["e8"]["system_dead_volume"]*1e6, 2))
+glue("V_NaOH_used", round(parameters_all["e8"]["V_NaOH_used"]*1e6, 2))
+glue("V_NaOH", round(parameters_all["e8"]["V_NaOH"]*1e6, 2))
 
 total_capacity_mol = parameters_all["e8"]["total_capacity"]
 glue("total_capacity_mmol", round(total_capacity_mol*1000, 2))
