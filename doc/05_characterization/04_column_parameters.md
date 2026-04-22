@@ -99,11 +99,8 @@ The data were fitted using a {class}`~CADETProcess.processModel.LumpedRateModelW
 The analysis only indicated that the film diffusion coefficient must exceed $1~\times 10^{-5}~\text{m}~\text{s}^{-1}$, suggesting that film diffusion is not rate-limiting under the experimental conditions.
 
 ```{code-cell} ipython3
----
-mystnb:
-  markdown_format: myst
-  remove_code_source: true
----
+:tags: [remove-cell]
+
 study_root = diss_root / "studies" / "parameter_estimation"
 sys.path.insert(0, str(study_root / "parameter_estimation"))
 
@@ -114,6 +111,14 @@ e7_objectives = embed_figure_in_directive(
     "e7_objectives_film_diffusion",
     "Objective function values per optimization variable for experiment E7.",
 )
+```
+
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
 display(Markdown(e7_objectives))
 ```
 
@@ -123,11 +128,8 @@ Since CADET does not natively support this condition, a high numerical value of 
 Both fitting approaches resulted in similar particle porosities, and film diffusion was assumed to be non-limiting for all molecules in subsequent analyses.
 
 ```{code-cell} ipython3
----
-mystnb:
-  markdown_format: myst
-  remove_code_source: true
----
+:tags: [remove-cell]
+
 e7_objectives = embed_figure_in_directive(
     study_root,
     parameters_all["e7_lrmp"]["branch_name"],
@@ -135,6 +137,13 @@ e7_objectives = embed_figure_in_directive(
     "e7_objectives",
     "Objective function values per optimization variable for experiment E7, assuming non-limiting film diffusion.",
 )
+```
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
 display(Markdown(e7_objectives))
 ```
 
