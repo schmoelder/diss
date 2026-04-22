@@ -10,5 +10,5 @@ In practice, services like [*Github Actions*](https://github.com/features/action
 
 In CADET-Process, *Github Actions* is used to implement the following pipeline:
 
-- On every pull request push: code formatting, the presence of docstrings, and type annotations are checked and enforced using *pre-commit* and *ruff* (see {numref}`style` and {numref}`software_documentation`), and the test suite is executed using *pytest* (see {numref}`software_tests`).
+- On every pull request push: code formatting, the presence of docstrings, and type annotations are checked and enforced using *pre-commit* and *ruff* (see {ref}`Language and domain specific aspects <style>` and {numref}`software_documentation`), and the test suite is executed using *pytest* (see {numref}`software_tests`).
 - On every release: the reference documentation is rebuilt and published via *Sphinx* and Read The Docs (see {numref}`software_documentation`), and the package is uploaded to the *Python Package Index (PyPI)*, making the new version immediately available for installation (see {numref}`version_control`).

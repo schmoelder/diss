@@ -130,7 +130,7 @@ def area(self) -> float:
     pass
 ```
 
-A concrete subclass that returns a string instead of a float violates this contract, and tools such as *mypy* or *ruff* can detect this statically, before the code is even run (see {numref}`style`).
+A concrete subclass that returns a string instead of a float violates this contract, and tools such as *mypy* or *ruff* can detect this statically, before the code is even run.
 Beyond abstract classes, annotations improve the readability of any method signature by making the expected input and output types immediately apparent without having to consult the implementation or documentation.
 In CADET-Process, type annotations are enforced throughout the codebase and verified as part of the CI/CD pipeline (see {numref}`ci_cd`).
 
