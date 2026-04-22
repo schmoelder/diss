@@ -27,11 +27,11 @@
 
 ## Preface
 
-As a modeling engineer, I am constantly aware that arbitrary precision can be achieved, but often at a cost that is not justified.
-This work is no exception.
-Instead, I aim to be transparent about the limitations of the presented framework: some components remain unfinished, and others may exhibit issues I have not yet considered.
-There is always more to learn and improve, and some challenges may remain unaddressed.
-Despite these limitations, the software developed in this work provides robust and effective approximations of *some* aspects of reality, particularly in modeling and simulating the diverse physicochemical effects and operational conditions that govern separation processes in chromatographic columns.
+To know whether a process is good, we model it.
+To trust the model, we validate it against reality.
+And to rely on the software that runs it, we test it systematically.
+This work addresses all three, and aims to be transparent about where each falls short: some components remain unfinished, and others may exhibit issues I have not yet considered.
+Nevertheless, the software developed in this work provides robust and effective approximations of *some* aspects of reality, particularly in modeling and simulating the diverse physicochemical effects and operational conditions that govern separation processes in chromatographic columns.
 
 To achieve this, the early decision to modularize the framework's code proved crucial.
 By separating functionality and defining clear interfaces, development, testing, and integration of interconnected logic became more efficient.
@@ -40,10 +40,10 @@ This modularity also supports incremental improvements: emerging issues or missi
 Open-source principles, combined with adaptability to different standards, further strengthen this approach by promoting transparency within the broader scientific community.
 In fact, many of the strongest modules emerged from joint efforts, and I am grateful to those who contributed their expertise and perspective.
 Much could be taken for granted because others were willing to go the *extra mile*.
-Learning from the enthusiasm of others is an unmatched shortcut to understanding.
+The enthusiasm of others has been a constant source of motivation.
 
 Looking ahead, I hope to continue developing this software.
-However, knowing where to *stop* is an art in itself, and for now, this thesis represents the current state of my efforts.
+However, knowing where to *stop* is an Art in itself, and for now, this thesis represents the current state of my efforts.
 
 {raw-latex}`\clearpage`
 
@@ -53,7 +53,7 @@ There are many people I need to thank, but first and foremost, I want to express
 Her unconditional support and patience throughout this journey have been invaluable.
 No one else had to endure my struggles as much, yet she was always there as a thoughtful listener.
 Being outside my field of research, she provided a great way to test my own understanding: if I could explain complicated issues clearly to her, I knew I had truly grasped them.
-Beyond this, she was a catalyst for personal growth, guiding me to discover what truly matters to me in life.
+Beyond this, she has been a catalyst for my personal growth, helping me find what truly matters in life.
 
 Moreover, I would like to thank Prof. Kaspereit for granting me the freedom to explore a field that was completely new to me.
 It took longer than expected to understand the subject and find my place within it, yet I was given the time I needed, and it was never doubted that I would eventually succeed.
@@ -68,8 +68,8 @@ Once again, I was given the freedom to explore and proceed at my own pace.
 One of the most rewarding experiences was contributing to the evolution of **CADET** from an academic code to software now used worldwide in both academia and industry.
 I am deeply grateful to the entire **ModSim** group, especially Eric von Lieres, Hannah Lanzrath, and Jan Breuer, for their unwavering support.
 
-Last but not least, I owe my sincere gratitude to Prof. Matthias Franzreb and Juliane Diehm from KIT.
-In a time of need, they offered me scientific refuge and a desk free from distractions, allowing me to finally complete what I had started ten years ago.
+Finally, I owe my sincere gratitude to Prof. Matthias Franzreb and Juliane Diehm from KIT.
+In a time of need, they offered me scientific refuge and a desk free from distractions, allowing me to finally complete what I had started more than ten years ago.
 
 {raw-latex}`\clearpage`
 
