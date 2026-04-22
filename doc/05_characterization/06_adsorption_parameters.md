@@ -111,11 +111,10 @@ Comparison of experimental data with simulation results at pH 5 for 6, and 14 CV
 
 Osberghaus et al. and Ladiwala et al. both determined isotherm parameters at pH 5 on a *Sepharose* column, albeit a fast-flow variant, whereas here a high-performance column was used {cite}`Osberghaus2012, Ladiwala2005`.
 Osberghaus et al. report a characteristic charge for Lysozyme of 5.07, while Ladiwala et al. report 5.6.
-The value determined in this study, {glue:text}`nu`, lies between those values.
-The estimated equilibrium constant of {glue:text}`k_eq` $\text{m}_\text{l}^3~\text{m}_\text{s}^{-3}$ is close to the value reported by Osberghaus et al. (0.118 $\text{m}_\text{l}^3~\text{m}_\text{s}^{-3}$) but deviates from Ladiwala et al. (0.0763 $\text{m}_\text{l}^3~\text{m}_\text{s}^{-3}$).
-Given the complexity of the determination procedure and the fact that these studies were conducted in independent laboratories, this represents good agreement.
+The value determined in this study, {glue:text}`nu`, aligns very well with Ladiwala et al., though it is slightly higher than the value reported by Osberghaus et al.
+For the equilibrium constant, {glue:text}`k_eq` $\text{m}_\text{l}^3~\text{m}_\text{s}^{-3}$ is again close to Ladiwala et al. (0.0763 $\text{m}_\text{l}^3~\text{m}_\text{s}^{-3}$), but lower than the value measured by Osberghaus et al. (0.118 $\text{m}_\text{l}^3~\text{m}_\text{s}^{-3}$).
+Given the complexity of the determination procedure and the fact that these studies were conducted in independent laboratories, this represents very good agreement.
 While the values are generally close, the differences can be explained by factors such as varying approaches to determining the specific capacity.
-As noted, the choice of particle porosity affects the volume-specific capacity used in the model equations.
 
 Beyond the comparison with literature values, the multi-objective formulation also provides an additional diagnostic capability.
 When examining the individual NRMSE landscapes for each gradient experiment separately, the optimal characteristic charge consistently falls near 6 (see {numref}`e9_objectives`).
