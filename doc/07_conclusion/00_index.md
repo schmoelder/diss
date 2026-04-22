@@ -8,6 +8,7 @@ The resulting open-source package, CADET-Process, has since been adopted in both
 Two complementary case studies were used to validate this design from different angles.
 The characterization study confirmed that the framework accurately reproduces the behavior of a real laboratory system, capturing system periphery effects, column transport, and protein adsorption under a salt gradient within a single integrated model.
 A progressive parameter estimation procedure, working from dead volume and dispersion through to binding parameters, proved effective for a typical ion-exchange purification setup and illustrated the value of building model complexity incrementally rather than fitting all parameters simultaneously.
+Applying multi-objective optimization to the parameter estimation further revealed that the individual gradient experiments do not share a common optimum, a discrepancy that scalar aggregation of the NRMSE values conceals entirely, pointing to gradient-dependent effects not captured by the current model structure.
 
 The study on operating modes followed a complementary approach, employing synthetic parameters and analytical solutions based on equilibrium theory to investigate process optimization across a range of advanced configurations.
 Multi-objective optimization consistently revealed non-intuitive operating strategies, including stacked injections, intermediate waste fractions, and peak interlocking under overloaded conditions.

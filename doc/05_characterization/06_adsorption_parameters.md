@@ -29,6 +29,8 @@ from myst_nb import glue
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
 sys.path.insert(0, str(diss_root / "studies" / "parameter_estimation" / "parameter_estimation" ))
 
+print("update 0")
+
 from utils import final_parameters_branch, load_all_parameters
 parameters_all = load_all_parameters(final_parameters_branch)
 ```
@@ -115,4 +117,11 @@ Given the complexity of the determination procedure and the fact that these stud
 While the values are generally close, the differences can be explained by factors such as varying approaches to determining the specific capacity.
 As noted, the choice of particle porosity affects the volume-specific capacity used in the model equations.
 
-@TODO: Disuss meta scores / MOO
+Beyond the comparison with literature values, the multi-objective formulation also provides an additional diagnostic capability.
+When examining the individual NRMSE landscapes for each gradient experiment separately, the optimal characteristic charge consistently falls near 6 (see {numref}`e9_objectives`).
+However, summing the NRMSE values across all experiments, the standard practice for combining multiple experimental runs into a single objective, shifts the combined optimum to {glue:text}`nu`, since this value minimizes the aggregate error even though it does not minimize any individual experiment's error (see {numref}`fig_e9_meta_scores`).
+
+The scalar aggregation obscures this discrepancy: the summed objective produces a single optimum with no indication that the individual experiments disagree.
+Multi-objective optimization addresses this by treating each experiment's NRMSE as a separate objective, producing a Pareto front that makes the tension between experiments explicit.
+If the model were perfectly consistent across all gradient slopes, the Pareto front would collapse to a single point, and the individual and combined optima would coincide.
+The spread observed instead indicates that the model cannot simultaneously satisfy all experiments equally well, pointing to limitations such as gradient-dependent effects not captured by the current model structure.
