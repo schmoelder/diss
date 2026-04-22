@@ -113,6 +113,7 @@ sphinx:
         % Load packages
         \usepackage{etoc}
         \usepackage{mhchem}
+        \usepackage{needspace}
         \usepackage{pdflscape}
         \usepackage{unicode-math}
 
@@ -135,12 +136,16 @@ sphinx:
         %% Code blocks: Override the fontsize command defined and used by fancyvrb (which implements Verbatim environments).
         %% \renewcommand{\FV@FontSize}{\scriptsize}
 
-        %% Tables:
-        % Redefine the table start command to include \small
+        %% Tables: keep caption and body together; all tables fit on one page
         \let\originalsphinxattablestart\sphinxattablestart
         \renewcommand{\sphinxattablestart}{%
-            \small
+            \needspace{0.5\textheight}\small
+            \let\raggedright\centering
             \originalsphinxattablestart
+        }
+        \AtBeginDocument{%
+          \let\origsphinxatlongtablestart\sphinxatlongtablestart
+          \def\sphinxatlongtablestart{\needspace{0.5\textheight}\origsphinxatlongtablestart}%
         }
 
         % Redefine the start paragraph command to do nothing
@@ -148,6 +153,12 @@ sphinx:
         \renewcommand{\sphinxAtStartPar}{%
             \relax
         }
+
+        % Remove indentation from cell output blocks (used by display(Markdown(...)))
+        \renewenvironment{sphinxVerbatimOutput}
+          {\colorlet{VerbatimBorderColor}{CodeBlockOutputBorderColor}%
+           \colorlet{VerbatimColor}{CodeBlockOutputColor}}
+          {}
 
         %% Basic caption configuration is via `usepackage` for multiple settings:
         % - Fontsize a bit smaller than the text
