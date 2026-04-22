@@ -116,11 +116,8 @@ For the equilibrium constant, {glue:text}`k_eq` $\text{m}_\text{l}^3~\text{m}_\t
 Given the complexity of the determination procedure and the fact that these studies were conducted in independent laboratories, this represents very good agreement.
 While the values are generally close, the differences can be explained by factors such as varying approaches to determining the specific capacity.
 
-Beyond the comparison with literature values, the multi-objective formulation also provides an additional diagnostic capability.
-When examining the individual NRMSE landscapes for each gradient experiment separately, the optimal characteristic charge consistently falls near 6 (see {numref}`e9_objectives`).
-However, summing the NRMSE values across all experiments, the standard practice for combining multiple experimental runs into a single objective, shifts the combined optimum to {glue:text}`nu`, since this value minimizes the aggregate error even though it does not minimize any individual experiment's error (see {numref}`fig_e9_meta_scores`).
-
-The scalar aggregation obscures this discrepancy: the summed objective produces a single optimum with no indication that the individual experiments disagree.
-Multi-objective optimization addresses this by treating each experiment's NRMSE as a separate objective, producing a Pareto front that makes the tension between experiments explicit.
-If the model were perfectly consistent across all gradient slopes, the Pareto front would collapse to a single point, and the individual and combined optima would coincide.
-The spread observed instead indicates that the model cannot simultaneously satisfy all experiments equally well, pointing to limitations such as gradient-dependent effects not captured by the current model structure.
+The summed NRMSE yields a well-defined combined optimum at {glue:text}`nu`, providing a clear and unambiguous parameter estimate (see {numref}`fig_e9_meta_scores`).
+Beyond this, the multi-objective formulation provides an additional diagnostic capability: when each gradient experiment's NRMSE is treated as a separate objective, the individual optima for $\nu$ consistently fall between 5.9 and 6.3, and those for $k_\text{eq}$ between 0.05 and 0.06 $\text{m}_\text{l}^3~\text{m}_\text{s}^{-3}$ (see {numref}`e9_objectives`), a discrepancy that scalar aggregation obscures entirely.
+Notably, the combined optimum for $k_\text{eq}$ lies above the range of all individual optima, meaning the aggregated objective converges to a value that no single experiment would independently suggest.
+If the model were perfectly consistent across all gradient slopes, the individual and combined optima would coincide and the Pareto front would collapse to a single point.
+The spread observed instead indicates that the model cannot simultaneously satisfy all experiments equally well, pointing to gradient-dependent effects not captured by the current model structure.
