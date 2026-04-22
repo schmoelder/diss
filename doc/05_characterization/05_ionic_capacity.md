@@ -24,8 +24,6 @@ from git import Repo
 from myst_nb import glue
 %config InlineBackend.figure_format = 'retina'
 
-print("update 0")
-
 # Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
 sys.path.insert(0, str(diss_root / "studies" / "parameter_estimation" / "parameter_estimation" ))

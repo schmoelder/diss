@@ -193,8 +193,7 @@ Next to the experimental data, a reference model needs to be configured, i.e. a 
 It must include relevant details so that it is capable of accurately predicting the experimental system (e.g. tubing, valves etc.).
 
 To demonstrate this module, consider a simple tracer pulse injection onto a chromatographic column.
-For this example, the full process configuration can be found {ref}`here <fit_column_transport>`.
-@TODO: Update reference
+For a more detailed study, refer to {numref}`characterization`.
 As an initial guess, the bed porosity is set to $0.5$, and the axial dispersion to $1.0 \times 10^{-7} \text{m}^2 \text{s}^{-1}$.
 After process simulation, the {class}`~CADETProcess.simulationResults.SimulationResults` needs to be passed to the {meth}`~CADETProcess.comparison.Comparator.evaluate` method of the {class}`~CADETProcess.comparison.Comparator`.
 Here, an NRMSE metric has been added for the interval $3 \to 6~\text{min}$.

@@ -22,8 +22,6 @@ execution:
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-print("update 0")
-
 %matplotlib inline
 %config InlineBackend.figure_format = 'retina'
 
@@ -107,7 +105,7 @@ mystnb:
 display(Markdown(overview))
 ```
 
-{numref}`batch-elution_ternary_moo-pc_fig_obj` depicts the evaluated objective function values as a function of both feed duration and cycle time (@TODO: Check y-ticks and ylim).
+{numref}`batch-elution_ternary_moo-pc_fig_obj` depicts the evaluated objective function values as a function of both feed duration and cycle time.
 The optimal variable values and KPIs for all Pareto edge points are summarized in {numref}`batch-elution_moo-pc_kpi`, with the corresponding chromatograms provided in {numref}`batch-elution_ternary_moo-pc_fig_chrom`.
 
 

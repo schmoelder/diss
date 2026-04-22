@@ -29,8 +29,6 @@ from myst_nb import glue
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
 sys.path.insert(0, str(diss_root / "studies" / "parameter_estimation" / "parameter_estimation" ))
 
-print("update 0")
-
 from utils import final_parameters_branch, load_all_parameters
 parameters_all = load_all_parameters(final_parameters_branch)
 ```
