@@ -179,7 +179,7 @@ e7_objectives = embed_figure_in_directive(
     parameters_all["e7_lrmp"]["branch_name"],
     "figures/objectives.png",
     "e7_objectives",
-    "Evaluated objective values per optimization variable in experiment `E7`, assuming limiting film diffusion.",
+    "Evaluated objective values per optimization variable in experiment `E7`, assuming non-limiting film diffusion.",
 )
 display(Markdown(e7_objectives))
 ```
@@ -195,7 +195,7 @@ e9_objectives = embed_figure_in_directive(
     parameters_all["e9_lrmp_4_cv"]["branch_name"],
     "figures/objectives.png",
     "e9_objectives",
-    "Evaluated objective values per optimization variable in experiment `E9`, assuming limiting film diffusion and rapid equilibrium.",
+    "Evaluated objective values per optimization variable in experiment `E9`, assuming non-limiting film diffusion and rapid equilibrium.",
 )
 display(Markdown(e9_objectives))
 ```
@@ -215,5 +215,5 @@ glue("fig_e9_meta_scores", fig, display=False)
 :name: fig_e9_meta_scores
 :scale: 100%
 
-Sum of evaluated objective values per optimization variable in experiment `E9`, assuming limiting film diffusion and rapid equilibrium.",
+Sum of evaluated objective values per optimization variable in experiment `E9`, assuming non-limiting film diffusion and rapid equilibrium.
 ```
