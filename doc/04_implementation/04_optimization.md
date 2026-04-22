@@ -371,7 +371,7 @@ glue("pareto", fig, display=False)
 
 ```{glue:figure} pareto
 :name: pareto
-:scale: 25%
+:scale: 50%
 
 Pareto plot of all evaluated individuals.
 ```
