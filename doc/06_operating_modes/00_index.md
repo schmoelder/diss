@@ -3,7 +3,8 @@
 
 In contrast to the experimental study in {numref}`characterization`, this chapter investigates a set of synthetic case studies with known model parameters, shifting the focus from system identification to process design and optimization.
 The focus is on preparative separations of binary and ternary mixtures with known model parameters, assuming that parameter estimation has been performed previously.
-The objective is to demonstrate the flexibility of the framework for modeling and optimizing a range of chromatographic operating modes, including batch-elution, recycling strategies, flip-flop chromatography, and serial-column configurations, each examined with an expanding set of optimization variables.
+The objective is to demonstrate the flexibility of the framework for modeling and optimizing a range of chromatographic operating modes, including batch-elution, recycling strategies, flip-flop chromatography, and serial-column configurations.
+Each case study follows the same structure: first validating the process model, then exploring optimization with an expanding set of decision variables.
 
 In all cases, simulations are based on a lumped-rate model with pores (see {numref}`lumped_rate_model_with_pores`) coupled with either a competitive Langmuir binding model or a linear model with equivalent equilibrium coefficients, both under rapid-equilibrium assumptions (see {numref}`langmuir_model`).
 All processes operate in flow-through mode, assuming negligible solvent effects on binding.
