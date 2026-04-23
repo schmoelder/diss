@@ -35,7 +35,7 @@ Moreover, a method for the automatic determination of fractionation times is inc
 
 ### Fractionator
 
-The {class}`~CADETProcess.fractionation.Fractionator` class facilitates slicing the solution into fraction pools for each component.
+The {class}`~CADETProcess.fractionation.Fractionator` class slices the solution into fraction pools for each component.
 It allows for the evaluation of multiple chromatograms simultaneously and supports multiple fractions for each component within a chromatogram.
 To enable the calculation of the process parameters, it is necessary to specify which of the inlets should be considered for the feed and eluent consumption, as well as which outlet(s) are to be used for the evaluation.
 The simplest approach involves manually setting all fractionation times.
@@ -177,7 +177,7 @@ Many research and design problems in chromatography can effectively be approache
 These problems involve determining system parameters by comparing simulation results with observed experimental data.
 For this purpose, the {mod}`~CADETProcess.comparison` module in CADET-Process provides tools to quantify the differences between simulation outputs and reference data, such as experimental data or prior simulation results.
 
-The {class}`~CADETProcess.comparison.Comparator` class facilitates the comparison of results from two simulations or between simulation results and experimental data.
+The {class}`~CADETProcess.comparison.Comparator` class compares results from two simulations or between simulation results and experimental data.
 It includes several methods for both visualizing and analyzing the differences between datasets.
 Users can select from a range of metrics, like sum squared errors or peak shape similarity, to accurately quantify the differences between the datasets.
 To add a difference metric, the following information must be provided:

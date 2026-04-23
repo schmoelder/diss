@@ -63,7 +63,7 @@ The "Examples" section is used to provide usage examples of the code segment, an
 
 ## Documentation generator tools
 
-In order to make the documentation readily available for both developers and users, documentation generator tools such as *Sphinx* have been developed to extract the docstrings from the source code and create reference manuals in readable forms such as HTML or PDF.
+To make the documentation readily available for both developers and users, documentation generator tools such as *Sphinx* have been developed to extract the docstrings from the source code and create reference manuals in readable forms such as HTML or PDF.
 *Sphinx* is widely used in the Python community and allows for the creation of rich and informative documentation.
 *Sphinx* can be customized with themes and extensions, enabling the embedding of additional materials such as images, diagrams, and mathematical notation to enhance the comprehensiveness of the documentation.
 Its *autodoc* extension additionally reads type annotations (see {numref}`type_annotations`) directly from the source code, integrating them into the generated reference documentation without requiring manual duplication.

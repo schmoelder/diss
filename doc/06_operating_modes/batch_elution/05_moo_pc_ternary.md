@@ -254,7 +254,7 @@ Each row corresponds to a distinct cycle time scenario:
 Similarly, the objectives for the KPIs of the other components also exhibit multiple local optima, which can be attributed to the same overlapping and overtaking behavior of peaks across injections.
 Due to the high dimensionality and complexity of the objective space, optimizers may struggle to fully sample these sometimes sharp regions, resulting in sparse sampling.
 Refinement of the parameter space could potentially yield further improvements in process parameters.
-It is worth noting that alternative tools, such as surrogate models, may be better suited if the primary goal is to understand the underlying optimization landscape rather than targeting a specific KPI.
+Alternative tools, such as surrogate models, may be better suited if the primary goal is to understand the underlying optimization landscape rather than targeting a specific KPI.
 In this case, the use of a genetic algorithm, a somewhat inefficient but robust "brute force" approach, enabled effective exploration of the parameter space and revealed these complex behaviors.
 Gradient-based algorithms, for instance, would likely fail due to the presence of many local optima and their dependence on initial values.
 Bayesian optimization presents a promising alternative, as it balances exploration of the parameter space with exploitation of known high-performing regions.

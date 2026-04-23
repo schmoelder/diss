@@ -143,9 +143,9 @@ By defining a common interface for binding models, different models can be swapp
 This results in a more flexible and maintainable codebase.
 
 By applying established design patterns, software developers can create more adaptable and maintainable code that is more amenable to modifications and extensions over time.
-However, it is important to note that design patterns are not a universal solution and their use should be carefully considered in each specific context.
-Overusing design patterns can result in creating complex and less comprehensible code, which could impede software development and maintenance efforts.
-Therefore, it is crucial for developers to strike a balance between leveraging design patterns and maintaining code simplicity and readability.
+However, design patterns are not a universal solution and their use should be carefully considered in each specific context.
+Overusing design patterns can result in complex and less comprehensible code, which impedes development and maintenance.
+Developers should therefore strike a balance between applying design patterns and maintaining code simplicity and readability.
 
 In CADET-Process, OOP principles are applied throughout the framework.
 Unit operations, binding models, and optimization algorithms each share common base classes that define their interfaces, allowing them to be combined and exchanged without modifying the surrounding code.

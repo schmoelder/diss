@@ -233,7 +233,7 @@ The final results are handed to the objective and nonlinear constraint functions
 The total number of metrics depends on the number of evaluation objects, objectives and nonlinear constraint functions, and metrics per function.
 ```
 
-Callback functions can also be incorporated into the optimization problem to facilitate monitoring of the optimization progress.
+Callback functions can also be incorporated into the optimization problem to monitor progress.
 Any callable can serve as a callback, for instance to plot chromatograms or log intermediate results.
 In single-objective optimization, the callback is called with the best individual found so far; in multi-objective optimization, it is called for every member of the current Pareto front.
 Like objective and nonlinear constraint functions, callbacks are typically implemented using an evaluation toolchain (see {numref}`evaluation_steps` and {numref}`callbacks`).

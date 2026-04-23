@@ -65,8 +65,8 @@ The main tasks are:
 
 - setting up a model for the chromatographic system and the desired process structure,
 - solving the model equations for simulating the process,
-- determining process performance by evaluating the outlet concentration profiles, i.e. the chromatograms, of relevant unit operations,
-- performing optimization of continuous variables, timed events, and potentially the process structure.
+- determining process performance by evaluating the chromatograms,
+- performing optimization of continuous variables, timed events, and flow sheet connectivity.
 
 % Existing tools
 Several commercial programs are available which provide parts of the aforementioned required functionalities, like Aspen Chromatography {cite}`aspen`, GoSilico (formally known as ChromX) by Cytiva {cite}`GoSilico`, and Ypso-Proxima (formally known as as ChromWorks) by YpsoFacto {cite}`ypso-proxima`.

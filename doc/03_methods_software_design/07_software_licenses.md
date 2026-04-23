@@ -1,7 +1,7 @@
 (software_licenses)=
 # Software licenses
 
-In order to protect and encourage the creation of intellectual goods, intellectual property laws give creators property rights to the works they create.
+To protect and encourage the creation of intellectual goods, intellectual property laws give creators property rights to the works they create.
 Internationally, these laws are regulated under the rules of the World Trade Organization's (WTO) Agreement on Trade-Related Aspects of Intellectual Property Rights (TRIPS), which requires WTO members to provide the rights to copyright, patents, and trademarks {cite}`trips_agreement`.
 
 *Copyright* automatically attaches to every novel expression of an idea, whether through text, sounds, or imagery, without the need for registration.

@@ -133,7 +133,7 @@ The rate of change of the amount of solute adsorbed is then expressed as:
 ```
 
 Here, the flux is proportional to the difference between the actual amount adsorbed and the equilibrium amount, $q^*$.
-It is worth noting that the sign of $\frac{\text{d}q}{\text{d}t}$ ensures the flux acts toward equilibrium.
+The sign of $\frac{\text{d}q}{\text{d}t}$ ensures the flux acts toward equilibrium.
 In this approximation, the original rate constants $k_a$ and $k_d$ are replaced by the equilibrium constant $K_{\text{eq}}$ and a new kinetic constant $k_{\text{kin}}$.
 It is important to note that not all isotherms have a native representation in terms of explicit functions of solute concentration and amount adsorbed.
 For example, the Freundlich model does not follow this form {cite}`Herzog1909`.
@@ -240,8 +240,7 @@ Similarly to binding models, multiple chemical reaction models exist.
 In this work, only the mass action law reaction model is considered.
 
 The mass action law is a fundamental principle in chemical reaction kinetics that states that the rate of a chemical reaction is proportional to the product of the concentrations of its reactants.
-This model is suitable for most reactions, though it is important to note that the model uses the concentrations of reactants and products to directly calculate reaction fluxes.
-As a result, the model assumes dilute solutions and a well-stirred reaction vessel to ensure homogeneity.
+This model is suitable for most reactions, though it uses concentrations rather than thermodynamic activities, making it strictly valid only for dilute solutions and well-stirred vessels.
 The net flux for component $i$ is expressed as:
 
 ```{math}
