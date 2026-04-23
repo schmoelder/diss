@@ -19,11 +19,9 @@ The differential retention and elution times enable the effective separation of 
 These interactions can be characterized by various retention mechanisms.
 Most chromatographic separations are based on the principle of adsorption, which involves the accumulation of molecules on the surface of the stationary phase.
 This phenomenon is influenced by several forces.
-
 Given that chromatography relies on the reversibility of the adsorption step, it is primarily governed by physisorption.
 Physisorption refers to the weak binding of molecules through van der Waals interactions, such as dipole-dipole interactions.
 In addition to van der Waals forces, hydrophobic and electrostatic interactions may also influence the retention of components on the stationary phase.
-
 Moreover, specific interactions with affinity ligands immobilized on the stationary phase can serve as another retention mechanism.
 For example, separation may be based on specific interactions such as those between an enzyme and its substrate, a receptor and its ligand, or an antibody and its antigen.
 The size exclusion mechanism can also contribute to chromatographic separation.

@@ -38,11 +38,9 @@ For instance, the [CADET-Semi-analytic](https://github.com/modsim/CADET-semi-ana
 Although this method is restricted to the linear isotherm, it is particularly useful due to the modular nature of the CADET-Core code.
 In CADET-Core, binding models represent only a small fraction of the overall source code.
 As such, analytical solutions can still validate critical aspects of the code, including convection, diffusion, and networks of unit operations.
-
 To validate the connectivity and dynamic events of the operating modes described later in this work, equilibrium theory for single columns is applied (see {numref}`equilibrium_model`) to determine propagation velocities and corresponding elution times {cite}`SchmidtTraub2020`.
 By accounting for additional events such as recycling times, switching flow direction, virtually extending the column length, or re-injecting recycled fractions, simple chromatograms for advanced operating modes can be calculated.
 These are then compared to the numerical solutions obtained from CADET-Core.
-
 Using the chain rule, the time derivative of the solid phase concentration can be expressed in terms of the isotherm slope and the liquid phase time derivative:
 
 ```{math}
@@ -50,7 +48,6 @@ Using the chain rule, the time derivative of the solid phase concentration can b
 
 \frac{\partial q_i}{\partial t} = \left. \frac{\text{d} q_i}{\text{d} c_i} \right|_{c_i^+} \cdot \frac{\partial c_i}{\partial t}.
 ```
-
 Rearranging eq. {eq}`mass_balance_em` and substituting eq. {eq}`solid_phase_derivative_chain_rule` yields the propagation velocity $w(c_i^+)$
 of a concentration front $c_i^+$:
 
@@ -67,7 +64,6 @@ By considering the column length $L_c$, the retention time for a concentration $
 
 t_{\text{R},i}(c_i^+) = \frac{L_c}{w(c_i^+)} = t_{0,t} \cdot \left( 1 + F \cdot \left. \frac{\text{d} q_i}{\text{d} c_i} \right|_{c_i^+} \right),
 ```
-
 where $t_{0,t} = L_c / u$ is the column dead time.
 For a linear isotherm, where $\frac{\text{d} q_i}{\text{d} c_i} = a_i$ (Henry coefficient), this simplifies to:
 
@@ -84,7 +80,6 @@ To numerically approximate the solution of the model equations, the method of li
 In this approach, the spatial coordinates are first discretized, resulting in a system of ordinary differential equations (ODEs) or differential-algebraic equations (DAEs), depending on the isotherm being used.
 This step is often referred to as spatial semi-discretization because only the spatial dimensions are discretized, leaving time as a continuous variable.
 Next, the resulting system of equations is discretized in time using either explicit or implicit methods.
-
 Generally, the finer the grid used to discretize the continuous space-time domain, the closer the numerical approximation will be to the exact solution.
 However, this comes at the cost of increased computational effort.
 The performance of a numerical solution method is often evaluated by examining its order of convergence, which measures how quickly the numerical solution approaches the exact solution as the grid is refined.
@@ -92,7 +87,6 @@ Higher convergence orders generally lead to faster and more accurate solutions, 
 It is important to note that the expected convergence order is typically only achieved asymptotically, meaning that sufficient degrees of freedom (DOFs) are needed for the method to realize its full accuracy potential.
 Despite these trade-offs, numerical methods with high convergence orders are recommended for solving chromatographic models, as they often provide a good balance between accuracy and computational efficiency.
 Additionally, higher-order methods tend to exhibit other advantageous properties, such as improved stability {cite}`Atkinson2011`.
-
 Several numerical methods have been successfully applied to solve chromatographic models.
 The following sections provide an overview of selected methods commonly used in state-of-the-art simulation software.
 First, different approaches for spatial semi-discretization are discussed, followed by an overview of methods for time integration.
@@ -144,7 +138,6 @@ for each control volume $j \in \{ 0, \dots, N_{z} - 1 \}$, with $c_{-1}, c_{N_z}
 FVM offers key advantages over FDM, particularly due to its intrinsic conservation properties, ensuring that mass is preserved across cell interfaces.
 This property is especially important in chromatographic models, where conservation of mass is critical for obtaining accurate results.
 Additionally, FVM is monotonicity-preserving, which prevents unphysical oscillations in the solution, making it well-suited for problems involving sharp concentration gradients {cite}`Blazek2015,Koren1993`.
-
 To achieve higher accuracy, the finite volume method (FVM) can employ polynomial reconstructions to approximate values within each control volume using information from neighboring cells.
 This stencil-based reconstruction enables high-order schemes that preserve mass conservation.
 However, as described by Godunov's theorem, linear high-order schemes cannot maintain monotonicity, resulting in oscillations near steep gradients {cite}`Godunov1959`.
@@ -155,13 +148,11 @@ Given its ability to handle steep concentration fronts without sacrificing accur
 % Finite Elements Method
 The finite element method (FEM) divides the spatial domain into cells, similar to the FVM.
 However, FEM introduces a polynomial of arbitrary order for each cell, enabling high accuracy with a relatively low number of cells, provided the solution is sufficiently smooth {cite}`SchmidtTraub2020`.
-
 The classical FEM approach, known as the continuous Galerkin (CG) method, enforces continuity across cell interfaces, resulting in a tightly coupled system of ODEs.
 This method, however, has several drawbacks.
 FEM is not inherently conservative, making it challenging to ensure mass conservation.
 Additionally, retaining high-order accuracy at boundaries can be difficult, and the implementation is generally more complex compared to FVM.
 Nonetheless, CG is currently implemented in Cytiva's commercial GoSilico™ Chromatography Modeling Software, where a streamline-upwind Petrov-Galerkin stabilization (SUPG) technique is applied to improve numerical stability {cite}`Hahn2015`.
-
 In contrast, the discontinuous Galerkin (DG) method allows for discontinuities at cell interfaces, combining elements of FVM and FEM.
 This flexibility permits the use of numerical fluxes to solve the local Riemann problem, introducing artificial numerical dispersion into the scheme.
 Unlike in FDM, this artificial dispersion is considered beneficial in DG, as it provides stabilizing effects that reduce oscillations, particularly for systems with steep gradients {cite}`Brezzi2006`.

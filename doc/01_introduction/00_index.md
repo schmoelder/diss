@@ -31,7 +31,6 @@ In addition, it has many applications in performing complex separations in the b
 Most process-scale chromatographic separations are performed using a single column.
 In conventional elution mode, small amounts of the mixture are injected periodically onto the chromatographic column and the mixture components elute as separated peaks from its outlet.
 However, as previously mentioned, many advanced operating modes exist that can outperform conventional batch chromatography in terms of productivity, solvent consumption, and recovery yield.
-
 For example, operating concepts like closed-loop recycling {cite}`Bombaugh1969,Heuer1995` or steady-state recycling (SSR) {cite}`Bailly1982,Sainio2009,Kaspereit2011` incorporate different strategies for the recycling of unresolved fractions from the column outlet back to the inlet with the aim of improving yield, solvent consumption and/or productivity {cite}`Sainio2009`.
 If purity requirements are low, bypass streams can be advantageous {cite}`Siitonen2012`.
 Moreover, the use of multiple columns gives rise to various concepts ranging from serial or parallel arrangements of columns {cite}`Ziomek2006,GarciaPalacios2009`, over pseudo-continuous processes, up to the many variants of the powerful continuous SMB concept.
@@ -48,7 +47,6 @@ This is to show that the selection of an appropriate operating mode is an import
 Due to the rapid development of computational methods as well as the low costs of running simulations compared to laboratory experiments, the driving force for the development of new advanced chromatographic processes is increasingly based on mathematical modeling and optimization tools.
 While there are still many physico-chemical phenomena which are challenging to describe, there is generally a high level of confidence in the modeling of the dynamics of chromatographic processes.
 Nowadays many wet lab experiments are only performed to calibrate these models {cite}`Rajendran2013`.
-
 The model-based design and optimization of chromatographic separations is, however, not trivial.
 This is due to the periodic operation and the distinct non-linear dynamics of chromatographic processes, as well as the many degrees of freedom involved such as column dimensions, valve switching times, or operating conditions.
 For some of the operating modes, there exist simple shortcut methods that deliver rough initial design estimates (see e.g. {cite}`Siitonen2011` for batch chromatography, {cite}`Sainio2009,Kaspereit2011` for SSR systems, {cite}`Mazzotti2006` for SMB processes, or {cite}`Siitonen2015` for a common treatment), but these models often include many simplifications.
@@ -80,7 +78,6 @@ It offers a diverse family of different binding, reaction, and unit operation mo
 Moreover, multiple unit operations can be connected in a network which generally also allows modeling complicated process configurations.
 However, the software is primarily a numerical solver for the partial differential equations.
 This makes the definition of advanced operating concepts not only laborious but also limits the direct use of CADET for process optimization without another layer of abstraction for the definition of dynamic processes.
-
 While these current tools provide useful functionality, they have limitations for advanced chromatographic process design.
 Existing commercial software lacks flexibility for complex process configurations, and academic tools often require specialized programming knowledge.
 No available framework systematically separates the key components: process setup, simulation, performance evaluation, and optimization.
@@ -90,7 +87,6 @@ This makes it difficult to compare different operating modes or exchange individ
 To address these limitations, a modular framework for the efficient modeling, simulation and optimization of advanced chromatographic processes was developed for this work.
 The framework implements a modular architecture where process configuration, simulation, evaluation, and optimization exist as independent components that can be developed, tested, and exchanged separately.
 This design enables flexible combination of physico-chemical models, numerical solvers, process configurations, and optimization algorithms.
-
 The software is implemented in an object-oriented paradigm in the programming language **Python**.
 It provides an interface to **CADET-Core**, which serves as the primary solver within the framework; however, the architecture is sufficiently flexible to accommodate alternative solvers.
 This tight integration motivated the designation of the framework as **CADET-Process**.
@@ -104,6 +100,7 @@ Since process engineers are usually not trained in this field, a chapter of this
 To demonstrate the flexibility of the framework, several case studies are presented in this work.
 First, a model of a typical chromatographic laboratory system is developed, focusing on a protein purification step.
 The objectives here are to:
+
 - showcase parameter estimation methods for different problems,
 - validate CADET-Process using experimental data,
 - incorporate system periphery, including the influence of valves and tubing, which are often neglected in modeling,

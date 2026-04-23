@@ -11,11 +11,9 @@ In recent years, machine learning (ML) models have gained increasing popularity 
 These models are predominantly data-driven, meaning they rely less on a physical understanding of the system and instead focus on approximating and interpolating measured outputs as functions of input variables.
 Machine learning approaches are particularly valuable in scenarios where the underlying mechanisms are not fully understood or when direct measurement of necessary parameters is challenging.
 In addition, ML models can be employed for surrogate modeling, providing simplified approximations of complex, computationally expensive models {cite}`Jaepel2022`.
-
 The modular architecture of CADET-Process naturally supports replacing individual modules with data-driven models.
 For example, the simulator could be replaced by a PINN, or surrogate models could be built to map optimization variables to KPIs.
 This hybrid approach allows combining mechanistic and data-driven elements.
-
 While machine learning offers powerful tools, mechanistic models remain essential, particularly in cases where they are used to inform or train machine learning models for chromatographic applications.
 Understanding the design criteria and defining the overall structure of mechanistic models are critical steps in optimizing chromatographic processes.
 As such, this work focuses exclusively on mechanistic models.
@@ -137,7 +135,6 @@ The rate of change of the amount of solute adsorbed is then expressed as:
 Here, the flux is proportional to the difference between the actual amount adsorbed and the equilibrium amount, $q^*$.
 It is worth noting that the sign of $\frac{\text{d}q}{\text{d}t}$ ensures the flux acts toward equilibrium.
 In this approximation, the original rate constants $k_a$ and $k_d$ are replaced by the equilibrium constant $k_{eq}$ and a new kinetic constant $k_{kin}$.
-
 It is important to note that not all isotherms have a native representation in terms of explicit functions of solute concentration and amount adsorbed.
 For example, the Freundlich model does not follow this form {cite}`Herzog1909`.
 In such cases, only LDF approximations are available.
@@ -149,10 +146,8 @@ Similarly, not all binding models have corresponding LDF versions.
 The Bi-Langmuir isotherm is a further extension of the Langmuir model, accounting for interactions at multiple binding sites on the stationary phase.
 In this model, different binding sites $m$ are considered, but no exchange occurs between the sites.
 As a result, there are no competitive effects between different binding sites.
-
 The original Bi-Langmuir model is typically limited to two types of binding sites.
 However, it can be extended to an arbitrary number of binding site types {cite}`SchmidtTraub2020`.
-
 The kinetic formulation of the Bi-Langmuir isotherm is given by:
 
 ```{math}
@@ -199,7 +194,6 @@ K_{i, 0} = \left( \frac{q_i}{c_i} \right)^{\nu_i} \left( \frac{c_0}{q_0} \right)
 
 where $c_0$ and $q_0$ denote the concentrations of the reference component in the liquid and solid phases of the beads, respectively.
 The reference component is typically a simple ionic species, but in principle, any molecule can be chosen.
-
 Due to the stronger interaction forces in chemisorption, electroneutrality must be considered to determine the concentration of the bound reference component:
 
 ```{math}
@@ -209,7 +203,6 @@ q_0 = \Lambda - \sum_{j=1}^{N_{\text{comp}} - 1} \nu_j q_j,
 ```
 
 where $\Lambda$ is the total ionic capacity of the resin.
-
 Steric effects also play an important role, especially for large molecules like proteins.
 Due to their shape, some binding sites may be shielded from other molecules, effectively reducing the number of free binding sites $\bar{q}_0$.
 
@@ -249,7 +242,6 @@ In this work, only the mass action law reaction model is considered.
 The mass action law is a fundamental principle in chemical reaction kinetics that states that the rate of a chemical reaction is proportional to the product of the concentrations of its reactants.
 This model is suitable for most reactions, though it is important to note that the model uses the concentrations of reactants and products to directly calculate reaction fluxes.
 As a result, the model assumes dilute solutions and a well-stirred reaction vessel to ensure homogeneity.
-
 The net flux for component $i$ is expressed as:
 
 ```{math}
@@ -267,7 +259,6 @@ Here:
 - $\varphi_j(c)$ is the net flux of reaction $j$.
 - $k_{\text{fwd},j}$ and $k_{\text{bwd},j}$ are the forward and backward rate constants, respectively.
 - $e_{\text{fwd},\ell,j}$ and $e_{\text{bwd},\ell,j}$ are the reaction orders for the forward and backward reactions, respectively.
-
 The exponents $e_{\text{fwd},\ell,j}$ and $e_{\text{bwd},\ell,j}$ are derived from the stoichiometric coefficients using the following rules:
 
 ```{math}
@@ -276,7 +267,6 @@ The exponents $e_{\text{fwd},\ell,j}$ and $e_{\text{bwd},\ell,j}$ are derived fr
  e_{\text{bwd},\ell,j} &= \max(0, s_{\ell,j}).
 \end{aligned}
 ```
-
 
 (column_models)=
 ## Chromatographic column models
@@ -393,7 +383,6 @@ The particles in the bed reduce the effective cross-sectional area available for
 ```
 
 where $\varepsilon$ is the total porosity of the packed bed, $u$ is the mobile phase velocity, and $A$ is the column's cross-sectional area.
-
 Solutes can diffuse from the interstitial volume between particles into the pores of the particles, where intraparticle diffusion and adsorption onto particle surfaces occur.
 The differing interactions of solutes with the stationary phase lead to their separation.
 
@@ -418,7 +407,6 @@ where:
 - $c_i$ is the concentration of component $i$ in the mobile phase,
 - $q_i$ is the concentration in the stationary phase, and
 - $F = \frac{1 - \varepsilon}{\varepsilon}$ is the phase ratio.
-
 The relationship between $c$ and $q$ is defined by the adsorption isotherm (see {numref}`isotherm_models`):
 
 ```{math}
@@ -433,7 +421,6 @@ For instance, peak broadening may result from axial dispersion, diffusion, or sl
 These effects are especially important for large molecules like proteins, whose diffusion rates are much slower than those of smaller molecules {cite}`Guiochon2006`.
 
 In lumped rate models, these non-idealities are accounted for by "lumping" them into one or more kinetic parameters.
-
 To account for peak broadening effects, axial dispersion is included, leading to the equilibrium-dispersive model (EDM):
 
 ```{math}
@@ -457,7 +444,6 @@ with
 ```
 
 These models, collectively referred to as transport models, form the basis for describing chromatographic processes under non-ideal conditions.
-
 To simplify model naming and establish a unified framework, consistent with the nomenclature of CADET, this family of models will be referred to as the lumped rate model without pores (LRM).
 This framework allows for independent specification of dispersion and adsorption dynamics:
 
@@ -493,7 +479,6 @@ a_s = \frac{\text{d} A}{\text{d} V} = \frac{3}{r^p} \cdot (1 - \varepsilon^b),
 ```
 
 where $r^p$ is the particle radius.
-
 The transport from the bulk phase (denoted by the superscript $b$) to the pore phase (denoted by the superscript $p$) is then given by:
 
 ```{math}
@@ -516,7 +501,6 @@ where:
 - $f_{\text{react}}(c^b)$ represents reaction kinetics in the bulk phase,
 - $f_{\text{react}}^p(c^p, q)$ represents reactions in the pore phase, and
 - $f_{\text{react}}^s(c^p, q)$ represents reactions on the particle surface.
-
 The adsorption process in this model can be described in either a quasi-stationary or dynamic form:
 
 ```{math}
@@ -540,7 +524,6 @@ The general rate model (GRM) is often regarded as the most comprehensive chromat
 It accounts for both intraparticle and surface diffusion.
 Although the GRM is not utilized in this work, readers are encouraged to refer to {cite:t}`Guiochon2006` and {cite:t}`SchmidtTraub2020` for a detailed description.
 It is worth noting that even more sophisticated models than the GRM exist.
-
 For example, {cite:t}`Leweke2018` consider advanced features such as various particle geometries, polydisperse particle properties (e.g., particle size and adsorption isotherms), and pore accessibility factors.
 To better understand and optimize chromatography processes, 2D column models have been proposed.
 These models enable the simulation of radial variations in column properties, such as porosity, velocity, or dispersion coefficients {cite}`Puettmann2014,Qamar2017`.
