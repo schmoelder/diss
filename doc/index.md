@@ -173,6 +173,8 @@ Eine weitere Serie synthetischer Fallstudien demonstriert anschließend die Opti
 Die Simulationsergebnisse werden gegen analytische Lösungen der Gleichgewichtstheorie validiert, und die Mehrzielsoptimierung deckt nicht-intuitive Betriebsstrategien auf, darunter Serieninjektionen, intermediäre Abfallfraktionen und Peakverschachtelung unter überladenen Bediungungen.
 Ein bemerkenswertes Ergebnis ist, dass sich die Batch-Elution als produktivitätsoptimaler Grenzfall komplexerer Recyclingkonfigurationen erweist, ein Resultat, das sich natürlich aus der Optimierungsformulierung ergibt und auf das Potenzial des Frameworks für die Superstrukturoptimierung hinweist, bei der das Betriebskonzept selbst als Entwurfsvariable behandelt wird.
 
+Durch diese Entwicklungen etabliert sich CADET-Process als umfassendes Open-Source-Framework für die Auslegung und Optimierung chromatographischer Prozesse, das der wissenschaftlichen Gemeinschaft frei zur Verfügung steht und Fortschritte in akademischer Forschung und industrieller Anwendung ermöglicht.
+
 {raw-latex}`\clearpage`
 
 ## Abstract
@@ -191,6 +193,8 @@ Steric mass-action binding kinetics, column transport phenomena, and system peri
 A complementary series of synthetic case studies then demonstrates the framework's optimization capabilities across operating modes of increasing complexity: batch-elution, closed-loop and steady-state recycling, flip-flop chromatography, and serial column configurations.
 Simulation results are validated against analytical equilibrium theory solutions, and multi-objective optimization reveals non-intuitive operating strategies including stacked injections, intermediate waste fractions, and peak interlocking under overloaded conditions.
 A notable finding is that batch elution emerges as the productivity-optimal limiting case of more complex recycling configurations, a result that arises naturally from the optimization formulation and points to the framework's potential for superstructure optimization, where the operating mode itself is a design variable.
+
+Through these developments CADET-Process establishes itself as a comprehensive open-source framework for chromatographic process design and optimization, freely available to the scientific community and enabling advances in both academic research and industrial applications.
 
 {raw-latex}`\clearpage`
 
