@@ -114,7 +114,7 @@ Typical chromatogram of a batch-elution process.
 ```
 
 (batch_elution_validation)=
-## Process Validation
+## Process Validation (Batch-Elution-Process)
 
 To validate the process configuration, simulation results are compared with analytical solutions derived from equilibrium theory (see {numref}`analytical_solutions`).
 For this comparison, a linear isotherm with equivalent Henry coefficients $a_i$ is assumed, and all transport-limiting effects are neglected.

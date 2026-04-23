@@ -140,7 +140,7 @@ Overlay of concentration profiles of all cycles, showing the transient towards s
 ```
 
 (mrssr_validation)=
-## Process validation
+## Process validation (Mixed-Recycle Steady-State Recycling)
 {numref}`fig_mrssr_validation` compares the concentration profile of the ideal model at the column outlet, demonstrating good agreement between the simulation results and equilibrium theory.
 
 ```{code-cell} ipython3
@@ -172,7 +172,7 @@ Comparison of the MR-SSR simulation chromatogram (solid line) with the analytica
 ```
 
 (mrssr_optimization)=
-## Process optimization
+## Process optimization (Mixed-Recycle Steady-State Recycling)
 
 To optimize the MR-SSR process, in addition to the feed duration, the times at which the recycling is switched on and off need to be optimized.
 To aid the optimizer with the optimization, a variable dependency is introduced to calculate $t_{recycle,off}$ from both $t_{recycle,on}$ and $\Delta t_{recycle}$.

@@ -131,7 +131,7 @@ glue("flip_flop_bulk", fig_flip_flop_bulk, display=False)
 ```
 
 (flip_flop_validation)=
-## Process validation
+## Process validation (Flip-Flop Chromatography)
 
 {numref}`fig_flip_flop_validation` compares the concentration profile of the ideal model at the column outlet, demonstrating good agreement between the simulation results and equilibrium theory.
 

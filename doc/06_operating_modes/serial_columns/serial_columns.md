@@ -73,7 +73,7 @@ As soon as breakthrough of the bound impurity is imminent, the pre-column can be
 Alternatively, the output of the pre-column can be dynamically directed either to waste or to the second column, depending on the component currently eluting.
 
 (serial_columns_process)=
-## Process model
+## Process model (Serial-Columns)
 
 {numref}`serial_columns_flow_sheet` shows the flow sheet for a process with columns connected in series.
 To prevent periods where no flow occurs through a column, a second eluent {class}`~CADETProcess.processModel.Inlet` is added to the system.
@@ -130,7 +130,7 @@ Typical chromatogram of a serial columns process.
 ```
 
 (serial_columns_validation)=
-## Process validation
+## Process validation (Serial-Columns)
 
 {numref}`serial_columns_chromatogram` compares the concentration profiles at both system outlets under ideal model assumptions, demonstrating good agreement between the simulation and equilibrium theory.
 The ternary separation is validated simultaneously at both measurement points: the first outlet captures the early-eluting fraction collected directly from the first column, while the second column outlet shows the further resolved remaining components.
@@ -165,7 +165,7 @@ Comparison of serial columns simulation chromatograms (solid lines) with the ana
 ```
 
 (serial_columns_optimization)=
-## Process Optimization
+## Process Optimization (Serial-Columns)
 
 To optimize the process with columns connected in series, the decision variables include both the times at which the serial connection is cut and reconnected, as well as the individual column lengths.
 The total column length is kept constant during optimization.

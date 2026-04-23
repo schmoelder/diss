@@ -114,7 +114,7 @@ glue("fig_clr_demo", fig_clr_demo, display=False)
 ```
 
 (clr_validation)=
-## Process validation
+## Process validation (Closed-Loop Recycling)
 
 {numref}`fig_clr_validation` compares the concentration profile of the ideal model at the column outlet, demonstrating good agreement between the simulation results and equilibrium theory.
 
@@ -145,7 +145,7 @@ Comparison of the CLR simulation chromatogram (solid line) with the analytical e
 ```
 
 (clr_optimization)=
-## Process optimization
+## Process optimization (Closed-Loop Recycling)
 
 The CLR process requires optimization of both feed duration and the recycling end time.
 This optimization balances sufficient recycling periods for component separation against reasonable cycle times to maintain productivity.
