@@ -89,7 +89,7 @@ As a result, both the competitive effects among molecules of a single component 
 ```{math}
 :label: langmuir_multi_equilibrium
 
-q_i = q_{\text{max}, i} \frac{b_i \cdot c_i}{1 + \sum_{j}^{n_{\text{comp}}} b_j \cdot c_j}.
+q_i = q_{\text{max}, i} \frac{b_i \cdot c_i}{1 + \sum_{j}^{N_{\text{comp}}} b_j \cdot c_j}.
 ```
 
 Similarly, the model can be reformulated in a kinetic form:
@@ -97,7 +97,7 @@ Similarly, the model can be reformulated in a kinetic form:
 ```{math}
 :label: langmuir_multi_kinetic
 
-\frac{\text{d} q_i}{\text{d} t} = k_{a, i} \cdot c_{i} \cdot q_{\text{max}, i} \left( 1 - \sum_{j=1}^{n_{\text{comp}}} \frac{q_j}{q_{\text{max}, j}} \right) - k_{d, i} \cdot q_i.
+\frac{\text{d} q_i}{\text{d} t} = k_{a, i} \cdot c_{i} \cdot q_{\text{max}, i} \left( 1 - \sum_{j=1}^{N_{\text{comp}}} \frac{q_j}{q_{\text{max}, j}} \right) - k_{d, i} \cdot q_i.
 ```
 
 (ldf)=
@@ -153,7 +153,7 @@ The kinetic formulation of the Bi-Langmuir isotherm is given by:
 ```{math}
 :label: bi-langmuir_kinetic
 
-\frac{\text{d} q_{i}^{m}}{\text{d} t} =  k_{a, i}^{m} \cdot c_{i} \cdot q_{\text{max}, i}^{m} \left( 1 - \sum_{j=1}^{n_{\text{comp}}} \frac{q_{j, m}}{q_{\text{max}, j}^{m}}\right) - k_{d, i}^{m} q_{i, m}
+\frac{\text{d} q_{i}^{m}}{\text{d} t} =  k_{a, i}^{m} \cdot c_{i} \cdot q_{\text{max}, i}^{m} \left( 1 - \sum_{j=1}^{N_{\text{comp}}} \frac{q_{j, m}}{q_{\text{max}, j}^{m}}\right) - k_{d, i}^{m} q_{i, m}
 ```
 
 where $k_{a, i}^{m}$ and $k_{d, i}^{m}$ are the adsorption and desorption rate constants, and $q_{\text{max}, i}^{m}$ is the maximum loading capacity of the $m$-th binding site.
@@ -249,7 +249,7 @@ The net flux for component $i$ is expressed as:
 
 \begin{aligned}
  f_{\text{react},i}\left(c\right) &= \sum_{j=0}^{N_{\text{react}}-1} s_{i,j} \varphi_j\left(c\right), \\
- \varphi_j(c) &= k_{\text{fwd},j} \prod_{\ell=0}^{N_{\text{\text{comp}}}-1} \left(c_{\ell}\right)^{e_{\text{fwd},\ell,j}} - k_{\text{bwd},j} \prod_{\ell=0}^{N_{\text{\text{comp}}}-1} \left(c_{\ell}\right)^{e_{\text{bwd},\ell,j}},
+ \varphi_j(c) &= k_{\text{fwd},j} \prod_{\ell=0}^{N_{\text{comp}}-1} \left(c_{\ell}\right)^{e_{\text{fwd},\ell,j}} - k_{\text{bwd},j} \prod_{\ell=0}^{N_{\text{comp}}-1} \left(c_{\ell}\right)^{e_{\text{bwd},\ell,j}},
 \end{aligned}
 ```
 
