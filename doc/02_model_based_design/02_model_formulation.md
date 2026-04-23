@@ -553,8 +553,10 @@ Its mass balance is given by
 ```{math}
 :label: mass_balance_cstr
 
-\frac{\text{d}}{\text{d}t} (V c_i) = F_{\text{in}} c_{\text{in},i} - F_{\text{out}} c_i.
+\frac{\text{d}}{\text{d}t} (V c_i) = Q_{\text{in}} c_{\text{in},i} - Q_{\text{out}} c_i,
 ```
+
+where $Q_{\text{in}}$ and $Q_{\text{out}}$ denote the inlet and outlet volumetric flow rates,
 
 Note, in contrast to other unit operations, the volume of the CSTR can vary over time.
 The change of the tank volume is given by
@@ -562,4 +564,4 @@ The change of the tank volume is given by
 ```{math}
 :label: volume_balance_cstr
 
-\frac{\text{d}V^{\ell}}{\text{d}t}= F_{\text{in}} - F_{\text{out}}.
+\frac{\text{d}V^{\ell}}{\text{d}t}= Q_{\text{in}} - Q_{\text{out}}.
