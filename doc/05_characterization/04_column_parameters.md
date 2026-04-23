@@ -148,7 +148,7 @@ display(Markdown(e7_objectives))
 ```
 
 Additionally, a slightly smaller particle porosity was determined, consistent with the larger size of the protein compared to acetone (used in `E6`).
-Acetone, due to its small size, penetrates deeper into the pores than larger molecules like lysozyme, resulting in an apparently higher particle porosity for small molecules.
+Acetone, due to its small size, penetrated deeper into the pores than larger molecules like lysozyme, resulting in an apparently higher particle porosity for small molecules.
 However, current models cannot account for component-specific porosities without introducing inconsistencies.
 Thus, only the particle porosity fitted using the non-binding tracer (experiment `E7`) was considered for further analysis.
 
