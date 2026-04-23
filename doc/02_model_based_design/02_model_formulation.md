@@ -299,10 +299,10 @@ Mass transport in the mobile phase due to convection is governed by the volumetr
 ```{math}
 :label: convection_pfr
 
-\dot{m}_{conv, i} = Q \cdot c_i \quad \text{with} \quad Q = A \cdot u,
+\dot{m}_{conv, i} = Q \cdot c_i \quad \text{with} \quad Q = A_c \cdot u,
 ```
 
-where $u$ is the mobile phase velocity, and $A$ is the column's cross-sectional area.
+where $u$ is the mobile phase velocity, and $A_c$ is the column's cross-sectional area.
 
 The differential mass balance for component $i$ in the mobile phase is given by
 
