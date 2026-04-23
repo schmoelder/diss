@@ -28,64 +28,57 @@ One effective way to apply these principles in practice is through a programming
 In TDD, the usual programming workflow is inverted: first, a test is written that clearly defines the interface and tests for use cases to cover all requirements and exception conditions.
 Only if the corresponding function passes the test will it be included in the working branch of the software {cite}`Martin2008`.
 
-To demonstrate these principles, consider a function that calculates the area of a circle using the radius as an input argument.
+To demonstrate these principles, consider a function that computes the steady-state residual of a continuously stirred tank reactor (CSTR), building on the example from {numref}`oop`.
 The functionality of this function can be verified by writing a script for automated testing.
 Templates for `TestCases` and assertion methods to write tests are provided by the `unittest` module in *Python*'s standard library.
-In this case, the `assertAlmostEqual` method can be used to limit the number of significant figures and prevent false positive errors due to limited numerical precision.
+The `assertAlmostEqual` method limits the number of significant figures and prevents false positive errors due to limited numerical precision.
 
-When writing the test, it may become apparent that the `circle_area` function should not be called with a negative radius argument, and an exception should be raised in such cases.
-Additionally, the function should only accept floats as input arguments to yield valid results.
-Tests can be written to validate these requirements, ensuring that the function works correctly and preventing potential errors in the code.
+When writing the test, it may become apparent that the function should raise an exception if a non-numeric argument is passed.
+Tests can be written to validate these requirements before the function itself is implemented.
 
 ```{code-cell} ipython3
 import unittest
 
-class TestCircleArea(unittest.TestCase):
-    def test_area(self):
-        self.assertAlmostEqual(circle_area(1.0), math.pi)
-        self.assertAlmostEqual(circle_area(0.0), 0)
-        self.assertAlmostEqual(circle_area(math.e), math.pi * math.e**2)
+class TestCSTRResidual(unittest.TestCase):
+    def test_equilibrium(self):
+        self.assertAlmostEqual(cstr_residual(flow_rate=1.0, c_in=1.0, state=1.0), 0.0)
 
-    def test_values(self):
-        self.assertRaises(ValueError, circle_area, -2.0)
+    def test_value(self):
+        self.assertAlmostEqual(cstr_residual(flow_rate=1.0, c_in=1.0, state=0.5), 0.5)
 
     def test_types(self):
-        self.assertRaises(TypeError, circle_area, 3+1.4j)
-        self.assertRaises(TypeError, circle_area, 'radius')
+        self.assertRaises(TypeError, cstr_residual, '1.0', 1.0, 0.5)
 ```
 
 After the interface (i.e. the input and output parameters) of the function is enforced by the tests, the function can be implemented with proper documentation (see {numref}`software_documentation`).
 
 ```{code-cell} ipython3
-import math
-
-def circle_area(r: float) -> float:
-    """Calculate the area of a circle.
+def cstr_residual(flow_rate: float, c_in: float, state: float) -> float:
+    """Compute the steady-state mass balance residual of a CSTR.
 
     Parameters
     ----------
-    r
-        Radius of the circle.
+    flow_rate
+        Volumetric flow rate in m^3/s.
+    c_in
+        Inlet concentration in mM.
+    state
+        Current concentration in mM.
 
     Returns
     -------
-    A : float
-        Area of the circle.
+    float
+        Residual of the steady-state mass balance.
 
     Raises
     ------
     TypeError
-        If the radius is not a float
-    ValueError
-        If the radius is negative.
+        If any argument is not a float.
 
     """
-    if not isinstance(r, float):
-        raise TypeError("The radius has to be float.")
-    if r < 0:
-        raise ValueError("The radius cannot be negative.")
-
-    return math.pi * r**2
+    if not isinstance(flow_rate, float):
+        raise TypeError("flow_rate must be a float.")
+    return flow_rate * (c_in - state)
 ```
 
 Writing these kinds of tests incentivizes programmers to think about code modularization, programming towards cleaner interfaces (see {numref}`programming_principles`), and writing proper documentation (see {numref}`software_documentation`).

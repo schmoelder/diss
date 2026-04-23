@@ -23,96 +23,80 @@ Four general principles characterize object oriented languages:
 
 ## Example
 
-To demonstrate these principles, consider a generic `Shape` class which defines that an object of this type has a `color` attribute, as well as two getter functions for accessing the values of its `area` and `perimeter`.
-Note that this parent class does not actually implement any methods but instead, the `area` and `perimeter` methods have to be provided by concrete implementations (i.e. sub-classes) of the interface.
-This is *abstraction* in practice: a user interacting with any `Shape` object only needs to know that `area` and `perimeter` exist and return a `float`, without needing to know how they are computed.
+To demonstrate these principles, consider the `UnitOperationBase` class from CADET-Process, which defines the common interface for all unit operations.
+Each unit operation must implement a method to compute the process residuals.
+Note that this parent class does not actually implement the residual computations but instead, concrete subclasses must provide these methods.
+This is *abstraction* in practice: a user interacting with any `UnitOperationBase` subclass only needs to know that it has parameters and can compute residuals, without needing to know the specific implementation details.
 For this example, the programming language *Python3* is used.
 
 ```{code-cell} ipython3
-from abc import ABC, abstractmethod
 import math
+from abc import ABC, abstractmethod
 
-class Shape(ABC):
-    def __init__(self, color: str) -> None:
-        self.color = color
+class UnitOperationBase(ABC):
+    """
+    Base class for unit operation models.
+    """
 
-    @property
+    def __init__(self, name: str, flow_rate: float):
+        self.name = name
+        self.flow_rate = flow_rate  # mL/min
+
     @abstractmethod
-    def area(self) -> float:
+    def residual(self, state: float) -> float:
+        """Residual of the unit operation model."""
         pass
-
-    @property
-    @abstractmethod
-    def perimeter(self) -> float:
-        pass
-
 ```
 
-By defining an abstract `Shape` class with common attributes and methods, more specialized classes can inherit from `Shape` and share common functionality.
-These child classes can add their own attributes and methods as needed to specialize their behavior.
+By defining an abstract `UnitOperationBase` class with common attributes and methods, more specialized unit operation classes can inherit from it and share common functionality.
+These child classes can add their own parameters and methods as needed to specialize their behavior.
 
 ```{code-cell} ipython3
-class Circle(Shape):
-    def __init__(self, radius: float, *args, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
-        self.radius = radius
+class CSTR(UnitOperationBase):
+    """
+    Continuously stirred tank reactor.
+    """
+
+    def __init__(self, name: str, flow_rate: float, volume: float, c_in: float):
+        super().__init__(name, flow_rate)
+        self.volume = volume  # m^3
+        self.c_in = c_in      # mol/m^3
 
     @property
-    def area(self) -> float:
-        return math.pi * self.radius**2
+    def tau(self) -> float:
+        """Residence time in min."""
+        return self.volume / self.flow_rate
 
-    @property
-    def perimeter(self) -> float:
-        return 2 * math.pi * self.radius
-
-class Rectangle(Shape):
-    def __init__(self, length: float, width: float, *args, **kwargs) -> None:
-        super().__init__(*args, **kwargs)
-        self.length = length
-        self.width = width
-
-    @property
-    def area(self) -> float:
-        return self.length * self.width
-
-    @property
-    def perimeter(self) -> float:
-        return 2 * (self.length + self.width)
+    def residual(self, state: float) -> float:
+        """Compute residuals for the CSTR."""
+        c_out = state
+        return self.flow_rate * (self.c_in - c_out)
 ```
 
-`Circle` and `Rectangle` both inherit from `Shape`, which already provides a common interface for accessing the `color`, `area`, and `perimeter` attributes.
-To correctly compute `area` and `perimeter`, specific attributes are used (e.g. `radius` for `Circle`, `width` and `length` for `Rectangle`) to ensure that the correct value is always returned, even if the value of the specific attributes changes.
-This also demonstrates the principle of *Polymorphism*, where objects of different classes can share a common interface (in this case, the `Shape` class) but have different behavior based on their specific attributes and methods.
-This simplifies the code and makes it more modular, as objects of different classes can be treated as if they were the same type of object, thanks to inheritance.
+The `CSTR` class inherits from `UnitOperationBase`, which defines the common interface for computing process residuals.
+The concrete `CSTR` implementation adds its own parameters (`volume`, `c_in`) and implements the steady-state mass balance specific to a continuously stirred tank reactor.
+This demonstrates *Polymorphism*: objects of different unit operation classes share a common interface (`UnitOperationBase`) but provide different behavior based on their specific model equations.
+Different unit operations can therefore be treated interchangeably by the surrounding simulation code, making the framework modular and extensible.
 
-The `@property` decorator is used to define the `area` attribute as an abstract read-only property in the `Shape` class and as concrete read-only properties in the `Circle` and `Rectangle` classes.
-This encapsulates the computation of the area attribute within each class and restricts access to it in a controlled way.
-By using `@property`, read-only properties can be defined that can be accessed using dot notation, as if they were instance variables.
-However, setting these values is restricted which helps to ensure that the `Shape` object remains in a consistent and valid state, and reduces the risk of errors or unexpected behavior.
+The `@abstractmethod` decorator enforces that every subclass must implement `residual`, while the base class itself does not provide an implementation.
+This encapsulates the model-specific computation within each subclass and ensures a consistent interface across all unit operations.
 
 Now that the classes are defined, instances can be created and used as follows:
 
 ```{code-cell} ipython3
-circle = Circle(radius=1, color='red')
-print(circle.color)
-print(circle.area)
+cstr = CSTR(name="reactor", flow_rate=1.0, volume=10.0, c_in=1.0)
+print(cstr.tau)
+print(cstr.residual(state=0.5))
 ```
 
 ```{code-cell} ipython3
-another_circle = Circle(radius=2, color='blue')
-print(another_circle.color)
-print(another_circle.area)
+fast_cstr = CSTR(name="reactor_fast", flow_rate=5.0, volume=10.0, c_in=1.0)
+print(fast_cstr.tau)
+print(fast_cstr.residual(state=0.5))
 ```
 
-```{code-cell} ipython3
-rectangle = Rectangle(length=2, width=1, color='black')
-print(rectangle.color)
-print(rectangle.area)
-print(rectangle.perimeter)
-```
-
-The objects `circle` and `another_circle` are instances of the `Circle` class; `rectangle` is an instance of a `Rectangle`.
-They use the class templates that were previously defined and independently store values of their properties.
+The objects `cstr` and `fast_cstr` are instances of the `CSTR` class.
+They use the same class template but independently store their own parameter values, producing different residence times and residuals.
 
 (type_annotations)=
 ## Type annotations
@@ -121,16 +105,15 @@ Type annotations, introduced in *PEP-484* {cite}`PEP484`, allow developers to de
 Building on the class definitions above, they serve as a precise specification of the interface contract: rather than relying on documentation or convention, the signature itself states what a method accepts and what it returns.
 
 This is particularly valuable for abstract base classes.
-In the `Shape` example above, the annotation `-> float` on the abstract `area` and `perimeter` properties makes the required contract of any subclass explicit:
+In the `UnitOperationBase` example above, the annotation `-> float` on the abstract `residual` method makes the required contract of any subclass explicit:
 
 ```python
-@property
 @abstractmethod
-def area(self) -> float:
+def residual(self, state: float) -> float:
     pass
 ```
 
-A concrete subclass that returns a string instead of a float violates this contract, and tools such as *mypy* or *ruff* can detect this statically, before the code is even run.
+A concrete subclass that returns an incorrect type (e.g., a string instead of a float) violates this contract, and tools such as *mypy* or *ruff* can detect this statically, before the code is even run.
 Beyond abstract classes, annotations improve the readability of any method signature by making the expected input and output types immediately apparent without having to consult the implementation or documentation.
 In CADET-Process, type annotations are enforced throughout the codebase and verified as part of the CI/CD pipeline (see {numref}`ci_cd`).
 
