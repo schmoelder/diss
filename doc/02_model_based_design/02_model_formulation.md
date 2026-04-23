@@ -253,7 +253,7 @@ The net flux for component $i$ is expressed as:
 \end{aligned}
 ```
 
-Here:
+Here, subscript $i$ denotes the component of interest, $j$ the reaction, and $\ell$ is a summation index over all components:
 
 - $s_{i,j}$ are the stoichiometric coefficients of component $i$ in reaction $j$, which are negative for reactants and positive for products.
 - $\varphi_j(c)$ is the net flux of reaction $j$.
