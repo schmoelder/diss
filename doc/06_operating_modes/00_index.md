@@ -33,7 +33,7 @@ The corresponding model parameters are summarized in {numref}`model_parameters`.
 | **Binding (difficult)** | $k_{eq,i}$        | Equilibrium constant      | $[0.01, 0.015]$        | $\text{m}^{3}~\text{mol}^{-1}$         |
 |                         | $q_{max,i}$       | Saturation capacities     | $[100, 100]$           | $\text{mol}~\text{m}_{\text{sp}}^{-1}$ |
 | **Process**             | $Q$               | Flow rate                 | $[0.01, 0.05]$         | $\text{m}^{3}~\text{s}^{-1}$           |
-|                         | $c_{\text{feed}}$ | Concentration             | $[10.0, 10.0, (10.0)]$ | $\text{mol}~\text{m}^{-3}$             |
+|                         | $c_{\text{feed}}$ | Concentration             | $[10.0, 10.0, 10.0]$ | $\text{mol}~\text{m}^{-3}$             |
 ```
 
 For each operating mode, the process configuration is defined via a {class}`~CADETProcess.processModel.FlowSheet` in combination with dynamic {class}`Events <CADETProcess.dynamicEvents.Event>` that specify time-dependent boundary conditions, parameters, and valve switches.
