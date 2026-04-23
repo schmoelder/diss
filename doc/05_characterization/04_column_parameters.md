@@ -62,7 +62,7 @@ The column length and diameter are provided by the manufacturer, as well as the 
 | ----------------- | ------ | -------------- |
 | Column volume     | 4.7    | $\text{mL}$     |
 | Column length     | 0.1    | $\text{m}$     |
-| Particle diameter | 34     | $\text{µm}$ |
+| Particle diameter | 34     | $\mu\text{m}$ |
 ```
 
 To determine the missing parameters, additional experiments were performed (see {numref}`tab_experiments`):

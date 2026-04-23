@@ -42,7 +42,7 @@ Both pumps were further connected to a static mixer.
 The valve was equipped with a $50~\text{mL}$ sample loop to inject a well-defined amount of sample into the system.
 The valve was connected to a *SP Sepharose HP* column.
 The column is a strong cation exchanger with an $\ce{SO_3}^{-}$ functional group and a column volume (CV) of $4.7~\text{mL}$.
-The average particle size, $d50v$, is provided by the manufacturer *Cytiva* as $34~\text{µm}$, with an ionic capacity between $0.15$ and $0.2~\text{mmol}~\ce{H}^{+}~\text{mL}_{\text{packed bed}}^{-1}$.
+The average particle size, $d50v$, is provided by the manufacturer *Cytiva* as $34~\mu\text{m}$, with an ionic capacity between $0.15$ and $0.2~\text{mmol}~\ce{H}^{+}~\text{mL}_{\text{packed bed}}^{-1}$.
 The column outlet was connected to a UV detector measuring absorbance at $280~\text{nm}$ to detect tracer and protein.
 The outlet of the UV sensor was connected to a conductivity sensor to measure ionic strength.
 The outflow of the system was sent to a waste flask.
@@ -117,13 +117,13 @@ Note, for this work, all experiments, except where noted, were performed at pH 5
 
 | ID  | Goal                                 | Parameters                                                             | Bypass                               | Injected component              | Volume         | Eluent                                               |
 | --- | ------------------------------------ | ---------------------------------------------------------------------- | ------------------------------------ | ------------------------------- | -------------- | ---------------------------------------------------- |
-| E1  | Determine tubing characteristics     | Tubing length and axial dispersion                                     | column, post-column tubing, detector | $1\%~\text{w/w}$ Acetone        | $50~\text{µL}$ | $A$                                                  |
-| E2  | Determine tubing characteristics     | Tubing length and axial dispersion                                     | column, detector                     | $1\%~\text{w/w}$ Acetone        | $50~\text{µL}$ | $A$                                                  |
-| E3  | Determine tubing characteristics     | Tubing length and axial dispersion                                     | column                               | $1020~\text{mM}$ Salt           | $50~\text{µL}$ | $A$                                                  |
+| E1  | Determine tubing characteristics     | Tubing length and axial dispersion                                     | column, post-column tubing, detector | $1\%~\text{w/w}$ Acetone        | $50~\mu\text{L}$ | $A$                                                  |
+| E2  | Determine tubing characteristics     | Tubing length and axial dispersion                                     | column, detector                     | $1\%~\text{w/w}$ Acetone        | $50~\mu\text{L}$ | $A$                                                  |
+| E3  | Determine tubing characteristics     | Tubing length and axial dispersion                                     | column                               | $1020~\text{mM}$ Salt           | $50~\mu\text{L}$ | $A$                                                  |
 | E4  | Determine mixer characteristics      | Mixer volume, tubing length and axial dispersion                       | column                               | $1020~\text{mM}$ Salt           | -              | $A \rightarrow B$ (step)                             |
-| E5  | Determine bed properties             | Bed porosity and axial dispersion                                      | -                                    | $0.0005~\text{mM}$ Blue Dextran | $50~\text{µL}$ | $A$                                                  |
-| E6  | Determine particle properties        | Particle porosity, total porosity, axial dispersion                    | -                                    | $1\%~\text{w/w}$ Acetone        | $50~\text{µL}$ | $B$                                                  |
-| E7  | Determine diffusion characteristics  | Particle porosity, film diffusion, pore diffusion                      | -                                    | $0.2~\text{mM}$ Lysozyme        | $50~\text{µL}$ | $B$                                                  |
+| E5  | Determine bed properties             | Bed porosity and axial dispersion                                      | -                                    | $0.0005~\text{mM}$ Blue Dextran | $50~\mu\text{L}$ | $A$                                                  |
+| E6  | Determine particle properties        | Particle porosity, total porosity, axial dispersion                    | -                                    | $1\%~\text{w/w}$ Acetone        | $50~\mu\text{L}$ | $B$                                                  |
+| E7  | Determine diffusion characteristics  | Particle porosity, film diffusion, pore diffusion                      | -                                    | $0.2~\text{mM}$ Lysozyme        | $50~\mu\text{L}$ | $B$                                                  |
 | E8  | Determine capacity                   | Capacity                                                               | -                                    | $18.2~\text{mM}$ $\ce{NaOH}$    | -              | Water $\rightarrow$ $\ce{NaOH}$ (step)               |
-| E9  | Determine adsorption characteristics | Adsorption rate, desorption rate, characteristic charge, steric factor | -                                    | $0.2~\text{mM}$ Lysozyme        | $50~\text{µL}$ | $A \rightarrow B$ (Gradient: 4, 6, 8, 12, 14, 16 CV) |
+| E9  | Determine adsorption characteristics | Adsorption rate, desorption rate, characteristic charge, steric factor | -                                    | $0.2~\text{mM}$ Lysozyme        | $50~\mu\text{L}$ | $A \rightarrow B$ (Gradient: 4, 6, 8, 12, 14, 16 CV) |
 ```
