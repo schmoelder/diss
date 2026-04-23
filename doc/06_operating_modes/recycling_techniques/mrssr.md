@@ -120,7 +120,7 @@ glue("ssr_overlay", fig_overlay, display=False)
 :scale: 50%
 
 Example SSR process in mixed-recycle operation for the separation of two components (blue and red) reaching cyclic steady state after 35 cycles.
-**Left:** Concentration profiles at the column’s outlet.
+**Left:** Concentration profiles at the column's outlet.
 **Right:** Concentration profile at the system outlet.
 ```
 

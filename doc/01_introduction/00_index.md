@@ -11,7 +11,7 @@ When passing samples through a column packed with inulin, he observed that the m
 He postulated that the separation is based on the ability of the dissolved components to physically interact with the immobilized inulin particles causing them to be retained longer on the column {cite}`Tswett1906`.
 
 However, the nonlinear effects inherent to these interactions, as well as the lack of sophisticated detectors posed difficulties in understanding and controlling the separation process.
-Furthermore, the technique initially suffered from low productivities — the ratio of purified product to the amount of packing material required — which made its application very inefficient and expensive.
+Furthermore, the technique initially suffered from low productivities, the ratio of purified product to the amount of packing material required, which made its application very inefficient and expensive.
 For these reasons, chromatography was not widely adopted until almost three decades later when Tswett's work was rediscovered and established as a preparative separation method for a broad spectrum of chemical compounds {cite}`Guiochon2006`.
 
 Since then, the technique and our understanding of it have continuously evolved and expanded.
@@ -104,7 +104,7 @@ The objectives here are to:
 - showcase parameter estimation methods for different problems,
 - validate CADET-Process using experimental data,
 - incorporate system periphery, including the influence of valves and tubing, which are often neglected in modeling,
-- demonstrate a load–wash–elute process for lysozyme using the steric mass-action binding model with a salt gradient, representing a common yet complex chromatographic procedure.
+- demonstrate a load-wash-elute process for lysozyme using the steric mass-action binding model with a salt gradient, representing a common yet complex chromatographic procedure.
 
 Next, the optimization of advanced operating concepts is investigated through a set of synthetic case studies.
 These studies assume known model parameters and focus on preparative separations of binary and ternary mixtures.

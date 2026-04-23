@@ -89,7 +89,7 @@ $$
 \kappa = \frac{l}{A \cdot R},
 $$
 
-where $A$ is the conductor’s cross-sectional area, $l$ is its length, and $R$ is the resistance.
+where $A$ is the conductor's cross-sectional area, $l$ is its length, and $R$ is the resistance.
 Conductivity is measured in Siemens per meter ($\text{S}~\text{m}^{-1}$), where $[\text{S}] = [\Omega^{-1}] = [\text{A/V}]$.
 
 To quantify the relationship between salt concentration and conductivity, a calibration curve was recorded by measuring the conductivity of solutions with varying salt concentrations at a constant pH of 5.

@@ -6,7 +6,7 @@ As a consequence, reproducibility is frequently impaired: the exact code version
 
 The **FAIR principles** (Findable, Accessible, Interoperable, and Reusable) provide widely accepted guidelines for research data management (RDM) and have been adopted as a key requirement by national and international research funding organizations {cite}`Wilkinson2016`.
 
-In modern scientific research, particularly in computational and hybrid experimental–computational workflows, **reproducibility** and **traceability** remain major challenges.
+In modern scientific research, particularly in computational and hybrid experimental-computational workflows, **reproducibility** and **traceability** remain major challenges.
 Typical difficulties include:
 - **Incomplete provenance**: Results are not reliably linked to the exact code version, configuration, and execution environment that produced them.
 - **Increasing workflow complexity**: Chained simulations, recycling of outputs as inputs, and the combination of experimental and simulated data introduce nontrivial dependencies.
@@ -28,5 +28,5 @@ Key features of CADET-RDM include:
 - **FAIR-by-design data handling**: Results are findable via versioned branches, accessible through standard *Git* tools, interoperable with common Python-based data formats, and reusable due to explicit provenance tracking.
 - **Platform independence**, allowing seamless integration with existing *Git* hosting solutions.
 - ***Git* LFS integration** for efficient storage of large data files (e.g., HDF5 outputs and CSV files).
-- **Lightweight versioning**, enabled by shallow branches and *Git*’s native branching model.
-- Native support for **chained simulations** and mixed experimental–simulation workflows.
+- **Lightweight versioning**, enabled by shallow branches and *Git*'s native branching model.
+- Native support for **chained simulations** and mixed experimental-simulation workflows.

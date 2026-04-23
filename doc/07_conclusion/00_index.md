@@ -14,7 +14,7 @@ The study on operating modes followed a complementary approach, employing synthe
 Multi-objective optimization consistently revealed non-intuitive operating strategies, including stacked injections, intermediate waste fractions, and peak interlocking under overloaded conditions.
 More generally, batch elution emerged as the productivity-optimal limiting case of more complex recycling configurations.
 Notably, this behavior was not imposed by the optimization formulation but arose naturally from the structure of the decision variables.
-This observation highlights the framework’s suitability for superstructure optimization, in which the operating mode itself is treated as a design variable rather than a fixed choice.
+This observation highlights the framework's suitability for superstructure optimization, in which the operating mode itself is treated as a design variable rather than a fixed choice.
 
 Looking ahead, several extensions are envisaged, some of which are already under active development.
 On the modeling side, the integration of additional unit operations, compartment-based approaches, and fully integrated process models will extend the framework beyond chromatography to a wider class of separation and reaction processes.

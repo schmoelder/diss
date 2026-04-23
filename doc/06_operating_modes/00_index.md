@@ -21,8 +21,8 @@ The corresponding model parameters are summarized in {numref}`model_parameters`.
 | **Geometry**            | $L$               | Column length             | $0.6$                  | $\text{m}$                             |
 |                         | $d$               | Column diameter           | $0.024$                | $\text{m}$                             |
 |                         | $d_r$             | Particle radius           | $1.0 \times 10^{-5}$   | $\text{m}$                             |
-|                         | $\varepsilon_b$   | Bed porosity              | $0.3$                  | –                                      |
-|                         | $\varepsilon_p$   | Particle porosity         | $0.6$                  | –                                      |
+|                         | $\varepsilon_b$   | Bed porosity              | $0.3$                  | -                                      |
+|                         | $\varepsilon_p$   | Particle porosity         | $0.6$                  | -                                      |
 | **Transport**           | $D_{ax,i}$        | Axial dispersion coeff.   | $1.0 \times 10^{-6}$   | $\text{m}^{2}~\text{s}^{-1}$           |
 |                         | $k_{f,i}$         | Film mass transfer coeff. | $1.0 \times 10^{-3}$   | $\text{m}~\text{s}^{-1}$               |
 | **Binding (standard)**  | $k_{eq,i}$        | Equilibrium constant      | $[0.02, 0.03]$         | $\text{m}^{3}~\text{mol}^{-1}$         |

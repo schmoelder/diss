@@ -36,9 +36,9 @@ parameters_all = load_all_parameters(final_parameters_branch)
 # Estimation of the ionic capacity of the resin
 
 To determine the ionic capacity of the resin, a titration experiment is conducted as follows: the column is first flushed with water, then equilibrated with $20~\text{CV}$ of acetic acid at pH 3.
-During this step, the protons ($\ce{H+}$) from the acetic acid exchange with the resin’s bound counter-ions, displacing them into the effluent.
+During this step, the protons ($\ce{H+}$) from the acetic acid exchange with the resin's bound counter-ions, displacing them into the effluent.
 After equilibration, the column is flushed with $10~\text{CV}$ of water to remove any unbound acetic acid and displaced ions.
-Finally, the resin is titrated with a $\ce{NaOH}$ solution to quantify the number of bound protons, thereby determining the resin’s ionic capacity.
+Finally, the resin is titrated with a $\ce{NaOH}$ solution to quantify the number of bound protons, thereby determining the resin's ionic capacity.
 
 The amount of $\ce{NaOH}$ consumed is determined by analyzing the breakthrough curve via conductivity measurement ({numref}`fig_resin_titration`).
 The breakthrough time point, $t_{\text{bt,10}}$, is defined as the time at which $10\%$ of the breakthrough occurs.
