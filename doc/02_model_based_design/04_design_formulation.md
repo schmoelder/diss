@@ -177,29 +177,29 @@ The cost associated with the eluent, $C_{i, \text{el}}$, which is the solvent us
 
 ```{math}
 :label: eluent_cost
-C_{i, \text{el}} = EC_{i} \cdot \dot{m}_{i, \text{annual}} \cdot f_{el}, \\
+C_{i, \text{el}} = EC_{i} \cdot \dot{m}_{i, \text{annual}} \cdot p_{\text{el}}, \\
 ```
 
-where $EC_{i}$ is the eluent consumption in $\text{m}^3$ per kg of product, $\dot{m}_{i, \text{annual}}$ is the annual production rate in kg per year, and $f_{el}$ is the eluent price in $\euro$ per $\text{m}^3$.
+where $EC_{i}$ is the eluent consumption in $\text{m}^3$ per kg of product, $\dot{m}_{i, \text{annual}}$ is the annual production rate in kg per year, and $p_{\text{el}}$ is the eluent price in $\euro$ per $\text{m}^3$.
 
 The feed cost, $C_{i, \text{feed}}$, which reflects the cost of the feed material processed in the separation, is given by:
 
 ```{math}
 :label: feed_cost
-C_{i, \text{feed}} = \frac{1 - Y_i}{Y_i} \cdot \dot{m}_{i, \text{annual}} \cdot f_{\text{feed}}, \\
+C_{i, \text{feed}} = \frac{1 - Y_i}{Y_i} \cdot \dot{m}_{i, \text{annual}} \cdot p_{\text{feed}}, \\
 ```
 
-where $Y_i$ is the product yield, and $f_{\text{feed}}$ is the feed price in $\euro$ per $\text{m}^3$.
+where $Y_i$ is the product yield, and $p_{\text{feed}}$ is the feed price in $\euro$ per $\text{m}^3$.
 
 The adsorbent cost, $C_{i, \text{ads}}$, which reflects the cost of the adsorbent material used in the separation, can be calculated as:
 
 ```{math}
 :label: adsorbent_cost
 
-C_{i,\text{ads}} = \frac{1}{PR_i} \cdot \dot{m}_{i,\text{annual}} \cdot \frac{f_{\text{ads}}}{\Delta t_{\text{life}}}, \\
+C_{i,\text{ads}} = \frac{1}{PR_i} \cdot \dot{m}_{i,\text{annual}} \cdot \frac{p_{\text{ads}}}{\Delta t_{\text{life}}}, \\
 ```
 
-where $PR_i$ is the productivity in terms of kg of product per $\text{m}^3$ of adsorbent, $f_{\text{ads}}$ is the adsorbent price in $\euro$ per $\text{m}^3$, and $\Delta t_{\text{life}}$ is the lifetime of the adsorbent material.
+where $PR_i$ is the productivity in terms of kg of product per $\text{m}^3$ of adsorbent, $p_{\text{ads}}$ is the adsorbent price in $\euro$ per $\text{m}^3$, and $\Delta t_{\text{life}}$ is the lifetime of the adsorbent material.
 
 ## Objective functions
 
