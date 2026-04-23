@@ -127,12 +127,12 @@ Despite these drawbacks, FDM remains widely used, as its simplicity and efficien
 Unlike FDM, which computes solutions at discrete points, the finite volume method (FVM) defines a grid of cells and computes spatially averaged values within each cell.
 For chromatographic models, interstitial concentrations are averaged over $j \in \{ 0, \dots, N_z - 1 \}$ uniform cells with a grid spacing $\Delta z = L_c / N_z$.
 This creates a staircase function representation of the solution and defines a local Riemann problem at each cell interface {cite}`Guiochon2006`.
-The flux across these interfaces is approximated using a numerical flux function $F$, leading to the following semi-discretized formulation in 1D:
+The flux across these interfaces is approximated using a numerical flux function $\mathcal{F}$, leading to the following semi-discretized formulation in 1D:
 
 ```{math}
 :label: finite_volume_semi_discretized
 
-\frac{d c_j(t)}{d t} \approx \frac{1}{\Delta z} (F(c_{j-1}, c_j) - F(c_j, c_{j+1}))
+\frac{d c_j(t)}{d t} \approx \frac{1}{\Delta z} (\mathcal{F}(c_{j-1}, c_j) - \mathcal{F}(c_j, c_{j+1}))
 ```
 
 for each control volume $j \in \{ 0, \dots, N_{z} - 1 \}$, with $c_{-1}, c_{N_z}$ given by boundary conditions.
