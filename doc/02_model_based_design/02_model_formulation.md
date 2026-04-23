@@ -119,22 +119,22 @@ For the Langmuir model, $q^*$ is defined as:
 ```{math}
 :label: langmuir_ldf_q
 
-q^* = \frac{q_{\text{max}} \cdot k_{eq} \cdot c}{1 + k_{eq} \cdot c},
+q^* = \frac{q_{\text{max}} \cdot K_{\text{eq}} \cdot c}{1 + K_{\text{eq}} \cdot c},
 ```
 
-where $k_{eq} = \frac{k_a}{k_d}$.
+where $K_{\text{eq}} = \frac{k_a}{k_d}$.
 
 The rate of change of the amount of solute adsorbed is then expressed as:
 
 ```{math}
 :label: langmuir_ldf_dq_dt
 
-\frac{\text{d}q}{\text{d}t} = k_{kin} \cdot (q^* - q).
+\frac{\text{d}q}{\text{d}t} = k_{\text{kin}} \cdot (q^* - q).
 ```
 
 Here, the flux is proportional to the difference between the actual amount adsorbed and the equilibrium amount, $q^*$.
 It is worth noting that the sign of $\frac{\text{d}q}{\text{d}t}$ ensures the flux acts toward equilibrium.
-In this approximation, the original rate constants $k_a$ and $k_d$ are replaced by the equilibrium constant $k_{eq}$ and a new kinetic constant $k_{kin}$.
+In this approximation, the original rate constants $k_a$ and $k_d$ are replaced by the equilibrium constant $K_{\text{eq}}$ and a new kinetic constant $k_{\text{kin}}$.
 It is important to note that not all isotherms have a native representation in terms of explicit functions of solute concentration and amount adsorbed.
 For example, the Freundlich model does not follow this form {cite}`Herzog1909`.
 In such cases, only LDF approximations are available.

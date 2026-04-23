@@ -25,13 +25,13 @@ The corresponding model parameters are summarized in {numref}`model_parameters`.
 |                         | $\varepsilon_p$   | Particle porosity         | $0.6$                  | -                                      |
 | **Transport**           | $D_{ax,i}$        | Axial dispersion coeff.   | $1.0 \times 10^{-6}$   | $\text{m}^{2}~\text{s}^{-1}$           |
 |                         | $k_{f,i}$         | Film mass transfer coeff. | $1.0 \times 10^{-3}$   | $\text{m}~\text{s}^{-1}$               |
-| **Binding (standard)**  | $k_{eq,i}$        | Equilibrium constant      | $[0.02, 0.03]$         | $\text{m}^{3}~\text{mol}^{-1}$         |
+| **Binding (standard)**  | $K_{\text{eq},i}$        | Equilibrium constant      | $[0.02, 0.03]$         | $\text{m}^{3}~\text{mol}^{-1}$         |
 |                         | $q_{max,i}$       | Saturation capacities     | $[100, 100]$           | $\text{mol}~\text{m}_{\text{sp}}^{-1}$ |
-| **Binding (ternary)**   | $k_{eq,i}$        | Equilibrium constant      | $[0.01, 0.015, 0.03]$  | $\text{m}^{3}~\text{mol}^{-1}$         |
+| **Binding (ternary)**   | $K_{\text{eq},i}$        | Equilibrium constant      | $[0.01, 0.015, 0.03]$  | $\text{m}^{3}~\text{mol}^{-1}$         |
 |                         | $q_{max,i}$       | Saturation capacities     | $[100, 100, 200]$      | $\text{mol}~\text{m}_{\text{sp}}^{-1}$ |
-| **Binding (simple)**    | $k_{eq,i}$        | Equilibrium constant      | $[0.01, 0.20]$         | $\text{m}^{3}~\text{mol}^{-1}$         |
+| **Binding (simple)**    | $K_{\text{eq},i}$        | Equilibrium constant      | $[0.01, 0.20]$         | $\text{m}^{3}~\text{mol}^{-1}$         |
 |                         | $q_{max,i}$       | Saturation capacities     | $[100, 100]$           | $\text{mol}~\text{m}_{\text{sp}}^{-1}$ |
-| **Binding (difficult)** | $k_{eq,i}$        | Equilibrium constant      | $[0.01, 0.015]$        | $\text{m}^{3}~\text{mol}^{-1}$         |
+| **Binding (difficult)** | $K_{\text{eq},i}$        | Equilibrium constant      | $[0.01, 0.015]$        | $\text{m}^{3}~\text{mol}^{-1}$         |
 |                         | $q_{max,i}$       | Saturation capacities     | $[100, 100]$           | $\text{mol}~\text{m}_{\text{sp}}^{-1}$ |
 | **Process**             | $Q$               | Flow rate                 | $[0.01, 0.05]$         | $\text{m}^{3}~\text{s}^{-1}$           |
 |                         | $c_{\text{feed}}$ | Concentration             | $[10.0, 10.0, 10.0]$ | $\text{mol}~\text{m}^{-3}$             |

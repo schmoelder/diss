@@ -152,7 +152,7 @@ One method to achieve this is by defining dependencies between individual variab
 For instance, when the same parameter is applied across multiple unit operations, the problem's variable count can be decreased by introducing a single variable.
 This variable is then applied to the processes during pre-processing.
 In other scenarios, the ratio between model parameters might be critical.
-Consider the equilibrium constant $k_{eq} = k_a / k_d$ in an adsorption model, with $k_a$ as the adsorption rate and $k_d$ as the desorption rate.
+Consider the equilibrium constant $K_{eq} = k_a / k_d$ in an adsorption model, with $k_a$ as the adsorption rate and $k_d$ as the desorption rate.
 Optimizing both $k_a$ and $k_d$ separately is less efficient than optimizing $k_a$ and $k_{eq}$ {cite}`Heymann2022`.
 This method allows for the independent determination of equilibrium and kinetic parameters of the reaction (see also {numref}`adsorption_parameters`).
 

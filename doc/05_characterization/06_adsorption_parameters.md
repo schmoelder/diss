@@ -37,7 +37,7 @@ parameters_all = load_all_parameters(final_parameters_branch)
 # Estimation of adsorption parameters
 
 Adsorption parameters are estimated using experiment `E9` (see {numref}`tab_experiments`), which comprises four gradient elution runs with slopes of 4, 8, 12, and 16 CV, compared to simulation results.
-The objective is to adjust the characteristic charge $\nu$ and the equilibrium constant $k_{\text{eq}}$ to minimize the discrepancy between simulations and experiments.
+The objective is to adjust the characteristic charge $\nu$ and the equilibrium constant $K_{\text{eq}}$ to minimize the discrepancy between simulations and experiments.
 The steric factor $\sigma$ is not adjusted, as its effects are typically observed in breakthrough curves {cite}`Osberghaus2012`.
 Consequently, it is set to 0.
 Rapid equilibrium is assumed throughout the simulations.
