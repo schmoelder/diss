@@ -69,7 +69,7 @@ cases = get_cases_by_operating_mode(
 
 To validate the framework and ensure the optimizer can recover the expected operating conditions, an idealized scenario is evaluated: the binary model system with linear binding and ET assumptions.
 Here, the process is optimized by varying the feed duration using a single objective function with equal weights for all KPIs {eq}`weighted_objective`.
-While $100\%$ purity would be ideal, the targeted purity is set to $99.9\%$ to mitigate performance issues arising from numerical dispersion and the finite accuracy of the automatic fractionation algorithm.
+While perfect purity is theoretically achievable in this idealized system without physical dispersion, the targeted purity is set to $99.9\%$ to account for numerical artifacts.
 The problem is summarized in {numref}`batch-elution_linear_et_auto-cycle_soo_overview`.
 
 ```{code-cell} ipython3
