@@ -241,13 +241,14 @@ glue("moo_fig_nodes", fig_nodes, display=False)
 :scale: 100%
 
 Comparison of local productivity optima for component $A$ across different cycle times.
+**Left column:** Chromatograms for all cycles until cyclic stationarity is reached.
+**Right column:** Chromatograms for the last cycle, including fractionation times.
 Each row corresponds to a distinct cycle time scenario:
+
 - $\alpha$: $\Delta t_{\text{cycle}} = \text{07:47}~\text{min}$,
 - $\beta$: $\Delta t_{\text{cycle}} = \text{03:47}~\text{min}$,
 - $\gamma$: $\Delta t_{\text{cycle}} = \text{02:17}~\text{min}$.
 
-**Left column:** Chromatograms for all cycles until cyclic stationarity is reached.
-**Right column:** Chromatograms for the last cycle, including fractionation times.
 ```
 
 Similarly, the objectives for the KPIs of the other components also exhibit multiple local optima, which can be attributed to the same overlapping and overtaking behavior of peaks across injections.
@@ -256,7 +257,6 @@ Refinement of the parameter space could potentially yield further improvements i
 It is worth noting that alternative tools, such as surrogate models, may be better suited if the primary goal is to understand the underlying optimization landscape rather than targeting a specific KPI.
 In this case, the use of a genetic algorithm, a somewhat inefficient but robust "brute force" approach, enabled effective exploration of the parameter space and revealed these complex behaviors.
 Gradient-based algorithms, for instance, would likely fail due to the presence of many local optima and their dependence on initial values.
-
 Bayesian optimization presents a promising alternative, as it balances exploration of the parameter space with exploitation of known high-performing regions.
 However, at the time of writing, such algorithms have not yet been fully integrated into the CADET-Process framework.
 
