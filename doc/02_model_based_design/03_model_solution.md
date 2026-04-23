@@ -130,6 +130,8 @@ This creates a staircase function representation of the solution and defines a l
 The flux across these interfaces is approximated using a numerical flux function $F$, leading to the following semi-discretized formulation in 1D:
 
 ```{math}
+:label: finite_volume_semi_discretized
+
 \frac{d c_j(t)}{d t} \approx \frac{1}{\Delta z} (F(c_{j-1}, c_j) - F(c_j, c_{j+1}))
 ```
 

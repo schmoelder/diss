@@ -262,6 +262,8 @@ Here:
 The exponents $e_{\text{fwd},\ell,j}$ and $e_{\text{bwd},\ell,j}$ are derived from the stoichiometric coefficients using the following rules:
 
 ```{math}
+:label: mal_exponents
+
 \begin{aligned}
  e_{\text{fwd},\ell,j} &= \max(0, -s_{\ell,j}), \\
  e_{\text{bwd},\ell,j} &= \max(0, s_{\ell,j}).
@@ -410,6 +412,8 @@ where:
 The relationship between $c$ and $q$ is defined by the adsorption isotherm (see {numref}`isotherm_models`):
 
 ```{math}
+:label: implicit_adsorption
+
 0 = f_{\text{ads}} \left( c, q \right).
 ```
 
@@ -440,6 +444,8 @@ Conversely, the Thomas model considers finite adsorption rates as discussed in {
 with
 
 ```{math}
+:label: dynamic_adsorption_thomas
+
 \frac{\partial q_i}{\partial t} = f_{\text{ads}}\left( c, q \right) .
 ```
 
@@ -482,6 +488,8 @@ where $r^p$ is the particle radius.
 The transport from the bulk phase (denoted by the superscript $b$) to the pore phase (denoted by the superscript $p$) is then given by:
 
 ```{math}
+:label: film_diffusion
+
 \frac{\partial c^p_i}{\partial t} = F \cdot \frac{3}{\varepsilon^p r^p} \cdot k_{f,i} \left(c^b_i - c_i^p \right)
 ```
 
