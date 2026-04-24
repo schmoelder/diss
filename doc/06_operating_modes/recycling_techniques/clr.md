@@ -249,7 +249,7 @@ glue("moo_fig_outlets", fig_column_outlet, display=False)
 :name: clr_moo-pc_fig_outlet
 :scale: 100%
 
-Concentration profiles at column outlets for Pareto edge points (a) and (c)
+Concentration profiles at column outlets for Pareto edge points (a) and (c) of CLR process with difficult separation problem.
 ```
 
 **Summary**
