@@ -31,7 +31,7 @@ In addition, it has many applications in performing complex separations in the b
 Most process-scale chromatographic separations are performed using a single column.
 In conventional elution mode, small amounts of the mixture are injected periodically onto the chromatographic column and the mixture components elute as separated peaks from its outlet.
 However, as previously mentioned, many advanced operating modes exist that can outperform conventional batch chromatography in terms of productivity, solvent consumption, and recovery yield.
-For example, operating concepts like closed-loop recycling {cite}`Bombaugh1969,Heuer1995` or steady-state recycling (SSR) {cite}`Bailly1982,Sainio2009,Kaspereit2011` incorporate different strategies for the recycling of unresolved fractions from the column outlet back to the inlet with the aim of improving yield, solvent consumption and/or productivity {cite}`Sainio2009`.
+For example, operating concepts like closed-loop recycling {cite}`Bombaugh1969,Heuer1995` or mixed-recycle steady-state recycling (MR-SSR) {cite}`Bailly1982,Sainio2009,Kaspereit2011` incorporate different strategies for the recycling of unresolved fractions from the column outlet back to the inlet with the aim of improving yield, solvent consumption and/or productivity {cite}`Sainio2009`.
 If purity requirements are low, bypass streams can be advantageous {cite}`Siitonen2012`.
 Moreover, the use of multiple columns gives rise to various concepts ranging from serial or parallel arrangements of columns {cite}`Ziomek2006,GarciaPalacios2009`, over pseudo-continuous processes, up to the many variants of the powerful continuous SMB concept.
 More details on such advanced chromatographic operating modes are given in {numref}`chromatographic_principle` and in {cite}`SchmidtTraub2020,Nicoud2015,Rodrigues2015`.
@@ -49,7 +49,7 @@ While there are still many physico-chemical phenomena which are challenging to d
 Nowadays many wet lab experiments are only performed to calibrate these models {cite}`Rajendran2013`.
 The model-based design and optimization of chromatographic separations is, however, not trivial.
 This is due to the periodic operation and the distinct non-linear dynamics of chromatographic processes, as well as the many degrees of freedom involved such as column dimensions, valve switching times, or operating conditions.
-For some of the operating modes, there exist simple shortcut methods that deliver rough initial design estimates (see e.g. {cite}`Siitonen2011` for batch chromatography, {cite}`Sainio2009,Kaspereit2011` for SSR systems, {cite}`Mazzotti2006` for SMB processes, or {cite}`Siitonen2015` for a common treatment), but these models often include many simplifications.
+For some of the operating modes, there exist simple shortcut methods that deliver rough initial design estimates (see e.g. {cite}`Siitonen2011` for batch chromatography, {cite}`Sainio2009,Kaspereit2011` for MR-SSR systems, {cite}`Mazzotti2006` for SMB processes, or {cite}`Siitonen2015` for a common treatment), but these models often include many simplifications.
 For example, they might only work for certain binding models, neglect mass-transfer, or only cover single column operation.
 However, in many practical cases, a wide range of binding interaction mechanisms are relevant, including adsorption, ionic interactions, binding to specific ligands, or size exclusion.
 Furthermore, physical phenomena like axial dispersion, film diffusion, or pore diffusion often play a significant role and must be accounted for.

@@ -63,7 +63,7 @@ cases = get_cases_by_operating_mode(
 )
 ```
 
-(ssr)=
+(mrssr)=
 # Mixed-recycle steady-state recycling
 
 In addition to recycling unresolved fractions, fresh feed can be injected into the interior of the circulating profile at the column outlet in each cycle, resulting in the formation of a cyclic steady-state.
@@ -119,7 +119,7 @@ glue("ssr_overlay", fig_overlay, display=False)
 :name: ssr_last
 :scale: 50%
 
-Example SSR process in mixed-recycle operation for the separation of two components (blue and red) reaching cyclic steady state after 35 cycles.
+Example MR-SSR process in mixed-recycle operation for the separation of two components (blue and red) reaching cyclic steady state after 35 cycles.
 **Left:** Concentration profiles at the column's outlet.
 **Right:** Concentration profile at the system outlet.
 ```

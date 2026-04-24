@@ -60,7 +60,7 @@ For streams exiting a unit operation, the percent ratio to each of its destinati
 For a more practical example, typical for batch-elution chromatography, refer to {numref}`batch_elution_flow_sheet_intro`.
 Here, the feed and eluent reservoirs can both be modeled as {class}`~CADETProcess.processModel.Inlet` unit operations, which are each connected to a column model unit operation, e.g. a {class}`~CADETProcess.processModel.LumpedRateModelWithPores`.
 This unit is then connected to an {class}`~CADETProcess.processModel.Outlet` unit, which represents the material leaving the process for further processing.
-Note that it is straightforward to also include internal recycles in the {class}`~CADETProcess.processModel.FlowSheet`, which is important for systems such as SSR or SMB processes (see example in {numref}`ssr`).
+Note that it is straightforward to also include internal recycles in the {class}`~CADETProcess.processModel.FlowSheet`, which is important for systems such as MR-SSR or SMB processes (see example in {numref}`mrssr`).
 
 ### A note on flow rates
 

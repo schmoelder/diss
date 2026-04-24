@@ -68,7 +68,7 @@ For instance, {numref}`chromatogram` was generated using the {meth}`~CADETProces
 ## Cyclic stationarity
 
 Preparative chromatographic separations are often operated in a repetitive fashion.
-In particular, processes that incorporate the recycling of streams, like SSR or SMB, have a distinct startup behavior that takes multiple cycles until a periodic steady state is reached {cite}`SchmidtTraub2020`.
+In particular, processes that incorporate the recycling of streams, like MR-SSR or SMB, have a distinct startup behavior that takes multiple cycles until a periodic steady state is reached {cite}`SchmidtTraub2020`.
 In conventional batch chromatography as well, several cycles are needed to attain stationarity in optimized situations where there is a cycle-to-cycle overlap of the elution profiles of consecutive injections.
 For this reason, the simulator is capable of simulating a process either for a fixed number of cycles or until cyclic stationarity has been reached.
 
@@ -77,7 +77,7 @@ As the simulation continues over multiple cycles, the final state of one cycle s
 Criteria such as the maximum absolute deviation in concentration profiles or the peak areas between consecutive cycles can be specified {cite}`Holmqvist2015`.
 For process performance evaluation, only the last cycle is analyzed, as it provides representative key performance indicators of the process's behavior in subsequent cycles (see also {numref}`fractionation`).
 
-To illustrate this concept, consider an SSR process (see {numref}`ssr` for the complete process configuration).
+To illustrate this concept, consider an MR-SSR process (see {numref}`mrssr` for the complete process configuration).
 In this example, the relative change in the integral of the chromatogram (area under the chromatogram) between successive cycles is compared.
 The simulation continues until the relative change in area is less than $0.1~\%$, or until a maximum number of cycles is reached as a safety limit.
 {numref}`chromatogram_stationarity` shows the concentration profile at the column outlet across all cycles.
