@@ -464,7 +464,7 @@ WENO
 | $EC_i$                             | Specific eluent consumption for component $i$               | $\text{m}^{3}\,\text{mol}^{-1}$                |
 | $F$                                | Phase ratio                                                 |                                                |
 | $f_{\text{ads}}(c^l, c^s)$         | Adsorption isotherm function                                |                                                |
-| $\mathcal{F}(c_j, c_{j+1})$        | Numerical flux function (finite volume)                     |                                                |
+| $\mathcal{F}(c_n, c_{n+1})$        | Numerical flux function (finite volume)                     |                                                |
 | $f_{\text{react},i}$               | Reaction flux for component $i$                             | $\text{mol}\,\text{m}^{-3}\,\text{s}^{-1}$     |
 | $k_a$                              | Adsorption rate constant                                    | $\text{m}^{3}\,\text{mol}^{-1}\,\text{s}^{-1}$ |
 | $k_d$                              | Desorption rate constant                                    | $\text{s}^{-1}$                                |
@@ -480,6 +480,7 @@ WENO
 | $N_{\text{comp}}$                  | Number of components                                        |                                                |
 | $N_{\text{frac},k}^i$              | Number of fractions for component $i$ in chromatogram $k$   |                                                |
 | $N_{\text{react}}$                 | Number of reactions                                         |                                                |
+| $N_z$                              | Number of spatial grid cells                                |                                                |
 | $p_{\text{ads}}$                   | Adsorbent price                                             | $\text{€}\,\text{m}^{-3}$                      |
 | $p_{\text{el}}$                    | Eluent price                                                | $\text{€}\,\text{m}^{-3}$                      |
 | $p_{\text{feed}}$                  | Feed price                                                  | $\text{€}\,\text{m}^{-3}$                      |
@@ -502,6 +503,7 @@ WENO
 | $z$                                | Axial coordinate                                            | $\text{m}$                                     |
 | $\Delta t_{\text{cycle}}$          | Cycle duration                                              | $\text{s}$                                     |
 | $\Delta t_{\text{life}}$           | Adsorbent lifetime                                          | $\text{s}$                                     |
+| $\Delta z$                         | Spatial grid spacing                                        | $\text{m}$                                     |
 | $\varepsilon$                      | Porosity                                                    |                                                |
 | $\varepsilon^t$                    | Total porosity                                              |                                                |
 | $\varphi_j$                        | Net flux of reaction $j$                                    | $\text{mol}\,\text{m}^{-3}\,\text{s}^{-1}$     |
@@ -532,6 +534,7 @@ WENO
 | $(\cdot)_{i}, (\cdot)_{j}, (\cdot)_{\ell}$        | Component index      |
 | $(\cdot)_{\text{in}}, (\cdot)_{\text{out}}$       | Inlet, outlet        |
 | $(\cdot)_{k}$                                     | Chromatogram index   |
+| $(\cdot)_{n}$                                     | Spatial grid / cell index |
 | $(\cdot)_{\text{react}}$                          | Reaction             |
 
 
