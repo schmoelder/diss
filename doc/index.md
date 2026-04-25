@@ -492,12 +492,13 @@ WENO
 | $t$                                | Time                                                        | $\text{s}$                                     |
 | $t_{0,t}$                          | Column dead time                                            | $\text{s}$                                     |
 | $t_{\text{R},i}$                   | Retention time of component $i$                             | $\text{s}$                                     |
-| $t_{\text{start/end},j}$           | Start / end time of fraction $j$                            | $\text{s}$                                     |
+| $t_{\text{start/end},f}$           | Start / end time of fraction $f$                            | $\text{s}$                                     |
 | $u$                                | Interstitial mobile phase velocity                          | $\text{m}\,\text{s}^{-1}$                      |
 | $V$                                | Volume                                                      | $\text{m}^{3}$                                 |
-| $V_{\text{solid}}$                 | Volume of stationary phase                                  | $\text{m}^{3}$                                 |
+| $V^s$                              | Volume of stationary phase                                  | $\text{m}^{3}$                                 |
 | $V_{\text{solvent}}$               | Solvent volume consumed per cycle                           | $\text{m}^{3}$                                 |
 | $w$                                | Propagation velocity of a concentration front               | $\text{m}\,\text{s}^{-1}$                      |
+| $x$                                | Vector of optimization variables                            |                                                |
 | $\omega$                           | Weighting factor                                            |                                                |
 | $Y_i$                              | Recovery yield of component $i$                             | $\%$                                           |
 | $z$                                | Axial coordinate                                            | $\text{m}$                                     |
@@ -530,6 +531,7 @@ WENO
 | $(\cdot)_{\text{chrom}}$                          | Chromatogram         |
 | $(\cdot)_{\text{comp}}$                           | Component            |
 | $(\cdot)_{\text{feed}}, (\cdot)_{\text{solvent}}$ | Feed, solvent inlets |
+| $(\cdot)_{f}$                                     | Fraction index       |
 | $(\cdot)_{\text{frac}}$                           | Fraction             |
 | $(\cdot)_{i}, (\cdot)_{j}, (\cdot)_{\ell}$        | Component index      |
 | $(\cdot)_{\text{in}}, (\cdot)_{\text{out}}$       | Inlet, outlet        |
