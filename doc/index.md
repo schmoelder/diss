@@ -54,14 +54,14 @@ However, knowing what is *good enough* is an Art in itself, and for now, this th
 There are many people I need to thank, but first and foremost, I want to express my deepest gratitude to my partner, Leila.
 Her unconditional support and patience throughout this journey have been invaluable.
 No one else had to endure my struggles as much, yet she was always there as a thoughtful listener.
-Being outside my field of research, she provided a great way to test my own understanding: if I could explain complicated issues clearly to her, I knew I had truly grasped them.
+Being outside my field of research, she also provided a great way to test my own understanding: if I could explain complicated issues clearly to her, I knew I had truly grasped them.
 Beyond this, she has been a catalyst for my personal growth, helping me find what truly matters in life.
 
-Moreover, I would like to thank Prof. Kaspereit for granting me the freedom to explore a field that was completely new to me.
-It took longer than expected to understand the subject and find my place within it, yet I was given the time I needed, and it was never doubted that I would eventually succeed.
+Moreover, I would like to thank Prof. Kaspereit for granting me the freedom to explore research software engineering, a field completely new to me.
+Coming from chemical engineering with little prior programming experience, it took longer than expected to understand the challenges and find my place within it, yet I was given the time I needed, and it was never doubted that I would eventually succeed.
 
 My time in Erlangen would not have been the same without my wonderful colleagues and students, too many to name individually.
-In particular, I want to highlight José Vargas and Benjamin Reif for their continued friendship, all the insightful discussions and support, as well as the fun and memorable moments we shared.
+In particular, I want to highlight José Vargas and Benjamin Reif for their continued friendship, all the insightful discussions and support, as well as all the fun and memorable moments we shared.
 
 When I started my contract in 2020 at Forschungszentrum Jülich, I was under the naive impression that my thesis was "almost finished."
 Little did I know that, in fact, it was only about "half time."
