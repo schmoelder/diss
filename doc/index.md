@@ -27,23 +27,25 @@
 
 ## Preface
 
-To know whether a process is good, we model it.
-To trust the model, we validate it against reality.
-And to rely on the software that runs it, we test it systematically.
-This work addresses all three, and aims to be transparent about where each falls short: some components remain unfinished, and others may exhibit issues I have not yet considered.
-Nevertheless, the software developed in this work provides robust and effective approximations of *some* aspects of reality, particularly in modeling and simulating the diverse physicochemical effects and operational conditions that govern separation processes in chromatographic columns.
+All models are wrong, but some are useful.
+As a modeling engineer, it is my job to find out what is important: to select an effective model for the problem at hand, test the software that runs it, and validate it against reality.
+This work addresses all three: it presents models for chromatographic separation processes, the software to simulate them, and experimental validation against real data.
 
-To achieve this, the early decision to modularize the framework's code proved crucial.
-By separating functionality and defining clear interfaces, development, testing, and integration of interconnected logic became more efficient.
-This modularity also supports incremental improvements: emerging issues or missing features can be addressed without disrupting other parts of the system.
+This is inherently a complex undertaking.
+Models are, by definition, approximations, and the software that implements them may contain omissions or undiscovered errors; this work is no exception.
+Yet even imperfect tools can be useful.
+The software developed here provides useful tools to simulate the diverse physicochemical effects and operating conditions that govern chromatographic separations.
 
-Open-source principles, combined with adaptability to different standards, further strengthen this approach by promoting transparency within the broader scientific community.
-In fact, many of the strongest modules emerged from joint efforts, and I am grateful to those who contributed their expertise and perspective.
-Much could be taken for granted because others were willing to go the *extra mile*.
-The enthusiasm of others has been a constant source of motivation.
+The early decision to modularize the framework's code was key: by separating functionality and defining clear interfaces, development, testing, and integration become more efficient. (todo: revisit "key")
+This modularity also supports incremental improvement, allowing emerging issues or missing features to be addressed without disrupting other software components.
+
+Open-source principles, combined with adaptability to different standards, further strengthen this approach by promoting transparency and collaboration within the scientific community.
+In fact, many of the strongest modules emerged from such joint efforts, and I am grateful to all who contributed their expertise and perspective.
+Much of this work was made easier by the willingness of others to go the *extra mile*, and their enthusiasm has been a constant source of motivation.
 
 Looking ahead, I hope to continue developing this software.
-However, knowing where to *stop* is an Art in itself, and for now, this thesis represents the current state of my efforts.
+However, knowing what is *good enough* is an Art in itself, and for now, this thesis represents the current state of my efforts.
+
 
 {raw-latex}`\clearpage`
 
