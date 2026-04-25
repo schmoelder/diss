@@ -2,7 +2,7 @@
 # Formulation of chromatographic process models
 
 This chapter provides an overview of the formulation of chromatographic process models, highlighting various aspects of their modeling approaches.
-It begins with models for retention mechanisms, followed by a description of the equations used to capture the phenomena occurring within the column and their coupling to adsorption isotherm models.
+It begins with models for retention mechanisms, followed by a description of the equations used to describe the phenomena occurring within the column and their coupling to adsorption isotherm models.
 Moreover, the chapter considers effects that occur outside the column, in the system's periphery.
 
 ## Digression: machine learning models
@@ -11,8 +11,8 @@ In recent years, machine learning (ML) models have gained increasing popularity 
 These models are predominantly data-driven, meaning they rely less on a physical understanding of the system and instead focus on approximating and interpolating measured outputs as functions of input variables.
 Machine learning approaches are particularly valuable in scenarios where the underlying mechanisms are not fully understood or when direct measurement of necessary parameters is challenging.
 In addition, ML models can be employed for surrogate modeling, providing simplified approximations of complex, computationally expensive models {cite}`Jaepel2022`.
-The modular architecture of CADET-Process naturally supports replacing individual modules with data-driven models.
-For example, the simulator could be replaced by a PINN, or surrogate models could be built to map optimization variables to KPIs.
+The modular architecture of CADET-Process naturally supports replacing individual parts with data-driven models.
+For example, the simulator could be replaced by a PINN, or surrogate models could be trained to map process inputs directly to performance indicators, replacing the entire chain from simulation to evaluation.
 This hybrid approach allows combining mechanistic and data-driven elements.
 While machine learning offers powerful tools, mechanistic models remain essential, particularly in cases where they are used to inform or train machine learning models for chromatographic applications.
 Understanding the design criteria and defining the overall structure of mechanistic models are critical steps in optimizing chromatographic processes.
@@ -24,7 +24,7 @@ As such, this work focuses exclusively on mechanistic models.
 Adsorption isotherm models describe the accumulation of molecules on the surface of a stationary phase.
 Typically, the stationary phase concentration $c^s$ of a component is expressed as a function of its concentration $c^l$ in the adjacent liquid phase.
 Here, $c^l$ denotes the liquid phase concentration local to the stationary phase: the bulk concentration $c^b$ in the LRM, or the pore concentration $c^p$ in models with explicit pore phases such as the LRMP.
-These models, often referred to as "binding models", provide the mathematical framework for understanding adsorption behavior.
+Although *sorption* is a common umbrella term covering processes such as adsorption and ion exchange, this work uses *binding* to refer to these interactions, consistent with the terminology used in CADET-Process.
 
 (linear_model)=
 ### Linear model
@@ -38,7 +38,7 @@ This relationship is defined by an equilibrium constant $a$, sometimes referred 
 c^s = a \cdot c^l
 ```
 
-This linear model assumes an excess of adsorption sites and no interactions between the adsorbed molecules {cite}`SchmidtTraub2020`.
+This linear model assumes an excess of adsorption sites and no interactions between adsorbed molecules {cite}`SchmidtTraub2020`.
 As a result, the model is typically valid only for low concentrations and surface coverages.
 Additionally, it assumes that equilibrium between the stationary and mobile phases is instantaneous.
 However, in many practical cases, the kinetics of adsorption and desorption must be considered.
@@ -51,14 +51,13 @@ To account for these dynamics, the following kinetic formulation can be applied:
 ```
 
 where $k_a$ is the adsorption rate constant and $k_d$ is the desorption rate constant.
-
 In the limit of very fast adsorption and desorption rates, this dynamic approach reduces to the equilibrium formulation (eq. {eq}`linear_equilibrium`).
 In this case, the equilibrium constant $a$ is defined as the ratio of the adsorption and desorption rates:
 
 ```{math}
 :label: linear_kinetic_limit
 
-a = \frac{k_a}{k_d}.
+a = K_{\text{eq}} = \frac{k_a}{k_d}.
 ```
 
 (langmuir_model)=
@@ -75,7 +74,7 @@ This behavior is described by the following equation:
 c^s = c^s_{\text{max}} \frac{b \cdot c^l}{1 + b \cdot c^l},
 ```
 
-where $c^s_{\text{max}}$ represents the saturation capacity of the stationary phase, and $b$ is the equilibrium constant for adsorption.
+where $c^s_{\text{max}}$ represents the saturation capacity of the stationary phase, and $b$ is the adsorption equilibrium constant.
 
 At low concentrations, the Langmuir isotherm simplifies to the linear model {cite}`SchmidtTraub2020`:
 
@@ -85,7 +84,7 @@ At low concentrations, the Langmuir isotherm simplifies to the linear model {cit
 
 The binding models described above focus exclusively on the adsorption of a single substance.
 However, chromatography is primarily concerned with the separation of mixtures of substances.
-As a result, both the competitive effects among molecules of a single component and the interactions and competition between different species must be accounted for:
+As a result, both the self-competition of a component for binding sites and the competition between different species must be accounted for in the multi-component Langmuir isotherm:
 
 ```{math}
 :label: langmuir_multi_equilibrium
@@ -101,63 +100,8 @@ Similarly, the model can be reformulated in a kinetic form:
 \frac{\text{d} c^s_i}{\text{d} t} = k_{a, i} \cdot c^l_{i} \cdot c^s_{\text{max}, i} \left( 1 - \sum_{j=1}^{N_{\text{comp}}} \frac{c^s_j}{c^s_{\text{max}, j}} \right) - k_{d, i} \cdot c^s_i.
 ```
 
-(ldf)=
-### Digression: linear driving force models
-
-The linear driving force (LDF) approximation is sometimes used as an alternative to the native kinetic form of an isotherm {cite}`SchmidtTraub2020`.
-In the native approach, the rate of change of the solid phase concentration, $\frac{\text{d}c^s}{\text{d}t}$, is an explicit function of the liquid phase concentration $c^l$ and the solid phase concentration $c^s$.
-For example, in the Langmuir model:
-
-```{math}
-:label: langmuir_native
-
-\frac{dc^s}{dt} = k_a \cdot c^l (c^s_{\text{max}} - c^s) - k_d \cdot c^s.
-```
-
-In the LDF approximation, the equilibrium concentration $c^{s,*}$ is used to calculate the rate of change of the solid phase concentration for a given $c^l$.
-For the Langmuir model, $c^{s,*}$ is defined as:
-
-```{math}
-:label: langmuir_ldf_q
-
-c^{s,*} = \frac{c^s_{\text{max}} \cdot K_{\text{eq}} \cdot c^l}{1 + K_{\text{eq}} \cdot c^l},
-```
-
-where $K_{\text{eq}} = \frac{k_a}{k_d}$.
-
-The rate of change of the solid phase concentration is then expressed as:
-
-```{math}
-:label: langmuir_ldf_dq_dt
-
-\frac{\text{d}c^s}{\text{d}t} = k_{\text{kin}} \cdot (c^{s,*} - c^s).
-```
-
-Here, the flux is proportional to the difference between the actual solid phase concentration and the equilibrium concentration, $c^{s,*}$.
-The sign of $\frac{\text{d}c^s}{\text{d}t}$ ensures the flux acts toward equilibrium.
-In this approximation, the original rate constants $k_a$ and $k_d$ are replaced by the equilibrium constant $K_{\text{eq}}$ and a new kinetic constant $k_{\text{kin}}$.
-It is important to note that not all isotherms have a native representation in terms of explicit functions of solute concentration and amount adsorbed.
-For example, the Freundlich model does not follow this form {cite}`Herzog1909`.
-In such cases, only LDF approximations are available.
-Similarly, not all binding models have corresponding LDF versions.
-
-
-### Bi-Langmuir isotherm model
-
-The Bi-Langmuir isotherm is a further extension of the Langmuir model, accounting for interactions at multiple binding sites on the stationary phase.
-In this model, different binding sites $m$ are considered, but no exchange occurs between the sites.
-As a result, there are no competitive effects between different binding sites.
-The original Bi-Langmuir model is typically limited to two types of binding sites.
-However, it can be extended to an arbitrary number of binding site types {cite}`SchmidtTraub2020`.
-The kinetic formulation of the Bi-Langmuir isotherm is given by
-
-```{math}
-:label: bi-langmuir_kinetic
-
-\frac{\text{d} c^s_{i,m}}{\text{d} t} =  k_{a, i}^{m} \cdot c^l_{i} \cdot c^s_{\text{max}, i, m} \left( 1 - \sum_{j=1}^{N_{\text{comp}}} \frac{c^s_{j, m}}{c^s_{\text{max}, j, m}}\right) - k_{d, i}^{m} \cdot c^s_{i, m}
-```
-
-where $k_{a, i}^{m}$ and $k_{d, i}^{m}$ are the adsorption and desorption rate constants, and $c^s_{\text{max}, i, m}$ is the maximum loading capacity of the $m$-th binding site.
+An alternative kinetic formulation based on the linear driving force (LDF) approximation also exists for the Langmuir model and some other isotherms {cite}`SchmidtTraub2020`.
+The Langmuir model can also be extended to multiple independent binding site types, as in the Bi-Langmuir isotherm {cite}`SchmidtTraub2020`.
 
 
 ### Steric mass action law
@@ -165,7 +109,6 @@ where $k_{a, i}^{m}$ and $k_{d, i}^{m}$ are the adsorption and desorption rate c
 In ion exchange chromatography, the adsorption of ionic species is not based on physisorption but rather on chemisorption, which typically involves much stronger interaction forces.
 To model this process, the stationary phase is assumed to carry functional groups that are always loaded with ions {cite}`SchmidtTraub2020`.
 These ions can be displaced stoichiometrically by other ions in solution.
-
 For instance, in the case of a monoprotic-monoprotic cation exchange, cations $A^+$ can replace bound salt cations $S^+$:
 
 ```{math}
@@ -183,9 +126,8 @@ Similarly, for an anion exchange resin, negative ions are exchanged:
 ```
 
 A characteristic charge $\nu$ is introduced to account for the number of binding sites occupied by the molecule.
-By convention, the component index for the salt is defined as $i = 0$.
-
-The equilibrium with respect to a reference component $S$ is expressed as
+By convention, the salt (denoted $S$ in the exchange equations above) is assigned component index $i = 0$.
+The selectivity coefficient with respect to this reference salt component is expressed as
 
 ```{math}
 :label: sma_selectivity
@@ -205,7 +147,7 @@ c^s_0 = \Lambda - \sum_{j=1}^{N_{\text{comp}} - 1} \nu_j c^s_j,
 
 where $\Lambda$ is the total ionic capacity of the resin.
 Steric effects also play an important role, especially for large molecules like proteins.
-Due to their shape, some binding sites may be shielded from other molecules, effectively reducing the number of free binding sites $\bar{q}_0$.
+Due to their shape, some binding sites may be shielded from other molecules, effectively reducing the number of free binding sites $\bar{c}^s_0$.
 
 This can be accounted for by modifying the selectivity expression:
 
@@ -259,7 +201,7 @@ Here, subscript $i$ denotes the component of interest, $j$ the reaction, and $\e
 - $\varphi_j(c)$ is the net flux of reaction $j$.
 - $k_{\text{fwd},j}$ and $k_{\text{bwd},j}$ are the forward and backward rate constants, respectively.
 - $e_{\text{fwd},\ell,j}$ and $e_{\text{bwd},\ell,j}$ are the reaction orders for the forward and backward reactions, respectively.
-The exponents $e_{\text{fwd},\ell,j}$ and $e_{\text{bwd},\ell,j}$ are derived from the stoichiometric coefficients using the following rules:
+By default, the exponents $e_{\text{fwd},\ell,j}$ and $e_{\text{bwd},\ell,j}$ are derived from the stoichiometric coefficients using the following rules:
 
 ```{math}
 :label: mal_exponents
@@ -270,6 +212,8 @@ The exponents $e_{\text{fwd},\ell,j}$ and $e_{\text{bwd},\ell,j}$ are derived fr
 \end{aligned}
 ```
 
+In practice, these exponents can also be provided directly as parameters.
+
 (column_models)=
 ## Chromatographic column models
 
@@ -277,9 +221,7 @@ During the chromatographic process, components are transported through the colum
 The equilibrium thermodynamics, adsorption kinetics, and, where applicable, chemical reaction models, also need to be incorporated into the chromatographic column model {cite}`Guiochon2006`.
 
 Dynamic column models are typically based on differential mass balances within a control volume of the fluid mobile phase and the stationary phase {cite}`SchmidtTraub2020`.
-This results in a system of partial differential equations (PDEs), which are usually solved using numerical methods.
-However, some simplified models allow for analytical solutions (see {numref}`model_solution`).
-
+This results in a system of partial differential equations (PDEs), which are usually solved using numerical methods, however, some simplified models allow for analytical solutions (see {numref}`model_solution`).
 To simplify the modeling process, various assumptions are often made:
 
 - The fluid density and viscosity are assumed to be constant, implying no significant changes in fluid properties as it flows through the column.
@@ -308,13 +250,12 @@ The differential mass balance for component $i$ in the mobile phase is given by
 ```{math}
 :label: mass_balance_pfr
 
-\frac{\partial c^b_i}{\partial t} = - u \cdot \frac{\partial c^b_i}{\partial z}.
+\frac{\partial c^b_i}{\partial t} = - u \cdot \frac{\partial c^b_i}{\partial z},
 ```
 
 where $z$ is the axial coordinate along the column.
-
 The initial conditions for the concentration and the loading specify their values at time $t = 0$.
-At the column inlet and outlet, Danckwerts boundary conditions are typically applied {cite}`Danckwerts1953`:
+At the column inlet and outlet, Danckwerts boundary conditions are typically applied {cite}`Danckwerts1953`, which enforce flux continuity at the inlet and a zero-gradient condition at the outlet:
 
 ```{math}
 :label: danckwerts_in_pfr
@@ -333,7 +274,8 @@ Here, $c_{in,i}(t)$ is the inlet concentration of component $i$, and $L_c$ is th
 (dispersive_plug_flow_model)=
 ### Dispersive plug flow reactor
 
-Due to non-idealities, axial dispersion often plays a significant role in the fluid dynamics of real chromatographic systems.
+Due to non-idealities such as uneven flow distribution, wall effects, and molecular diffusion, axial dispersion often plays a significant role in the fluid dynamics of real systems.
+For chromatographic columns, the column packing additionally contributes to axial dispersion (see {numref}`column_models`).
 The dispersion is the result from several factors, such as uneven fluid distribution, wall effects, and molecular diffusion.
 To account for this, axial dispersion can be incorporated into the model equations.
 This phenomenon is described analogously to Fick's laws of diffusion {cite}`SchmidtTraub2020`:
@@ -353,8 +295,7 @@ Incorporating axial dispersion modifies the mass balance equation of the PFR mod
 \frac{\partial c^b_i}{\partial t} = -u \cdot \frac{\partial c^b_i}{\partial z} + D_{ax,i} \frac{\partial^2 c^b_i}{\partial z^2}.
 ```
 
-The boundary conditions for this model are
-@todo: is still danckwerts? what is different than before?
+The boundary conditions follow the same Danckwerts approach, but the inlet condition now includes the additional dispersion flux term:
 
 ```{math}
 :label: danckwerts_in_dpfr
@@ -367,10 +308,10 @@ To account for chemical reactions within the (D)PFR, an additional term describi
 ```{math}
 :label: mass_balance_dpfr_reaction
 
-\frac{\partial c^b_i}{\partial t} = -u \cdot \frac{\partial c^b_i}{\partial z} + D_{ax,i} \frac{\partial^2 c^b_i}{\partial t^2} + f_{react}(c),
+\frac{\partial c^b_i}{\partial t} = -u \cdot \frac{\partial c^b_i}{\partial z} + D_{ax,i} \frac{\partial^2 c^b_i}{\partial z^2} + f_{\text{react},i}(c^b),
 ```
 
-where $f_{\text{react},i}(c)$ represents the reaction flux for component $i$.
+where $f_{\text{react},i}(c^b)$ represents the reaction flux for component $i$.
 
 (equilibrium_model)=
 ### Equilibrium model
@@ -423,7 +364,6 @@ The relationship between $c^b$ and $c^s$ is defined by the adsorption isotherm (
 While the idealized equilibrium model is a useful tool for understanding chromatographic phenomena, it does not account for peak broadening effects or mass transfer limitations, which are critical in real systems.
 For instance, peak broadening may result from axial dispersion, diffusion, or slow adsorption kinetics.
 These effects are especially important for large molecules like proteins, whose diffusion rates are much slower than those of smaller molecules {cite}`Guiochon2006`.
-
 In lumped rate models, these non-idealities are accounted for by "lumping" them into one or more kinetic parameters.
 To account for peak broadening effects, axial dispersion is included, leading to the equilibrium-dispersive model (EDM):
 
@@ -455,30 +395,29 @@ This framework allows for independent specification of dispersion and adsorption
 
 - The equilibrium model corresponds to the LRM with $D_{ax} = 0$ and rapid equilibrium.
 - The transport-dispersive model (TDM) corresponds to the LRM with dynamic binding ($f_{\text{ads}}$) and $D_{ax} > 0$.
-- @todo: Add Thomas?
+- The Thomas model corresponds to the LRM with dynamic binding ($f_{\text{ads}}$) and $D_{ax} = 0$.
 
 
 (lumped_rate_model_with_pores)=
 ### Lumped rate model with pores
 
-To account for additional transport-limiting effects, the volume of the particle pores can be considered by introducing the particle porosity, $\varepsilon^p$.
-This creates a separate reference volume within the particles where the solute concentration, $c^p_i$, can differ from the bulk liquid phase concentration, $c^b_i$, where convection occurs.
-The interstitial porosity $\varepsilon^b$ represents the void volume between the particles in the packed bed.
-The total porosity, $\varepsilon^t$, is given by:
+To account for additional mass-transfer-limiting effects, the volume of the particle pores can be considered by introducing the particle porosity, $\varepsilon^p$.
+This creates a separate reference volume within the particles in which the solute concentration, $c^p_i$, can differ from the bulk liquid phase concentration, $c^b_i$, where convection occurs.
+The interstitial or bed porosity $\varepsilon^b$ represents the void volume between the particles in the packed bed.
+The total porosity, $\varepsilon^t$, is then given by:
 
 ```{math}
 :label: total_porosity
 
-\varepsilon^t = \varepsilon^b + \left( 1 - \varepsilon^b \right) \varepsilon^p
+\varepsilon^t = \varepsilon^b + \left( 1 - \varepsilon^b \right) \varepsilon^p,
 ```
 
 where the term $\left( 1 - \varepsilon^b \right) \varepsilon^p$ accounts for the volume of the pores inside the particles.
 
-The stationary phase particles are surrounded by a stagnant boundary layer, whose thickness depends on the properties of the mobile phase and the flow rate.
+The stationary phase particles are assumed to be surrounded by a stagnant boundary layer, whose thickness depends on the properties of the mobile phase and the flow rate.
 A thicker boundary layer slows down mass transport and increases band broadening, while a thinner layer allows for faster mass transfer and improves separation efficiency.
 To model this, a film diffusion term accounts for transport through the stagnant film around the particles.
 The flux through this boundary layer depends on the specific surface area, $a_s$, of the particles in a finite volume element, which is expressed as:
-
 ```{math}
 :label: specific_particle_surface
 
@@ -510,6 +449,7 @@ where:
 - $f_{\text{react}}(c^b)$ represents reaction kinetics in the bulk phase,
 - $f_{\text{react}}^p(c^p, c^s)$ represents reactions in the pore phase, and
 - $f_{\text{react}}^s(c^p, c^s)$ represents reactions on the particle surface.
+
 The adsorption process in this model can be described in either a quasi-stationary or dynamic form:
 
 ```{math}
@@ -530,7 +470,7 @@ Here:
 ### High definition models
 
 The general rate model (GRM) is often regarded as the most comprehensive chromatography model.
-It accounts for both intraparticle and surface diffusion.
+In addition to the transport effects described above, it accounts for both intraparticle and surface diffusion.
 Although the GRM is not utilized in this work, readers are encouraged to refer to {cite:t}`Guiochon2006` and {cite:t}`SchmidtTraub2020` for a detailed description.
 It is worth noting that even more sophisticated models than the GRM exist.
 For example, {cite:t}`Leweke2018` consider advanced features such as various particle geometries, polydisperse particle properties (e.g., particle size and adsorption isotherms), and pore accessibility factors.
@@ -545,10 +485,12 @@ Instead, these parameters can be inferred by analyzing simulation results.
 Once calibrated, reduced-order models can then be derived to optimize process design and enhance computational efficiency.
 This is especially important because fully spatially resolved simulations, while accurate, are computationally expensive and often impractical for routine optimization tasks.
 
-(cstr)=
-### Continuous stirred tank reactor model (CSTR)
+Due to their spatial resolution, these models are computationally expensive and are rarely applied directly in process optimization.
 
-In addition to chromatographic columns and (D)PFRs, the continuous stirred tank reactor model is another fundamental building block in unit operation networks, often used to model system void volume or holdup tanks.
+(cstr)=
+### Continuous stirred tank reactor model
+
+In addition to chromatographic columns and (D)PFRs, the continuous stirred tank reactor (CSTR) model is another fundamental building block in unit operation networks, often used to model system void volume or holdup tanks.
 Its mass balance is given by
 
 ```{math}
@@ -559,7 +501,7 @@ Its mass balance is given by
 
 where $Q_{\text{in}}$ and $Q_{\text{out}}$ denote the inlet and outlet volumetric flow rates,
 
-Note, in contrast to other unit operations, the volume of the CSTR can vary over time.
+Note, in contrast to other unit operations, the volume of the CSTR can also vary over time.
 The change of the tank volume is given by
 
 ```{math}
