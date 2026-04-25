@@ -91,9 +91,11 @@ The constrained optimization by linear approximation algorithm (*COBYLA*) is a m
 At each iteration, the algorithm constructs linear approximations of the objective function and all constraints, solves the resulting linear subproblem to obtain a new candidate solution, and then evaluates the candidate against the original nonlinear functions to update the approximation.
 If no improvement is achieved, the step size is reduced; the algorithm terminates once the step size falls below a prescribed tolerance.
 
-*COBYLA* requires no gradient information, which makes it straightforward to apply to black-box objective functions such as those arising from chromatographic simulations.
-It is particularly well-suited to problems with a moderate number of variables and moderately nonlinear behavior, where it converges reliably with low implementation overhead.
-However, it can be computationally expensive for high-dimensional problems, and, like most local methods, does not guarantee global optimality.
+*COBYLA* requires no gradient information, making it straightforward to apply to black-box objective functions such as those arising from chromatographic simulations.
+It exhibits reliable convergence for problems with a moderate number of variables and moderately nonlinear behavior.
+However, its computational cost increases significantly for high-dimensional problems, and, like most local optimization methods, it does not guarantee global optimality.
+In the present work, it is therefore applied only to subproblems for which these characteristics are acceptable, while more demanding optimization tasks are treated with alternative approaches.
+These characteristics make COBYLA particularly well-suited for automatically determining fractionation times, which are required to evaluate key performance indicators (see {numref}`kpi`).
 
 
 (genetic_algorithm)=
