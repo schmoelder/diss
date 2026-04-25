@@ -163,42 +163,50 @@ Hülsmann2025
 ## Zusammenfassung
 
 Chromatographie ist ein weit verbreitetes Trennverfahren in der chemischen, pharmazeutischen und biotechnologischen Industrie.
-Die rigorose modellbasierte Auslegung und Optimierung chromatographischer Prozesse ist jedoch anspruchsvoll: Die nichtlineare Dynamik, der periodische Betrieb und die große Anzahl an Freiheitsgraden erschweren die Prozessentwicklung.
-Gleichzeitig führt die Vielfalt der Betriebskonzepte, von Batch-Elution Chromatographie bis hin zu kontinuierlichen Mehrkolonnenprozessen, dazu, dass bestehende Werkzeuge entweder auf spezifische Prozesse zugeschnitten oder zu allgemein gehalten sind, um ohne aufwändige benutzerdefinierte Konfiguration eingesetzt werden zu können.
+Die rigorose, modellbasierte Auslegung und Optimierung chromatographischer Prozesse ist jedoch anspruchsvoll: Nichtlineare Dynamik, periodischer Betrieb und eine große Anzahl an Freiheitsgraden erschweren die Prozessentwicklung.
+Gleichzeitig führt die Vielfalt der Betriebskonzepte, von Batch-Elution-Chromatographie bis hin zu kontinuierlichen Mehrsäulenprozessen, dazu, dass bestehende Werkzeuge entweder stark prozessspezifisch oder zu generisch sind, um ohne umfangreiche benutzerdefinierte Anpassungen eingesetzt werden zu können.
 
-Diese Arbeit stellt ein modulares Framework zur Modellierung und Optimierung chromatographischer Prozesse vor, das als Open-Source-Paket **CADET-Process** implementiert wurde.
-Das Framework gliedert Prozesskonfiguration, Simulation, Leistungsbewertung und Optimierung in unabhängige Komponenten.
-Es stellt eine flexible Schnittstelle zur Definition komplexer Betriebskonzepte bereit, darunter Ventilschaltpläne, Recyclingkonfigurationen und Mehrkolonnenanordnungen, und ermöglicht die Konfiguration und Lösung von Leistungskennzahlen und Optimierungsaufgaben ohne benutzerdefinierten Integrationsaufwand.
-Das Framework wurde nach etablierten Prinzipien des wissenschaftlichen Software-Engineerings entwickelt, um Zuverlässigkeit, Reproduzierbarkeit und langfristige Wartbarkeit zu gewährleisten, und ist inzwischen sowohl im akademischen als auch im industriellen Umfeld als Teil des übergeordneten **CADET**-Ökosystems etabliert.
+Diese Arbeit präsentiert ein modulares Framework zur Modellierung und Optimierung chromatographischer Prozesse, implementiert als Open-Source-Softwarepaket **CADET-Process**.
+Das Framework trennt Prozesskonfiguration, Simulation, Auswertung und Optimierung in unabhängige Module.
+Es stellt eine flexible Schnittstelle zur Definition komplexer Betriebskonzepte bereit, einschließlich Recyclingkonfigurationen und Mehrsäulenanordnungen, und ermöglicht die Formulierung von Prozessoptimierungsproblemen anhand entsprechender Leistungskennzahlen mit minimalem zusätzlichen Implementierungsaufwand.
+Die Entwicklung folgt etablierten Prinzipien des wissenschaftlichen Software-Engineerings und zielt auf Zuverlässigkeit, Reproduzierbarkeit und langfristige Wartbarkeit ab.
+Das Framework ist Teil der **CADET**-Softwarefamilie und sowohl im akademischen als auch im industriellen Umfeld etabliert.
 
-Das Framework wird anhand experimenteller Daten durch eine Studie zur Parameterschätzung an einem Protein-Reinigungssystem im Labormaßstab mittels Ionenaustauschchromatographie validiert.
-Das sterische Massenwirkungsgesetz, Säulentransportphänomene sowie Systemperipherieeffekte einschließlich der Beiträge von Ventilen und Leitungen werden schrittweise charakterisiert und in das Modell integriert, was veranschaulicht, wie Modellkomplexität inkrementell aufgebaut werden kann.
-Eine weitere Serie synthetischer Fallstudien demonstriert anschließend die Optimierungsmöglichkeiten des Frameworks anhand von Betriebskonzepten zunehmender Komplexität: Batch-Elution, Closed-Loop- und Steady-State-Recycling, Flip-Flop-Chromatographie sowie Reihenschaltungen von Säulen.
-Die Simulationsergebnisse werden gegen analytische Lösungen der Gleichgewichtstheorie validiert, und die Mehrzielsoptimierung deckt nicht-intuitive Betriebsstrategien auf, darunter Serieninjektionen, intermediäre Abfallfraktionen und Peakverschachtelung unter überladenen Bediungungen.
-Ein bemerkenswertes Ergebnis ist, dass sich die Batch-Elution als produktivitätsoptimaler Grenzfall komplexerer Recyclingkonfigurationen erweist, ein Resultat, das sich natürlich aus der Optimierungsformulierung ergibt und auf das Potenzial des Frameworks für die Superstrukturoptimierung hinweist, bei der das Betriebskonzept selbst als Entwurfsvariable behandelt wird.
+Die Validierung erfolgt anhand experimenteller Daten in einer Parameterschätzstudie an einem Ionenaustauschchromatographiesystem im Labormaßstab.
+Dabei werden eine sterische Massenwirkungsgesetz-Isotherme, Säulentransportphänomene sowie Systemperipherieeffekte, einschließlich Leitungen und Ventilen, schrittweise charakterisiert und in das Modell integriert.
 
-Durch diese Entwicklungen etabliert sich CADET-Process als umfassendes Open-Source-Framework für die Auslegung und Optimierung chromatographischer Prozesse, das der wissenschaftlichen Gemeinschaft frei zur Verfügung steht und Fortschritte in akademischer Forschung und industrieller Anwendung ermöglicht.
+Eine zusätzliche Serie synthetischer Fallstudien demonstriert die Optimierungsmöglichkeiten des Frameworks für verschiedene Betriebskonzepte, darunter Batch-Elution, Closed-Loop- und stationäres Recycling, Flip-Flop-Chromatographie sowie Säulenschaltungen in Reihe.
+Die Simulationsergebnisse werden gegen analytische Lösungen der Gleichgewichtstheorie validiert.
+Die Mehrzieloptimierung identifiziert dabei nicht-intuitive Betriebsstrategien, einschließlich Serieninjektionen, intermediärer Abfallfraktionen und Peakverschachtelung unter überladenen Bedingungen.
+Ein zentrales Ergebnis ist, dass sich die Batch-Elution als produktivitätsoptimaler Grenzfall komplexerer Recyclingkonfigurationen ergibt.
+Dieses Resultat folgt direkt aus der Optimierungsformulierung und unterstreicht das Potenzial des Frameworks für die Superstrukturoptimierung, bei der das Betriebskonzept selbst als Entwurfsvariable behandelt wird.
+
+Durch diese Entwicklungen etabliert sich CADET-Process als umfassendes Open-Source-Framework zur Auslegung und Optimierung chromatographischer Prozesse, das der wissenschaftlichen Gemeinschaft frei zur Verfügung steht und sowohl akademische Forschung als auch industrielle Anwendungen unterstützt.
 
 {raw-latex}`\clearpage`
 
 ## Abstract
 
-Chromatography is a widely used separation technique in the chemical, pharmaceutical, and biotechnological industries.
-Rigorous model-based design and optimization of chromatographic processes is, however, challenging: the nonlinear dynamics, periodic operation, and large number of degrees of freedom make process development difficult.
-At the same time, the diversity of operating concepts, from batch-elution to multi-column continuous processes, means that existing tools are either tailored to specific processes or too general-purpose to apply without extensive custom configuration.
+Chromatography is a widely used separation technique in the chemical, pharmaceutical, and biotechnology industries.
+However, rigorous model-based design and optimization of chromatographic processes remain challenging: nonlinear dynamics, periodic operation, and a large number of degrees of freedom complicate process development.
+At the same time, the diversity of operating concepts, ranging from batch elution chromatography to continuous multi-column processes, leads to existing tools being either highly process-specific or too generic to be applied without extensive user-defined adaptations.
 
-This thesis presents a modular framework for modeling and optimizing chromatographic processes, implemented as the open-source package **CADET-Process**.
-The framework separates process configuration, simulation, performance evaluation, and optimization into independent components.
-It provides a flexible interface for defining complex operating concepts such as valve switching schemes, recycling configurations, and multi-column setups, and allows key performance indicators and optimization problems to be configured and solved without custom integration code.
-The framework is developed following established research software engineering practices to ensure reliability, reproducibility, and long-term maintainability, and has since been adopted in both academic and industrial settings as part of the broader **CADET** ecosystem.
+This work presents a modular framework for the modeling and optimization of chromatographic processes, implemented as the open-source software package **CADET-Process**.
+The framework separates process configuration, simulation, evaluation, and optimization into clearly defined modules.
+It provides a flexible interface for defining complex operating concepts, including recycling configurations and multi-column arrangements, and enables the formulation of process optimization problems based on appropriate performance metrics with minimal additional implementation effort.
+The development follows established principles of scientific software engineering and aims to ensure reliability, reproducibility, and long-term maintainability.
+The framework is part of the **CADET** software family and is used in both academic and industrial contexts.
 
-The framework is validated against experimental data through a parameter estimation study of a laboratory-scale protein purification system using ion-exchange chromatography.
-Steric mass-action binding kinetics, column transport phenomena, and system periphery effects including valve and tubing contributions are characterized and incorporated into the model progressively, illustrating how model complexity can be built up incrementally.
-A complementary series of synthetic case studies then demonstrates the framework's optimization capabilities across operating modes of increasing complexity: batch-elution, closed-loop and steady-state recycling, flip-flop chromatography, and serial column configurations.
-Simulation results are validated against analytical equilibrium theory solutions, and multi-objective optimization reveals non-intuitive operating strategies including stacked injections, intermediate waste fractions, and peak interlocking under overloaded conditions.
-A notable finding is that batch elution emerges as the productivity-optimal limiting case of more complex recycling configurations, a result that arises naturally from the optimization formulation and points to the framework's potential for superstructure optimization, where the operating mode itself is a design variable.
+The framework is validated using experimental data in a parameter estimation study on a laboratory-scale ion-exchange chromatography system.
+A steric mass action law isotherm, column transport phenomena, and system peripheral effects, including tubing and valves, are progressively characterized and incorporated into the model.
 
-Through these developments CADET-Process establishes itself as a comprehensive open-source framework for chromatographic process design and optimization, freely available to the scientific community and enabling advances in both academic research and industrial applications.
+An additional series of synthetic case studies demonstrates the optimization capabilities of the framework for various operating concepts, including batch elution, closed-loop and steady-state recycling, flip-flop chromatography, and column trains.
+Simulation results are validated against analytical solutions from equilibrium theory.
+Multi-objective optimization reveals non-intuitive operating strategies, including serial injections, intermediate waste fractions, and peak interlocking under overloaded conditions.
+A key finding is that batch elution emerges as the productivity-optimal limiting case of more complex recycling configurations.
+This result follows directly from the optimization formulation and highlights the potential of the framework for superstructure optimization, in which the operating concept itself is treated as a design variable.
+
+Overall, CADET-Process establishes itself as a comprehensive open-source framework for the design and optimization of chromatographic processes, freely available to the scientific community and supporting both academic research and industrial applications.
 
 {raw-latex}`\clearpage`
 
