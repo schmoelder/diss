@@ -248,6 +248,7 @@ Moreover, MOO is especially advantageous when dealing with multiple datasets or 
 It can help identify conflicting datasets or reveal ill-posed optimization problems, such as those arising from overdetermined systems.
 By considering multiple objectives, MOO can uncover inconsistencies in the data or problem formulation that may not be apparent in SOO.
 This makes MOO particularly useful when dealing with multiple experimental datasets or when diagnosing ill-posed problems, as conflicting objectives can reveal inconsistencies that a single scalar metric would obscure.
+The following chapter discusses the algorithms and methods used to solve these optimization problems in practice.
 
 <!-- 2.4.1. Was  wollen wir wissen -->
 <!-- 2.4.2. Wie bewerten wie es -->

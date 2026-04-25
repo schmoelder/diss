@@ -99,3 +99,4 @@ If components in the mixture are not fully separated after passing through the c
 Popular concepts include fractional recycling techniques and multi-column processes, which are particularly effective for improving separation efficiency and overall performance.
 Innovative process concepts, such as flip-flow operations, can also significantly increase process productivity.
 These advanced operating modes are discussed in more detail in {numref}`operating_modes`.
+To describe these processes quantitatively, the following chapter introduces mathematical models for the relevant retention and transport phenomena.

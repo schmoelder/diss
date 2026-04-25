@@ -183,3 +183,4 @@ In this approach, the procedure begins by computing the outlets for each unit op
 These outlet values are then used to update the inlet profiles, and the unit operations are solved again.
 This procedure is repeated iteratively until the system converges and the solution is fully determined.
 This iterative approach is directly relevant to the advanced operating modes considered in this work, many of which involve internal recycling streams that couple unit operation inlets and outlets.
+With the model equations and their solution established, the following chapter addresses how to formulate and evaluate the performance of chromatographic processes.

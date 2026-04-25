@@ -510,3 +510,7 @@ The change of the tank volume is given by
 :label: volume_balance_cstr
 
 \frac{\text{d}V^{\ell}}{\text{d}t}= Q_{\text{in}} - Q_{\text{out}}.
+```
+
+Together, the isotherm models, transport equations, and unit operation building blocks introduced in this chapter form the mathematical description of chromatographic processes.
+The following chapter addresses how these model equations are solved, both analytically and numerically.
