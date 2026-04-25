@@ -148,12 +148,12 @@ In this model, different binding sites $m$ are considered, but no exchange occur
 As a result, there are no competitive effects between different binding sites.
 The original Bi-Langmuir model is typically limited to two types of binding sites.
 However, it can be extended to an arbitrary number of binding site types {cite}`SchmidtTraub2020`.
-The kinetic formulation of the Bi-Langmuir isotherm is given by:
+The kinetic formulation of the Bi-Langmuir isotherm is given by
 
 ```{math}
 :label: bi-langmuir_kinetic
 
-\frac{\text{d} q_{i}^{m}}{\text{d} t} =  k_{a, i}^{m} \cdot c_{i} \cdot q_{\text{max}, i}^{m} \left( 1 - \sum_{j=1}^{N_{\text{comp}}} \frac{q_{j, m}}{q_{\text{max}, j}^{m}}\right) - k_{d, i}^{m} q_{i, m}
+\frac{\text{d} q_{i}^{m}}{\text{d} t} =  k_{a, i}^{m} \cdot c_{i} \cdot q_{\text{max}, i}^{m} \left( 1 - \sum_{j=1}^{N_{\text{comp}}} \frac{q_{j, m}}{q_{\text{max}, j}^{m}}\right) - k_{d, i}^{m} \cdot q_{i, m}
 ```
 
 where $k_{a, i}^{m}$ and $k_{d, i}^{m}$ are the adsorption and desorption rate constants, and $q_{\text{max}, i}^{m}$ is the maximum loading capacity of the $m$-th binding site.
@@ -184,7 +184,7 @@ Similarly, for an anion exchange resin, negative ions are exchanged:
 A characteristic charge $\nu$ is introduced to account for the number of binding sites occupied by the molecule.
 By convention, the component index for the salt is defined as $i = 0$.
 
-The equilibrium with respect to a reference component $S$ is expressed as:
+The equilibrium with respect to a reference component $S$ is expressed as
 
 ```{math}
 :label: sma_selectivity
@@ -222,12 +222,12 @@ To model steric shielding, a steric shielding factor $\sigma$ is introduced {cit
 \bar{q}_0 = q_0 - \sum_{j=1}^{N_{\text{comp}} - 1} \sigma_j q_j = \Lambda - \sum_{j=1}^{N_{\text{comp}} - 1} \left( \nu_j + \sigma_j \right) q_j
 ```
 
-The complete Steric Mass Action (SMA) model, which incorporates both kinetics and equilibrium, is then given as:
+The complete Steric Mass Action (SMA) model, which incorporates both kinetics and equilibrium, is then given by
 
 ```{math}
 :label: sma_isotherm
 
-\frac{\text{d} q_i}{\text{d} t} = k_{a, i} c_{i} \bar{q}_0^{\nu_i} - k_{d, i}\cdot q_i\cdot c_{0}^{\nu_i}
+\frac{\text{d} q_i}{\text{d} t} = k_{a, i} \cdot c_{i} \cdot \bar{q}_0^{\nu_i} - k_{d, i} \cdot q_i \cdot c_{0}^{\nu_i}
 ```
 
 where $k_{a, i}$ and $k_{d, i}$ are the adsorption and desorption rate constants.
@@ -241,7 +241,7 @@ In this work, only the mass action law reaction model is considered.
 
 The mass action law is a fundamental principle in chemical reaction kinetics that states that the rate of a chemical reaction is proportional to the product of the concentrations of its reactants.
 This model is suitable for most reactions, though it uses concentrations rather than thermodynamic activities, making it strictly valid only for dilute solutions and well-stirred vessels.
-The net flux for component $i$ is expressed as:
+The net flux for component $i$ is expressed as
 
 ```{math}
 :label: mass_action
@@ -353,7 +353,7 @@ Incorporating axial dispersion modifies the mass balance equation of the PFR mod
 \frac{\partial c_i}{\partial t} = -u \cdot \frac{\partial c_i}{\partial z} + D_{ax,i} \frac{\partial^2 c_i}{\partial z^2}.
 ```
 
-The boundary conditions for this model are:
+The boundary conditions for this model are
 
 ```{math}
 :label: danckwerts_in_dpfr
@@ -395,7 +395,7 @@ The simplest chromatographic model is the equilibrium model (EM), which assumes:
 
 Under these assumptions, the liquid phase concentration within the particle pores is identical to the bulk liquid phase concentration, and the concentration in the solid phase is uniform (i.e., independent of the radial position inside the particle).
 
-The differential mass balance for component $i$ is expressed as:
+The differential mass balance for component $i$ is expressed as
 
 ```{math}
 :label: mass_balance_em
@@ -449,7 +449,7 @@ with
 ```
 
 These models, collectively referred to as transport models, form the basis for describing chromatographic processes under non-ideal conditions.
-To simplify model naming and establish a unified framework, consistent with the nomenclature of CADET, this family of models will be referred to as the lumped rate model without pores (LRM).
+To simplify model naming and establish a unified mathematical framework, consistent with the nomenclature of CADET, this family of models will be referred to as the lumped rate model without pores (LRM).
 This framework allows for independent specification of dispersion and adsorption dynamics:
 
 - The equilibrium model corresponds to the LRM with $D_{ax} = 0$ and rapid equilibrium.
