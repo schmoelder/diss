@@ -109,8 +109,8 @@ Moreover, flow sheets can have multiple outlets $k$ that have to be fractionated
 These aspects are considered by defining the total product amount of a component $i$ as.
 
 ```{math}
-:label: mass
-m_{i} = \sum_{k=1}^{N_{\text{chrom}}} \sum_{j=1}^{N_{\text{frac}, k}^{i}}\int_{t_{\text{start}, j}}^{t_{\text{end}, j}} Q_k(t) \cdot c_{i,k}(t) dt, \\
+:label: molar_amount
+n_{i} = \sum_{k=1}^{N_{\text{chrom}}} \sum_{j=1}^{N_{\text{frac}, k}^{i}}\int_{t_{\text{start}, j}}^{t_{\text{end}, j}} Q_k(t) \cdot c_{i,k}(t) dt, \\
 ```
 
 where $N_{\text{frac}, k}^{i}$ is the number of fractions considered for component $i$ in chromatogram $k$, and $N_{\text{chrom}}$ is the total number of chromatograms evaluated.
@@ -119,20 +119,20 @@ Further performance criteria frequently used for evaluating and optimizing chrom
 
 ```{math}
 :label: productivity
-PR_{i} = \frac{m_i}{V_{\text{solid}} \cdot \Delta t_{\text{cycle}}},\\
+PR_{i} = \frac{n_i}{V^s} \cdot \Delta t_{\text{cycle}}},\\
 ```
 
 ```{math}
 :label: yield
-Y_{i} = \frac{m_i}{m_{\text{feed}, i}},\\
+Y_{i} = \frac{n_i}{m_{\text{feed}, i}},\\
 ```
 
 ```{math}
 :label: eluent_consumption
-EC_{i} = \frac{V_{\text{solvent}}}{m_i}.\\
+EC_{i} = \frac{V_{\text{solvent}}}{n_i}.\\
 ```
 
-Here, $V_{\text{solid}}$ represents the volume of the stationary phase, $V_{\text{solvent}}$ denotes the solvent volume introduced during a cycle of duration $\Delta t_{\text{cycle}}$, and $m_{\text{feed}, i}$ is the injected amount of the mixture containing component $i$ to be separated.
+Here, $V_{\text{solid}}$ represents the volume of the stationary phase, $V_{\text{solvent}}$ denotes the solvent volume introduced during a cycle of duration $\Delta t_{\text{cycle}}$, and $n_{\text{feed}, i}$ is the injected amount of the mixture containing component $i$ to be separated.
 
 The amounts of consumed feed and solvent can be calculated from multiple sources as follows:
 
@@ -143,17 +143,17 @@ V_{\text{solvent}} = \sum_{s=1}^{N_{\text{solvents}}} \int_{0}^{t_{\text{cycle}}
 
 ```{math}
 :label: feed_in
-m_{\text{feed},i} = \sum_{f=1}^{N_{\text{feeds}}} \int_{0}^{t_{\text{cycle}}} Q_f(t) \cdot c_{f,i}(t) dt.\\
+n_{\text{feed},i} = \sum_{f=1}^{N_{\text{feeds}}} \int_{0}^{t_{\text{cycle}}} Q_f(t) \cdot c_{f,i}(t) dt.\\
 ```
 
 The cumulative product purity $PU_i$ is given by:
 
 ```{math}
 :label: purity
-PU_{i} = \frac{m_{i}^{i}}{\sum_{l=1}^{N_{\text{comp}}} m_{l}^{i}},\\
+PU_{i} = \frac{n_{i}^{i}}{\sum_{l=1}^{N_{\text{comp}}} n_{l}^{i}},\\
 ```
 
-where $N_{\text{comp}}$ is the number of mixture components, and $m_{l}^{i}$ is the mass of component $l$ in the target fraction $i$.
+where $N_{\text{comp}}$ is the number of mixture components, and $n_{l}^{i}$ is the mass of component $l$ in the target fraction $i$.
 
 Alongside process performance indicators, economic criteria play a crucial role in evaluating the performance of a chromatographic separation process.
 The calculation of total separation costs, however, is complex due to the influence of various parameters and cost structures, which depend on the specific circumstances and site-related factors.

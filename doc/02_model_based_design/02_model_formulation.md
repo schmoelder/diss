@@ -22,19 +22,20 @@ As such, this work focuses exclusively on mechanistic models.
 ## Adsorption isotherm models
 
 Adsorption isotherm models describe the accumulation of molecules on the surface of a stationary phase.
-Typically, the loading concentration $q$ of a component is expressed as a function of its concentration $c$ in the mobile phase.
+Typically, the stationary phase concentration $c^s$ of a component is expressed as a function of its concentration $c^l$ in the adjacent liquid phase.
+Here, $c^l$ denotes the liquid phase concentration local to the stationary phase: the bulk concentration $c^b$ in the LRM, or the pore concentration $c^p$ in models with explicit pore phases such as the LRMP.
 These models, often referred to as "binding models", provide the mathematical framework for understanding adsorption behavior.
 
 (linear_model)=
 ### Linear model
 
-The simplest binding model assumes that the loading concentration $q$ of a component is directly proportional to its concentration $c$ in the mobile phase.
+The simplest binding model assumes that the solid phase concentration $c^s$ of a component is directly proportional to its liquid phase concentration $c^l$.
 This relationship is defined by an equilibrium constant $a$, sometimes referred to as the Henry coefficient, which represents the strength of interaction between the stationary phase and the component:
 
 ```{math}
 :label: linear_equilibrium
 
-q = a \cdot c
+c^s = a \cdot c^l
 ```
 
 This linear model assumes an excess of adsorption sites and no interactions between the adsorbed molecules {cite}`SchmidtTraub2020`.
@@ -46,7 +47,7 @@ To account for these dynamics, the following kinetic formulation can be applied:
 ```{math}
 :label: linear_kinetic
 
-\frac{\text{d} q}{\text{d} t} = k_a \cdot c - k_d \cdot q,
+\frac{\text{d} c^s}{\text{d} t} = k_a \cdot c^l - k_d \cdot c^s,
 ```
 
 where $k_a$ is the adsorption rate constant and $k_d$ is the desorption rate constant.
@@ -71,15 +72,15 @@ This behavior is described by the following equation:
 ```{math}
 :label: langmuir_single_equilibrium
 
-q = q_{\text{max}} \frac{b \cdot c}{1 + b \cdot c},
+c^s = c^s_{\text{max}} \frac{b \cdot c^l}{1 + b \cdot c^l},
 ```
 
-where $q_{\text{max}}$ represents the saturation capacity of the stationary phase, and $b$ is the equilibrium constant for adsorption.
+where $c^s_{\text{max}}$ represents the saturation capacity of the stationary phase, and $b$ is the equilibrium constant for adsorption.
 
 At low concentrations, the Langmuir isotherm simplifies to the linear model {cite}`SchmidtTraub2020`:
 
 ```{math}
-\lim_{c \to 0} q = q_{\text{max}} \cdot b \cdot c = a \cdot c.
+\lim_{c^l \to 0} c^s = c^s_{\text{max}} \cdot b \cdot c^l = a \cdot c^l.
 ```
 
 The binding models described above focus exclusively on the adsorption of a single substance.
@@ -89,7 +90,7 @@ As a result, both the competitive effects among molecules of a single component 
 ```{math}
 :label: langmuir_multi_equilibrium
 
-q_i = q_{\text{max}, i} \frac{b_i \cdot c_i}{1 + \sum_{j}^{N_{\text{comp}}} b_j \cdot c_j}.
+c^s_i = c^s_{\text{max}, i} \frac{b_i \cdot c^l_i}{1 + \sum_{j}^{N_{\text{comp}}} b_j \cdot c^l_j}.
 ```
 
 Similarly, the model can be reformulated in a kinetic form:
@@ -97,43 +98,43 @@ Similarly, the model can be reformulated in a kinetic form:
 ```{math}
 :label: langmuir_multi_kinetic
 
-\frac{\text{d} q_i}{\text{d} t} = k_{a, i} \cdot c_{i} \cdot q_{\text{max}, i} \left( 1 - \sum_{j=1}^{N_{\text{comp}}} \frac{q_j}{q_{\text{max}, j}} \right) - k_{d, i} \cdot q_i.
+\frac{\text{d} c^s_i}{\text{d} t} = k_{a, i} \cdot c^l_{i} \cdot c^s_{\text{max}, i} \left( 1 - \sum_{j=1}^{N_{\text{comp}}} \frac{c^s_j}{c^s_{\text{max}, j}} \right) - k_{d, i} \cdot c^s_i.
 ```
 
 (ldf)=
 ### Digression: linear driving force models
 
 The linear driving force (LDF) approximation is sometimes used as an alternative to the native kinetic form of an isotherm {cite}`SchmidtTraub2020`.
-In the native approach, the rate of change of the amount of solute adsorbed, $\frac{\text{d}q}{\text{d}t}$, is an explicit function of the solute concentration $c$ and the amount adsorbed $q$.
+In the native approach, the rate of change of the solid phase concentration, $\frac{\text{d}c^s}{\text{d}t}$, is an explicit function of the liquid phase concentration $c^l$ and the solid phase concentration $c^s$.
 For example, in the Langmuir model:
 
 ```{math}
 :label: langmuir_native
 
-\frac{dq}{dt} = k_a \cdot c (q_{\text{max}} - q) - k_d \cdot q.
+\frac{dc^s}{dt} = k_a \cdot c^l (c^s_{\text{max}} - c^s) - k_d \cdot c^s.
 ```
 
-In the LDF approximation, the equilibrium concentration $q^*$ is used to calculate the rate of change of the amount of solute adsorbed for a given $c$.
-For the Langmuir model, $q^*$ is defined as:
+In the LDF approximation, the equilibrium concentration $c^{s,*}$ is used to calculate the rate of change of the solid phase concentration for a given $c^l$.
+For the Langmuir model, $c^{s,*}$ is defined as:
 
 ```{math}
 :label: langmuir_ldf_q
 
-q^* = \frac{q_{\text{max}} \cdot K_{\text{eq}} \cdot c}{1 + K_{\text{eq}} \cdot c},
+c^{s,*} = \frac{c^s_{\text{max}} \cdot K_{\text{eq}} \cdot c^l}{1 + K_{\text{eq}} \cdot c^l},
 ```
 
 where $K_{\text{eq}} = \frac{k_a}{k_d}$.
 
-The rate of change of the amount of solute adsorbed is then expressed as:
+The rate of change of the solid phase concentration is then expressed as:
 
 ```{math}
 :label: langmuir_ldf_dq_dt
 
-\frac{\text{d}q}{\text{d}t} = k_{\text{kin}} \cdot (q^* - q).
+\frac{\text{d}c^s}{\text{d}t} = k_{\text{kin}} \cdot (c^{s,*} - c^s).
 ```
 
-Here, the flux is proportional to the difference between the actual amount adsorbed and the equilibrium amount, $q^*$.
-The sign of $\frac{\text{d}q}{\text{d}t}$ ensures the flux acts toward equilibrium.
+Here, the flux is proportional to the difference between the actual solid phase concentration and the equilibrium concentration, $c^{s,*}$.
+The sign of $\frac{\text{d}c^s}{\text{d}t}$ ensures the flux acts toward equilibrium.
 In this approximation, the original rate constants $k_a$ and $k_d$ are replaced by the equilibrium constant $K_{\text{eq}}$ and a new kinetic constant $k_{\text{kin}}$.
 It is important to note that not all isotherms have a native representation in terms of explicit functions of solute concentration and amount adsorbed.
 For example, the Freundlich model does not follow this form {cite}`Herzog1909`.
@@ -153,10 +154,10 @@ The kinetic formulation of the Bi-Langmuir isotherm is given by
 ```{math}
 :label: bi-langmuir_kinetic
 
-\frac{\text{d} q_{i}^{m}}{\text{d} t} =  k_{a, i}^{m} \cdot c_{i} \cdot q_{\text{max}, i}^{m} \left( 1 - \sum_{j=1}^{N_{\text{comp}}} \frac{q_{j, m}}{q_{\text{max}, j}^{m}}\right) - k_{d, i}^{m} \cdot q_{i, m}
+\frac{\text{d} c^s_{i,m}}{\text{d} t} =  k_{a, i}^{m} \cdot c^l_{i} \cdot c^s_{\text{max}, i, m} \left( 1 - \sum_{j=1}^{N_{\text{comp}}} \frac{c^s_{j, m}}{c^s_{\text{max}, j, m}}\right) - k_{d, i}^{m} \cdot c^s_{i, m}
 ```
 
-where $k_{a, i}^{m}$ and $k_{d, i}^{m}$ are the adsorption and desorption rate constants, and $q_{\text{max}, i}^{m}$ is the maximum loading capacity of the $m$-th binding site.
+where $k_{a, i}^{m}$ and $k_{d, i}^{m}$ are the adsorption and desorption rate constants, and $c^s_{\text{max}, i, m}$ is the maximum loading capacity of the $m$-th binding site.
 
 
 ### Steric mass action law
@@ -189,17 +190,17 @@ The equilibrium with respect to a reference component $S$ is expressed as
 ```{math}
 :label: sma_selectivity
 
-K_{i, 0} = \left( \frac{q_i}{c_i} \right)^{\nu_i} \left( \frac{c_0}{q_0} \right)^{\nu_0} \quad i = 1, \dots, N_{\text{comp}} - 1,
+K_{i, 0} = \left( \frac{c^s_i}{c^l_i} \right)^{\nu_i} \left( \frac{c^l_0}{c^s_0} \right)^{\nu_0} \quad i = 1, \dots, N_{\text{comp}} - 1,
 ```
 
-where $c_0$ and $q_0$ denote the concentrations of the reference component in the liquid and solid phases of the beads, respectively.
+where $c^l_0$ and $c^s_0$ denote the concentrations of the reference component in the liquid and solid phases of the beads, respectively.
 The reference component is typically a simple ionic species, but in principle, any molecule can be chosen.
 Due to the stronger interaction forces in chemisorption, electroneutrality must be considered to determine the concentration of the bound reference component:
 
 ```{math}
 :label: sma_electroneutrality
 
-q_0 = \Lambda - \sum_{j=1}^{N_{\text{comp}} - 1} \nu_j q_j,
+c^s_0 = \Lambda - \sum_{j=1}^{N_{\text{comp}} - 1} \nu_j c^s_j,
 ```
 
 where $\Lambda$ is the total ionic capacity of the resin.
@@ -211,7 +212,7 @@ This can be accounted for by modifying the selectivity expression:
 ```{math}
 :label: sma_selectivity_steric
 
-K_{i, 0} = \left( \frac{q_i}{c_i} \right)^{\nu_i} \left( \frac{c_0}{\bar{q}_0} \right)^{\nu_0} \quad i = 1, \dots, N_{\text{comp}} - 1,
+K_{i, 0} = \left( \frac{c^s_i}{c^l_i} \right)^{\nu_i} \left( \frac{c^l_0}{\bar{c}^s_0} \right)^{\nu_0} \quad i = 1, \dots, N_{\text{comp}} - 1,
 ```
 
 To model steric shielding, a steric shielding factor $\sigma$ is introduced {cite}`Brooks1992`:
@@ -219,7 +220,7 @@ To model steric shielding, a steric shielding factor $\sigma$ is introduced {cit
 ```{math}
 :label: sma_free_sites
 
-\bar{q}_0 = q_0 - \sum_{j=1}^{N_{\text{comp}} - 1} \sigma_j q_j = \Lambda - \sum_{j=1}^{N_{\text{comp}} - 1} \left( \nu_j + \sigma_j \right) q_j
+\bar{c}^s_0 = c^s_0 - \sum_{j=1}^{N_{\text{comp}} - 1} \sigma_j c^s_j = \Lambda - \sum_{j=1}^{N_{\text{comp}} - 1} \left( \nu_j + \sigma_j \right) c^s_j
 ```
 
 The complete Steric Mass Action (SMA) model, which incorporates both kinetics and equilibrium, is then given by
@@ -227,7 +228,7 @@ The complete Steric Mass Action (SMA) model, which incorporates both kinetics an
 ```{math}
 :label: sma_isotherm
 
-\frac{\text{d} q_i}{\text{d} t} = k_{a, i} \cdot c_{i} \cdot \bar{q}_0^{\nu_i} - k_{d, i} \cdot q_i \cdot c_{0}^{\nu_i}
+\frac{\text{d} c^s_i}{\text{d} t} = k_{a, i} \cdot c^l_{i} \cdot \left(\bar{c}^s_0\right)^{\nu_i} - k_{d, i} \cdot c^s_i \cdot \left(c^l_0\right)^{\nu_i}
 ```
 
 where $k_{a, i}$ and $k_{d, i}$ are the adsorption and desorption rate constants.
@@ -298,17 +299,16 @@ Mass transport in the mobile phase due to convection is governed by the volumetr
 ```{math}
 :label: convection_pfr
 
-\dot{m}_{conv, i} = Q \cdot c_i \quad \text{with} \quad Q = A_c \cdot u,
+\dot{m}_{conv, i} = Q \cdot c^b_i \quad \text{with} \quad Q = A_c \cdot u,
 ```
 
 where $u$ is the mobile phase velocity, and $A_c$ is the column's cross-sectional area.
-
 The differential mass balance for component $i$ in the mobile phase is given by
 
 ```{math}
 :label: mass_balance_pfr
 
-\frac{\partial c_i}{\partial t} = - u \cdot \frac{\partial c_i}{\partial z}.
+\frac{\partial c^b_i}{\partial t} = - u \cdot \frac{\partial c^b_i}{\partial z}.
 ```
 
 where $z$ is the axial coordinate along the column.
@@ -319,13 +319,13 @@ At the column inlet and outlet, Danckwerts boundary conditions are typically app
 ```{math}
 :label: danckwerts_in_pfr
 
-u \cdot c_{in,i}(t) = u \cdot c_i(t,0) \quad \forall t > 0,
+u \cdot c_{in,i}(t) = u \cdot c^b_i(t,0) \quad \forall t > 0,
 ```
 
 ```{math}
 :label: danckwerts_out_pfr
 
-\frac{\partial c_i}{\partial z}(t, L_c) = 0 \quad \forall t > 0,
+\frac{\partial c^b_i}{\partial z}(t, L_c) = 0 \quad \forall t > 0,
 ```
 
 Here, $c_{in,i}(t)$ is the inlet concentration of component $i$, and $L_c$ is the length of the column.
@@ -341,7 +341,7 @@ This phenomenon is described analogously to Fick's laws of diffusion {cite}`Schm
 ```{math}
 :label: axial_dispersion
 
-\frac{\partial c_i}{\partial t} = D_{ax,i} \cdot \frac{\partial^2 c_i}{\partial z^2}
+\frac{\partial c^b_i}{\partial t} = D_{ax,i} \cdot \frac{\partial^2 c^b_i}{\partial z^2}
 ```
 
 where $D_{ax,i}$ is the axial dispersion coefficient, which reflects the deviations from ideal plug flow due to column packing quality.
@@ -350,15 +350,16 @@ Incorporating axial dispersion modifies the mass balance equation of the PFR mod
 ```{math}
 :label: mass_balance_dpfr
 
-\frac{\partial c_i}{\partial t} = -u \cdot \frac{\partial c_i}{\partial z} + D_{ax,i} \frac{\partial^2 c_i}{\partial z^2}.
+\frac{\partial c^b_i}{\partial t} = -u \cdot \frac{\partial c^b_i}{\partial z} + D_{ax,i} \frac{\partial^2 c^b_i}{\partial z^2}.
 ```
 
 The boundary conditions for this model are
+@todo: is still danckwerts? what is different than before?
 
 ```{math}
 :label: danckwerts_in_dpfr
 
-u \cdot c_{in,i}(t) = u \cdot c_i(t,0) - D_{ax,i} \frac{\partial c_i}{\partial z}(t, 0) \quad \forall t > 0.
+u \cdot c_{in,i}(t) = u \cdot c^b_i(t,0) - D_{ax,i} \frac{\partial c^b_i}{\partial z}(t, 0) \quad \forall t > 0.
 ```
 
 To account for chemical reactions within the (D)PFR, an additional term describing reaction kinetics is included in the mass balance equation (see {numref}`reaction_models`):
@@ -366,7 +367,7 @@ To account for chemical reactions within the (D)PFR, an additional term describi
 ```{math}
 :label: mass_balance_dpfr_reaction
 
-\frac{\partial c_i}{\partial t} = -u \cdot \frac{\partial c_i}{\partial z} + D_{ax,i} \frac{\partial^2 c_i}{\partial t^2} + f_{react}(c),
+\frac{\partial c^b_i}{\partial t} = -u \cdot \frac{\partial c^b_i}{\partial z} + D_{ax,i} \frac{\partial^2 c^b_i}{\partial t^2} + f_{react}(c),
 ```
 
 where $f_{\text{react},i}(c)$ represents the reaction flux for component $i$.
@@ -380,10 +381,10 @@ The particles in the bed reduce the effective cross-sectional area available for
 ```{math}
 :label: convection_em
 
-\dot{m}_{conv, i} = Q \cdot c_i \quad \text{with} \quad Q = \varepsilon \cdot A \cdot u ,
+\dot{m}_{conv, i} = Q \cdot c^b_i \quad \text{with} \quad Q = \varepsilon^t \cdot A_c \cdot u ,
 ```
 
-where $\varepsilon$ is the total porosity of the packed bed, $u$ is the mobile phase velocity, and $A$ is the column's cross-sectional area.
+where $\varepsilon^t$ is the total porosity of the packed bed, $u$ is the mobile phase velocity, and $A_c$ is the column's cross-sectional area.
 Solutes can diffuse from the interstitial volume between particles into the pores of the particles, where intraparticle diffusion and adsorption onto particle surfaces occur.
 The differing interactions of solutes with the stationary phase lead to their separation.
 
@@ -400,20 +401,20 @@ The differential mass balance for component $i$ is expressed as
 ```{math}
 :label: mass_balance_em
 
-\frac{\partial c_i}{\partial t} + F \cdot \frac{\partial q_i}{\partial t} = -u \cdot \frac{\partial c_i}{\partial z},
+\frac{\partial c^b_i}{\partial t} + F \cdot \frac{\partial c^s_i}{\partial t} = -u \cdot \frac{\partial c^b_i}{\partial z},
 ```
 
 where:
 
-- $c_i$ is the concentration of component $i$ in the mobile phase,
-- $q_i$ is the concentration in the stationary phase, and
-- $F = \frac{1 - \varepsilon}{\varepsilon}$ is the phase ratio.
-The relationship between $c$ and $q$ is defined by the adsorption isotherm (see {numref}`isotherm_models`):
+- $c^b_i$ is the concentration of component $i$ in the mobile phase,
+- $c^s_i$ is the concentration in the stationary phase, and
+- $F = \frac{1 - \varepsilon^t}{\varepsilon^t}$ is the phase ratio.
+The relationship between $c^b$ and $c^s$ is defined by the adsorption isotherm (see {numref}`isotherm_models`):
 
 ```{math}
 :label: implicit_adsorption
 
-0 = f_{\text{ads}} \left( c, q \right).
+0 = f_{\text{ads}} \left( c^b, c^s \right).
 ```
 
 (lumped_rate_model_without_pores)=
@@ -429,7 +430,7 @@ To account for peak broadening effects, axial dispersion is included, leading to
 ```{math}
 :label: mass_balance_edm
 
-\frac{\partial c_i}{\partial t} + F \cdot \frac{\partial q_i}{\partial t} = -u \cdot \frac{\partial c_i}{\partial z} + D_{ax,i} \frac{\partial^2 c_i}{\partial z^2}
+\frac{\partial c^b_i}{\partial t} + F \cdot \frac{\partial c^s_i}{\partial t} = -u \cdot \frac{\partial c^b_i}{\partial z} + D_{ax,i} \frac{\partial^2 c^b_i}{\partial z^2}
 ```
 
 Conversely, the Thomas model considers finite adsorption rates as discussed in {numref}`isotherm_models`, but neglects dispersion effects {cite}`Thomas1944`:
@@ -437,7 +438,7 @@ Conversely, the Thomas model considers finite adsorption rates as discussed in {
 ```{math}
 :label: mass_balance_thomas
 
-\frac{\partial c_i}{\partial t} + F \cdot \frac{\partial q_i}{\partial t} = -u \cdot \frac{\partial c_i}{\partial z} ,
+\frac{\partial c^b_i}{\partial t} + F \cdot \frac{\partial c^s_i}{\partial t} = -u \cdot \frac{\partial c^b_i}{\partial z} ,
 ```
 
 with
@@ -445,7 +446,7 @@ with
 ```{math}
 :label: dynamic_adsorption_thomas
 
-\frac{\partial q_i}{\partial t} = f_{\text{ads}}\left( c, q \right) .
+\frac{\partial c^s_i}{\partial t} = f_{\text{ads}}\left( c^b, c^s \right) .
 ```
 
 These models, collectively referred to as transport models, form the basis for describing chromatographic processes under non-ideal conditions.
@@ -454,13 +455,14 @@ This framework allows for independent specification of dispersion and adsorption
 
 - The equilibrium model corresponds to the LRM with $D_{ax} = 0$ and rapid equilibrium.
 - The transport-dispersive model (TDM) corresponds to the LRM with dynamic binding ($f_{\text{ads}}$) and $D_{ax} > 0$.
+- @todo: Add Thomas?
 
 
 (lumped_rate_model_with_pores)=
 ### Lumped rate model with pores
 
 To account for additional transport-limiting effects, the volume of the particle pores can be considered by introducing the particle porosity, $\varepsilon^p$.
-This creates a separate reference volume within the particles where the solute concentration, $c_i^p$, can differ from the bulk liquid phase concentration, $c_i^b$, where convection occurs.
+This creates a separate reference volume within the particles where the solute concentration, $c^p_i$, can differ from the bulk liquid phase concentration, $c^b_i$, where convection occurs.
 The interstitial porosity $\varepsilon^b$ represents the void volume between the particles in the packed bed.
 The total porosity, $\varepsilon^t$, is given by:
 
@@ -489,7 +491,7 @@ The transport from the bulk phase (denoted by the superscript $b$) to the pore p
 ```{math}
 :label: film_diffusion
 
-\frac{\partial c^p_i}{\partial t} = F \cdot \frac{3}{\varepsilon^p r^p} \cdot k_{f,i} \left(c^b_i - c_i^p \right)
+\frac{\partial c^p_i}{\partial t} = F \cdot \frac{3}{\varepsilon^p r^p} \cdot k_{f,i} \left(c^b_i - c^p_i \right)
 ```
 
 where $k_{f,i}$ is the film mass transfer coefficient.
@@ -500,29 +502,29 @@ The lumped rate model with pores (LRMP) combines these considerations into the f
 :label: mass_balance_lrmp
 
 \frac{\partial c^b_i}{\partial t} = -u \cdot \frac{\partial c^b_i}{\partial z} + D_{ax,i} \frac{\partial^2 c^b_i}{\partial z^2} - F \cdot \frac{3}{r^p} \cdot k_{f,i} \left(c^b_i - c^p_i \right) + f_{\text{react}}(c^b) , \\
-\frac{\partial c^p_i}{\partial t} + \frac{1 - \varepsilon^p}{\varepsilon^p} \cdot \frac{\partial q}{\partial t} = \frac{3}{\varepsilon^p r^p} \cdot k_{f,i} \left(c^b_i - c^p_i \right) + f^p_{\text{react}}(c^p, q) + \frac{1 - \varepsilon^p}{\varepsilon^p} f^s_{\text{react}}(c^p, q).
+\frac{\partial c^p_i}{\partial t} + \frac{1 - \varepsilon^p}{\varepsilon^p} \cdot \frac{\partial c^s_i}{\partial t} = \frac{3}{\varepsilon^p r^p} \cdot k_{f,i} \left(c^b_i - c^p_i \right) + f^p_{\text{react}}(c^p, c^s) + \frac{1 - \varepsilon^p}{\varepsilon^p} f^s_{\text{react}}(c^p, c^s).
 ```
 
 where:
 
 - $f_{\text{react}}(c^b)$ represents reaction kinetics in the bulk phase,
-- $f_{\text{react}}^p(c^p, q)$ represents reactions in the pore phase, and
-- $f_{\text{react}}^s(c^p, q)$ represents reactions on the particle surface.
+- $f_{\text{react}}^p(c^p, c^s)$ represents reactions in the pore phase, and
+- $f_{\text{react}}^s(c^p, c^s)$ represents reactions on the particle surface.
 The adsorption process in this model can be described in either a quasi-stationary or dynamic form:
 
 ```{math}
 :label: adsorption_dynamics
 
 \begin{aligned}
-    \text{quasi-stationary: } \quad 0 &= f_{\text{ads}} \left( c^p, q \right), \\
-    \text{dynamic: } \quad \frac{\partial q_i}{\partial t} &= f_{\text{ads}} \left( c^p, q \right) + f^s_{\text{react}}(c^p, q).
+    \text{quasi-stationary: } \quad 0 &= f_{\text{ads}} \left( c^p, c^s \right), \\
+    \text{dynamic: } \quad \frac{\partial c^s_i}{\partial t} &= f_{\text{ads}} \left( c^p, c^s \right) + f^s_{\text{react}}(c^p, c^s).
 \end{aligned}
 ```
 
 Here:
 
-- $f_{\text{ads}}(c^p, q)$ is the adsorption isotherm model equation (describing binding dynamics),
-- $f_{\text{react}}^s(c^p, q)$ accounts for surface reactions on the stationary phase.
+- $f_{\text{ads}}(c^p, c^s)$ is the adsorption isotherm model equation (describing binding dynamics),
+- $f_{\text{react}}^s(c^p, c^s)$ accounts for surface reactions on the stationary phase.
 
 (hdr)=
 ### High definition models

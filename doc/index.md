@@ -443,47 +443,48 @@ WENO
 **Symbols**
 
 | Symbol                             | Description                                                 | Unit                                           |
-|:---------------------------------- |:----------------------------------------------------------- |:---------------------------------------------- |
-| $a$                                | Henry coefficient (linear isotherm)                         |                                                |
+| :--------------------------------- | :---------------------------------------------------------- | :--------------------------------------------- |
+| $a$                                | Henry coefficient                                           |                                                |
 | $a_s$                              | Specific particle surface area                              | $\text{m}^{-1}$                                |
 | $A_c$                              | Column cross-sectional area                                 | $\text{m}^{2}$                                 |
-| $b$                                | Equilibrium constant (Langmuir isotherm)                    | $\text{m}^{3}\,\text{mol}^{-1}$                |
-| $c$                                | Mobile phase concentration                                  | $\text{mol}\,\text{m}^{-3}$                    |
-| $C_{i,\text{total}}$               | Total separation cost for component $i$                     | $\text{€}\,\text{kg}^{-1}$                     |
-| $C_{\text{operating}}$             | Operating cost (overhead, wages, maintenance)               | $\text{€}\,\text{kg}^{-1}$                     |
-| $C_{\text{depreciation}}$          | Depreciation cost                                           | $\text{€}\,\text{kg}^{-1}$                     |
-| $C_{i,\text{ads}}$                 | Adsorbent cost for component $i$                            | $\text{€}\,\text{kg}^{-1}$                     |
-| $C_{i,\text{el}}$                  | Eluent cost for component $i$                               | $\text{€}\,\text{kg}^{-1}$                     |
-| $C_{i,\text{feed}}$                | Feed cost for component $i$                                 | $\text{€}\,\text{kg}^{-1}$                     |
+| $b$                                | Langmuir parameter constant                                 | $\text{m}^{3}\,\text{mol}^{-1}$                |
+| $c$                                | Molar concentration                                         | $\text{mol}\,\text{m}^{-3}$                    |
+| $c^l$                              | Liquid phase concentration (local to stationary phase)      | $\text{mol}\,\text{m}^{-3}$                    |
+| $c^s$                              | Stationary phase concentration                              | $\text{mol}\,\text{m}^{-3}$                    |
+| $c^{s,*}$                          | Equilibrium stationary phase concentration (LDF)            | $\text{mol}\,\text{m}^{-3}$                    |
+| $c^s_{\text{max}}$                 | Maximum stationary phase capacity                           | $\text{mol}\,\text{m}^{-3}$                    |
+| $C_{i,\text{ads}}$                 | Adsorbent cost for component $i$                            | $\text{€}\,\text{mol}^{-1}$                    |
+| $C_{i,\text{el}}$                  | Eluent cost for component $i$                               | $\text{€}\,\text{mol}^{-1}$                    |
+| $C_{i,\text{feed}}$                | Feed cost for component $i$                                 | $\text{€}\,\text{mol}^{-1}$                    |
+| $C_{i,\text{total}}$               | Total separation cost for component $i$                     | $\text{€}\,\text{mol}^{-1}$                    |
+| $C_{\text{depreciation}}$          | Depreciation cost                                           | $\text{€}\,\text{mol}^{-1}$                    |
+| $C_{\text{operating}}$             | Operating cost (overhead, wages, maintenance)               | $\text{€}\,\text{mol}^{-1}$                    |
 | $D_{ax}$                           | Axial dispersion coefficient                                | $\text{m}^{2}\,\text{s}^{-1}$                  |
 | $e_{\text{fwd}/\text{bwd},\ell,j}$ | Reaction order of component $\ell$ in reaction $j$          |                                                |
-| $EC_i$                             | Specific eluent consumption for component $i$               | $\text{m}^{3}\,\text{kg}^{-1}$                 |
-| $F$                                | Phase ratio $(1 - \varepsilon) / \varepsilon$               |                                                |
-| $f_{\text{ads}}(c, q)$             | Adsorption isotherm function                                |                                                |
-| $p_{\text{ads}}$                   | Adsorbent price                                             | $\text{€}\,\text{m}^{-3}$                      |
-| $p_{\text{el}}$                    | Eluent price                                                | $\text{€}\,\text{m}^{-3}$                      |
-| $p_{\text{feed}}$                  | Feed price                                                  | $\text{€}\,\text{m}^{-3}$                      |
+| $EC_i$                             | Specific eluent consumption for component $i$               | $\text{m}^{3}\,\text{mol}^{-1}$                |
+| $F$                                | Phase ratio                                                 |                                                |
+| $f_{\text{ads}}(c^l, c^s)$         | Adsorption isotherm function                                |                                                |
 | $\mathcal{F}(c_j, c_{j+1})$        | Numerical flux function (finite volume)                     |                                                |
 | $f_{\text{react},i}$               | Reaction flux for component $i$                             | $\text{mol}\,\text{m}^{-3}\,\text{s}^{-1}$     |
 | $k_a$                              | Adsorption rate constant                                    | $\text{m}^{3}\,\text{mol}^{-1}\,\text{s}^{-1}$ |
 | $k_d$                              | Desorption rate constant                                    | $\text{s}^{-1}$                                |
-| $K_{\text{eq}}$                    | Equilibrium constant (LDF)                                  | $\text{m}^{3}\,\text{mol}^{-1}$                |
 | $k_f$                              | Film mass transfer coefficient                              | $\text{m}\,\text{s}^{-1}$                      |
-| $k_{\text{kin}}$                   | Kinetic rate constant (LDF approximation)                   | $\text{s}^{-1}$                                |
+| $k_{\text{kin}}$                   | Kinetic rate constant                                       | $\text{s}^{-1}$                                |
+| $K_{\text{eq}}$                    | Equilibrium constant                                        | $\text{m}^{3}\,\text{mol}^{-1}$                |
 | $K_{i,0}$                          | Selectivity coefficient (SMA)                               |                                                |
-| $L_c$                              | Column length                                               | $\text{m}$                                     |
-| $m_i$                              | Amount of component $i$ collected                           | $\text{mol}$                                   |
-| $m_{\text{feed},i}$                | Amount of component $i$ in the feed                         | $\text{mol}$                                   |
-| $\dot{m}_{i,\text{annual}}$        | Annual production rate of component $i$                     | $\text{kg}\,\text{yr}^{-1}$                    |
+| $L_c$                              | Column length                                               | $\text{m}$ $\text{m}$                          |
+| $n_i$                              | Amount of component $i$ collected                           | $\text{mol}$ $\text{mol}$                      |
+| $n_{\text{feed},i}$                | Amount of component $i$ in the feed                         | $\text{mol}$                                   |
+| $\dot{n}_{i,\text{annual}}$        | Annual production rate of component $i$                     | $\text{mol}\,\text{yr}^{-1}$                   |
 | $N_{\text{chrom}}$                 | Number of chromatograms                                     |                                                |
 | $N_{\text{comp}}$                  | Number of components                                        |                                                |
 | $N_{\text{frac},k}^i$              | Number of fractions for component $i$ in chromatogram $k$   |                                                |
 | $N_{\text{react}}$                 | Number of reactions                                         |                                                |
-| $PR_i$                             | Specific productivity of component $i$                      | $\text{kg}\,\text{m}^{-3}\,\text{s}^{-1}$      |
+| $p_{\text{ads}}$                   | Adsorbent price                                             | $\text{€}\,\text{m}^{-3}$                      |
+| $p_{\text{el}}$                    | Eluent price                                                | $\text{€}\,\text{m}^{-3}$                      |
+| $p_{\text{feed}}$                  | Feed price                                                  | $\text{€}\,\text{m}^{-3}$                      |
+| $PR_i$                             | Specific productivity of component $i$                      | $\text{mol}\,\text{m}^{-3}\,\text{s}^{-1}$     |
 | $PU_i$                             | Product purity of component $i$                             | $\%$                                           |
-| $q$                                | Stationary phase loading                                    | $\text{mol}\,\text{m}^{-3}$                    |
-| $q^*$                              | Equilibrium loading concentration (LDF)                     | $\text{mol}\,\text{m}^{-3}$                    |
-| $q_{\text{max}}$                   | Maximum loading capacity                                    | $\text{mol}\,\text{m}^{-3}$                    |
 | $Q$                                | Volumetric flow rate                                        | $\text{m}^{3}\,\text{s}^{-1}$                  |
 | $r^p$                              | Particle radius                                             | $\text{m}$                                     |
 | $s_{i,j}$                          | Stoichiometric coefficient of component $i$ in reaction $j$ |                                                |
@@ -499,28 +500,36 @@ WENO
 | $\Delta t_{\text{cycle}}$          | Cycle duration                                              | $\text{s}$                                     |
 | $\Delta t_{\text{life}}$           | Adsorbent lifetime                                          | $\text{s}$                                     |
 | $\varepsilon$                      | Porosity                                                    |                                                |
+| $\varepsilon^t$                    | Total porosity                                              |                                                |
 | $\varphi_j$                        | Net flux of reaction $j$                                    | $\text{mol}\,\text{m}^{-3}\,\text{s}^{-1}$     |
 | $\Lambda$                          | Ionic capacity of the resin (SMA)                           | $\text{mol}\,\text{m}^{-3}$                    |
 | $\nu$                              | Characteristic charge (SMA)                                 |                                                |
-| $\sigma$                           | Steric shielding factor (SMA)                               |                                                |
+| $\sigma$                           | Steric shielding factor (SMA)                               | $\text{mol}\,\text{m}^{-3}$                    |
 
 {raw-latex}`\clearpage`
 
-**Subscripts and superscripts**
+**Superscripts**
 
-| Symbol                          | Description               |
-|:------------------------------- |:------------------------- |
-| $b$                             | Bulk (interstitial) phase |
-| $i, j, \ell$                    | Component index           |
-| $p$                             | Particle pore phase       |
-| $k$                             | Chromatogram index        |
-| $m$                             | Binding site index        |
-| $\text{in}$, $\text{out}$       | Inlet, outlet             |
-| $\text{chrom}$                  | Chromatogram              |
-| $\text{comp}$                   | Component                 |
-| $\text{feeds}, \text{solvents}$ | Feed, solvent inlets      |
-| $\text{frac}$                   | Fraction                  |
-| $\text{react}$                  | Reaction                  |
+| Symbol      | Description               |
+| :---------- | :------------------------ |
+| $(\cdot)^b$ | Bulk (interstitial) phase                               |
+| $(\cdot)^l$ | Liquid phase (local to stationary phase: $c^b$ or $c^p$) |
+| $(\cdot)^m$ | Binding site index                                      |
+| $(\cdot)^p$ | Particle pore phase                                     |
+| $(\cdot)^s$ | Stationary phase                                        |
+
+**Subscripts**
+
+| Symbol                                            | Description          |
+| :------------------------------------------------ | :------------------- |
+| $(\cdot)_{\text{chrom}}$                          | Chromatogram         |
+| $(\cdot)_{\text{comp}}$                           | Component            |
+| $(\cdot)_{\text{feed}}, (\cdot)_{\text{solvent}}$ | Feed, solvent inlets |
+| $(\cdot)_{\text{frac}}$                           | Fraction             |
+| $(\cdot)_{i}, (\cdot)_{j}, (\cdot)_{\ell}$        | Component index      |
+| $(\cdot)_{\text{in}}, (\cdot)_{\text{out}}$       | Inlet, outlet        |
+| $(\cdot)_{k}$                                     | Chromatogram index   |
+| $(\cdot)_{\text{react}}$                          | Reaction             |
 
 
 {raw-latex}`\clearpage`

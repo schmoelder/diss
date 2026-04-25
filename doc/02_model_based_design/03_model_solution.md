@@ -46,7 +46,7 @@ Using the chain rule, the time derivative of the solid phase concentration can b
 ```{math}
 :label: solid_phase_derivative_chain_rule
 
-\frac{\partial q_i}{\partial t} = \left. \frac{\text{d} q_i}{\text{d} c_i} \right|_{c_i^+} \cdot \frac{\partial c_i}{\partial t}.
+\frac{\partial c^s_i}{\partial t} = \left. \frac{\text{d} c^s_i}{\text{d} c_i} \right|_{c_i^+} \cdot \frac{\partial c_i}{\partial t}.
 ```
 Rearranging eq. {eq}`mass_balance_em` and substituting eq. {eq}`solid_phase_derivative_chain_rule` yields the propagation velocity $w(c_i^+)$
 of a concentration front $c_i^+$:
@@ -54,7 +54,7 @@ of a concentration front $c_i^+$:
 ```{math}
 :label: propagation_velocity
 
-w(c_i^+) = \frac{u}{1 + F \cdot \left. \frac{\text{d} q_i}{\text{d} c_i} \right|_{c_i^+}}.
+w(c_i^+) = \frac{u}{1 + F \cdot \left. \frac{\text{d} c^s_i}{\text{d} c_i} \right|_{c_i^+}}.
 ```
 
 By considering the column length $L_c$, the retention time for a concentration $t_{\text{R},i}(c_i^+)$ can be derived as:
@@ -62,10 +62,10 @@ By considering the column length $L_c$, the retention time for a concentration $
 ```{math}
 :label: retention_time
 
-t_{\text{R},i}(c_i^+) = \frac{L_c}{w(c_i^+)} = t_{0,t} \cdot \left( 1 + F \cdot \left. \frac{\text{d} q_i}{\text{d} c_i} \right|_{c_i^+} \right),
+t_{\text{R},i}(c_i^+) = \frac{L_c}{w(c_i^+)} = t_{0,t} \cdot \left( 1 + F \cdot \left. \frac{\text{d} c^s_i}{\text{d} c_i} \right|_{c_i^+} \right),
 ```
 where $t_{0,t} = L_c / u$ is the column dead time.
-For a linear isotherm, where $\frac{\text{d} q_i}{\text{d} c_i} = a_i$ (Henry coefficient), this simplifies to:
+For a linear isotherm, where $\frac{\text{d} c^s_i}{\text{d} c_i} = a_i$ (Henry coefficient), this simplifies to:
 
 ```{math}
 :label: retention_time_linear

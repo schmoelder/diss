@@ -48,7 +48,7 @@ To add a fractionation event, the following information needs to be provided:
 - `chromatogram`: Name of the chromatogram. Optional if only one outlet is set as `product_outlet`.
 
 Any number of fractions can be added to the {class}`~CADETProcess.fractionation.Fractionator`.
-The resulting {class}`~CADETProcess.performance.Performance` object then contains information about key performance indicators such as mass, volume, purity, concentration, productivity, recovery yield, as well as eluent consumption (refer to eq {eq}`mass` to {eq}`purity`).
+The resulting {class}`~CADETProcess.performance.Performance` object then contains information about key performance indicators such as mass, volume, purity, concentration, productivity, recovery yield, as well as eluent consumption (refer to eq {eq}`molar_amount` to {eq}`purity`).
 The chromatogram can be plotted with the fraction times overlaid (see {numref}`chromatogram_fractionation`).
 
 ### Optimization of fractionation times
