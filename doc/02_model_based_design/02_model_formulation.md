@@ -190,25 +190,25 @@ The net flux for component $i$ is expressed as
 :label: mass_action
 
 \begin{aligned}
- f_{\text{react},i}\left(c\right) &= \sum_{j=0}^{N_{\text{react}}-1} s_{i,j} \varphi_j\left(c\right), \\
- \varphi_j(c) &= k_{\text{fwd},j} \prod_{\ell=0}^{N_{\text{comp}}-1} \left(c_{\ell}\right)^{e_{\text{fwd},\ell,j}} - k_{\text{bwd},j} \prod_{\ell=0}^{N_{\text{comp}}-1} \left(c_{\ell}\right)^{e_{\text{bwd},\ell,j}},
+ f_{\text{react},i}\left(c\right) &= \sum_{r=0}^{N_{\text{react}}-1} s_{i,r} \varphi_r\left(c\right), \\
+ \varphi_r(c) &= k_{\text{fwd},r} \prod_{\ell=0}^{N_{\text{comp}}-1} \left(c_{\ell}\right)^{e_{\text{fwd},\ell,r}} - k_{\text{bwd},r} \prod_{\ell=0}^{N_{\text{comp}}-1} \left(c_{\ell}\right)^{e_{\text{bwd},\ell,r}},
 \end{aligned}
 ```
 
-Here, subscript $i$ denotes the component of interest, $j$ the reaction, and $\ell$ is a summation index over all components:
+Here, subscript $i$ denotes the component of interest, $r$ the reaction, and $\ell$ is a summation index over all components:
 
-- $s_{i,j}$ are the stoichiometric coefficients of component $i$ in reaction $j$, which are negative for reactants and positive for products.
-- $\varphi_j(c)$ is the net flux of reaction $j$.
-- $k_{\text{fwd},j}$ and $k_{\text{bwd},j}$ are the forward and backward rate constants, respectively.
-- $e_{\text{fwd},\ell,j}$ and $e_{\text{bwd},\ell,j}$ are the reaction orders for the forward and backward reactions, respectively.
-By default, the exponents $e_{\text{fwd},\ell,j}$ and $e_{\text{bwd},\ell,j}$ are derived from the stoichiometric coefficients using the following rules:
+- $s_{i,r}$ are the stoichiometric coefficients of component $i$ in reaction $r$, which are negative for reactants and positive for products.
+- $\varphi_r(c)$ is the net flux of reaction $r$.
+- $k_{\text{fwd},r}$ and $k_{\text{bwd},r}$ are the forward and backward rate constants, respectively.
+- $e_{\text{fwd},\ell,r}$ and $e_{\text{bwd},\ell,r}$ are the reaction orders for the forward and backward reactions, respectively.
+By default, the exponents $e_{\text{fwd},\ell,r}$ and $e_{\text{bwd},\ell,r}$ are derived from the stoichiometric coefficients using the following rules:
 
 ```{math}
 :label: mal_exponents
 
 \begin{aligned}
- e_{\text{fwd},\ell,j} &= \max(0, -s_{\ell,j}), \\
- e_{\text{bwd},\ell,j} &= \max(0, s_{\ell,j}).
+ e_{\text{fwd},\ell,r} &= \max(0, -s_{\ell,r}), \\
+ e_{\text{bwd},\ell,r} &= \max(0, s_{\ell,r}).
 \end{aligned}
 ```
 

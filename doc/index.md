@@ -460,7 +460,7 @@ WENO
 | $C_{\text{depreciation}}$          | Depreciation cost                                           | $\text{€}\,\text{mol}^{-1}$                    |
 | $C_{\text{operating}}$             | Operating cost (overhead, wages, maintenance)               | $\text{€}\,\text{mol}^{-1}$                    |
 | $D_{ax}$                           | Axial dispersion coefficient                                | $\text{m}^{2}\,\text{s}^{-1}$                  |
-| $e_{\text{fwd}/\text{bwd},\ell,j}$ | Reaction order of component $\ell$ in reaction $j$          |                                                |
+| $e_{\text{fwd}/\text{bwd},\ell,r}$ | Reaction order of component $\ell$ in reaction $r$          |                                                |
 | $EC_i$                             | Specific eluent consumption for component $i$               | $\text{m}^{3}\,\text{mol}^{-1}$                |
 | $F$                                | Phase ratio                                                 |                                                |
 | $f_{\text{ads}}(c^l, c^s)$         | Adsorption isotherm function                                |                                                |
@@ -488,7 +488,7 @@ WENO
 | $PU_i$                             | Product purity of component $i$                             | $\%$                                           |
 | $Q$                                | Volumetric flow rate                                        | $\text{m}^{3}\,\text{s}^{-1}$                  |
 | $r^p$                              | Particle radius                                             | $\text{m}$                                     |
-| $s_{i,j}$                          | Stoichiometric coefficient of component $i$ in reaction $j$ |                                                |
+| $s_{i,r}$                          | Stoichiometric coefficient of component $i$ in reaction $r$ |                                                |
 | $t$                                | Time                                                        | $\text{s}$                                     |
 | $t_{0,t}$                          | Column dead time                                            | $\text{s}$                                     |
 | $t_{\text{R},i}$                   | Retention time of component $i$                             | $\text{s}$                                     |
@@ -507,7 +507,7 @@ WENO
 | $\Delta z$                         | Spatial grid spacing                                        | $\text{m}$                                     |
 | $\varepsilon$                      | Porosity                                                    |                                                |
 | $\varepsilon^t$                    | Total porosity                                              |                                                |
-| $\varphi_j$                        | Net flux of reaction $j$                                    | $\text{mol}\,\text{m}^{-3}\,\text{s}^{-1}$     |
+| $\varphi_r$                        | Net flux of reaction $r$                                    | $\text{mol}\,\text{m}^{-3}\,\text{s}^{-1}$     |
 | $\Lambda$                          | Ionic capacity of the resin (SMA)                           | $\text{mol}\,\text{m}^{-3}$                    |
 | $\nu$                              | Characteristic charge (SMA)                                 |                                                |
 | $\sigma$                           | Steric shielding factor (SMA)                               | $\text{mol}\,\text{m}^{-3}$                    |
@@ -534,6 +534,7 @@ WENO
 | $(\cdot)_{f}$                                     | Fraction index       |
 | $(\cdot)_{\text{frac}}$                           | Fraction             |
 | $(\cdot)_{i}, (\cdot)_{j}, (\cdot)_{\ell}$        | Component index      |
+| $(\cdot)_{r}$                                     | Reaction index       |
 | $(\cdot)_{\text{in}}, (\cdot)_{\text{out}}$       | Inlet, outlet        |
 | $(\cdot)_{k}$                                     | Chromatogram index   |
 | $(\cdot)_{n}$                                     | Spatial grid / cell index |
