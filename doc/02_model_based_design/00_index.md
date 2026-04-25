@@ -1,39 +1,22 @@
 (fundamentals)=
 # Model-based design of chromatographic processes
 
-The complex and nonlinear behavior of chromatographic systems makes empirical design of the processes difficult and time-consuming.
-To address this challenge and optimize the performance of chromatographic processes, mathematical models and numerical simulations are increasingly being used to characterize the behavior of the systems and to identify optimal operating conditions.
-This chapter reviews the fundamentals of chromatographic processes and model-based design.
-
-Models provide a framework for a deeper understanding of the underlying mechanisms of chromatography and have become more prevalent in recent years due to unprecedented availability of data and computational resources.
-These models are key in testing hypotheses to verify and refine the understanding of chromatographic processes and their dominating effects.
-They are also instrumental in the design and selection of experiments, which maximizes the information gained from each experiment.
-Moreover, models play a crucial role in evaluating the feasibility and value propositions of new potential processes.
-They provide quantifiable information on the costs and risks associated with various scenarios, aiding in well-informed decision-making.
-Furthermore, models are used for robustness analysis, uncertainty quantification, and real-time process control, ensuring safe and reliable operations.
+Model-based approaches serve as decision-support tools throughout the process development lifecycle.
+They assist in experimental design, quantify costs and risks associated with new process concepts, and enable informed decisions during both development and operation.
+In chromatography, nonlinear dynamics and numerous interacting physico-chemical phenomena make purely empirical design costly and time-consuming, motivating the use of mechanistic models.
+These are typically formulated as systems of partial differential-algebraic equations (PDAEs), solved either analytically under simplifying assumptions or numerically in the general case.
+With the increasing availability of data and computational resources, model-based approaches have become both practical and widely adopted.
 
 Several important steps are required to ensure a model's reliability and accuracy.
-First, a suitable model must be developed that is capable of addressing the problem at hand.
-This development phase often involves selecting an appropriate theoretical framework, defining key assumptions, and identifying model parameters.
-
+First, *model selection* involves choosing a suitable theoretical framework, defining key assumptions, and identifying the relevant model parameters.
 The model must then be *verified* to ensure its theoretical soundness and correct implementation through rigorous testing.
 This involves checking that the mathematical equations are solved correctly, the software implementation matches the theoretical formulation, and the model behaves as expected when compared to benchmarks and well-defined test cases.
-
 During model *calibration*, parameters are estimated to minimize residuals between model predictions and experimental data (see {numref}`model_calibration`), improving predictive accuracy.
-Following successful calibration, the model undergoes *validation* using independent experimental datasets not used during calibration to rigorously assess its accuracy and reliability in real-world scenarios.
-It is important to note that model development typically follows an iterative DBTL cycle (design, build, test, learn) rather than a linear progression, allowing for continuous refinement through repeated cycles of calibration and validation.
+Following successful calibration, the model undergoes *validation* using independent experimental datasets not used during calibration to assess its accuracy and reliability in real-world scenarios.
+It is important to note that model development typically follows an iterative design–build–test–learn (DBTL) cycle rather than a linear progression, allowing for continuous refinement through repeated calibration and validation steps.
 
-Consequently, developing accurate models for chromatographic processes requires a thorough understanding of their mechanistic principles.
-Aspects such as retention mechanisms and transport phenomena are particularly important, as discussed in {numref}`chromatographic_principle`.
-Typically, chromatographic processes are mathematically described using partial differential equations, which are first parametrized to represent the specific system under study and then solved numerically.
-For a more in-depth discussion on the modeling approach and the numerical solutions to these equations, refer to sections {numref}`%s <model_formulation>` and {numref}`%s <model_solution>`.
-
-The primary focus of this work is to validate the CADET-Process framework for modeling and optimizing chromatographic processes.
-This validation includes parameter estimation and model calibration against experimental data, as demonstrated in {numref}`characterization`.
-The validated framework then enables the investigation of various operating modes and a comprehensive comparison of their performance.
-These models enable the determination of a range of metrics to evaluate the performance of specific chromatographic process scenarios, as detailed in {numref}`design_formulation`.
-Subsequently, different optimization algorithms can be applied to identify optimal operating conditions by maximizing the defined performance metrics.
-A more detailed discussion of these optimization techniques can be found in {numref}`design_solution`.
+This chapter reviews the fundamentals underlying these steps.
+It begins with the mechanistic principles of retention and transport ({numref}`chromatographic_principle`), followed by mathematical model formulations and their numerical solution ({numref}`model_formulation`, {numref}`model_solution`), and concludes with methods for process performance evaluation and optimization ({numref}`design_formulation`, {numref}`design_solution`).
 
 <!--
 Ziel des Kapitels: übersicht über state of the art. Motivation der eigens verwendeten Methoden. EINORDNUNG!
