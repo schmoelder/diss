@@ -446,6 +446,7 @@ WENO
 | :--------------------------------- | :---------------------------------------------------------- | :--------------------------------------------- |
 | $a$                                | Henry coefficient                                           |                                                |
 | $a_s$                              | Specific particle surface area                              | $\text{m}^{-1}$                                |
+| $A^p$                              | Particle surface area                                       | $\text{m}^{2}$                                 |
 | $A_c$                              | Column cross-sectional area                                 | $\text{m}^{2}$                                 |
 | $b$                                | Langmuir adsorption equilibrium constant                    | $\text{m}^{3}\,\text{mol}^{-1}$                |
 | $c$                                | Molar concentration                                         | $\text{mol}\,\text{m}^{-3}$                    |

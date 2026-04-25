@@ -417,11 +417,13 @@ where the term $\left( 1 - \varepsilon^b \right) \varepsilon^p$ accounts for the
 The stationary phase particles are assumed to be surrounded by a stagnant boundary layer, whose thickness depends on the properties of the mobile phase and the flow rate.
 A thicker boundary layer slows down mass transport and increases band broadening, while a thinner layer allows for faster mass transfer and improves separation efficiency.
 To model this, a film diffusion term accounts for transport through the stagnant film around the particles.
-The flux through this boundary layer depends on the specific surface area, $a_s$, of the particles in a finite volume element, which is expressed as:
+The flux through this boundary layer depends on the specific surface area, $a_s$, of the particles in a finite volume element.
+Here, $A^p$ denotes the total particle surface area and $V$ the volume of the element, giving:
+
 ```{math}
 :label: specific_particle_surface
 
-a_s = \frac{\text{d} A}{\text{d} V} = \frac{3}{r^p} \cdot (1 - \varepsilon^b),
+a_s = \frac{\text{d} A^p}{\text{d} V} = \frac{3}{r^p} \cdot (1 - \varepsilon^b),
 ```
 
 where $r^p$ is the particle radius.
