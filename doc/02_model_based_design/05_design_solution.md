@@ -112,12 +112,12 @@ Moreover, like many optimization algorithms, *COBYLA* does not guarantee global 
 (genetic_algorithm)=
 ### Genetic Algorithms
 
-Genetic algorithms (GAs) are optimization algorithms inspired by the principles of natural evolution.
+Genetic algorithms (GAs) are optimization routines inspired by the principles of natural evolution.
 In a GA, an initial population of candidate solutions is generated, and each candidate is evaluated based on one or more objective functions.
 The fittest candidates are then selected to reproduce, creating the next generation through processes such as crossover and mutation.
 This cycle of selection, reproduction, and mutation is repeated over several generations until a satisfactory solution is found.
-There are several variations of GAs, including *NSGA2*, *NSGA3*, and *SPEA2*, each offering specific features and strengths.
+There are several variations of GAs, including *NSGA-II*, *NSGA-II*, and *SPEA2*, each offering specific features and strengths.
 One key advantage of GAs is their inherent parallelizability; since each candidate solution can be evaluated independently, the evaluation process can be distributed across multiple processors or computers, significantly accelerating the optimization.
 Another key advantage is their insensitivity to initial values: unlike gradient-based methods, GAs evaluate a population of diverse candidate solutions, making them robust and less dependent on starting points.
 While GAs are effective optimization tools, they do not guarantee finding the global optimum and can be sensitive to parameter settings, such as population size, mutation rate, and crossover rate.
-For this work, a modified *NSGA3* is used due to its strong support for multi-objective optimization problems {cite}`Jain2014`.
+For this work, a modified *NSGA-III* algorithm is used due to its strong support for multi-objective optimization problems {cite}`Jain2014`.
