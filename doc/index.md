@@ -229,7 +229,7 @@ CC
     Creative Commons
 
 CG
-    Continuous Galerking method
+    Continuous Galerkin method
 
 CI/CD
     Continuous integration/Continuous deployment
@@ -241,7 +241,7 @@ COBYLA
     Constrained optimization by linear approximation algorithm
 
 COP
-    Constrained optimization programming
+    Constrained optimization problem
 
 CSTR
     Continuous stirred tank reactor model
@@ -252,11 +252,11 @@ CV
 DAE
     Differential-algebraic equation
 
-DBTL cycle
+DBTL
     Design, build, test, learn cycle
 
 DG
-    Discontinuous Galerking method
+    Discontinuous Galerkin method
 
 DoE
     Design of experiments
@@ -267,14 +267,14 @@ DOF
 DRY
     Don't repeat yourself
 
-ET
-    Equilibrium theory
+EDM
+    Equilibrium-dispersive model
 
 EM
     Equilibrium model
 
-EDM
-    Equilibrium-dispersive model
+ET
+    Equilibrium theory
 
 EULA
     End-user license agreement
@@ -303,17 +303,20 @@ GA
 GC
     Gas chromatography
 
-GRM
-    General rate model
-
 GPL
     GNU General Public License
+
+GRM
+    General rate model
 
 ILP
     Integer linear programming
 
 KISS
     Keep it simple, stupid
+
+KPI
+    Key performance indicator
 
 LC
     Liquid chromatography
@@ -322,7 +325,7 @@ LDF
     Linear driving force
 
 LFS
-    Large file system
+    Large file storage
 
 LP
     Linear programming
@@ -332,12 +335,6 @@ LRM
 
 LRMP
     Lumped rate model with pores
-
-KPI
-    Key performance indicator
-
-SMB
-    Simulated moving bed
 
 MCMC
     Markov Chain Monte Carlo
@@ -363,14 +360,32 @@ NLP
 NRMSE
     Normalized root mean square error
 
+(U-)NSGA-(II/III)
+    (Unified) Nondominated-sorting genetic algorithms (II/III)
+
 ODE
     Ordinary differential equation
 
 OOP
     Object-oriented programming
 
+P&ID
+    Process and instrumentation diagram
+
+PD(A)E
+    Partial differential (algebraic) equation
+
+PEP
+    Python Enhancement Proposal
+
 (D)PFR
     (Dispersive) Plug flow reactor
+
+PyPI
+    Python Package Index
+
+QP
+    Quadratic programming
 
 RDM
     Research data management
@@ -381,14 +396,14 @@ RK
 RSE
     Research software engineering
 
-QP
-    Quadratic programming
-
 SFC
     Supercritical fluid chromatography
 
 SMA
     Steric mass action law
+
+SMB
+    Simulated moving bed
 
 SOO
     Single-objective optimization
@@ -398,12 +413,6 @@ SSE
 
 SUPG
     Streamline-upwind Petrov-Galerkin stabilization
-
-PD(A)E
-    Partial differential (algebraic) equation
-
-PEP
-    Python Enhancement Proposal
 
 TB
     True moving bed
