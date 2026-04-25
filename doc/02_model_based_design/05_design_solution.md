@@ -1,24 +1,22 @@
 (design_solution)=
 # Solution of chromatographic design problems
 
-The design of preparative chromatographic processes is a complex task, involving numerous degrees of freedom that can be manipulated to optimize performance.
-These include continuous variables, such as column length and diameter, injection volume, concentration, and flow rate, as well as dynamic changes to the connectivity the flow sheet.
-Additionally, structural decisions - such as selecting the optimal operating concept or mode - can also be subject to optimization.
-This makes it possible to determine the operating conditions and the overall process structure simultaneously, ensuring that the design aligns with the specific requirements of the separation problem.
-Overall, the design process requires a systematic approach to carefully evaluate all variables and identify the optimal combination of parameters to achieve the desired separation performance.
-In this chapter, multiple approaches for addressing these challenges are discussed.
+The design of preparative chromatographic processes involves numerous degrees of freedom that can be manipulated to optimize performance.
+These include continuous variables such as column geometry, injection volume, concentration, and flow rates, as well as discrete decisions such as selecting the operating mode or flow sheet connectivity.
+Addressing these challenges systematically requires a combination of methods: shortcut methods provide rapid design guidance based on simplified or analytical problem formulations, parameter sampling supports exploration of the design space and sensitivity analysis, and optimization algorithms enable systematic identification of optimal operating conditions.
+Importantly, these methods are not limited to process design but apply equally to model calibration and parameter estimation, as introduced in {numref}`model_calibration`.
+The following sections introduce the most relevant approaches used in this work.
 
 (shortcut_methods)=
 ## Shortcut methods
 
 Shortcut methods refer to techniques for the design and optimization of processes that are based on heuristics and simplifying assumptions {cite}`Nicoud2015`.
-These methods aim to simplify and accelerate the design process by reducing the time and computational resources required.
+By exploiting simplified problem formulations or analytical results, they avoid the need for full numerical simulations, making them particularly useful as a first step in process design or as a source of initial estimates for subsequent optimization.
 Examples include the use of empirical equations or pre-determined values to estimate key parameters, statistical or machine learning techniques to model process behavior, and optimization algorithms to efficiently identify the best solutions.
 
 One notable shortcut method is the application of equilibrium theory.
-Although it assumes the absence of kinetic limitations - which may not hold for certain scenarios, such as the separation of larger molecules - it serves as a foundational concept in several design methods.
+Although it assumes the absence of kinetic limitations, which may not hold for certain scenarios, such as the separation of larger molecules, it serves as a foundational concept in several design methods.
 Equilibrium theory provides inherent boundaries for process design, making it a valuable starting point {cite}`SchmidtTraub2020`.
-
 This approach is particularly useful in the design and operation of SMB processes.
 The central idea is to determine an operating region for dimensionless flow rate ratios where a complete separation of a two-component mixture is achievable in a (theoretical) true moving bed (TMB) process.
 For linear isotherms, this operating region takes the shape of a triangle and is commonly referred to as the *triangle theory*.
@@ -40,7 +38,6 @@ In such cases, optimization algorithms are often employed to overcome these chal
 Parameter sampling is a common approach used in the design of chromatographic processes.
 It involves creating a grid of possible parameter values and evaluating the process performance for each combination.
 However, as the number of parameters increases, the number of parameter combinations grows exponentially, a phenomenon known as the curse of dimensionality.
-
 To address this challenge, several advanced sampling techniques have been developed to efficiently explore the parameter space.
 One such technique is advanced polytope sampling, which employs methods like *Markov Chain Monte Carlo (MCMC)* and *Hit-and-Run*.
 
@@ -53,15 +50,13 @@ In such cases, optimization algorithms like gradient descent and genetic algorit
 These algorithms iteratively explore the parameter space and can converge on optimal solutions more quickly and efficiently than sampling-based methods.
 However, advanced sampling techniques are still valuable for efficiently initializing these optimization algorithms by providing a representative starting point for parameter exploration.
 
-Beyond process design, parameter sampling plays a critical role in the development of error models, which are essential for the successful implementation and operation of chromatographic processes.
-Error models are used to predict process performance under varying operating conditions, identify potential sources of variability, and highlight opportunities for improvement.
-Sampling techniques are particularly useful for generating data to develop and validate these error models.
-For example, a Design of Experiments (DoE) approach systematically varies process parameters and measures their impact on performance metrics.
-The resulting data can then be used to build statistical models that predict process performance and evaluate the uncertainty of these predictions.
-By employing advanced sampling methods, the collected data becomes more representative of the parameter space, reducing the risk of bias or non-representativeness in error models.
+Parameter sampling also supports the development of surrogate and error models, which characterize process sensitivity to variability in operating conditions.
+For example, a Design of Experiments (DoE) approach systematically varies process parameters and measures their effect on performance metrics.
+The resulting data can be used to build statistical models that predict process performance and quantify prediction uncertainty.
+More representative sampling of the parameter space reduces the risk of bias in these models.
 
 (optimization_algorithms)=
-## Optimization algorithms
+## Optimization
 
 Optimization problems can be classified based on the type of variables, constraints, and objectives involved.
 Some common classes include:
@@ -75,38 +70,30 @@ Some common classes include:
 - Mixed integer nonlinear programming (MINLP): Finding the optimal solution to an objective function where some or all variables are constrained to be integers, with linear or nonlinear constraints
 - Multi-objective optimization (MOO): Solving multiple conflicting objective functions simultaneously, typically requiring trade-offs between competing goals.
 
-The choice of optimization algorithm and solution method depends on the specific class of problem being addressed, as well as the desired trade-off between solution quality and computational efficiency.
-
+The choice of optimization algorithm depends on the specific class of problem being addressed, as well as the desired trade-off between solution quality and computational efficiency.
 Optimization algorithms can generally be categorized into deterministic and stochastic solvers.
 Deterministic solvers follow predefined search patterns and do not rely on randomness, ensuring repeatable results.
-Stochastic solvers, such as genetic algorithms, incorporate randomness, e.g. by simulating biological evolution.
-These algorithms adapt populations through mutations, crossover of genetic information, and selection, where better-performing solutions survive while inferior ones are eliminated.
-
+Stochastic solvers incorporate randomness into their search procedure; for example, genetic algorithms simulate biological evolution through mutation, crossover, and selection.
+Although results may vary between runs, reproducible outcomes can be ensured by fixing the random seed, which is important for scientific reproducibility.
 Different solvers excel depending on the problem characteristics.
 Gradient-based solvers, for example, can efficiently find local optima but may struggle with flat objective functions or non-convex landscapes.
 On the other hand, derivative-free solvers, while often better at handling non-convex functions, generally require significantly more computational effort.
-
 Gradient-based NLP solvers, such as interior-point methods {cite}`Kawajiri2006`, sequential programming {cite}`Arkell2018`, and simplex algorithms {cite}`GarciaPalacios2009`, have been widely used for process optimization.
 Additionally, derivative-free approaches, including genetic algorithms {cite}`Heinonen2014,Schmoelder2020` and Gaussian process regression {cite}`Freier2018,Jaepel2022`, have proven effective for complex, non-convex problems.
-
 For optimization problems involving both continuous and discrete variables, MINLP has been successfully applied.
 Methods such as extended cutting plane algorithms {cite}`Emet2008`, outer approximation {cite}`Kaspereit2012`, and evolutionary algorithms {cite}`GarciaPalacios2011` have been employed to address challenges related to structural decision variables and general process optimization.
-
 In the following sections, the specific algorithms used in this work will be presented.
 
 (cobyla)=
 ### Constrained optimization by linear approximation
 
 The constrained optimization by linear approximation algorithm (*COBYLA*) is a method designed for constrained problems where the derivative of the objective function is unknown {cite}`Powell1994`.
-This algorithm approximates both the objective function and constraints with linear problems.
-Then, the linear problem is solved which results in a new candidate solution.
-This candidate is then evaluated against the original objective and constraint functions to gather new information, which is used to refine the linear approximation.
-If the solution cannot be improved, the step size is reduced, further refining the search.
-The algorithm terminates once the step size becomes sufficiently small.
+At each iteration, the algorithm constructs linear approximations of the objective function and all constraints, solves the resulting linear subproblem to obtain a new candidate solution, and then evaluates the candidate against the original nonlinear functions to update the approximation.
+If no improvement is achieved, the step size is reduced; the algorithm terminates once the step size falls below a prescribed tolerance.
 
-While *COBYLA* supports nonlinear constraints, it can be computationally expensive for problems with a large number of variables or constraints due to the high number of function evaluations required.
-Additionally, since the method relies on linear approximations, it may not provide highly accurate results for problems with strongly nonlinear behavior.
-Moreover, like many optimization algorithms, *COBYLA* does not guarantee global optimality and may become trapped in local optima.
+*COBYLA* requires no gradient information, which makes it straightforward to apply to black-box objective functions such as those arising from chromatographic simulations.
+It is particularly well-suited to problems with a moderate number of variables and moderately nonlinear behavior, where it converges reliably with low implementation overhead.
+However, it can be computationally expensive for high-dimensional problems, and, like most local methods, does not guarantee global optimality.
 
 
 (genetic_algorithm)=
@@ -114,10 +101,13 @@ Moreover, like many optimization algorithms, *COBYLA* does not guarantee global 
 
 Genetic algorithms (GAs) are optimization routines inspired by the principles of natural evolution.
 In a GA, an initial population of candidate solutions is generated, and each candidate is evaluated based on one or more objective functions.
-The fittest candidates are then selected to reproduce, creating the next generation through processes such as crossover and mutation.
-This cycle of selection, reproduction, and mutation is repeated over several generations until a satisfactory solution is found.
-There are several variations of GAs, including *NSGA-II*, *NSGA-II*, and *SPEA2*, each offering specific features and strengths.
+The fittest candidates are selected to reproduce, creating successive generations through crossover and mutation, until a satisfactory solution is found.
+
 One key advantage of GAs is their inherent parallelizability; since each candidate solution can be evaluated independently, the evaluation process can be distributed across multiple processors or computers, significantly accelerating the optimization.
 Another key advantage is their insensitivity to initial values: unlike gradient-based methods, GAs evaluate a population of diverse candidate solutions, making them robust and less dependent on starting points.
 While GAs are effective optimization tools, they do not guarantee finding the global optimum and can be sensitive to parameter settings, such as population size, mutation rate, and crossover rate.
-For this work, a modified *NSGA-III* algorithm is used due to its strong support for multi-objective optimization problems {cite}`Jain2014`.
+There are several variations of GAs, including *NSGA-II*, *NSGA-III*, and *SPEA2*, each offering specific features and strengths.
+In this work, the *U-NSGA-III* algorithm is employed for multi-objective optimization due to its robustness and performance on problems with multiple objectives {cite}`Jain2014`.
+
+In this work, equilibrium theory serves as a shortcut method for analytical benchmarking and initial estimates, COBYLA is applied for single-objective constrained optimization, and NSGA-III for multi-objective problems.
+These are applied in the case studies presented in {numref}`operating_modes`.
