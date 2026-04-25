@@ -7,7 +7,6 @@ Continuous Integration/Continuous Deployment (CI/CD) addresses this by automatin
 *Continuous Deployment* (CD) extends this by automatically deploying tested, release-ready code to end-users, for example by uploading a new package version to a package manager.
 
 In practice, services like [*Github Actions*](https://github.com/features/actions) or [*Travis CI*](https://www.travis-ci.com/) can be used to automate the CI/CD process by defining workflows that are triggered by specific events such as pull requests or releases.
-
 In CADET-Process, *Github Actions* is used to implement the following pipeline:
 
 - On every pull request push: code formatting, the presence of docstrings, and type annotations are checked and enforced using *pre-commit* and *ruff* (see {ref}`Language and domain specific aspects <style>` and {numref}`software_documentation`), and the test suite is executed using *pytest* (see {numref}`software_tests`).
