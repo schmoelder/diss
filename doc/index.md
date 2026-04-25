@@ -451,10 +451,10 @@ WENO
 | $c$                                | Molar concentration                                         | $\text{mol}\,\text{m}^{-3}$                    |
 | $c^l$                              | Liquid phase concentration (local to stationary phase)      | $\text{mol}\,\text{m}^{-3}$                    |
 | $c^s$                              | Stationary phase concentration                              | $\text{mol}\,\text{m}^{-3}$                    |
-| $c^{s,*}$                          | Equilibrium stationary phase concentration (LDF)            | $\text{mol}\,\text{m}^{-3}$                    |
 | $c^s_{\text{max}}$                 | Maximum stationary phase capacity                           | $\text{mol}\,\text{m}^{-3}$                    |
+| $\bar{c}^s_0$                      | Free counter-ion sites (SMA)                                | $\text{mol}\,\text{m}^{-3}$                    |
 | $C_{i,\text{ads}}$                 | Adsorbent cost for component $i$                            | $\text{€}\,\text{mol}^{-1}$                    |
-| $C_{i,\text{el}}$                  | Eluent cost for component $i$                               | $\text{€}\,\text{mol}^{-1}$                    |
+| $C_{i,\text{eluent}}$              | Eluent cost for component $i$                               | $\text{€}\,\text{mol}^{-1}$                    |
 | $C_{i,\text{feed}}$                | Feed cost for component $i$                                 | $\text{€}\,\text{mol}^{-1}$                    |
 | $C_{i,\text{total}}$               | Total separation cost for component $i$                     | $\text{€}\,\text{mol}^{-1}$                    |
 | $C_{\text{depreciation}}$          | Depreciation cost                                           | $\text{€}\,\text{mol}^{-1}$                    |
@@ -463,27 +463,26 @@ WENO
 | $e_{\text{fwd}/\text{bwd},\ell,r}$ | Reaction order of component $\ell$ in reaction $r$          |                                                |
 | $EC_i$                             | Specific eluent consumption for component $i$               | $\text{m}^{3}\,\text{mol}^{-1}$                |
 | $F$                                | Phase ratio                                                 |                                                |
-| $f_{\text{ads}}(c^l, c^s)$         | Adsorption isotherm function                                |                                                |
-| $\mathcal{F}(c_n, c_{n+1})$        | Numerical flux function (finite volume)                     |                                                |
+| $f_{\text{ads}}$                   | Adsorption isotherm function                                |                                                |
+| $\mathcal{F}$                      | Numerical flux function (finite volume)                     |                                                |
 | $f_{\text{react},i}$               | Reaction flux for component $i$                             | $\text{mol}\,\text{m}^{-3}\,\text{s}^{-1}$     |
 | $k_a$                              | Adsorption rate constant                                    | $\text{m}^{3}\,\text{mol}^{-1}\,\text{s}^{-1}$ |
 | $k_d$                              | Desorption rate constant                                    | $\text{s}^{-1}$                                |
 | $k_f$                              | Film mass transfer coefficient                              | $\text{m}\,\text{s}^{-1}$                      |
-| $k_{\text{kin}}$                   | Kinetic rate constant                                       | $\text{s}^{-1}$                                |
 | $K_{\text{eq}}$                    | Equilibrium constant                                        | $\text{m}^{3}\,\text{mol}^{-1}$                |
 | $K_{i,0}$                          | Selectivity coefficient (SMA)                               |                                                |
-| $L_c$                              | Column length                                               | $\text{m}$ $\text{m}$                          |
-| $n_i$                              | Amount of component $i$ collected                           | $\text{mol}$ $\text{mol}$                      |
+| $L_c$                              | Column length                                               | $\text{m}$                                     |
+| $n_i$                              | Amount of component $i$ collected                           | $\text{mol}$                                   |
 | $n_{\text{feed},i}$                | Amount of component $i$ in the feed                         | $\text{mol}$                                   |
 | $\dot{n}_{i,\text{annual}}$        | Annual production rate of component $i$                     | $\text{mol}\,\text{yr}^{-1}$                   |
 | $N_{\text{chrom}}$                 | Number of chromatograms                                     |                                                |
 | $N_{\text{comp}}$                  | Number of components                                        |                                                |
+| $N_{\text{eluents}}$               | Number of eluent inlets                                     |                                                |
+| $N_{\text{feeds}}$                 | Number of feed inlets                                       |                                                |
 | $N_{\text{frac},k}^i$              | Number of fractions for component $i$ in chromatogram $k$   |                                                |
 | $N_{\text{react}}$                 | Number of reactions                                         |                                                |
 | $N_z$                              | Number of spatial grid cells                                |                                                |
-| $p_{\text{ads}}$                   | Adsorbent price                                             | $\text{€}\,\text{m}^{-3}$                      |
-| $p_{\text{el}}$                    | Eluent price                                                | $\text{€}\,\text{m}^{-3}$                      |
-| $p_{\text{feed}}$                  | Feed price                                                  | $\text{€}\,\text{m}^{-3}$                      |
+| $p_{\text{ads/eluent/feed}}$       | Adsorbent / eluent / feed price                             | $\text{€}\,\text{m}^{-3}$                      |
 | $PR_i$                             | Specific productivity of component $i$                      | $\text{mol}\,\text{m}^{-3}\,\text{s}^{-1}$     |
 | $PU_i$                             | Product purity of component $i$                             | $\%$                                           |
 | $Q$                                | Volumetric flow rate                                        | $\text{m}^{3}\,\text{s}^{-1}$                  |
@@ -496,7 +495,7 @@ WENO
 | $u$                                | Interstitial mobile phase velocity                          | $\text{m}\,\text{s}^{-1}$                      |
 | $V$                                | Volume                                                      | $\text{m}^{3}$                                 |
 | $V^s$                              | Volume of stationary phase                                  | $\text{m}^{3}$                                 |
-| $V_{\text{solvent}}$               | Solvent volume consumed per cycle                           | $\text{m}^{3}$                                 |
+| $V_{\text{eluent}}$                | Eluent volume consumed per cycle                            | $\text{m}^{3}$                                 |
 | $w$                                | Propagation velocity of a concentration front               | $\text{m}\,\text{s}^{-1}$                      |
 | $x$                                | Vector of optimization variables                            |                                                |
 | $\omega$                           | Weighting factor                                            |                                                |
@@ -505,40 +504,40 @@ WENO
 | $\Delta t_{\text{cycle}}$          | Cycle duration                                              | $\text{s}$                                     |
 | $\Delta t_{\text{life}}$           | Adsorbent lifetime                                          | $\text{s}$                                     |
 | $\Delta z$                         | Spatial grid spacing                                        | $\text{m}$                                     |
-| $\varepsilon$                      | Porosity                                                    |                                                |
+| $\varepsilon$                      | Porosity (superscript indicates phase)                      |                                                |
 | $\varepsilon^t$                    | Total porosity                                              |                                                |
 | $\varphi_r$                        | Net flux of reaction $r$                                    | $\text{mol}\,\text{m}^{-3}\,\text{s}^{-1}$     |
 | $\Lambda$                          | Ionic capacity of the resin (SMA)                           | $\text{mol}\,\text{m}^{-3}$                    |
 | $\nu$                              | Characteristic charge (SMA)                                 |                                                |
-| $\sigma$                           | Steric shielding factor (SMA)                               | $\text{mol}\,\text{m}^{-3}$                    |
+| $\sigma$                           | Steric shielding factor (SMA)                               |                                                |
 
 {raw-latex}`\clearpage`
 
 **Superscripts**
 
-| Symbol      | Description               |
-| :---------- | :------------------------ |
-| $(\cdot)^b$ | Bulk (interstitial) phase                               |
+| Symbol      | Description                                              |
+| :---------- | :------------------------------------------------------- |
+| $(\cdot)^b$ | Bulk (interstitial) phase                                |
 | $(\cdot)^l$ | Liquid phase (local to stationary phase: $c^b$ or $c^p$) |
-| $(\cdot)^m$ | Binding site index                                      |
-| $(\cdot)^p$ | Particle pore phase                                     |
-| $(\cdot)^s$ | Stationary phase                                        |
+| $(\cdot)^m$ | Binding site index                                       |
+| $(\cdot)^p$ | Particle pore phase                                      |
+| $(\cdot)^s$ | Stationary phase                                         |
 
 **Subscripts**
 
-| Symbol                                            | Description          |
-| :------------------------------------------------ | :------------------- |
-| $(\cdot)_{\text{chrom}}$                          | Chromatogram         |
-| $(\cdot)_{\text{comp}}$                           | Component            |
-| $(\cdot)_{\text{feed}}, (\cdot)_{\text{solvent}}$ | Feed, solvent inlets |
-| $(\cdot)_{f}$                                     | Fraction index       |
-| $(\cdot)_{\text{frac}}$                           | Fraction             |
-| $(\cdot)_{i}, (\cdot)_{j}, (\cdot)_{\ell}$        | Component index      |
-| $(\cdot)_{r}$                                     | Reaction index       |
-| $(\cdot)_{\text{in}}, (\cdot)_{\text{out}}$       | Inlet, outlet        |
-| $(\cdot)_{k}$                                     | Chromatogram index   |
-| $(\cdot)_{n}$                                     | Spatial grid / cell index |
-| $(\cdot)_{\text{react}}$                          | Reaction             |
+| Symbol                                           | Description               |
+| :----------------------------------------------- | :------------------------ |
+| $(\cdot)_{\text{chrom}}$                         | Chromatogram              |
+| $(\cdot)_{\text{comp}}$                          | Component                 |
+| $(\cdot)_{\text{feed}}, (\cdot)_{\text{eluent}}$ | Feed, eluent inlets       |
+| $(\cdot)_{f}$                                    | Fraction index            |
+| $(\cdot)_{\text{frac}}$                          | Fraction                  |
+| $(\cdot)_{i}, (\cdot)_{j}, (\cdot)_{\ell}$       | Component index           |
+| $(\cdot)_{r}$                                    | Reaction index            |
+| $(\cdot)_{\text{in}}, (\cdot)_{\text{out}}$      | Inlet, outlet             |
+| $(\cdot)_{k}$                                    | Chromatogram index        |
+| $(\cdot)_{n}$                                    | Spatial grid / cell index |
+| $(\cdot)_{\text{react}}$                         | Reaction                  |
 
 
 {raw-latex}`\clearpage`
