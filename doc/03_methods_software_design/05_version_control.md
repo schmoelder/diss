@@ -28,6 +28,17 @@ VCSs have been in use since the early 1980s, with early systems like *RCS* and *
 *SVN* later introduced centralized server-based collaboration, while *Git*, developed by Linus Torvalds in 2005, introduced a fully distributed model in which every developer holds a complete copy of the repository.
 According to Open Hub, *Git* has a market share of $\gt 70~\%$ {cite}`openhub` and is the system used for developing CADET-Process.
 
+## Collaborative development
+
+Modern VCS platforms such as *GitHub* or *GitLab* build on top of the core VCS functionality to support structured collaboration.
+*Issues* provide a lightweight mechanism for reporting bugs, requesting features, or discussing proposed changes.
+Each issue is tracked with a title, description, and status, and can be assigned to specific developers, labeled by category, and linked to the commits that resolve it.
+*Pull requests* (PRs) extend this by providing a structured process for proposing and reviewing code changes before they are merged into the master branch.
+A PR bundles a set of commits from a feature branch with a description of the changes and their motivation, and opens them for review by other contributors.
+Reviewers can leave inline comments, request revisions, and approve the changes once satisfied.
+In CADET-Process, every change to the codebase goes through a pull request, ensuring that new contributions are reviewed and automatically tested before they are merged (see {numref}`ci_cd`).
+The repository is hosted on GitHub at https://github.com/fau-advanced-separations/CADET-Process.
+
 ## Software releases
 
 While a VCS tracks every change to the source code, end-users typically do not interact with the full development history.

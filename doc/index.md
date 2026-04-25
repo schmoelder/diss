@@ -381,6 +381,9 @@ PEP
 (D)PFR
     (Dispersive) Plug flow reactor
 
+PR
+    Pull request
+
 PyPI
     Python Package Index
 
