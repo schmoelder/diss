@@ -1,50 +1,46 @@
 (software_licenses)=
 # Software licenses
 
-To protect and encourage the creation of intellectual goods, intellectual property laws give creators property rights to the works they create.
-Internationally, these laws are regulated under the rules of the World Trade Organization's (WTO) Agreement on Trade-Related Aspects of Intellectual Property Rights (TRIPS), which requires WTO members to provide the rights to copyright, patents, and trademarks {cite}`trips_agreement`.
+To protect and incentivize the creation of intellectual goods, intellectual property laws grant creators exclusive rights to their work.
+At the international level, these rights are governed by agreements such as the World Trade Organization's (WTO) Agreement on Trade-Related Aspects of Intellectual Property Rights (TRIPS), which requires member states to provide legal protection for copyrights, patents, and trademarks {cite}`trips_agreement`.
 
-*Copyright* automatically attaches to every novel expression of an idea, whether through text, sounds, or imagery, without the need for registration.
-The copyright laws grant the exclusive rights to reproduction, modification, and distribution of the work for a certain time.
+*Copyright* automatically applies to original expressions of ideas, including text, images, and software code, without requiring formal registration.
+It grants the exclusive right to reproduce, modify, and distribute the work for a limited period of time.
 
-*Patents*, on the other hand, protect the underlying substance of the idea itself, rather than its specific expression.
-Like copyright, it prevents others from copying, selling or advertising the invention, but there is a limited time in which the idea can be protected until it enters the public domain.
-However, to get patent protection, the inventor must first apply for and be granted a patent from the responsible patent office.
+*Patents*, in contrast, protect inventions and functional ideas rather than their specific expression.
+They prevent others from making, using, or selling the invention for a limited duration, after which it enters the public domain.
+Patent protection must be actively applied for and granted by the relevant authority.
 
-Finally, a *trademark* is a word, phrase, symbol, or design that identifies and distinguishes the source of the goods of one party from those of others.
-It prevents others from using similar marks in a way that would cause confusion about the origin of the goods.
-Unlike copyright and patents, trademark rights can be re-registered as long as the marks are actively used.
+A *trademark* is a word, phrase, symbol, or design that identifies and distinguishes the origin of goods or services.
+It protects against confusingly similar uses by others and can be maintained indefinitely, provided it remains in active use.
 
 ## Licenses
 
-While computer software is primarily designed to achieve functional goals, there are many different ways in which these instructions can be formulated.
-As a result, computer software (in the form of source code or binary executable) is protected by copyright because human creativity is involved.
-Although this provides some level of protection for the software, the operations and underlying ideas of the application can also be patented to further safeguard intellectual property.
+Although software is developed to fulfill functional requirements, its implementation is shaped by numerous design decisions, resulting in a concrete expression that is protected by copyright.
+Both source code and compiled binaries therefore fall under copyright law, while specific technical solutions may additionally be protected by patents.
 
-However, a problem arises when software is published without a license.
-Because no permission for use has been granted, the software cannot legally be used until it enters the public domain after the copyright term has passed.
-The copyright holder can demand at any point that the software no longer be used and fine those who continue to use it.
-Therefore, a proper license should be added to the software as soon as it is shared with others.
-These licenses define the permissions and limitations of using and redistributing the software {cite}`Laurent2004`.
+A practical issue arises when software is distributed without an explicit license.
+In this case, all rights remain reserved by default, and others are not legally permitted to use, modify, or redistribute the software.
+This restriction applies even if the source code is publicly accessible.
+To avoid this ambiguity, a license should be provided whenever software is shared, explicitly defining the permitted uses and limitations {cite}`Laurent2004`.
 
-Software licenses can be classified into two categories: (1) proprietary licenses and (2) free and open-source software (FOSS) licenses.
-In the case of proprietary software, users are typically required to accept an end-user license agreement (EULA) that specifies the terms and conditions for using the software, such as the number of allowed installations.
-In contrast, the copyright holders of FOSS grant users the freedom to use, study, modify, and distribute the software.
+Software licenses can broadly be classified into two categories: proprietary licenses and free and open-source software (FOSS) licenses.
+Proprietary software is typically distributed under an end-user license agreement (EULA), which restricts usage, modification, and redistribution.
+In contrast, FOSS licenses grant users the freedom to use, study, modify, and share the software.
 
-However, there is some ambiguity in the terms "open source software" and "free software".
-"Free software" does not only mean that the software is free of charge.
-For example, "freeware" is also free of charge but does not necessarily guarantee access to the source code or permission to share the software.
-In this context, "free software" should be interpreted as the freedom in "free speech" (not "free beer").
-Later, the term "open source software" was introduced as an alternative term.
-However, as previously explained, even published source code cannot be used unless the license explicitly allows it.
-Therefore, terms such as FOSS (free and open-source software) and *libre* software are used nowadays to mean the same concept.
-FOSS licenses can be divided into two categories: (1) permissive licenses, which allow modification and re-licensing under other licenses, and (2) copyleft licenses, which protect against proprietarization by requiring the use of the same license for derivative works.
+The terminology in this domain is often ambiguous.
+The term "free software" refers to freedom rather than price, in the sense of "free speech" rather than "free beer".
+By contrast, "freeware" denotes software that is available at no cost but does not necessarily grant access to the source code or rights to modify and redistribute it.
+The term "open-source software" was introduced to emphasize accessibility of the source code and collaborative development.
+Importantly, publicly visible source code remains fully protected by copyright unless an explicit license grants usage rights.
 
-The following table gives an overview of the different rights that are granted to users by different types of software licenses.
+FOSS licenses can be further divided into permissive and copyleft licenses.
+Permissive licenses allow modification and redistribution under different licensing terms, including proprietary ones.
+Copyleft licenses, by contrast, require that derivative works be distributed under the same license, thereby preserving openness.
+The following table summarizes the rights associated with common licensing models.
 
 ```{table} Software Licenses
 :name: software_licenses_overview
-
 
 | Rights granted       | Public domain (e.g. CC0) | Permissive license (e.g. MIT) | Copyleft license (e.g. GPL) | Freeware | Proprietary software | Trade secret |
 | -------------------- | ------------------------ | ----------------------------- | --------------------------- | -------- | -------------------- | ------------ |
@@ -52,40 +48,33 @@ The following table gives an overview of the different rights that are granted t
 | Copying/distribution | +                        | +                             | +                           | Often    | -                    | -            |
 | Modification         | +                        | +                             | +                           | -        | -                    | -            |
 | Re-licensing         | +                        | +                             | -                           | -        | -                    | -            |
-
 ```
 
-On their website, the Open Source Initiative lists more than 100 different software licenses {cite}`OpenSourceInitiative`.
-The following section discusses some of the most significant licenses.
+The Open Source Initiative lists more than 100 approved licenses {cite}`OpenSourceInitiative`.
+The following highlights several widely used examples.
 
-The *GNU General Public License (GPL)* is the most popular open-source license.
-It guarantees end-users the freedom to run, study, share, and modify the software.
-Its primary objective is to keep software free, making it a copyleft license.
-Any derivative work created must be published under the same license.
-This license, specifically *GPLv3* is also used for the release of CADET-Process in the hope that other researchers may find it useful for their work.
+The *GNU General Public License (GPL)* is one of the most widely used open-source licenses.
+It guarantees the rights to use, study, modify, and redistribute software and enforces these freedoms through its copyleft provision, requiring derivative works to be licensed under the same terms.
+CADET-Process is released under GPLv3 to ensure that improvements remain openly accessible.
 
-The *MIT* license is an example of a more lenient license with very few restrictions.
-It requires copyright to be reserved, limits liability, and allows re-licensing under any other license, including proprietary licenses.
+The *MIT license* represents a permissive alternative with minimal restrictions.
+It allows redistribution and re-licensing, including incorporation into proprietary software, while requiring attribution and limiting liability.
 
-The *Creative Commons license (CC)* is frequently used to distribute copyrighted work.
-It isn't restricted to any particular type of work and can be used for any creative work, such as texts, music, or videos.
-Its modular approach allows for different conditions to be combined.
-For instance, the *CC-BY-SA* license necessitates that the original creator be credited, and any changes be distributed under the same terms.
-Because some of the conditions are incompatible with other licenses, CC is usually not used for software but can be used for documentation, supplementary material, or scientific publications (such as this one).
+The *Creative Commons (CC)* licenses are commonly used for non-software content such as text, figures, and multimedia.
+They offer a modular framework in which conditions such as attribution and share-alike requirements can be combined.
+Due to compatibility issues and their focus on creative works, CC licenses are generally not recommended for software but are widely used for documentation and scientific publications (such as this one).
 
 ## Benefits of open-source software
 
-There are multiple benefits of releasing software under an open-source license.
-Firstly, by making software freely available, the general public can benefit from the development work that has already been done.
-Secondly, opening up development to the public can encourage the adoption of standards, leading to increased outside contributions to the project and its ecosystem.
-Moreover, there is a growing movement advocating for publicly funded software to be made publicly accessible to everyone {cite}`unesco_open_science, Schiltz2007`.
-Therefore, releasing software under an open-source license can be a great way to promote collaboration and innovation.
+Laurent identifies three primary benefits of open-source distribution: innovation, reliability, and longevity {cite}`Laurent2004`.
+Open development fosters innovation by enabling contributions from a diverse community.
+It improves reliability, as broader scrutiny increases the likelihood of identifying and resolving defects.
+It also supports longevity, since projects can be maintained and extended beyond their original developers.
 
-In his book "Understanding Open Source and Free Software Licensing", author Andrew Laurent identifies three primary benefits of open distribution and modification of software {cite}`Laurent2004`.
-*Innovation*, as more programmers introduce new ideas to improve a program; *reliability*, as more perspectives lead to the discovery and resolution of more bugs, resulting in better quality code; and *longevity*, as other programmers can continue a project even if the original developer(s) stop contributing.
+Open-source development further promotes community engagement.
+Users can report issues and propose improvements through public platforms (see {numref}`version_control`), and exchange workflows and best practices via the CADET community forum (https://forum.cadet-web.de), which is complemented by an annual workshop and monthly office hours.
 
-Another critical aspect, particularly relevant to this work, is the reproducibility of scientific research.
-Results cannot be verified by others without access to both the raw data and the libraries and tools required to analyze the data.
-And without validation, it's difficult to build further on such results reliably.
-
-The choice of an open-source license for CADET-Process is therefore also a commitment to reproducibility: by making the framework freely available, results obtained with it can be independently verified and built upon by others.
+There is also a growing movement advocating that publicly funded research software should be openly accessible {cite}`unesco_open_science, Schiltz2007`.
+Open availability is a prerequisite for reproducibility, as scientific results cannot be independently verified without access to the underlying tools and data.
+Releasing CADET-Process as open-source software therefore reflects a commitment to transparency and reproducibility.
+The following chapter extends this perspective to research data management.
