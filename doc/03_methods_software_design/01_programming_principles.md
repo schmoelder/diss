@@ -12,28 +12,20 @@ kernelspec:
 (programming_principles)=
 # Programming principles
 
-When writing code, it is crucial to consider the time and effort required to modify it, which often exceeds the time spent on writing the code in the first place.
-Moreover, the context in which code is read can be vastly different from the one in which it was written.
-Especially for collaborative projects where multiple developers work on the same codebase, as unclear code can lead to confusion and errors that can be difficult to fix.
-In such cases, clear and concise code that is easy to understand and navigate becomes critical for maintaining code quality and ensuring its longevity.
-
-To improve the readability and understandability of code, it is recommended to limit the amount of information necessary to understand a piece of logic, as human memory can only hold a handful of facts at a time {cite}`Baddeley2015`.
-By adopting best practices such as modularization and documentation, developers can ensure that code remains understandable and maintainable over time.
-Additionally, good coding practices can help prevent errors and facilitate testing, ultimately saving valuable time and resources in the long run.
-
-There are multiple measures that can be taken to improve the quality of code, ranging from design patterns to coding standards.
-In this chapter, we present some of the most important techniques, albeit this list is far from complete.
-While these design patterns may aid the programmer in making informed decisions during development, there are always compromises and fair balances to be made.
-Ultimately, the goal is to produce code that is maintainable, reliable, and efficient, while minimizing errors and maximizing productivity.
+The time spent modifying an existing codebase typically far exceeds the time spent writing it in the first place.
+Moreover, code is rarely read with the same context in which it was written: the design decisions, constraints, and goals that were clear to the author are not available to future readers, when collaborators or the even original author return to the code months later.
+Clear, concise code that is easy to navigate is therefore essential for long-term maintainability.
+A key strategy is to limit the amount of information required to understand any given piece of logic, as human working memory can hold only a handful of facts at a time {cite}`Baddeley2015`.
+Practices such as modularization, clear naming, and documentation all serve this goal, and they simultaneously make code easier to test and less error-prone.
+The following sections present some of the most widely applicable principles, drawn from software engineering practice and experience.
 
 (sro)=
 **Single responsibility principle**
 
-Breaking down large programs into smaller, easily understood functions is an essential measure to ensure understandable and extendable code.
-This approach is commonly referred to as the *Single Responsibility Principle*, which involves designing functions with a single, well-defined responsibility.
-The *Unix philosophy* encapsulates this principle, advocating that each program should do one thing well and that the output of every program should become the input to another, as yet unknown, program {cite}`Raymond2003`.
-
-Applying the *Single Responsibility Principle* not only improves the quality of code but also makes it easier to test functions, as will be discussed in {numref}`software_tests`.
+Decomposing large programs into smaller, well-defined functions is the most direct way to make code understandable and extensible.
+This approach is commonly referred to as the *Single Responsibility Principle*: each function or module should have exactly one reason to change.
+The *Unix philosophy* captures the same idea concisely: "Write programs that do one thing and do it well" {cite}`Raymond2003`.
+Beyond readability, the principle has a practical benefit: functions with a single responsibility are straightforward to test in isolation, as will be discussed in {numref}`software_tests`.
 
 (dry)=
 **Don't repeat yourself**
@@ -41,7 +33,7 @@ Applying the *Single Responsibility Principle* not only improves the quality of 
 Code duplication is a common issue in software development that can lead to maintenance problems when modifications have to be made to the duplicated logic.
 To address this issue, developers should follow the "Don't Repeat Yourself" (DRY) principle, which recommends encapsulating common logic in functions or abstract interfaces and replacing all occurrences with function calls.
 By doing so, modifications to the logic will be automatically reflected in all relevant places, reducing the risk of errors and inconsistencies.
-As stated in the book "The Pragmatic Programmer", every piece of knowledge or logic should have a single, unambiguous representation within a system to avoid confusion and ensure maintainability {cite}`Hunt1999`.
+As formulated in "The Pragmatic Programmer": every piece of knowledge must have a single, unambiguous, authoritative representation within a system {cite}`Hunt1999`.
 
 (kiss)=
 **KISS principle**
@@ -50,21 +42,22 @@ The "keep it simple, stupid" principle (KISS) is a fundamental principle of soft
 This principle recognizes that often there are multiple ways to implement the same functionality.
 Focusing on an implementation with the fewest lines of code, or maximum efficiency often sacrifices readability and increases complexity.
 Instead, developers should strive to write clear, concise, and understandable code that is easy to maintain and modify over time.
-Don Knuth famously wrote: "Premature optimization is the root of all evil." {cite}`Knuth1974`
-Unless efficiency is critical, a suboptimal implementation will not severely affect the performance of the program but will make it harder to understand. Moreover, if a complicated function does more than one thing, it is more likely that at some point logic has to be reimplemented in another part of the code base, violating the DRY principle. Therefore, adhering to the KISS principle can greatly enhance the maintainability and extendability of code.
+As Knuth famously observed, "premature optimization is the root of all evil" {cite}`Knuth1974`.
+Unless efficiency is a genuine bottleneck, a simpler implementation is preferable: it will rarely affect overall performance significantly, but will be substantially easier to understand and modify.
+Moreover, if a function does more than one thing, its logic is more likely to be reimplemented elsewhere in the codebase, violating the DRY principle.
+Adhering to the KISS principle therefore enhances both maintainability and extensibility.
 
 (interface_vs_implementation)=
 **Program to the interface not to the implementation**
 
 In software development, it is crucial to design flexible code to accommodate changes in requirements.
 One technique for achieving this is to program to an interface, not to an implementation.
-
 An interface can be thought of as an abstract representation of the behavior that a piece of code is supposed to exhibit.
 It is a contract that specifies *what* a piece of code can do, but not *how* it does it.
 An implementation, on the other hand, is the actual code that provides the behavior specified by the interface.
-
-This technique allows for the creation of adaptable code, where different implementations providing the similar behavior can be easily substituted without the need to modify the code that depends on that behavior which promotes a clearer separation of concerns in the code.
+This allows different implementations with equivalent behavior to be substituted without modifying the surrounding code, promoting a clear separation of concerns.
 By designing with interfaces, the code can focus on the essential behavior, making it easier to understand, maintain, and test.
+
 
 (style)=
 **Language and domain specific aspects**
@@ -75,7 +68,6 @@ When sharing code or seeking assistance, the coding style will be evaluated, eve
 
 Guido van Rossum, the creator of the Python programming language, introduced a style guide with best practices and guidelines in the Python Enhancement Proposal 8 (*PEP-8*) {cite}`PEP8`.
 *PEP-8* includes specific recommendations regarding naming conventions, whitespace, and other aspects of code formatting to promote consistency and readability.
-
 Moreover, the "Zen of Python" was introduced in *PEP-20*, which includes 19 guiding principles for writing maintainable code {cite}`PEP20`:
 
 1. Beautiful is better than ugly.
@@ -103,3 +95,4 @@ To enforce these standards, several tools and packages are available.
 In this work, the [*pre-commit*](https://pre-commit.com/) package is employed to automatically execute scripts on each commit {cite}`pre-commit`.
 This includes using the [*ruff*](https://docs.astral.sh/ruff/) package to auto-format code according to *PEP 8* and to perform supplementary checks, such as verifying the presence of docstrings and type annotations {cite}`ruff`.
 Together, these tools ensure that the codebase remains consistent in style, readable, and compliant with *PEP 8* recommendations.
+The following chapter discusses how these principles are applied at a higher level of abstraction through object-oriented programming.
