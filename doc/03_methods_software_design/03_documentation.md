@@ -1,49 +1,46 @@
 (software_documentation)=
 # Documentation
 
-Extensive documentation is a crucial aspect of software development that enhances the maintainability and reusability of code.
-However, documentation that simply restates the mechanics of the code is of limited use.
-Instead, documentation should provide an overview of the code's purpose and instructions on its usage, including explanations of design decisions, architectural structures, and interfaces.
-It is important to note that if the code is too complex, it should be simplified before documentation is added (see {numref}`programming_principles`).
-Good documentation should also include user manuals with installation instructions, tutorials for beginners, and troubleshooting guides.
-In the following sections, the usage of docstrings in Python to document functions, classes, and modules will be discussed.
-Docstrings are special string literals that can be used to provide documentation for Python code.
-Additionally, the usage of documentation generation tools like Sphinx to automatically generate documentation from docstrings will be covered {cite}`sphinx`.
+Well-written code alone is not sufficient if its purpose, usage, and design decisions remain unclear to users and developers.
+Documentation that simply restates what the code does is of limited value; useful documentation explains why decisions were made, how components fit together, and how to use the provided interfaces.
+If code is too complex to document clearly, that is a signal to simplify first (see {numref}`programming_principles`).
+Good documentation also extends beyond the API: user manuals, installation guides, and tutorials are essential for making software accessible to new users.
+The following sections discuss docstrings, Python's built-in mechanism for embedding documentation in source code, and Sphinx, a tool used to generate reference documentation from them {cite}`sphinx`.
 
 ## Docstrings
 
 Most programming languages have conventions for writing string literals in the source code that can be used to document a specific segment of code.
-Unlike conventional source code comments, docstrings are retained throughout the runtime of the program and can be used for interactive help systems.
-In Python, docstrings conventions were defined with *PEP-257* {cite}`PEP257`, which specifies how modules, functions, classes, or methods should be documented so they can be accessed with the special `__doc__` attribute of that object.
+In Python, docstrings are string literals placed at the beginning of a module, class, or function that serve as its documentation.
+Unlike regular comments, docstrings are retained at runtime and accessible via the `__doc__` attribute, enabling interactive help systems and documentation generators.
+Their conventions are defined in *PEP-257* {cite}`PEP257`.
 
 A one-line summary should first provide a brief description of the corresponding source code.
 Relevant details of the code segment are then described in subsequent sections.
-In the following, some of the most important sections are presented using *Numpy*'s formatting convention {cite}`numpy_docstring`.
+In the following, some of the most important sections are presented using *Numpy*'s formatting convention {cite}`numpy_docstring`:
 
 **Parameters**
 
-Description of the function arguments, keywords and their semantic meaning.
+Description of the function arguments and their semantic meaning.
 When type annotations are present in the function signature (see {numref}`type_annotations`), the type does not need to be repeated here.
 
 ```
 Parameters
 ----------
-x
-    Description of parameter `x`.
-y
-    Description of parameter `y`.
-
+state
+    Current concentration in mol/m^3.
+flow_rate
+    Volumetric flow rate in m^3/s.
+c_in
+    Inlet concentration in mol/m^3.
 ```
 
 **Returns**
 
-Explanation of the returned values and their types.
-
 ```
 Returns
 -------
-int
-    Description of integer return value.
+float
+    Residual of the mass balance.
 ```
 
 **Raises**
@@ -57,18 +54,16 @@ ValueError
     If the argument has an invalid value.
 ```
 
-In addition to the previously mentioned sections, there are several other commonly used sections in docstrings.
-The "See Also" section is used to reference related code, while the "References" section is used for citing relevant literature.
-The "Examples" section is used to provide usage examples of the code segment, and the "Notes" section can be used for additional explanation or comments related to the code.
+The examples above correspond directly to the `residual` method of the `CSTR` class introduced in {numref}`oop`.
+In addition to these sections, docstrings commonly include "See Also" for related code, "References" for literature citations, "Examples" for usage demonstrations, and "Notes" for supplementary remarks.
 
 ## Documentation generator tools
 
-To make the documentation readily available for both developers and users, documentation generator tools such as *Sphinx* have been developed to extract the docstrings from the source code and create reference manuals in readable forms such as HTML or PDF.
-*Sphinx* is widely used in the Python community and allows for the creation of rich and informative documentation.
-*Sphinx* can be customized with themes and extensions, enabling the embedding of additional materials such as images, diagrams, and mathematical notation to enhance the comprehensiveness of the documentation.
-Its *autodoc* extension additionally reads type annotations (see {numref}`type_annotations`) directly from the source code, integrating them into the generated reference documentation without requiring manual duplication.
+*Sphinx* is a documentation generator widely used in the Python community that extracts docstrings from source code and produces reference manuals in formats such as HTML or PDF.
+It can be customized with themes and extensions to embed images, diagrams, and mathematical notation.
+Its *autodoc* extension reads type annotations (see {numref}`type_annotations`) directly from the source code, integrating them into the generated reference documentation without manual duplication.
 
-By combining background information, tutorials, and advanced examples with the extracted docstrings, these reference manuals become a useful starting point for new users of a software package.
-For example, in the case of CADET-Process, the documentation can be found on [Read The Docs](https://readthedocs.org/projects/cadet-process), an online platform for hosting and publishing software documentation that also supports *Sphinx*.
-The documentation is automatically updated when changes are made to the source code, ensuring that it is always up-to-date and accurate (see {numref}`ci_cd`).
-In CADET-Process, these documentation practices are applied throughout: all public classes and functions include docstrings following the NumPy convention, and the full reference documentation is published and continuously updated via Read The Docs.
+By combining background information, tutorials, and advanced examples with the extracted docstrings, these reference manuals become a useful starting point for new users.
+*Sphinx* integrates naturally with Read The Docs, an online platform for hosting and publishing documentation: https://readthedocs.org.
+In CADET-Process, all public classes and functions include docstrings following the NumPy convention, and the reference documentation is hosted at https://cadet-process.readthedocs.io and automatically rebuilt whenever changes are made to the source code (see {numref}`ci_cd`).
+The following chapter discusses how automated testing ensures that the documented behavior matches the actual behavior of the code.
