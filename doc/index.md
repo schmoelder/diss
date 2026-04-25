@@ -122,6 +122,8 @@ Li2024
 Schmoelder2024
 ```
 
+{raw-latex}`\clearpage`
+
 **Code repositories and software packages**:
 - **CADET-Process:** [https://github.com/fau-advanced-separations/CADET-Process](https://github.com/fau-advanced-separations/CADET-Process)
 - **CADET-Core:** [https://github.com/cadet/CADET-Core](https://github.com/cadet/CADET-Core)
