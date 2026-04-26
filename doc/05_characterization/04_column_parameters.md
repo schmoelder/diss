@@ -51,21 +51,21 @@ glue("d_ax_acetone", rf"${d_ax_acetone}~\text{{m}}^{{2}}~\text{{s}}^{{-1}}$")
 (column_parameters)=
 # Estimation of column parameters
 
-After characterizing the periphery of the chromatography system, the column parameters need to be determined.
-The column length and diameter are provided by the manufacturer, as well as the particle size (see {numref}`column_geometry`).
+After characterizing the periphery of the chromatography system, the column parameters were then determined.
+The column geometry and particle size are provided by the manufacturer (see {numref}`column_geometry`).
 
 ```{table} Column geometry
 :name: column_geometry
 :align: center
 
-| Parameter         | Value  | Unit           |
-| ----------------- | ------ | -------------- |
-| Column volume     | 4.7    | $\text{mL}$     |
-| Column length     | 0.1    | $\text{m}$     |
+| Parameter         | Value  | Unit          |
+| ----------------- | ------ | ------------- |
+| Column volume     | 4.7    | $\text{mL}$   |
+| Column length     | 0.1    | $\text{m}$    |
 | Particle diameter | 34     | $\mu\text{m}$ |
 ```
 
-To determine the missing parameters, additional experiments were performed (see {numref}`tab_experiments`):
+To estimate some of the remaining column parameters, additional experiments were performed (see {numref}`tab_experiments`):
 
 - Experiment `E5` used Blue Dextran, a molecule too large to penetrate pores, to determine bed porosity.
 - Experiment `E6` employed acetone injection to determine particle porosity.
@@ -88,15 +88,15 @@ glue("fig_comparison_with_column", fig, display=False)
 tab_column_parameters = create_column_table(parameters_all["e9_lrmp_4_cv"])
 ```
 
-A {class}`~CADETProcess.processModel.LumpedRateModelWithPores` was used for experiment `E5`, with the film diffusion coefficient of Blue Dextran set to $0~\text{m}~\text{s}^{-1}$ to model size exclusion.
+A {class}`~CADETProcess.processModel.LumpedRateModelWithPores` was used for experiment `E5`, with the film diffusion coefficient of Blue Dextran set to $0~\text{m}~\text{s}^{-1}$ to effectively model size exclusion.
 While experiment `E5` is often used to determine the axial dispersion coefficient, the value obtained for Blue Dextran was unexpectedly higher than that for acetone, despite Blue Dextran being approximately 35,000 times larger.
 This discrepancy may be partially attributed to partial pore penetration and nonspecific interactions {cite}`Heymann2022`.
 As a result, only the bed porosity was used for further simulations, and the axial dispersion coefficient for lysozyme was re-fitted using experiment `E7`.
 
 Experiment `E7` was conducted to investigate protein-specific transport limitations.
 The data were fitted using a {class}`~CADETProcess.processModel.LumpedRateModelWithPores` ({numref}`lumped_rate_model_with_pores`).
-{numref}`e7_objectives_film_diffusion` plots the objective function value against each optimization variable: while axial dispersion and particle porosity both exhibited minima, the film diffusion coefficient converged toward large values without a clear optimum, indicating that it could not be determined definitively.
-The analysis only indicated that the film diffusion coefficient must exceed $1~\times 10^{-5}~\text{m}~\text{s}^{-1}$, suggesting that film diffusion is not rate-limiting under the experimental conditions.
+{numref}`e7_objectives_film_diffusion` plots the objective function value against each optimization variable: while axial dispersion and particle porosity both exhibit minima, the film diffusion coefficient converged toward large values without a clear optimum, indicating that it could not be determined definitively.
+The only conclusion that could be drawn was that the film diffusion coefficient must exceed $1~\times 10^{-5}~\text{m}~\text{s}^{-1}$, suggesting that film diffusion is not rate-limiting under the experimental conditions.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -148,10 +148,9 @@ display(Markdown(e7_objectives))
 ```
 
 Additionally, a slightly smaller particle porosity was determined, consistent with the larger size of the protein compared to acetone (used in `E6`).
-Acetone, due to its small size, penetrated deeper into the pores than larger molecules like lysozyme, resulting in an apparently higher particle porosity for small molecules.
+Acetone, due to its small size, penetrates deeper into the pores than larger molecules like lysozyme, resulting in an apparently higher particle porosity for small molecules.
 However, current models cannot account for component-specific porosities without introducing inconsistencies.
 Thus, only the particle porosity fitted using the non-binding tracer (experiment `E7`) was considered for further analysis.
-
 All estimated parameters are summarized in {numref}`tab_column_parameters`.
 {numref}`fig_comparison_with_column` compares simulation results with reference experiments, showing generally good agreement between simulation and experimental data.
 
