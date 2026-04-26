@@ -10,21 +10,19 @@ CADET-Process is available on the *Python Package Index* ([*PyPI*)](https://pypi
 pip install cadet-process
 ```
 
-The [CADET-Core](https://cadet.github.io) simulator is a robust numerical engine that can simulate a wide range of physico-chemical models used in chromatography and other biochemical processes {cite}`Leweke2018`.
-However, the configuration files of CADET-Core can be long and difficult to work with, particularly for integrated processes involving multiple unit operations.
+The [**CADET-Core**](https://cadet.github.io) simulator is a robust numerical engine that can simulate a wide range of physico-chemical models used in chromatography and other biochemical processes {cite}`Leweke2018`.
+However, CADET-Core is configured through HDF5 files with a deep hierarchical structure, requiring precise knowledge of internal variable names and offering no validation or high-level abstractions for complex setups such as valve switching or multi-column processes.
 Moreover, the structure of these files may change during process optimization, such as when the sequence of dynamic events is altered, making direct use of CADET-Core challenging without an additional layer of abstraction.
-CADET-Process addresses this by providing an object-oriented model builder that simplifies process setup, gives convenient access to all model parameters, automatically validates their values, and sets defaults where appropriate, reducing the risk of ill-defined configuration files.
-
-CADET-Process simplifies the modeling of complex chromatographic operations, including elaborate switching schemes, advanced gradients, recycling systems, and multi-column setups.
-It facilitates the definition of dynamic changes in flow sheet connectivity or time-dependent parameters.
-Additionally, the package includes routines for evaluating cyclic stationarity of processes and determining optimal fractionation times, aiding in the assessment of performance indicators such as yield, purity, and productivity.
-Its ability to configure complex optimization problems, including the definition of multi-objective functions and the integration of nonlinear constraint functions, is crucial for a comprehensive optimization approach.
+CADET-Process addresses this by providing an object-oriented model builder that simplifies process setup, exposes all model parameters through a consistent interface, validates their values automatically, and sets sensible defaults, reducing the risk of ill-defined configurations.
+It supports complex chromatographic setups including elaborate valve switching schemes, advanced gradients, recycling systems, and multi-column configurations, along with dynamic changes in flow sheet connectivity and time-dependent parameters.
+Routines for evaluating cyclic stationarity and determining optimal fractionation times allow direct assessment of performance indicators such as yield, purity, and productivity.
+Optimization problems, including multi-objective formulations and nonlinear constraints, can be configured directly within the framework.
 
 This chapter introduces the core software architecture of CADET-Process and provides practical demonstrations of setting up chromatographic processes, simulation techniques, and tools for the evaluation of results.
-It also showcases how to configure optimization problems for the design of chromatographic processes.
-For a more comprehensive documentation, please visit the [CADET-Process documentation website](https://cadet-process.readthedocs.io/) {cite}`CADET-Process_documentation`.
+It also showcases how to configure optimization problems for both parameter estimation and process design.
+For a more comprehensive documentation, visit the [CADET-Process documentation website](https://cadet-process.readthedocs.io/) {cite}`CADET-Process_documentation`.
 
-The framework follows a sequential workflow: a process is first configured, then simulated, the results evaluated, and finally an optimizer uses those evaluations to improve the process design.
+The framework is organized around a modular workflow: a process is first configured, then simulated, the results evaluated, and finally an optimizer uses those evaluations to improve the process design.
 An overview of the corresponding modules and their relations is given in {numref}`framework_overview`.
 
 ```{figure} ./figures/framework_overview.png
@@ -34,17 +32,17 @@ Overview of the framework modules and their relations.
 White boxes represent input configurations and solution objects, blue boxes represent internal tools and procedures, green boxes represent external tools, and the orange box represents the core process model.
 ```
 
-The {class}`~CADETProcess.processModel.Process` class is an abstract representation of the chromatographic process configuration including the operational and design parameters.
+The {class}`~CADETProcess.processModel.Process` class is an abstract representation of the chromatographic process configuration including the model-, design-, and operational parameters.
 Processes can be simulated using a {class}`Simulator <CADETProcess.simulator.SimulatorBase>` which solves the underlying equations.
-The {class}`Simulator <CADETProcess.simulator.SimulatorBase>` adapter acts as an abstract interface to external solvers (e.g. CADET-Core) and translates the internal configuration to the corresponding format of the solver.
+The {class}`Simulator <CADETProcess.simulator.SimulatorBase>` adapter acts as an abstract interface to external solvers (e.g. CADET-Core) and translates the internal configuration to the corresponding API of the solver.
 After the computation is finished, the {class}`~CADETProcess.simulationResults.SimulationResults` are returned and can be further evaluated (see {numref}`process_simulation`).
 If a {class}`~CADETProcess.stationarity.StationarityEvaluator` is configured to test for cyclic stationarity, more chromatographic cycles are simulated until stationarity is reached (see {numref}`stationarity`).
 
 Different modules are provided that process the {class}`~CADETProcess.simulationResults.SimulationResults`.
 For example, {class}`~CADETProcess.simulationResults.SimulationResults` can be compared to experimental data or other simulation results using the {class}`~CADETProcess.comparison.Comparator` class, which computes residuals such as the sum of squared errors (see also {numref}`comparison`).
-Additionally, key process performance indicators, including purity, yield, and productivity (see {numref}`fractionation`), can be calculated by the {mod}`~CADETProcess.fractionation` module, which automatically determines fractionation times of the simulated chromatograms.
+Additionally, KPIs, including purity, yield, and productivity (see {numref}`fractionation`), can be determined by the {mod}`~CADETProcess.fractionation` module, which automatically optimizes fractionation times of the simulated chromatograms.
 
 These metrics can be used as objectives in an {class}`~CADETProcess.optimization.OptimizationProblem`, which serves to configure optimization studies.
 Any process parameter can be added as an optimization variable and the provided evaluation methods can be used to construct objectives and constraint functions.
-This enables many different scenarios such as process optimization and parameter estimation.
+This enables many different scenarios such as parameter estimation and process optimization.
 The abstract {class}`Optimizer <CADETProcess.optimization.OptimizerBase>` provides a unified interface to external optimization algorithms such as the genetic algorithm {class}`U-NSGA-3 <CADETProcess.optimization.U_NSGA3>` (see {numref}`optimization`).
