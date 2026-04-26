@@ -105,13 +105,15 @@ Unless noted otherwise, all experiments were performed at pH 5.
 
 ```{table} Overview of experiments performed for model calibration
 :name: tab_experiments
+:class: longtable
+:widths: 4 18 22 18 14 6 18
 
 | ID  | Goal                                 | Parameters                                                             | Bypass                               | Injected component              | Volume         | Eluent                                               |
 | --- | ------------------------------------ | ---------------------------------------------------------------------- | ------------------------------------ | ------------------------------- | -------------- | ---------------------------------------------------- |
-| E1  | Determine tubing characteristics     | Tubing length and axial dispersion                                     | column, post-column tubing, detector | $1\%~\text{w/w}$ Acetone        | $50~\mu\text{L}$ | $A$                                                  |
-| E2  | Determine tubing characteristics     | Tubing length and axial dispersion                                     | column, detector                     | $1\%~\text{w/w}$ Acetone        | $50~\mu\text{L}$ | $A$                                                  |
-| E3  | Determine tubing characteristics     | Tubing length and axial dispersion                                     | column                               | $1020~\text{mM}$ Salt           | $50~\mu\text{L}$ | $A$                                                  |
-| E4  | Determine mixer characteristics      | Mixer volume, tubing length and axial dispersion                       | column                               | $1020~\text{mM}$ Salt           | -              | $A \rightarrow B$ (step)                             |
+| E1  | Characterize injection (pre-column) tubing  | Tubing length and axial dispersion                                     | column, post-column tubing, detector | $1\%~\text{w/w}$ Acetone        | $50~\mu\text{L}$ | $A$                                                  |
+| E2  | Characterize pre- and post-column tubing    | Tubing length and axial dispersion                                     | column, detector                     | $1\%~\text{w/w}$ Acetone        | $50~\mu\text{L}$ | $A$                                                  |
+| E3  | Characterize inter-detector tubing          | Tubing length and axial dispersion                                     | column                               | $1020~\text{mM}$ Salt           | $50~\mu\text{L}$ | $A$                                                  |
+| E4  | Characterize mixer and pre-column tubing    | Mixer volume, tubing length and axial dispersion                       | column                               | $1020~\text{mM}$ Salt           | -              | $A \rightarrow B$ (step)                             |
 | E5  | Determine bed properties             | Bed porosity and axial dispersion                                      | -                                    | $0.0005~\text{mM}$ Blue Dextran | $50~\mu\text{L}$ | $A$                                                  |
 | E6  | Determine particle properties        | Particle porosity, total porosity, axial dispersion                    | -                                    | $1\%~\text{w/w}$ Acetone        | $50~\mu\text{L}$ | $B$                                                  |
 | E7  | Determine diffusion characteristics  | Particle porosity, film diffusion, pore diffusion                      | -                                    | $0.2~\text{mM}$ Lysozyme        | $50~\mu\text{L}$ | $B$                                                  |
