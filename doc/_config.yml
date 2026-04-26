@@ -136,16 +136,16 @@ sphinx:
         %% Code blocks: Override the fontsize command defined and used by fancyvrb (which implements Verbatim environments).
         %% \renewcommand{\FV@FontSize}{\scriptsize}
 
-        %% Tables: keep caption and body together; all tables fit on one page
+        %% Tables: keep caption and first row together
         \let\originalsphinxattablestart\sphinxattablestart
         \renewcommand{\sphinxattablestart}{%
-            \needspace{0.5\textheight}\small
+            \needspace{4\baselineskip}\small
             \let\raggedright\centering
             \originalsphinxattablestart
         }
         \AtBeginDocument{%
           \let\origsphinxatlongtablestart\sphinxatlongtablestart
-          \def\sphinxatlongtablestart{\needspace{0.5\textheight}\origsphinxatlongtablestart}%
+          \def\sphinxatlongtablestart{\small\origsphinxatlongtablestart}%
         }
 
         % Redefine the start paragraph command to do nothing
