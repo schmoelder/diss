@@ -34,7 +34,7 @@ White boxes represent input configurations and solution objects, blue boxes repr
 
 The {class}`~CADETProcess.processModel.Process` class is an abstract representation of the chromatographic process configuration including the model-, design-, and operational parameters.
 Processes can be simulated using a {class}`Simulator <CADETProcess.simulator.SimulatorBase>` which solves the underlying equations.
-The {class}`Simulator <CADETProcess.simulator.SimulatorBase>` adapter acts as an abstract interface to external solvers (e.g. CADET-Core) and translates the internal configuration to the corresponding API of the solver.
+The {class}`Simulator <CADETProcess.simulator.SimulatorBase>` adapter acts as an abstract interface to external solvers (e.g. CADET-Core) and translates the internal configuration to the corresponding application programming interface (API) of the solver.
 After the computation is finished, the {class}`~CADETProcess.simulationResults.SimulationResults` are returned and can be further evaluated (see {numref}`process_simulation`).
 If a {class}`~CADETProcess.stationarity.StationarityEvaluator` is configured to test for cyclic stationarity, more chromatographic cycles are simulated until stationarity is reached (see {numref}`stationarity`).
 

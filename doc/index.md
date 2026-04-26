@@ -222,6 +222,9 @@ Overall, CADET-Process establishes itself as a comprehensive open-source framewo
 {raw-latex}`\phantomsection\addcontentsline{toc}{chapter}{Abbreviations}`
 
 ```{glossary}
+API
+    Application programming interface
+
 BDF
     Backward differentiation formula
 
