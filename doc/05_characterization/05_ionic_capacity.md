@@ -35,31 +35,31 @@ parameters_all = load_all_parameters(final_parameters_branch)
 (ionic_capacity)=
 # Estimation of the ionic capacity of the resin
 
-To determine the ionic capacity of the resin, a titration experiment is conducted as follows: the column is first flushed with water, then equilibrated with $20~\text{CV}$ of acetic acid at pH 3.
-During this step, the protons ($\ce{H+}$) from the acetic acid exchange with the resin's bound counter-ions, displacing them into the effluent.
-After equilibration, the column is flushed with $10~\text{CV}$ of water to remove any unbound acetic acid and displaced ions.
-Finally, the resin is titrated with a $\ce{NaOH}$ solution to quantify the number of bound protons, thereby determining the resin's ionic capacity.
+To determine the ionic capacity of the resin, a titration experiment was conducted as follows: the column was first flushed with water, then equilibrated with $20~\text{CV}$ of acetic acid at pH 3.
+During this step, the protons ($\ce{H+}$) from the acetic acid exchanged with the resin's bound counter-ions, displacing them into the effluent.
+After equilibration, the column was flushed with $10~\text{CV}$ of water to remove any unbound acetic acid and displaced ions.
+Finally, the resin was titrated with a $\ce{NaOH}$ solution to quantify the number of bound protons, thereby determining the resin's ionic capacity.
 
 The amount of $\ce{NaOH}$ consumed is determined by analyzing the breakthrough curve via conductivity measurement ({numref}`fig_resin_titration`).
 The breakthrough time point, $t_{\text{bt,10}}$, is defined as the time at which $10\%$ of the breakthrough occurs.
-Using the flow rate $Q$, the volume and concentration of $\ce{NaOH}$, the amount of exchanged sodium ions, $n_{\ce{Na}^+}$, is calculated as:
+Using the flow rate $Q$, the volume and concentration of $\ce{NaOH}$, the amount of exchanged sodium ions, $n_{\ce{Na}^+}$, is calculated as
 
 $$
-n_{\ce{Na}^+} = V_{\ce{NaOH}} \cdot c_{\ce{NaOH}} = Q \cdot t_{\text{bt,10}} \cdot c_{\ce{NaOH}}
+n_{\ce{Na}^+} = V_{\ce{NaOH}} \cdot c_{\ce{NaOH}} = Q \cdot t_{\text{bt,10}} \cdot c_{\ce{NaOH}}.
 $$
 
 It is assumed that the number of sodium ions equals the total capacity of the column.
 The volume-specific ionic capacity, $\Lambda$, is then calculated by dividing the exchanged sodium ions by the solid volume of the resin:
 
 $$
-\Lambda = \frac{n_{\ce{Na}^+}}{V_{\text{C}} \cdot (1 - \varepsilon^t)}
+\Lambda = \frac{n_{\ce{Na}^+}}{V_{\text{c}} \cdot (1 - \varepsilon^t)}
 $$
 
-The total porosity, $\varepsilon^t$, is determined using the bulk porosity $\varepsilon^b$ and the particle porosity $\varepsilon^p$, which are estimated from the previous tracer experiments.
-It is given as the sum of the interstitial volume $V_{\text{int}}$ and pore volume $V_{\text{pore}}$, divided by the column volume $V_C$:
+The total porosity, $\varepsilon^t$, is determined using the bed porosity $\varepsilon^b$ and the particle porosity $\varepsilon^p$, which are estimated from the previous tracer experiments.
+It is given as the sum of the interstitial volume $V^{\text{int}}$ and pore volume $V^{\text{pore}}$, divided by the column volume $V_c$:
 
 $$
-\varepsilon^t = \frac{V_{\text{int}} + V_{\text{pore}}}{V_C} = \varepsilon^b + (1 - \varepsilon^b) \cdot \varepsilon^p
+\varepsilon^t = \frac{V^{\text{int}} + V^{\text{pore}}}{V_c} = \varepsilon^b + (1 - \varepsilon^b) \cdot \varepsilon^p
 $$
 
 ```{code-cell} ipython3
@@ -100,7 +100,8 @@ glue("lambda_lysozyme", round(lambda_lysozyme, 2))
 :name: fig_resin_titration
 :scale: 100%
 
-Breakthrough curve of $\ce{NaOH}$ for resin capacity titration. Dashed line indicating time point of $10\%$ breakthrough used for determination of volume.
+Breakthrough curve of $\ce{NaOH}$ for resin capacity titration.
+The dashed line indicates the time point of $10\%$ breakthrough used to determine the consumed $\ce{NaOH}$ volume.
 ```
 
 The volume of $\ce{NaOH}$ used was determined to be {glue:text}`V_NaOH_used` mL.
