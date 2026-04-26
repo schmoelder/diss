@@ -11,10 +11,7 @@ kernelspec:
 (characterization)=
 # Model of a typical chromatographic laboratory system
 
-This chapter serves two complementary purposes.
-First, it validates CADET-Process against a real laboratory system, demonstrating that the framework can accurately reproduce experimental data from a complete chromatographic setup, including system periphery, column transport, and protein adsorption.
-Second, it showcases the parameter estimation capabilities introduced in {numref}`comparison` and {numref}`optimization`, applying them to a realistic and progressively complex series of experiments.
-
+This chapter demonstrates the parameter estimation capabilities of CADET-Process through the systematic characterization of a chromatographic laboratory system for a protein purification process.
 The presented study builds upon work first published by Lukas Thiel in his master's thesis {cite}`Thiel2023`.
 While utilizing the same raw data, this work presents an independent modeling approach and fitting procedure.
 In contrast to Thiel's work, which aimed to model the influence of pH on protein adsorption, the primary goals of this chapter are:
@@ -25,6 +22,7 @@ In contrast to Thiel's work, which aimed to model the influence of pH on protein
 - demonstrating a load-wash-elute process with lysozyme using the steric mass-action binding model and a salt gradient.
 
 The process involves several key steps:
+
 - **System periphery**: Acetone and salt tracers are used to estimate the void volume of the injection valve, the tubing before and after the column, as well as the tubing between the detectors.
 - **Column properties**: Specific experiments investigate column properties such as porosity and axial dispersion.
 - **Protein-specific parameters**: Additional experiments estimate protein-specific particle porosity and transport parameters, aiding in selecting the appropriate column model.
