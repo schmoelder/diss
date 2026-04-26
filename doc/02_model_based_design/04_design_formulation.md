@@ -49,11 +49,14 @@ For parameters that cannot be determined directly, the calibration can be formul
 ```
 
 computes residuals between model predictions $\hat{y}_t$ and experimental data $y_t$.
-For an example characterization procedure of a typical chromatographic laboratory system, refer to {numref}`characterization`.
+In addition to point-wise metrics such as NRMSE, other metrics targeting peak position, height, integrated area, or shape provide sensitivity to different physical properties.
+For example, peak position reflects retention and porosity, while peak width is primarily influenced by dispersion and mass transfer resistance {cite}`Heymann2022`.
+Selecting metrics that align with the parameters being estimated can improve both convergence and interpretability.
+The implementation of these metrics is detailed in {numref}`comparison` and an example characterization procedure for a typical chromatographic laboratory system is provided in {numref}`characterization`.
 
 Parameter estimation alone, however, does not account for uncertainty in the estimates.
 Quantifying uncertainty is important, as chromatographic systems often exhibit nonlinear dynamics, non-Gaussian distributions, and correlated errors.
-In such cases, Markov Chain Monte Carlo (MCMC) methods are typically required {cite}`Heymann2022`.
+In such cases, Markov Chain Monte Carlo (MCMC) methods are typically required {cite}`Heymann2023`.
 While this work focuses on parameter estimation rather than uncertainty quantification, the modular architecture of CADET-Process provides a foundation for future extensions in this direction.
 
 (kpi)=
