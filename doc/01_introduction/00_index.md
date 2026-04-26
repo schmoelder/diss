@@ -52,19 +52,20 @@ For certain operating modes, simplified shortcut methods provide useful initial 
 These methods typically rely on simplifying assumptions, such as restricted binding models, neglected mass transfer effects, or single-column operation.
 In practical applications, however, a wide range of binding mechanisms, including adsorption, ionic interactions, ligand binding, and size exclusion, may be relevant.
 Additional transport phenomena, such as axial dispersion, film diffusion, and pore diffusion, further influence system behavior and must be accounted for.
-As a result, rigorous process development generally requires detailed mechanistic models combined with advanced optimization schemes.
+As a result, rigorous process development generally requires detailed mechanistic models combined with systematic optimization methods for both model calibration and process design.
 Consequently, chromatographic processes are described using a variety of model formulations (see {numref}`model_formulation`) and numerical solution strategies (see {numref}`model_solution`), together with diverse optimization approaches for process design.
 An overview is provided in Sections {numref}`%s <design_formulation>` and {numref}`%s <design_solution>`, as well as in {cite}`Kawajiri2020`.
 
 % Tool requirements
-Considering the many advanced operating modes discussed above, this complexity leads to a large number of specific process models and optimization schemes that must be implemented when seeking an optimal process for a given separation task.
-Against this background, a general-purpose tool is required that enables efficient and flexible handling of the different tasks involved in the development of optimal chromatographic processes.
+Developing an optimal chromatographic process requires two complementary workflows: systematic calibration of model parameters against experimental data, and optimization of the process configuration and operating conditions.
+The complexity of advanced operating modes makes both workflows non-trivial, as each requires specific process models, evaluation pipelines, and optimization schemes.
+Against this background, a general-purpose tool is required that enables efficient and flexible handling of the full range of tasks involved.
 The main tasks include:
 
 - setting up a model for the chromatographic system and the desired process structure,
-- solving the model equations for simulating the process,
-- determining process performance by evaluating the chromatograms, and
-- performing optimization of continuous variables, timed events, and flow sheet connectivity.
+- simulating the process by solving the model equations,
+- evaluating simulation results against performance criteria or experimental reference data, and
+- optimizing process variables, covering both model calibration and process design.
 
 % Existing tools
 Several commercial programs are available which provide parts of the aforementioned required functionalities, like Aspen Chromatography {cite}`aspen`, GoSilico (formerly known as ChromX) by Cytiva {cite}`GoSilico`, and Ypso-Proxima (formerly known as ChromWorks) by YpsoFacto {cite}`ypso-proxima`.
@@ -78,7 +79,7 @@ Yet CADET-Core is primarily a numerical solver for the partial differential equa
 Moreover, it provides no dedicated tools for process evaluation, parameter estimation, or optimization.
 
 % Approach
-To address these limitations, a modular framework for the efficient modeling, simulation and optimization of advanced chromatographic processes was developed for this work.
+To address these limitations, a modular framework for the efficient modeling, simulation, parameter estimation, and optimization of chromatographic processes was developed for this work.
 The framework implements a modular architecture where process configuration, simulation, evaluation, and optimization exist as independent components that can be developed, tested, and exchanged separately.
 This design enables flexible combination of physico-chemical models, numerical solvers, process configurations, and optimization algorithms.
 The software is implemented in an object-oriented paradigm in the programming language **Python**.
@@ -92,8 +93,8 @@ Since process engineers are usually not trained in this field, a chapter of this
 
 % Demonstrations
 To demonstrate the flexibility of the framework, several case studies are presented in this work.
-First, a model of a typical chromatographic laboratory system is developed for a protein purification step, validating CADET-Process against experimental data and demonstrating parameter estimation across several experiment types.
-The study also incorporates system periphery effects, including valves and tubing often neglected in modeling, and concludes with a load-wash-elute process for lysozyme using the steric mass-action binding model with a salt gradient.
+First, the parameter estimation capabilities of CADET-Process are demonstrated through the systematic characterization of a typical chromatographic laboratory system for a protein purification step.
+The study covers several experiment types and progressively builds up a full process model, incorporating system periphery effects such as valves and tubing that are often neglected, and culminating in a load-wash-elute process for lysozyme using the steric mass-action binding model with a salt gradient.
 
 Next, the optimization of advanced operating concepts is investigated through a set of synthetic case studies.
 These studies assume known model parameters and focus on preparative separations of binary and ternary mixtures.
