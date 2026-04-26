@@ -129,6 +129,26 @@ print(large_cstr.residual(state=0.5, flow_rate=1.0, c_in=1.0))
 
 The objects `cstr` and `large_cstr` are instances of the same `CSTR` class but store different initial volumes, while receiving the same time-varying inputs at evaluation time.
 
+(uml)=
+## UML class diagrams
+
+Object-oriented designs are commonly visualized using *Unified Modeling Language* (UML) class diagrams {cite}`Rumbaugh2010`.
+These diagrams provide a standardized notation for depicting classes, their attributes and methods, and the relationships between them, making the structure of a system immediately legible.
+{numref}`uml_unit_operation_oop` shows the UML class diagram for the `UnitOperationBase` and `CSTR` classes introduced above.
+The abstract base class appears at the top with its interface, with abstract elements typically indicated in UML (e.g. via «abstract»).
+`CSTR` is shown below, connected by a generalization (inheritance) relationship.
+Attributes are listed alongside their types, directly reflecting the type annotations in the class definitions; visibility may optionally be indicated using UML conventions (e.g. `+` for public, `-` for private), although this distinction is less strict in Python.
+More complex diagrams may additionally include associations, aggregations, or compositions to represent interactions between objects; these are omitted here for clarity.
+
+```{figure} ./figures/uml_unit_operation.png
+:name: uml_unit_operation_oop
+
+UML class diagram of `UnitOperationBase` and `CSTR`.
+The abstract base class defines the common interface; `CSTR` inherits from it and adds model-specific parameters.
+```
+
+This pattern of abstract base classes and concrete implementations recurs throughout CADET-Process, and UML diagrams are used in {numref}`implementation` to illustrate the resulting architecture.
+
 (type_annotations)=
 ## Type annotations
 
