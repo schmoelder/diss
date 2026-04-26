@@ -19,9 +19,16 @@ from myst_nb import glue
 (optimization)=
 # Optimization
 
-One of the main applications of CADET-Process is performing optimization studies.
-Optimization refers to the selection of a solution with regard to some criterion.
-In the simplest case, an optimization problem consists of minimizing some function $f(x)$ by systematically varying the input values $x$ and computing the value of that function.
+Model-based engineering tasks in chromatography, including model calibration, experimental design, process optimization, and process control, all involve solving optimization problems (see {numref}`optimization_algorithms`).
+These problems are typically high-dimensional, involve multiple objectives and constraints, and the feasible region is often non-convex.
+
+A wide range of optimization software is available, from libraries that expose individual solver algorithms to more comprehensive frameworks that include preprocessing utilities or surrogate modeling.
+Choosing an appropriate solver is non-trivial: some are tailored for single-objective problems, others lack support for complex constraints, and few are suited for global optimization of expensive black-box functions.
+Beyond the choice of solver, applying these tools to chromatographic simulation requires additional infrastructure: variables often span multiple orders of magnitude and benefit from normalization, objectives depend on model parameters nested deep in the process configuration, and multiple processing steps separate the decision variables from the computed metric.
+CADET-Process provides a unified layer on top of established external optimizers that handles these challenges and supports two key workflows: process optimization, where operating parameters are adjusted to maximize performance indicators, and parameter estimation, where model parameters are determined from experimental data.
+Applications are presented in {numref}`characterization` and {numref}`operating_modes`.
+
+In the simplest case, an optimization problem consists of minimizing a function $f(x)$ by systematically varying the input values $x$:
 
 ```{math}
 :label: objective
@@ -29,8 +36,7 @@ In the simplest case, an optimization problem consists of minimizing some functi
 \min_x f(x)
 ```
 
-Examples for the application of optimization studies in the context of physico-chemical processes include process optimization and parameter estimation.
-Here, often many variables are subject to optimization, multiple criteria have to be balanced, and additional linear and nonlinear constraints need to be considered.
+In practice, many variables are subject to optimization simultaneously, multiple criteria must be balanced, and additional constraints need to be considered:
 
 ```{math}
 :label: optimization_problem_eq
@@ -63,7 +69,6 @@ It improves the efficiency and accuracy of the optimization process by ensuring 
 
 Normalization helps equalize the contribution of each parameter, leading to a more uniform search and a greater likelihood of identifying optimal solutions.
 To support this, CADET-Process allows for both linear and logarithmic normalization of variables.
-
 The linear normalization maps the variable space from the lower and upper bound to a range between $0$ and $1$ by applying the following transformation:
 
 ```{math}
@@ -88,7 +93,6 @@ Consider the characterization of a chromatographic column (refer also to {numref
 Due to this disparity in scales, porosity is best normalized linearly, while axial dispersion benefits from logarithmic normalization.
 As illustrated in {numref}`fig_initial_values`, sampling without normalization is biased toward the upper end of the axial dispersion range, with few samples drawn near the lower bound of $1 \times 10^{-9}~\text{m}^2~\text{s}^{-1}$.
 In contrast, {numref}`fig_initial_values_normalized` shows that normalization results in more uniform coverage across the full parameter range, an important characteristic for generating effective initial values (see {numref}`initial_values`).
-
 This normalization strategy allows the optimizer to work within a consistent domain, effectively optimizing two variables that both range from $0$ to $1$, while CADET-Process handles the inverse transformation back to the original scales for evaluation purposes.
 
 ```{code-cell} ipython3
@@ -149,10 +153,7 @@ Uniform sampling of 128 parameter combinations in normalized parameter space.
 Handling a large number of variables simultaneously can lead to high complexity, as the volume of the variable space grows exponentially with the number of variables.
 Reducing the degrees of freedom simplifies the optimization process, leading to faster convergence and improved results.
 One method to achieve this is by defining dependencies between individual variables, which can be done using different mechanisms such as linear combinations or custom functions.
-For instance, when the same parameter is applied across multiple unit operations, the problem's variable count can be decreased by introducing a single variable.
-This variable is then applied to the processes during pre-processing.
-In other scenarios, the ratio between model parameters might be critical.
-Consider the equilibrium constant $K_{eq} = k_a / k_d$ in an adsorption model, with $k_a$ as the adsorption rate and $k_d$ as the desorption rate.
+Consider, for example, the equilibrium constant $K_{eq} = k_a / k_d$ in an adsorption model, with $k_a$ as the adsorption rate and $k_d$ as the desorption rate.
 Optimizing both $k_a$ and $k_d$ separately is less efficient than optimizing $k_a$ and $k_{eq}$ {cite}`Heymann2022`.
 This method allows for the independent determination of equilibrium and kinetic parameters of the reaction (see also {numref}`adsorption_parameters`).
 
@@ -190,9 +191,9 @@ In many complex optimization cases, optimization variables cannot be passed dire
 Instead, a sequence of processing steps is required to derive the metrics computed by those functions.
 Take, for example, the fitting of adsorption parameters (see {numref}`adsorption_parameters`).
 Here, the parameters are deeply nested within the {class}`~CADETProcess.processModel.Process` object, specifically as part of the binding model in one of the unit operations of the process flow sheet.
-Consequently, each optimization variable must be mapped to the corresponding model parameter.
+There, each optimization variable must be mapped to the corresponding model parameter.
 Before calculating objectives, the process needs to be simulated, and the simulation results have to be passed to the {class}`~CADETProcess.comparison.Comparator` to compute the difference metrics by comparing the output with experimental reference data (see {numref}`comparison`).
-{numref}`evaluation_example_comparator` shows the steps required for this calculation.
+{numref}`evaluation_example_comparator` shows the steps typically required for this calculation.
 
 ```{figure} ./figures/evaluation_example_comparator.png
 :name: evaluation_example_comparator
@@ -201,11 +202,11 @@ Before calculating objectives, the process needs to be simulated, and the simula
 Steps required for calculating difference metrics in a parameter estimation problem.
 ```
 
-To simplify the definition of such complex problems, CADET-Process introduces *Evaluation Toolchains*.
+To manage the definition of such complex problems, CADET-Process introduces *Evaluation Toolchains*.
 This concept refers to a sequence of processing steps that are executed at each optimizer call to compute the values of objective or nonlinear constraint functions.
 These toolchains involve two main components: evaluation objects and evaluators.
 
-An *evaluation object* wraps a model, such as a {class}`~CADETProcess.processModel.Process`, and is responsible for receiving the current optimization variable values and updating the corresponding model parameters before evaluation.
+An *Evaluation Object* wraps a model, such as a {class}`~CADETProcess.processModel.Process`, and is responsible for receiving the current optimization variable values and updating the corresponding model parameters before evaluation.
 In the adsorption parameter fitting example, the {class}`~CADETProcess.processModel.Process` is registered as an evaluation object, and the path to each parameter to be updated is specified.
 Multiple evaluation objects can be added for simultaneous optimization of different operating conditions.
 Furthermore, a given optimization variable can be linked to either a single evaluation object or multiple evaluation objects, as detailed in {numref}`multiple_evaluation_objects`.
@@ -220,7 +221,7 @@ Here, optimization variable $1$ is associated with both evaluation objects, whil
 
 *Evaluators* form the processing chain between evaluation objects and the objective or constraint functions.
 Any callable function can be used as an evaluator, provided it accepts the result of the previous step as its first argument and returns a single result object for subsequent processing.
-To enhance efficiency, CADET-Process internally caches intermediate results, minimizing redundant computations when multiple objectives or constraints share evaluation steps.
+To minimize redundant computations when multiple objectives or constraints share evaluation steps, CADET-Process internally caches intermediate results.
 The full toolchain is illustrated in {numref}`evaluation_steps`.
 
 ```{figure} ./figures/evaluation_steps.png
@@ -228,13 +229,14 @@ The full toolchain is illustrated in {numref}`evaluation_steps`.
 :scale: 25%
 
 Evaluation toolchain in CADET-Process.
-Optimization variables $v$ are mapped to parameters of an evaluation object $e$ (e.g., a {class}`~CADETProcess.processModel.Process`), which is then passed through a chain of evaluators $s$.
+Optimization variables $v$ are mapped to parameters of evaluation objects $e$ (e.g., a {class}`~CADETProcess.processModel.Process`), each of which is then passed through a chain of $s$ evaluators.
 The final results are handed to the objective and nonlinear constraint functions $f$ and $g$, which return the metrics $m$.
 The total number of metrics depends on the number of evaluation objects, objectives and nonlinear constraint functions, and metrics per function.
 ```
 
 Callback functions can also be incorporated into the optimization problem to monitor progress.
-Any callable can serve as a callback, for instance to plot chromatograms or log intermediate results.
+A callback is a user-defined function invoked by the optimizer at the end of each generation, allowing intermediate results to be inspected, logged, or visualized.
+Any function can serve as a callback, for instance to plot chromatograms or log intermediate results.
 In single-objective optimization, the callback is called with the best individual found so far; in multi-objective optimization, it is called for every member of the current Pareto front.
 Like objective and nonlinear constraint functions, callbacks are typically implemented using an evaluation toolchain (see {numref}`evaluation_steps` and {numref}`callbacks`).
 
@@ -242,7 +244,28 @@ Like objective and nonlinear constraint functions, callbacks are typically imple
 :name: callbacks
 :scale: 25%
 
-Evaluation of user-defined callbacks $c$ for each member of the Pareto front $p$ in multi-objective optimization.
+Evaluation of user-defined callbacks $c$ for each member $p$ of the Pareto front $X_{\text{Pareto}}$ in multi-objective optimization.
+```
+
+(meta_scores)=
+### Meta scores and multi-criteria decision functions
+
+In multi-objective optimization, the result is a set of Pareto-optimal solutions rather than a single optimum.
+Selecting a preferred solution from this set is itself a decision problem, addressed by multi-criteria decision making (MCDM) methods.
+To support this, CADET-Process allows additional metrics to be registered as *meta scores*.
+Unlike objectives, meta scores are not passed to the optimizer and therefore do not influence the search; they are computed for each candidate alongside the objectives and stored in the results.
+This is particularly useful when individual metrics, such as the NRMSE for each experimental dataset, are informative on their own but would inflate the objective space if used directly.
+Instead, they can be aggregated into a single meta score and used to inform the MCDM step.
+
+Once the Pareto front has been identified, multi-criteria decision functions can be applied to its members based on the objectives and any available meta scores.
+CADET-Process provides several MCDM methods for this purpose, including weighted sum aggregation (see {numref}`multi_criteria_decision_function`).
+These methods serve two related purposes: they can reduce a large Pareto front to a smaller representative subset, or, in the limit, collapse it to a single preferred solution.
+The latter is equivalent to single-objective optimization, but with an important advantage: the weights are chosen after the full trade-off landscape has been explored, rather than committing to them before the optimization runs.
+
+```{figure} ./figures/multi_criteria_decision_function.png
+:name: multi_criteria_decision_function
+
+Processing of Pareto front $X_{\text{Pareto}}$ with meta scores and multi-criteria decision function to generate reduced Pareto front $X_{\text{Pareto}}^\prime$.
 ```
 
 (optimizer)=
@@ -296,10 +319,9 @@ optimization_problem.add_objective(multi_objective_func, n_objectives=2)
 
 Most optimization approaches are iterative in nature and require well-defined starting points for initiation.
 The choice of initial values significantly impacts optimization success, with poor choices potentially leading to suboptimal solutions or convergence failure.
-Ideally, initial values should closely approximate the true optimal values, considering any constraints or bounds on the decision variables.
-To facilitate the definition of starting points, the {class}`~CADETProcess.optimization.OptimizationProblem` provides a method to generate initial values.
-Note, this method also takes into account variable normalization as described in {numref}`variable_normalization`, as well as variable dependencies (see {numref}`variable_dependencies`).
-For this purpose, **hopsy** {cite}`Paul2024` is used to efficiently (uniformly) sample the parameter space (see {numref}`uniform_samples`).
+Ideally, initial values should be close to the true optimal values, respecting any constraints or bounds on the decision variables.
+The {class}`~CADETProcess.optimization.OptimizationProblem` provides a method to generate initial values that accounts for variable normalization (see {numref}`variable_normalization`) and variable dependencies (see {numref}`variable_dependencies`).
+For this purpose, **hopsy** {cite}`Paul2024` is used to uniformly sample the parameter space (see {numref}`uniform_samples`).
 However, this method is effective only if all optimization variables have defined lower and upper bounds and primarily ensures that linear constraints are met.
 Nonlinear constraints might not be satisfied by the generated samples, and incorporating nonlinear parameter dependencies can be challenging.
 In such scenarios, users can input their own starting points, building on prior knowledge or results from other preprocessing steps like shortcut methods (refer to {numref}`shortcut_methods`).
@@ -326,8 +348,7 @@ Example for uniform sampling of parameter space with linear inequality constrain
 (optimization_results)=
 ### Optimization results
 
-To start the optimization, the {class}`~CADETProcess.optimization.OptimizationProblem` needs to be passed to the {class}`Optimizer's <CADETProcess.optimization.OptimizerBase>` {meth}`~CADETProcess.optimization.OptimizerBase.optimize()` method, which internally calls the external optimizer.
-After optimization, a {class}`~CADETProcess.optimization.OptimizationResults` object contains the results of the optimization.
+To start the optimization, the {class}`~CADETProcess.optimization.OptimizationProblem` is passed to the {meth}`~CADETProcess.optimization.OptimizerBase.optimize` method, which invokes the external optimizer and returns an {class}`~CADETProcess.optimization.OptimizationResults` object.
 This includes:
 
 - {attr}`~CADETProcess.optimization.OptimizationResults.exit_flag`: Information about the optimizer termination.
@@ -376,7 +397,7 @@ glue("pareto", fig, display=False)
 Pareto plot of all evaluated individuals.
 ```
 
-The {meth}`~CADETProcess.optimization.OptimizationResults.plot_convergence` method is a tool for visualizing the convergence of the optimization over time, where the objective value is plotted against the number of function evaluations (see {numref}`convergence`).
+The {meth}`~CADETProcess.optimization.OptimizationResults.plot_convergence` method visualizes the convergence of the optimization, plotting the objective value against the number of function evaluations (see {numref}`convergence`).
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -389,7 +410,7 @@ glue("convergence", fig, display=False)
 :name: convergence
 :scale: 50%
 
-The optimization algorithm progresses towards a solution over time.
+Convergence of the optimization algorithm: objective values plotted against the number of function evaluations.
 ```
 
 ```{code-cell} ipython3
