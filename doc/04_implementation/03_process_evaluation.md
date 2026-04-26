@@ -19,8 +19,8 @@ from myst_nb import glue
 (process_evaluation)=
 # Process Evaluation
 
-Simulation results alone are not sufficient to assess whether a chromatographic process meets its design goals.
-A dedicated evaluation step is needed to extract the performance indicators defined in {numref}`kpi` and to quantify the agreement with experimental data as required for model calibration (see {numref}`model_calibration`), before those metrics can be used in optimization.
+Simulation results alone are not sufficient to assess whether a chromatographic process meets its design goals: raw concentration profiles do not directly yield performance indicators such as purity or yield, nor do they quantify agreement with experimental data.
+A dedicated evaluation step is therefore needed to extract the performance indicators defined in {numref}`kpi` and to quantify the agreement with experimental data required for model calibration (see {numref}`model_calibration`), before those metrics can later be used in optimization.
 CADET-Process provides two main tools for this purpose.
 The {mod}`~CADETProcess.fractionation` module determines optimal cut times and calculates KPIs such as purity, yield, and productivity from simulated chromatograms.
 The {mod}`~CADETProcess.comparison` module quantifies the difference between simulation results and reference data, enabling the formulation of inverse problems for parameter estimation.
@@ -28,34 +28,32 @@ The {mod}`~CADETProcess.comparison` module quantifies the difference between sim
 (fractionation)=
 ## Product fractionation
 
-To effectively quantify the performance of a chromatographic process, it is crucial to calculate KPIs such as purity or recovery yield from the chromatograms.
-As highlighted in {numref}`kpi`, the key information for assessing the separation performance of a chromatographic process is derived from the amounts of target components in the collected product fractions.
-For this purpose, the {mod}`~CADETProcess.fractionation` module provides the {class}`~CADETProcess.fractionation.Fractionator` class.
-Moreover, a method for the automatic determination of fractionation times is included in the software.
+As discussed in {numref}`kpi`, the performance of a chromatographic process is assessed from the amounts of target components collected in the product fractions.
+The {mod}`~CADETProcess.fractionation` module provides the {class}`~CADETProcess.fractionation.Fractionator` class for this purpose, as well as a method for automatically determining optimal fractionation times.
 
 ### Fractionator
 
-The {class}`~CADETProcess.fractionation.Fractionator` class slices the solution into fraction pools for each component.
-It allows for the evaluation of multiple chromatograms simultaneously and supports multiple fractions for each component within a chromatogram.
-To enable the calculation of the process parameters, it is necessary to specify which of the inlets should be considered for the feed and eluent consumption, as well as which outlet(s) are to be used for the evaluation.
-The simplest approach involves manually setting all fractionation times.
-
-To add a fractionation event, the following information needs to be provided:
+The {class}`~CADETProcess.fractionation.Fractionator` class collects the solution into fraction pools for each component.
+It supports the evaluation of multiple chromatograms simultaneously and allows multiple fractions per component within a chromatogram.
+To enable calculation of process KPIs, the user specifies which inlets are considered for feed and eluent consumption, and which outlet(s) are used for evaluation.
+The simplest approach is to set all fractionation times manually.
+Fractionation is controlled through fractionation events, which share the same {class}`~CADETProcess.dynamicEvents.EventHandler` base class as process events (see {numref}`process`).
+Each fractionation event marks the point at which the system switches to collecting into a different pool, and requires the following information:
 
 - `event_name`: Name of the event.
-- `target`: Pool to which fraction is added. `-1` indicates a waste fraction.
-- `time`: Time of the event
+- `target`: Index of the component pool into which material is collected from this time onward. `-1` indicates a waste fraction.
+- `time`: Time of the event.
 - `chromatogram`: Name of the chromatogram. Optional if only one outlet is set as `product_outlet`.
 
-Any number of fractions can be added to the {class}`~CADETProcess.fractionation.Fractionator`.
-The resulting {class}`~CADETProcess.performance.Performance` object then contains information about key performance indicators such as mass, volume, purity, concentration, productivity, recovery yield, as well as eluent consumption (refer to eq {eq}`molar_amount` to {eq}`purity`).
+Any number of fractionation events can be added to the {class}`~CADETProcess.fractionation.Fractionator`.
+Once all events are set, the Fractionator integrates the concentration profiles over each collection interval to compute molar amounts (see eq. {eq}`molar_amount`), then aggregates the results into a {class}`~CADETProcess.performance.Performance` object containing KPIs such as purity, recovery yield, productivity, and eluent consumption (see {numref}`kpi`).
 The chromatogram can be plotted with the fraction times overlaid (see {numref}`chromatogram_fractionation`).
 
 ### Optimization of fractionation times
 
-Automatically determining KPIs from chromatograms is an important step in process optimization.
-Due to the diverse shapes and forms that concentration profiles can exhibit, a tool is required that is both flexible and capable of handling a broad range of scenarios.
-To address this need, the {mod}`~CADETProcess.fractionation` module provides a method to set up an {class}`~CADETProcess.optimization.OptimizationProblem`, which automatically identifies optimal cut times.
+Automatically determining optimal fractionation times is an important step in process optimization.
+Due to the diverse shapes that concentration profiles can exhibit, the approach must be flexible enough to handle a broad range of scenarios.
+The {mod}`~CADETProcess.fractionation` module provides a convenience method that internally formulates an {class}`~CADETProcess.optimization.OptimizationProblem` (see {numref}`optimization`) to identify optimal cut times automatically.
 Objective and constraint functions consider the fractions pooled from all chromatograms of the system.
 For every component, different purity requirements can be specified, and different objective functions may be applied.
 As initial values for the optimization, areas of the chromatogram with sufficient local purity are identified, i.e., intervals where $PU_i(t)=c_i(t)/\sum_j c_j(t)\geq PU_{\text{min},i}$ {cite}`Shan2004` (see also {numref}`fig_purity`).
@@ -164,10 +162,8 @@ glue("fig_purity", fig_purity, display=False)
 
 These initial intervals are then expanded by the optimizer towards regions of lower purity while meeting the cumulative purity constraints.
 By default, the mass of the components is maximized under purity constraints, although alternative objective functions are equally viable.
-Currently, {class}`~CADETProcess.optimization.COBYLA` {cite}`Powell1994` from the *SciPy* library {cite}`SciPyContributors2020` is used as the optimizer, but other optimizers or heuristic algorithms may also be employed.
-
-To the best of the author's knowledge, this flexible automatic approach for determining fractionation times is a novel contribution that has not been previously discussed in the literature.
-This method addresses an important gap in the toolchain necessary for the analysis and optimization of advanced chromatographic processes.
+Currently, {class}`~CADETProcess.optimization.COBYLA` {cite}`Powell1994` from the *SciPy* library {cite}`SciPyContributors2020` is used as the optimizer, although the interface supports other optimizers as well.
+To the best of the author's knowledge, the generalized formulation of product amounts accommodating multiple chromatograms, multiple fractions, and time-varying flow rates (eq. {eq}`molar_amount`), together with the automatic determination of optimal fractionation times for this general case, have not been previously described in the literature.
 
 
 (comparison)=
@@ -175,11 +171,11 @@ This method addresses an important gap in the toolchain necessary for the analys
 
 Many research and design problems in chromatography can effectively be approached by formulating them as inverse problems.
 These problems involve determining system parameters by comparing simulation results with observed experimental data.
-For this purpose, the {mod}`~CADETProcess.comparison` module in CADET-Process provides tools to quantify the differences between simulation outputs and reference data, such as experimental data or prior simulation results.
+The {mod}`~CADETProcess.comparison` module provides a unified set of metrics for quantifying such differences {cite}`Heymann2022`.
+While parameter estimation is the primary use case, the same metric classes are used in other contexts as well, such as detecting cyclic stationarity (see {numref}`stationarity`), ensuring consistent behavior across the framework.
 
-The {class}`~CADETProcess.comparison.Comparator` class compares results from two simulations or between simulation results and experimental data.
-It includes several methods for both visualizing and analyzing the differences between datasets.
-Users can select from a range of metrics, like sum squared errors or peak shape similarity, to accurately quantify the differences between the datasets.
+The {class}`~CADETProcess.comparison.Comparator` class compares simulation results against experimental data or against results from a second simulation.
+Differences can be visualized and quantified using a range of metrics, including point-wise errors such as NRMSE, as well as peak-shape and peak-area metrics (see {numref}`model_calibration`).
 To add a difference metric, the following information must be provided:
 
 - `difference_metric`: The type of the metric.
@@ -188,18 +184,14 @@ To add a difference metric, the following information must be provided:
 
 Optionally, a start and end time can be specified to only evaluate the difference metric over that time interval.
 This is particularly useful if system noise (e.g. injection peaks) should be ignored or if prior knowledge is available about which peaks correspond to which components.
-
-Next to the experimental data, a reference model needs to be configured, i.e. a {class}`~CADETProcess.processModel.Process`.
-It must include relevant details so that it is capable of accurately predicting the experimental system (e.g. tubing, valves etc.).
+The simulation model used for comparison must be configured to accurately represent the experimental system, including peripheral components such as tubing and valves.
 
 To demonstrate this module, consider a simple tracer pulse injection onto a chromatographic column.
 For a more detailed study, refer to {numref}`characterization`.
 As an initial guess, the bed porosity is set to $0.5$, and the axial dispersion to $1.0 \times 10^{-7} \text{m}^2 \text{s}^{-1}$.
-After process simulation, the {class}`~CADETProcess.simulationResults.SimulationResults` needs to be passed to the {meth}`~CADETProcess.comparison.Comparator.evaluate` method of the {class}`~CADETProcess.comparison.Comparator`.
-Here, an NRMSE metric has been added for the interval $3 \to 6~\text{min}$.
-The difference is visualized in {numref}`chromatogram_comparison`.
-The comparison shows that there is still a large discrepancy between simulation and experiment.
-Instead of manually adjusting these parameters, an {class}`~CADETProcess.optimization.OptimizationProblem` can be set up, which automatically determines the parameter values.
+After simulation, the {class}`~CADETProcess.simulationResults.SimulationResults` is passed to the {meth}`~CADETProcess.comparison.Comparator.evaluate` method, here with an NRMSE metric over the interval from $3$ to $6~\text{min}$.
+The resulting comparison is shown in {numref}`chromatogram_comparison`, where a large discrepancy between simulation and experiment is still visible.
+Rather than adjusting these parameters manually, an {class}`~CADETProcess.optimization.OptimizationProblem` can be formulated to determine them automatically (see {numref}`optimization`).
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
