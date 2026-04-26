@@ -168,6 +168,7 @@ Note that Python does not enforce type annotations at runtime; they are a static
 Beyond abstract classes, annotations improve the readability of any method signature by making the expected input and output types immediately apparent without having to consult the implementation or documentation.
 In CADET-Process, type annotations are enforced throughout the codebase and verified as part of the CI/CD pipeline (see {numref}`ci_cd`).
 
+(design_patterns)=
 ## Design patterns
 
 Design patterns are a set of solutions to recurring software design problems, and they provide best practices and templates for designing flexible, reusable, and maintainable code.
