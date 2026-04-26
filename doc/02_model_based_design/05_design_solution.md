@@ -58,6 +58,8 @@ More representative sampling of the parameter space reduces the risk of bias in 
 (optimization_algorithms)=
 ## Optimization
 
+Optimization is the systematic search for decision variable values $x$ that minimize or maximize one or more objective functions $f(x)$, subject to constraints on the feasible region.
+As discussed above, it provides a unified framework for tasks ranging from model calibration to process design.
 Optimization problems can be classified based on the type of variables, constraints, and objectives involved.
 Some common classes include:
 
