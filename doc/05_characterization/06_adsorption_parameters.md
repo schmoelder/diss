@@ -36,18 +36,18 @@ parameters_all = load_all_parameters(final_parameters_branch)
 (adsorption_parameters)=
 # Estimation of adsorption parameters
 
-Adsorption parameters are estimated using experiment `E9` (see {numref}`tab_experiments`), which comprises four gradient elution runs with slopes of 4, 8, 12, and 16 CV, compared to simulation results.
-The objective is to adjust the characteristic charge $\nu$ and the equilibrium constant $K_{\text{eq}}$ to minimize the discrepancy between simulations and experiments.
-The steric factor $\sigma$ is not adjusted, as its effects are typically observed in breakthrough curves {cite}`Osberghaus2012`.
-Consequently, it is set to 0.
-Rapid equilibrium is assumed throughout the simulations.
+Adsorption parameters were estimated using experiment `E9` (see {numref}`tab_experiments`), which comprises four gradient elution runs with slopes of 4, 8, 12, and 16 CV, compared to simulation results.
+The objective was to adjust the characteristic charge $\nu$ and the equilibrium constant $K_{\text{eq}}$ to minimize the discrepancy between simulations and experiments.
+The steric factor $\sigma$ was not adjusted, as its effects can typically only be observed in breakthrough curves under overloaded conditions {cite}`Osberghaus2012`.
+Consequently, it was set to 0.
+Rapid equilibrium was assumed throughout the simulations.
 
-A separate simulation is run for each experiment, and the resulting outlet profiles are compared.
-Agreement between experiment and simulation is quantified using the normalized root mean squared error (NRMSE).
+A separate simulation was run for each experiment, and the resulting outlet profiles were compared.
+Agreement between experiment and simulation was quantified using the NRMSE.
+Rather than aggregating all NRMSE values into a single objective, each gradient experiment's NRMSE is handled as a separate objective.
 The optimizer generates a set of Pareto-optimal solutions based on these comparisons.
-The sum of all NRMSE values is used as a meta-score in a multi-criteria decision function, effectively converting the problem from single-objective to multi-objective optimization and weighting each experiment equally, independent of gradient length.
-The parameter set with the best decision function score is selected as the final model parameters for the fully characterized system.
-{numref}`tab_lysozyme_parameters` shows the values of the fitted parameters.
+The sum of all NRMSE values serves as a meta score in a multi-criteria decision function to select the final parameter set, weighting each experiment equally regardless of gradient length.
+{numref}`tab_lysozyme_parameters` shows the values of the fitted parameters and {numref}`fig_lysozyme` illustrates the results, showing the simulation (colored lines) and experimental data (black dotted line) in close agreement.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -88,8 +88,6 @@ mystnb:
 display(Markdown(tab_lysozyme))
 ```
 
-{numref}`fig_lysozyme` illustrates the results, showing the simulation (colored lines) and experimental data (black dotted line) in close agreement.
-
 ```{glue:figure} fig_lysozyme
 :name: fig_lysozyme
 :scale: 75%
@@ -104,9 +102,10 @@ To further validate the model, two additional gradient experiments using 6 and 1
 :name: fig_lysozyme_validation
 :scale: 75%
 
-Comparison of experimental data with simulation results at pH 5 for 6, and 14 CV gradients.
+Comparison of experimental data with simulation results at pH 5 for 6 and 14 CV gradients.
 ```
 
+In addition to experimental validation, the estimated parameters were compared with values reported in the literature.
 Osberghaus et al. and Ladiwala et al. both determined isotherm parameters at pH 5 on a *Sepharose* column, albeit a fast-flow variant, whereas here a high-performance column was used {cite}`Osberghaus2012, Ladiwala2005`.
 Osberghaus et al. report a characteristic charge for Lysozyme of 5.07, while Ladiwala et al. report 5.6.
 The value determined in this study, {glue:text}`nu`, aligns very well with Ladiwala et al., though it is slightly higher than the value reported by Osberghaus et al.
