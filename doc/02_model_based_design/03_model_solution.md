@@ -25,8 +25,10 @@ Although this method is restricted to the linear isotherm, it is particularly us
 Here, binding models represent only a small fraction of the overall source code.
 As such, analytical solutions can still validate critical aspects of the code, including convection, diffusion, and networks of unit operations.
 To validate the connectivity and dynamic events of the operating modes described later in this work, equilibrium theory for single columns is applied (see {numref}`equilibrium_model`) to determine propagation velocities and corresponding elution times {cite}`SchmidtTraub2020`.
-By accounting for additional events such as recycling times, switching flow direction, virtually extending the column length, or re-injecting recycled fractions, chromatograms for advanced operating modes under ideal conditions can be calculated.
-These are then compared to the numerical solutions obtained from CADET-Core.
+The general principle for advanced operating modes is to track how far each component front would have traveled at the time points corresponding to key process events, such as the end of a recycling phase, a valve switch, or a re-injection.
+From these positions, the outlet concentration profiles are reconstructed analytically.
+While the specific logic differs per operating mode (recycling, flip-flop, serial columns), the underlying approach is the same: propagation velocities determine component positions at each event, and the outlet profile is assembled from the resulting concentration fronts.
+These ideal chromatograms are then compared to the numerical solutions obtained from CADET-Core.
 
 For the equilibrium model with nonlinear isotherms, propagation velocities of concentration fronts can be derived analytically using the method of characteristics {cite}`SchmidtTraub2020`.
 Using the chain rule, the time derivative of the solid phase concentration can be expressed in terms of the isotherm slope and the liquid phase time derivative:
