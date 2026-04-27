@@ -105,9 +105,8 @@ mystnb:
 display(Markdown(overview))
 ```
 
-{numref}`batch-elution_ternary_moo-pc_fig_obj` depicts the evaluated objective function values as a function of both feed duration and cycle time.
-The optimal variable values and KPIs for all Pareto edge points are summarized in {numref}`batch-elution_moo-pc_kpi`, with the corresponding chromatograms provided in {numref}`batch-elution_ternary_moo-pc_fig_chrom`.
-
+{numref}`batch-elution_ternary_moo-pc_fig_obj` shows the evaluated objective function values as a function of both feed duration and cycle time.
+The optimal variable values and KPIs for all Pareto edge points are summarized in {numref}`batch-elution_ternary_moo-pc_kpi`, with the corresponding chromatograms provided in {numref}`batch-elution_ternary_moo-pc_fig_chrom`.
 
 ```{glue:figure} moo_fig_obj
 :name: batch-elution_ternary_moo-pc_fig_obj
@@ -137,8 +136,8 @@ For the specific productivity of component $A$, three distinct optima are observ
 This behavior becomes clear upon analyzing the chromatograms corresponding to these optima ({numref}`batch-elution_ternary_moo-pc_fig_nodes`):
 - The longest cycle time ($\alpha$) resembles the previous scenario, where the tail of component $C$ overlaps with the leading edge of component $A$ from the subsequent injection.
 - At a shorter cycle time ($\beta$), components $A$ and $B$ overtake component $C$ from the previous injection, resulting in the $C$ peak being interlocked between the $B$ and $A$ peaks of consecutive injections.
-- With the shortest cycle time ($\gamma$), components $A$ and $B$ overtake the $C$ peak from *two* previous injections.
-This creates a highly efficient operational scenario, as components $B$ and $C$, neither of which are target components, are effectively managed to minimize their impact on the process.
+- With the shortest cycle time ($\gamma$), components $A$ and $B$ overtake the $C$ peak from two previous injections.
+This creates a highly efficient operational scenario, as components $B$ and $C$, neither of which is a target component, are effectively managed to minimize their impact on the process.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -254,11 +253,11 @@ Each row corresponds to a distinct cycle time scenario:
 Similarly, the objectives for the KPIs of the other components also exhibit multiple local optima, which can be attributed to the same overlapping and overtaking behavior of peaks across injections.
 Due to the high dimensionality and complexity of the objective space, optimizers may struggle to fully sample these sometimes sharp regions, resulting in sparse sampling.
 Refinement of the parameter space could potentially yield further improvements in process parameters.
+
 Alternative tools, such as surrogate models, may be better suited if the primary goal is to understand the underlying optimization landscape rather than targeting a specific KPI.
 In this case, the use of a genetic algorithm, a somewhat inefficient but robust "brute force" approach, enabled effective exploration of the parameter space and revealed these complex behaviors.
 Gradient-based algorithms, for instance, would likely fail due to the presence of many local optima and their dependence on initial values.
 Bayesian optimization presents a promising alternative, as it balances exploration of the parameter space with exploitation of known high-performing regions.
-However, at the time of writing, such algorithms have not yet been fully integrated into the CADET-Process framework.
 
 ---
 
