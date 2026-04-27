@@ -179,7 +179,7 @@ Eine zusätzliche Serie synthetischer Fallstudien demonstriert die Optimierungsm
 Die Simulationsergebnisse werden gegen analytische Lösungen der Gleichgewichtstheorie validiert.
 Die Mehrzieloptimierung identifiziert dabei nicht-intuitive Betriebsstrategien, einschließlich Serieninjektionen, intermediärer Abfallfraktionen und Peakverschachtelung unter überladenen Bedingungen.
 Ein zentrales Ergebnis ist, dass sich die Batch-Elution als produktivitätsoptimaler Grenzfall komplexerer Recyclingkonfigurationen ergibt.
-Dieses Resultat folgt direkt aus der Optimierungsformulierung und unterstreicht das Potenzial des Frameworks für die Superstrukturoptimierung, bei der das Betriebskonzept selbst als Entwurfsvariable behandelt wird.
+Dieses Resultat wurde nicht *a priori* vorgegeben, sondern ergibt sich natürlich aus der Struktur der Entscheidungsvariablen, und unterstreicht das Potenzial des Frameworks für die Superstrukturoptimierung, bei der das Betriebskonzept selbst als Entwurfsvariable behandelt wird.
 
 Durch diese Entwicklungen etabliert sich CADET-Process als umfassendes Open-Source-Framework zur Auslegung und Optimierung chromatographischer Prozesse, das der wissenschaftlichen Gemeinschaft frei zur Verfügung steht und sowohl akademische Forschung als auch industrielle Anwendungen unterstützt.
 
@@ -204,7 +204,7 @@ An additional series of synthetic case studies demonstrates the optimization cap
 Simulation results are validated against analytical solutions from equilibrium theory.
 Multi-objective optimization reveals non-intuitive operating strategies, including serial injections, intermediate waste fractions, and peak interlocking under overloaded conditions.
 A key finding is that batch elution emerges as the productivity-optimal limiting case of more complex recycling configurations.
-This result follows directly from the optimization formulation and highlights the potential of the framework for superstructure optimization, in which the operating concept itself is treated as a design variable.
+This result was not imposed *a priori* but arose naturally from the structure of the decision variables, highlighting the potential of the framework for superstructure optimization, in which the operating concept itself is treated as a design variable.
 
 Overall, CADET-Process establishes itself as a comprehensive open-source framework for the design and optimization of chromatographic processes, freely available to the scientific community and supporting both academic research and industrial applications.
 
