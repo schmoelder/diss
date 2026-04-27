@@ -361,8 +361,8 @@ NLP
 NRMSE
     Normalized root mean square error
 
-(U-)NSGA-(II/III)
-    (Unified) Nondominated-sorting genetic algorithms (II/III)
+NSGA-II/III
+    Nondominated-sorting genetic algorithms (II/III)
 
 ODE
     Ordinary differential equation
