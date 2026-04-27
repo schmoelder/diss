@@ -299,15 +299,15 @@ sphinx:
           \clearpage
 
           \thispagestyle{empty}
-          \vspace*{14cm}
+          \vspace*{12cm}
           {\large
             \begin{doublespacing}
               Als Dissertation genehmigt\\
               von der Technischen Fakultät\\
               der Friedrich-Alexander-Universität Erlangen-Nürnberg\\[1em]
-              \begin{tabular}{@{}lp{6cm}}
-                  Tag der mündlichen Prüfung:& \textbf{Tag. Monat Jahr}\\[1em]
-                  Vorsitzender des Promotionsorgans: &\textbf{Prof. Dr.-Ing.}\\[1em]
+              \begin{tabular}{@{}p{4.5cm}p{7cm}}
+                  Tag der mündlichen \\Prüfung:& \textbf{Tag. Monat Jahr}\\[1em]
+                  Vorsitzender des \\Promotionsorgans: &\textbf{Prof. Dr.-Ing.}\\[1em]
                   Gutachter: & \textbf{Prof. Dr.-Ing. Malte Kaspereit}\\
                              & \textbf{Prof. Dr.-Ing. }\\
               \end{tabular}
