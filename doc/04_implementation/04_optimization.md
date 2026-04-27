@@ -63,13 +63,10 @@ It allows the addition of any number of variables, each with optional lower and 
 (variable_normalization)=
 ### Variable normalization
 
-Optimization algorithms often struggle when variables span multiple orders of magnitude, as this variability affects the relative influence of each parameter on the objective function {cite}`Heymann2022`.
-To address this, parameter normalization is essential.
-It improves the efficiency and accuracy of the optimization process by ensuring a more balanced exploration of the solution space and reducing the risk of scale-induced biases.
-
-Normalization helps equalize the contribution of each parameter, leading to a more uniform search and a greater likelihood of identifying optimal solutions.
-To support this, CADET-Process allows for both linear and logarithmic normalization of variables.
-The linear normalization maps the variable space from the lower and upper bound to a range between $0$ and $1$ by applying the following transformation:
+Optimization algorithms often struggle when variables span multiple orders of magnitude, as large differences in scale distort the relative influence of each parameter on the objective function {cite}`Heymann2022`.
+Without normalization, the optimizer effectively treats all parameters as if they operate on the same scale, leading to biased exploration and an increased risk of missing optimal regions at the lower end of wide-ranging variables.
+CADET-Process addresses this by supporting both linear and logarithmic normalization, mapping each variable to a consistent $[0, 1]$ domain while handling the inverse transformation back to physical units transparently.
+The linear normalization is defined as:
 
 ```{math}
 :label: linear_normalization
@@ -77,7 +74,7 @@ The linear normalization maps the variable space from the lower and upper bound 
 x^\prime = \frac{x - x_{lb}}{x_{ub} - x_{lb}}
 ```
 
-The log normalization maps the variable space from the lower and upper bound to a range between $0$ and $1$ by applying the following transformation:
+The logarithmic normalization is defined as:
 
 ```{math}
 :label: log_normalization
@@ -93,10 +90,9 @@ Consider the characterization of a chromatographic column (refer also to {numref
 - **Bed porosity**, ranging from $0.1$ to $0.8$
 - **Axial dispersion**, ranging from $1 \times 10^{-9}$ to $1 \times 10^{-4}~\text{m}^2~\text{s}^{-1}$.
 
-Due to this disparity in scales, porosity is best normalized linearly, while axial dispersion benefits from logarithmic normalization.
-As illustrated in {numref}`fig_initial_values`, sampling without normalization is biased toward the upper end of the axial dispersion range, with few samples drawn near the lower bound of $1 \times 10^{-9}~\text{m}^2~\text{s}^{-1}$.
-In contrast, {numref}`fig_initial_values_normalized` shows that normalization results in more uniform coverage across the full parameter range, an important characteristic for generating effective initial values (see {numref}`initial_values`).
-This normalization strategy allows the optimizer to work within a consistent domain, effectively optimizing two variables that both range from $0$ to $1$, while CADET-Process handles the inverse transformation back to the original scales for evaluation purposes.
+Due to this disparity in scales, porosity is normalized linearly while axial dispersion uses logarithmic normalization.
+As shown in {numref}`fig_initial_values`, sampling without normalization clusters near the upper end of the $D_{\text{ax}}$ range, leaving the lower orders of magnitude nearly unexplored.
+With normalization ({numref}`fig_initial_values_normalized`), samples are distributed near-uniformly across the full five orders of magnitude, which is essential for generating effective initial values and ensuring the optimizer explores the relevant parameter space (see {numref}`initial_values`).
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -133,7 +129,7 @@ glue("fig_initial_values_normalized", fig, display=False)
 :name: fig_initial_values
 :scale: 50%
 
-Uniform sampling of 128 parameter combinations in the unnormalized parameter space.
+Sampling without normalization: $D_{\text{ax}}$ values cluster near the upper bound, leaving the lower orders of magnitude nearly unexplored.
 ```
 ````
 
@@ -144,7 +140,7 @@ Uniform sampling of 128 parameter combinations in the unnormalized parameter spa
 :name: fig_initial_values_normalized
 :scale: 50%
 
-Uniform sampling of 128 parameter combinations in normalized parameter space.
+Sampling with log-normalization applied to $D_{\text{ax}}$ (logarithmic scale): coverage is near-uniform across the full five orders of magnitude.
 ```
 ````
 
