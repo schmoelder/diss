@@ -67,12 +67,11 @@ The operating mode was first proposed by {cite:t}`Martin1979` as a method suitab
 Further development was carried out by Colin et al. {cite}`Colin1991`.
 
 The fundamental principle is to inject the feed mixture at one end of the column and allow the early-eluting components to exit at the opposite end.
-The flow reversal occurs when fast-eluting components have cleared the column, typically detected by UV monitoring.
+The flow reversal occurs when fast-eluting components have cleared the column, typically determined by monitoring the column effluent.
 Once reversed, the more strongly retained components are eluted in the opposite direction.
 As illustrated in {numref}`flip_flop_bulk`, this cycle repeats with each injection, creating the characteristic alternating product collection pattern.
 This approach particularly benefits separations of components with large differences in binding affinity {cite}`SchmidtTraub2020`.
 Consequently, the simple separation problem with parameters listed in {numref}`model_parameters` is used for this study.
-
 To model the flip-flop operating mode in CADET-Process, two {class}`Inlets <CADETProcess.processModel.Inlet>`, a column model (e.g., {class}`~CADETProcess.processModel.LumpedRateModelWithPores`), and an {class}`~CADETProcess.processModel.Outlet` are connected (see {numref}`flip_flop_flow_sheet`).
 
 ```{figure} ./figures/flow_sheet.png
@@ -83,11 +82,11 @@ Flow sheet for the flip-flop process.
 
 To model injection and elution, {class}`Events <CADETProcess.dynamicEvents.Event>` are introduced to modify the {attr}`~CADETProcess.processModel.Inlet.flow_rate` attribute of the {class}`~CADETProcess.processModel.Inlet` unit operations.
 To reduce the number of event times that need to be specified, event dependencies are defined to ensure that either feed or eluent is always flowing through the column.
-Moreover, after a given $\Delta t_{reversal}$, the {attr}`~CADETProcess.processModel.LumpedRateModelWithPores.flow_direction` attribute of the {class}`~CADETProcess.processModel.LumpedRateModelWithPores` is set to $-1$, indicating a flow reversal.
-It is important to note that, by convention, in CADET-Process a full cycle requires that all parameters repeat.
-Consequently, a second injection is then executed, while the flow is still reversed.
-To ensure full elution of the strongly bound component, the injection is delayed by $\Delta t_{delay}$.
-The process events are depicted in {numref}`flip_flop_flow_events`.
+Moreover, after a given $\Delta t_{\text{reversal}}$, the {attr}`~CADETProcess.processModel.LumpedRateModelWithPores.flow_direction` attribute of the {class}`~CADETProcess.processModel.LumpedRateModelWithPores` is set to $-1$, indicating a flow reversal.
+By convention, in CADET-Process a full cycle requires that all parameters repeat.
+Consequently, a second injection is then executed while the flow is still reversed.
+To ensure full elution of the strongly bound component, the injection is delayed by $\Delta t_{\text{delay}}$.
+The process events are shown in {numref}`flip_flop_flow_events`.
 
 ```{figure} ./figures/event_dependencies.png
 :name: flip_flop_flow_events
@@ -133,7 +132,8 @@ glue("flip_flop_bulk", fig_flip_flop_bulk, display=False)
 (flip_flop_validation)=
 ## Process validation (Flip-Flop Chromatography)
 
-{numref}`fig_flip_flop_validation` compares the concentration profile of the ideal model at the column outlet, demonstrating good agreement between the simulation results and equilibrium theory.
+{numref}`fig_flip_flop_validation` compares the simulation against the equilibrium theory solution, following the approach described in {numref}`analytical_solutions`.
+Good agreement confirms the correctness of the process configuration.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -202,7 +202,7 @@ mystnb:
 display(Markdown(overview))
 ```
 
-{numref}`flip-flop_simple_linear_auto-cycle_moo-pc_fig_obj` depicts the evaluated objective function values as a function of both feed duration and the flip-flop delay times.
+{numref}`flip-flop_simple_linear_auto-cycle_moo-pc_fig_obj` shows the evaluated objective function values as a function of both feed duration and the flip-flop delay times.
 The optimal solutions and corresponding KPIs for all Pareto points are summarized in {numref}`flip-flop_simple_linear_auto-cycle_moo-pc_kpi`.
 The corresponding chromatograms are provided in {numref}`flip-flop_simple_linear_auto-cycle_moo-pc_fig_chrom`.
 
@@ -212,8 +212,8 @@ The process achieves extreme overloading conditions by operating at high feed vo
 A touching band separation emerges where fast-eluting components exit the column first.
 Flow reversal then occurs before the slow components reach the original outlet.
 This causes the components to elute at what was originally the inlet (now functioning as the outlet), with minimal but non-zero waste fractions.
-However, the current linear isotherm system may not fully capture realistic non-linear adsorption behaviors.
-This suggests that revisiting the component system choice could improve practical applicability.
+It should be noted that the simple separation problem used here does not fully exploit the strengths of the flip-flop mode; a mixture with a larger spread in binding affinities would yield more characteristic results.
+This is a limitation of the chosen example rather than of the operating mode or the framework itself.
 
 ```{glue:figure} moo_fig_obj
 :name: flip-flop_simple_linear_auto-cycle_moo-pc_fig_obj
