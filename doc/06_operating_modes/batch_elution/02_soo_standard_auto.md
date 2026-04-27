@@ -66,8 +66,9 @@ cases = get_cases_by_operating_mode(
 (batch_elution_auto-cycle-time_soo)=
 # Single-objective optimization of a binary Langmuir separation problem
 
-In the following, a more realistic scenario is considered, accounting for transport-limiting effects and a finite binding capacity.
-Additionally, the required purity is reduced to $95\%$.
+In the following, a more realistic scenario is considered: competitive Langmuir binding with finite capacity and mass-transfer limitations.
+Unlike the previous idealized case, no closed-form reference optimum is available for this system; the result is therefore assessed directly on the KPI values.
+The required purity is reduced to $95\%$ to reflect practical constraints.
 The problem is summarized in {numref}`batch-elution_auto-cycle_soo_overview`.
 
 ```{code-cell} ipython3
@@ -110,11 +111,10 @@ display(Markdown(overview))
 ```
 
 {numref}`batch-elution_auto-cycle_soo_kpi` summarizes the results.
-The required purity is nearly met, with the remaining discrepancy caused by the fractionation optimizer's tolerances.
-These tolerances could in theory be tightened, but at the cost of computational speed.
-Overall recovery decreases due to the larger waste fraction, as shown in {numref}`batch-elution_auto-cycle_soo_fig_chrom`.
-The chromatogram reveals both the characteristic "overshoot" of competitive nonlinear binding and incomplete separation from dispersive effects.
-Unlike the idealized linear case, these physical phenomena create broader overlap regions that must be discarded as waste.
+The required purity is met, with a small residual deviation attributable to the finite resolution of the fractionation algorithm; tightening its tolerances would reduce this at the cost of computational speed.
+Overall recovery is lower than in the idealized case due to the larger waste fraction, as shown in {numref}`batch-elution_auto-cycle_soo_fig_chrom`.
+The chromatogram reveals both the characteristic "overshoot" of competitive nonlinear binding and incomplete separation from dispersive effects, which together create broader overlap regions that must be discarded as waste.
+Despite this added complexity, the optimizer identifies a well-defined operating point, demonstrating that the framework extends naturally to the realistic setting.
 
 ```{code-cell} ipython3
 ---
