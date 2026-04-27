@@ -32,11 +32,11 @@ This work addresses all three: it presents models for chromatographic separation
 
 This is inherently a complex undertaking.
 Models are, by definition, approximations, and the software that implements them may contain omissions or undiscovered errors; this work is no exception.
-Yet even imperfect tools can be useful.
-The software developed here provides tools to simulate the diverse physicochemical effects and operating conditions that govern chromatographic separations.
+Yet even imperfect tools can be useful: the software developed here provides a practical framework to simulate, evaluate, and optimize the diverse physicochemical effects and operating conditions that govern chromatographic separations.
 
-The early decision to modularize the framework's code was the key to streamlining its development: by separating functionality and defining clear interfaces, development, testing, and integration become more efficient.
-This modularity also supports incremental improvement, allowing emerging issues or missing features to be addressed without disrupting other software components.
+The early decision to modularize the codebase was the key to making this work possible.
+Without clear separation of functionality and well-defined interfaces, developing, testing, and extending a system of this complexity would not have been feasible.
+This modularity also enables incremental improvements, allowing issues or missing features to be addressed without disrupting other components.
 Open-source principles, combined with adaptability to different standards, further strengthen this approach by promoting transparency and collaboration within the scientific community.
 In fact, many of the strongest modules emerged from such joint efforts, and I am grateful to all who contributed their expertise and perspective.
 Learning from the enthusiasm of others is an unmatched shortcut to understanding.
