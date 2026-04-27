@@ -139,7 +139,7 @@ sphinx:
         %% Tables: keep caption and first row together
         \let\originalsphinxattablestart\sphinxattablestart
         \renewcommand{\sphinxattablestart}{%
-            \needspace{4\baselineskip}\small
+            \needspace{3\baselineskip}\small
             \let\raggedright\centering
             \originalsphinxattablestart
         }
