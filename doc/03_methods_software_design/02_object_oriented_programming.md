@@ -114,8 +114,10 @@ Inside `residual`, `c = state` identifies the internal state variable as the cur
 This demonstrates *Polymorphism*: while only one subclass is shown here, any number of unit operation classes — each implementing a different physical model — can share the same `UnitOperationBase` interface and be treated interchangeably by the surrounding simulation code.
 The `@abstractmethod` decorator enforces that every subclass must implement `residual`, while the base class itself does not provide an implementation.
 This encapsulates the model-specific computation within each subclass and ensures a consistent interface across all unit operations.
-
-Now that the classes are defined, instances can be created and used as follows:
+```{raw} latex
+\needspace{6\baselineskip}
+```
+With the class hierarchy defined, a `CSTR` can be instantiated and its residual evaluated:
 
 ```{code-cell} ipython3
 cstr = CSTR(name="reactor", v_init=10.0, c_init=0.0)
@@ -142,6 +144,7 @@ More complex diagrams may additionally include associations, aggregations, or co
 
 ```{figure} ./figures/uml_unit_operation.png
 :name: uml_unit_operation_oop
+:scale: 25%
 
 UML class diagram of `UnitOperationBase` and `CSTR`.
 The abstract base class defines the common interface; `CSTR` inherits from it and adds model-specific parameters.

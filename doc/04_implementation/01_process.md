@@ -71,7 +71,6 @@ If the flow rate of a {class}`~CADETProcess.processModel.Cstr` is explicitly spe
 The volume must not reach zero, as this would render the mass balance equations undefined.
 If not specified for a {class}`~CADETProcess.processModel.Cstr`, the unit is treated like all other unit operations models, and the outgoing flow rate equals the incoming flow rate.
 This can be useful, e.g., when modeling holdup volumes or valves in the periphery of the chromatographic system.
-
 Since CADET-Process is designed to support internal recycles, the actual flow rates for every unit operation must be resolved before simulation.
 This calculation is performed automatically before each simulation, accounting for dynamic changes to flow rates and system connectivity.
 

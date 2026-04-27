@@ -85,6 +85,9 @@ The log normalization maps the variable space from the lower and upper bound to 
 x^\prime = \frac{log \left( \frac{x}{x_{lb}} \right) }{log \left( \frac{x_{ub} }{x_{lb}} \right) }
 ```
 
+```{raw} latex
+\needspace{6\baselineskip}
+```
 Consider the characterization of a chromatographic column (refer also to {numref}`characterization`), where two parameters are optimized:
 
 - **Bed porosity**, ranging from $0.1$ to $0.8$

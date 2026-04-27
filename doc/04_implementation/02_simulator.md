@@ -23,13 +23,13 @@ Once a {class}`~CADETProcess.processModel.Process` is configured, it can be pass
 The chromatographic models introduced in {numref}`model_formulation` are solved using the methods described in {numref}`model_solution`.
 Following the Adapter pattern introduced in {numref}`design_patterns`, CADET-Process defines a {class}`~CADETProcess.simulator.SimulatorBase` interface, while the concrete {class}`~CADETProcess.simulator.Cadet` implementation translates the internal process representation into the input format of CADET-Core and invokes it.
 Currently, CADET-Core is the only supported backend, although the adapter interface is designed to accommodate other solvers.
-CADET-Core must be installed separately, for example via *mamba* (https://mamba.readthedocs.io):
+CADET-Core must be installed separately via *conda*:
 
 ```bash
-mamba install -c conda-forge cadet
+conda install -c conda-forge cadet
 ```
 
-For more information on CADET-Core, refer to the {ref}`CADET Documentation <cadet:contents>` {cite}`CADET-Core_documentation`.
+Further details are provided in the {ref}`CADET-Core Documentation <cadet:contents>` {cite}`CADET-Core_documentation`.
 
 This chapter covers three aspects of process simulation.
 First, the solver configuration parameters are described, including tolerance settings that control the accuracy of the adaptive time stepping scheme.
@@ -42,7 +42,7 @@ The simulator exposes several configuration parameters that control numerical ac
 While reasonable defaults are set for all parameters, adjustments may be necessary for specific use cases.
 CADET-Core employs adaptive time stepping, dynamically adjusting the step size based on an error estimate (see {numref}`time_integration`): the step size decreases when the error exceeds a specified tolerance and increases when it is smaller.
 Adjusting the absolute and relative tolerances is therefore the most common configuration change, balancing accuracy against computational cost.
-A full reference of available parameters is provided in the CADET-Process documentation (https://cadet-process.readthedocs.io/en/latest/user_guide/simulator.html).
+A full reference of available parameters is provided in the CADET-Process documentation {cite}`CADET-Process_documentation`.
 
 (simulation_results)=
 ## Simulation results
@@ -82,7 +82,6 @@ To illustrate this concept, consider an MR-SSR process (see {numref}`mrssr` for 
 In this example, the stationarity criterion evaluates the relative change in the integrated concentration profile areas and NRMSEs between successive cycles, using data from all unit operation inlets and outlets.
 The metric classes for this purpose are provided by the {mod}`~CADETProcess.comparison` module, which offers a unified set of reusable metrics for quantifying differences between chromatographic profiles {cite}`Heymann2022`.
 The simulation terminates when both the relative change in area and NRMSE fall below $0.1~\%$, or when a maximum number of cycles is reached as a safety limit.
-
 {numref}`chromatogram_stationarity` displays the concentration profile at the column outlet across all cycles.
 The initial startup behavior is visible on the left side of the profile, while later cycles show no significant visual differences, indicating cyclic stationarity.
 In this scenario, the evaluator stopped the simulator after {glue:text}`n_cycles` cycles.

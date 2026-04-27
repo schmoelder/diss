@@ -38,6 +38,7 @@ Using the chain rule, the time derivative of the solid phase concentration can b
 
 \frac{\partial c^s_i}{\partial t} = \left. \frac{\text{d} c^s_i}{\text{d} c^b_i} \right|_{c^{b,+}_i} \cdot \frac{\partial c^b_i}{\partial t}.
 ```
+
 Rearranging eq. {eq}`mass_balance_em` and substituting eq. {eq}`solid_phase_derivative_chain_rule` yields the propagation velocity $w(c^{b,+}_i)$
 of a concentration front $c^{b,+}_i$:
 
@@ -92,7 +93,7 @@ For example, the spatial first-order forward finite difference is derived by app
 ```{math}
 :label: finite_difference_scheme
 
-\frac{\partial c(z_n)}{\partial z} \approx \frac{c(z_n+\Delta z) - c(z_n)}{\Delta z}
+\frac{\partial c(z_n)}{\partial z} \approx \frac{c(z_n+\Delta z) - c(z_n)}{\Delta z},
 ```
 
 where $\Delta z$ is the grid spacing.
@@ -117,7 +118,7 @@ The flux across these interfaces is approximated using a numerical flux function
 ```{math}
 :label: finite_volume_semi_discretized
 
-\frac{d c_{n}(t)}{d t} \approx \frac{1}{\Delta z} (\mathcal{F}(c_{n-1}, c_{n}) - \mathcal{F}(c_{n}, c_{n+1}))
+\frac{d c_{n}(t)}{d t} \approx \frac{1}{\Delta z} (\mathcal{F}(c_{n-1}, c_{n}) - \mathcal{F}(c_{n}, c_{n+1})),
 ```
 
 for each control volume $n \in \{ 0, \dots, N_{z} - 1 \}$, with $c_{-1}$ and $c_{N_z}$ given by boundary conditions.

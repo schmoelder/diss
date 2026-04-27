@@ -18,7 +18,6 @@ It protects against confusingly similar uses by others and can be maintained ind
 
 Although software is developed to fulfill functional requirements, its implementation is shaped by numerous design decisions, resulting in a concrete expression that is protected by copyright.
 Both source code and compiled binaries therefore fall under copyright law, while specific technical solutions may additionally be protected by patents.
-
 A practical issue arises when software is distributed without an explicit license.
 In this case, all rights remain reserved by default, and others are not legally permitted to use, modify, or redistribute the software.
 This restriction applies even if the source code is publicly accessible.
@@ -27,7 +26,6 @@ To avoid this ambiguity, a license should be provided whenever software is share
 Software licenses can broadly be classified into two categories: proprietary licenses and free and open-source software (FOSS) licenses.
 Proprietary software is typically distributed under an end-user license agreement (EULA), which restricts usage, modification, and redistribution.
 In contrast, FOSS licenses grant users the freedom to use, study, modify, and share the software.
-
 The terminology in this domain is often ambiguous.
 The term "free software" refers to freedom rather than price, in the sense of "free speech" rather than "free beer".
 By contrast, "freeware" denotes software that is available at no cost but does not necessarily grant access to the source code or rights to modify and redistribute it.
@@ -50,8 +48,11 @@ The following table summarizes the rights associated with common licensing model
 | Re-licensing         | +                        | +                             | -                           | -        | -                    | -            |
 ```
 
+```{raw} latex
+\needspace{6\baselineskip}
+```
 The Open Source Initiative lists more than 100 approved licenses {cite}`OpenSourceInitiative`.
-The following highlights several widely used examples.
+Several widely used examples are highlighted below.
 
 The *GNU General Public License (GPL)* is one of the most widely used open-source licenses.
 It guarantees the rights to use, study, modify, and redistribute software and enforces these freedoms through its copyleft provision, requiring derivative works to be licensed under the same terms.
@@ -70,7 +71,6 @@ Laurent identifies three primary benefits of open-source distribution: innovatio
 Open development fosters innovation by enabling contributions from a diverse community.
 It improves reliability, as broader scrutiny increases the likelihood of identifying and resolving defects.
 It also supports longevity, since projects can be maintained and extended beyond their original developers.
-
 Open-source development further promotes community engagement.
 Users can report issues and propose improvements through public platforms (see {numref}`version_control`), and exchange workflows and best practices via the CADET community forum (https://forum.cadet-web.de), which is complemented by an annual workshop and monthly office hours.
 

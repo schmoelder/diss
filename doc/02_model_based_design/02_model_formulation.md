@@ -75,7 +75,6 @@ c^s = c^s_{\text{max}} \frac{b \cdot c^l}{1 + b \cdot c^l},
 ```
 
 where $c^s_{\text{max}}$ represents the saturation capacity of the stationary phase, and $b$ is the adsorption equilibrium constant.
-
 At low concentrations, the Langmuir isotherm simplifies to the linear model {cite}`SchmidtTraub2020`:
 
 ```{math}
@@ -170,7 +169,7 @@ The complete Steric Mass Action (SMA) model, which incorporates both kinetics an
 ```{math}
 :label: sma_isotherm
 
-\frac{\text{d} c^s_i}{\text{d} t} = k_{a, i} \cdot c^l_{i} \cdot \left(\bar{c}^s_0\right)^{\nu_i} - k_{d, i} \cdot c^s_i \cdot \left(c^l_0\right)^{\nu_i}
+\frac{\text{d} c^s_i}{\text{d} t} = k_{a, i} \cdot c^l_{i} \cdot \left(\bar{c}^s_0\right)^{\nu_i} - k_{d, i} \cdot c^s_i \cdot \left(c^l_0\right)^{\nu_i},
 ```
 
 where $k_{a, i}$ and $k_{d, i}$ are the adsorption and desorption rate constants.
@@ -212,7 +211,8 @@ By default, the exponents $e_{\text{fwd},\ell,r}$ and $e_{\text{bwd},\ell,r}$ ar
 \end{aligned}
 ```
 
-In practice, these exponents can also be provided directly as parameters.
+In practice, however, many reactions are not elementary, meaning the reaction orders cannot be inferred from stoichiometry alone.
+In those cases, the exponents $e_{\text{fwd},\ell,r}$ and $e_{\text{bwd},\ell,r}$ can be provided directly as parameters to match the observed kinetics.
 
 (column_models)=
 ## Chromatographic column models
@@ -283,7 +283,7 @@ This phenomenon is described analogously to Fick's laws of diffusion {cite}`Schm
 ```{math}
 :label: axial_dispersion
 
-\frac{\partial c^b_i}{\partial t} = D_{ax,i} \cdot \frac{\partial^2 c^b_i}{\partial z^2}
+\frac{\partial c^b_i}{\partial t} = D_{ax,i} \cdot \frac{\partial^2 c^b_i}{\partial z^2},
 ```
 
 where $D_{ax,i}$ is the axial dispersion coefficient, which reflects the deviations from ideal plug flow due to column packing quality.
@@ -370,7 +370,7 @@ To account for peak broadening effects, axial dispersion is included, leading to
 ```{math}
 :label: mass_balance_edm
 
-\frac{\partial c^b_i}{\partial t} + F \cdot \frac{\partial c^s_i}{\partial t} = -u \cdot \frac{\partial c^b_i}{\partial z} + D_{ax,i} \frac{\partial^2 c^b_i}{\partial z^2}
+\frac{\partial c^b_i}{\partial t} + F \cdot \frac{\partial c^s_i}{\partial t} = -u \cdot \frac{\partial c^b_i}{\partial z} + D_{ax,i} \frac{\partial^2 c^b_i}{\partial z^2}.
 ```
 
 Conversely, the Thomas model considers finite adsorption rates as discussed in {numref}`isotherm_models`, but neglects dispersion effects {cite}`Thomas1944`:
@@ -378,15 +378,10 @@ Conversely, the Thomas model considers finite adsorption rates as discussed in {
 ```{math}
 :label: mass_balance_thomas
 
-\frac{\partial c^b_i}{\partial t} + F \cdot \frac{\partial c^s_i}{\partial t} = -u \cdot \frac{\partial c^b_i}{\partial z} ,
-```
-
-with
-
-```{math}
-:label: dynamic_adsorption_thomas
-
-\frac{\partial c^s_i}{\partial t} = f_{\text{ads}}\left( c^b, c^s \right) .
+\begin{aligned}
+\frac{\partial c^b_i}{\partial t} + F \cdot \frac{\partial c^s_i}{\partial t} &= -u \cdot \frac{\partial c^b_i}{\partial z}, \\
+\frac{\partial c^s_i}{\partial t} &= f_{\text{ads}}\left( c^b, c^s \right).
+\end{aligned}
 ```
 
 These models, collectively referred to as transport models, form the basis for describing chromatographic processes under non-ideal conditions.
@@ -427,15 +422,13 @@ a_s = \frac{\text{d} A^p}{\text{d} V} = \frac{3}{r^p} \cdot (1 - \varepsilon^b),
 ```
 
 where $r^p$ is the particle radius.
-The transport from the bulk phase (denoted by the superscript $b$) to the pore phase (denoted by the superscript $p$) is then given by:
+The transport from the bulk phase (denoted by the superscript $b$) to the pore phase (denoted by the superscript $p$), governed by the film mass transfer coefficient $k_{f,i}$, is then given by:
 
 ```{math}
 :label: film_diffusion
 
-\frac{\partial c^p_i}{\partial t} = F \cdot \frac{3}{\varepsilon^p r^p} \cdot k_{f,i} \left(c^b_i - c^p_i \right)
+\frac{\partial c^p_i}{\partial t} = F \cdot \frac{3}{\varepsilon^p r^p} \cdot k_{f,i} \left(c^b_i - c^p_i \right).
 ```
-
-where $k_{f,i}$ is the film mass transfer coefficient.
 
 The lumped rate model with pores (LRMP) combines these considerations into the following mass balance equations for component $i$ in the bulk phase and the pore phase:
 
@@ -502,7 +495,6 @@ Its mass balance is given by
 ```
 
 where $Q_{\text{in}}$ and $Q_{\text{out}}$ denote the inlet and outlet volumetric flow rates,
-
 Note, in contrast to other unit operations, the volume of the CSTR can also vary over time.
 The change of the tank volume is given by
 

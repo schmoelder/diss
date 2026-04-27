@@ -68,27 +68,29 @@ When sharing code or seeking assistance, the coding style will be evaluated, eve
 
 Guido van Rossum, the creator of the Python programming language, introduced a style guide with best practices and guidelines in the Python Enhancement Proposal 8 (*PEP-8*) {cite}`PEP8`.
 *PEP-8* includes specific recommendations regarding naming conventions, whitespace, and other aspects of code formatting to promote consistency and readability.
-Moreover, the "Zen of Python" was introduced in *PEP-20*, which includes 19 guiding principles for writing maintainable code {cite}`PEP20`:
+Moreover, the "Zen of Python", introduced in *PEP-20*, captures these ideas in 19 short guiding principles:
 
-1. Beautiful is better than ugly.
-1. Explicit is better than implicit.
-1. Simple is better than complex.
-1. Complex is better than complicated.
-1. Flat is better than nested.
-1. Sparse is better than dense.
-1. Readability counts.
-1. Special cases aren't special enough to break the rules.
-1. Although practicality beats purity.
-1. Errors should never pass silently.
-1. Unless explicitly silenced.
-1. In the face of ambiguity, refuse the temptation to guess.
-1. There should be one-- and preferably only one --obvious way to do it.
-1. Although that way may not be obvious at first unless you're Dutch.
-1. Now is better than never.
-1. Although never is often better than *right* now.
-1. If the implementation is hard to explain, it's a bad idea.
-1. If the implementation is easy to explain, it may be a good idea.
-1. Namespaces are one honking great idea -- let's do more of those!
+> 1. Beautiful is better than ugly.
+> 1. Explicit is better than implicit.
+> 1. Simple is better than complex.
+> 1. Complex is better than complicated.
+> 1. Flat is better than nested.
+> 1. Sparse is better than dense.
+> 1. Readability counts.
+> 1. Special cases aren't special enough to break the rules.
+> 1. Although practicality beats purity.
+> 1. Errors should never pass silently.
+> 1. Unless explicitly silenced.
+> 1. In the face of ambiguity, refuse the temptation to guess.
+> 1. There should be one-- and preferably only one --obvious way to do it.
+> 1. Although that way may not be obvious at first unless you're Dutch.
+> 1. Now is better than never.
+> 1. Although never is often better than *right* now.
+> 1. If the implementation is hard to explain, it's a bad idea.
+> 1. If the implementation is easy to explain, it may be a good idea.
+> 1. Namespaces are one honking great idea -- let's do more of those!
+>
+> — Tim Peters, *PEP 20 – The Zen of Python* {cite}`PEP20`
 
 While these principles provide general guidance, adherence to the coding conventions outlined in *PEP 8* is essential for maintaining consistency and readability.
 To enforce these standards, several tools and packages are available.

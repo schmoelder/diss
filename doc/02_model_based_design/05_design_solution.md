@@ -113,4 +113,6 @@ While GAs are effective optimization tools, they do not guarantee finding the gl
 There are several variations of GAs, including *NSGA-II*, *NSGA-III*, and *SPEA2*, each offering specific features and strengths.
 In this work, the *U-NSGA-III* algorithm is employed for multi-objective optimization due to its robustness and performance on problems with multiple objectives {cite}`Jain2014`.
 
+---
+
 With the theoretical foundations for model-based design of chromatographic processes established, the following chapter introduces the software engineering principles that informed the development of CADET-Process.

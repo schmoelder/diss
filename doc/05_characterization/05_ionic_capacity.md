@@ -52,14 +52,14 @@ It is assumed that the number of sodium ions equals the total capacity of the co
 The volume-specific ionic capacity, $\Lambda$, is then calculated by dividing the exchanged sodium ions by the solid volume of the resin:
 
 $$
-\Lambda = \frac{n_{\ce{Na}^+}}{V_{\text{c}} \cdot (1 - \varepsilon^t)}
+\Lambda = \frac{n_{\ce{Na}^+}}{V_{\text{c}} \cdot (1 - \varepsilon^t)}.
 $$
 
 The total porosity, $\varepsilon^t$, is determined using the bed porosity $\varepsilon^b$ and the particle porosity $\varepsilon^p$, which are estimated from the previous tracer experiments.
 It is given as the sum of the interstitial volume $V^{\text{int}}$ and pore volume $V^{\text{pore}}$, divided by the column volume $V_c$:
 
 $$
-\varepsilon^t = \frac{V^{\text{int}} + V^{\text{pore}}}{V_c} = \varepsilon^b + (1 - \varepsilon^b) \cdot \varepsilon^p
+\varepsilon^t = \frac{V^{\text{int}} + V^{\text{pore}}}{V_c} = \varepsilon^b + (1 - \varepsilon^b) \cdot \varepsilon^p.
 $$
 
 ```{code-cell} ipython3

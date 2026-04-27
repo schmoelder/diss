@@ -10,7 +10,7 @@ kernelspec:
 (design_formulation)=
 # Formulation of chromatographic design problems
 
-The formulation of chromatographic design problems typically involves determining various parameters {cite}`SchmidtTraub2020`:
+The formulation of chromatographic design problems typically involves three distinct classes of parameters: model parameters, design parameters, and operating parameters {cite}`SchmidtTraub2020`.
 
 *Model parameters* are inherent to the chosen chromatographic system and describe its physical and chemical properties.
 These include parameters related to thermodynamics, fluid dynamics, dispersion effects, and mass transfer resistances.
@@ -45,7 +45,7 @@ For parameters that cannot be determined directly, the calibration can be formul
 
 ```{math}
 :label: nrmse
-\text{NRMSE} = \frac{\sqrt{\sum_{t=1}^{T} (y_t - \hat{y}_t)^2}}{y_{\text{max}} - y_{\text{min}}}
+\text{NRMSE} = \frac{\sqrt{\sum_{t=1}^{T} (y_t - \hat{y}_t)^2}}{y_{\text{max}} - y_{\text{min}}},
 ```
 
 computes residuals between model predictions $\hat{y}_t$ and experimental data $y_t$.
@@ -207,12 +207,11 @@ In optimization, an objective function quantifies the quality of a solution.
 Simple objective functions often combine criteria, such as those introduced in {numref}`kpi`, to evaluate process performance.
 However, more detailed cost functions can also be employed to directly maximize the profit of a separation process.
 For a discussion of further objective functions, see {cite}`SchmidtTraub2020,Nicoud2015,Dienstbier2020`.
-
 A commonly used objective function combines specific productivity, recovery yield, and eluent consumption into a single metric:
 
 ```{math}
 :label: weighted_objective
-f(x) = \frac{PR_{\text{weighted}}(x) \cdot Y_{\text{weighted}}(x)}{EC_{\text{weighted}}(x)}
+f(x) = \frac{PR_{\text{weighted}}(x) \cdot Y_{\text{weighted}}(x)}{EC_{\text{weighted}}(x)}.
 ```
 
 Here, $PR_{\text{weighted}}(x)$, $Y_{\text{weighted}}(x)$, and $EC_{\text{weighted}}(x)$ represent the weighted values of productivity, yield, and eluent consumption, respectively.
@@ -222,7 +221,7 @@ Each weighted performance indicator $KPI_{\text{weighted}}$ is then calculated a
 
 ```{math}
 :label: ranked_performance
-KPI_{\text{weighted}} = \frac{\sum_{i=1}^{N_{\text{comp}}} \omega_i \cdot KPI_i}{\sum_{i=1}^{N_{\text{comp}}} \omega_i}
+KPI_{\text{weighted}} = \frac{\sum_{i=1}^{N_{\text{comp}}} \omega_i \cdot KPI_i}{\sum_{i=1}^{N_{\text{comp}}} \omega_i}.
 ```
 
 By assigning appropriate weights, this approach enables optimization to reflect specific priorities or goals, such as emphasizing yield of one component in some situation, while prioritizing productivity for another.

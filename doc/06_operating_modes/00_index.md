@@ -42,9 +42,9 @@ Under these conditions, analytical solutions are available, enabling a direct co
 
 Efficient utilization of the stationary phase and maximized separation performance can be achieved by selecting appropriate operating conditions, such as injection volume and valve switching times.
 Separation performance is evaluated using the following key performance indicators (KPIs):
-- Productivity {eq}`productivity`
-- Yield {eq}`yield`
-- Eluent consumption {eq}`eluent_consumption`
+- Productivity (eq. {eq}`productivity`)
+- Yield (eq. {eq}`yield`)
+- Eluent consumption (eq. {eq}`eluent_consumption`)
 
 These KPIs typically involve trade-offs.
 For instance, maximum recovery yield is usually obtained under baseline separation, where component peaks do not overlap at the column outlet.

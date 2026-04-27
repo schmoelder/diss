@@ -83,7 +83,6 @@ Information on the chemicals used can be found in {numref}`materials`.
 
 A conductivity detector is integrated into the chromatographic system to monitor salt concentration in real time during chromatography experiments.
 Conductivity, measured in Siemens per meter ($\text{S}~\text{m}^{-1}$), quantifies a solution's ability to conduct electricity.
-
 To quantify the relationship between salt concentration and conductivity, a calibration curve was recorded by measuring the conductivity of solutions with varying salt concentrations at a constant pH of 5.
 Conductivity values were recorded over one minute at predefined salt concentrations ($20~\text{mM}$, $270~\text{mM}$, $570~\text{mM}$, $770~\text{mM}$, and $1020~\text{mM}$).
 Since the relationship between salt concentration and conductivity is nonlinear, a quadratic function was fitted to the measured data using the least squares method.
