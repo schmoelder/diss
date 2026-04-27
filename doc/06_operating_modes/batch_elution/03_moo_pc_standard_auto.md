@@ -66,13 +66,10 @@ cases = get_cases_by_operating_mode(
 (batch-elution_auto-cycle_moo-pc)=
 # Multi-objective optimization of a binary Langmuir separation problem
 
-
-In this case study, the process optimization is formulated as a multi-objective problem.
-Since the majority of the evaluation cost lies in the simulation, and all KPIs are computed even for single-objective optimization, this information is leveraged more effectively in a multi-objective framework rather than being discarded.
-While the multi-objective problem could be formulated such that only a combined fractionation is performed for each simulation, ranking both components equally, here, the KPIs are evaluated for each component separately.
-This approach, denoted as "multi-objective-per-component," requires individual fractionation optimizations for each component while excluding the other via the `ranking` parameter.
-To enable direct comparison with the previously performed single-objective study, a meta-score is included in the optimization problem to compute the same objective function value for each candidate as before.
-Importantly, the optimizer does not treat this meta-score as an additional objective.
+In this case study, the same separation problem is reformulated as a multi-objective optimization.
+Since all KPIs are derived from the same simulation run, no additional simulations are required compared to the single-objective case; the information that was previously aggregated into a single scalar is now retained as separate objectives (see {numref}`multi_objective_optimization`).
+Here, a separate fractionation optimizer is configured for each component, using the `ranking` parameter to restrict evaluation to that component's KPIs; this approach is denoted "multi-objective-per-component".
+To enable direct comparison with the single-objective study, a meta-score that computes the same aggregated objective is included; it is used purely for post-processing and is not treated as an optimization objective (see {numref}`meta_scores`).
 The problem is summarized in {numref}`batch-elution_auto-cycle_moo-pc_overview`.
 
 ```{code-cell} ipython3
@@ -118,8 +115,8 @@ display(Markdown(overview))
 ```
 
 {numref}`batch-elution_auto-cycle_moo-pc_fig_obj` shows the evaluated objective function values as a function of feed duration.
-As multi-objective optimization results in a Pareto front containing infinitely many trade-off solutions, the discussion is limited here to the Pareto edge points, i.e., the solutions at the extremes of the Pareto front, each optimal for a single objective.
-Unlike in single-objective studies, the location of those local maxima now depends on the individual objective.
+As multi-objective optimization results in a Pareto front containing (in theory) infinitely many trade-off solutions, the discussion is limited here to the Pareto edge points, i.e., the solutions at the extremes of the Pareto front, each optimal for a single objective.
+Unlike in the single-objective case, the optimal feed duration now differs depending on which KPI is being maximized.
 The optimal variable values and KPIs for these edge points are summarized in {numref}`batch-elution_auto-cycle_moo-pc_kpi`.
 
 <!-- @Note: It is currently not possible to use inline glue with LaEeX/Math formatting.  -->
@@ -133,16 +130,14 @@ mystnb:
 display(Markdown(rf"""
 When productivity is maximized, relatively large feed durations are selected ({feed_duration_prod_0} for component $A$ and {feed_duration_prod_1} for component $B$).
 This increases throughput but leads to overlapping peaks and reduced recovery, as visible in the corresponding chromatograms (a, b).
-For yield maximization, very small injections are employed to ensure baseline separation and near-complete recovery (c, d).
-Visual inspection of these chromatograms suggests complete product capture, indicating the slight recovery deviation from 100% (values $\ge 99.8\%$) likely results from the fractionation algorithm's numerical precision limits rather than physical separation issues.
+For yield maximization, very small injections are employed to ensure baseline separation and complete recovery (c, d).
 Eluent consumption minimization is achieved through even higher feed durations, resulting in injection plateaus (e, f).
-Although product is wasted, this approach does not affect the objective value; instead, more feed is beneficial because no eluent is used during feeding.
+Although product is wasted in this case, increasing the feed duration leaves the eluent consumption objective unchanged, since no eluent is used during the feed phase.
 """))
 ```
 
 The chromatogram corresponding to the optimal meta-score (g) is essentially identical to the single-objective result ({numref}`batch-elution_auto-cycle_moo-pc_fig_chrom`).
-Comparison with the single-objective results ({numref}`batch-elution_auto-cycle_moo-pc_kpi`) reveals that the multi-objective optimization not only recovers the previous solutions but also identifies strictly better candidates for each KPI.
-This demonstrates that the MOO framework can fully replace the SOO approach, capturing all previous solutions while providing improved performance across all objectives.
+Comparison with the single-objective results ({numref}`batch-elution_auto-cycle_moo-pc_kpi`) shows that the multi-objective results strictly improve upon the single-objective solution: the previous optimum is recovered while candidates with better individual KPI performance are identified at the same time.
 
 ```{glue:figure} moo_fig_obj
 :name: batch-elution_auto-cycle_moo-pc_fig_obj
