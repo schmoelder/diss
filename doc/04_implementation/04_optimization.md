@@ -385,7 +385,7 @@ The prominent minima are indicative of successful convergence.
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-fig, ax = optimization_results.plot_pareto()
+fig, ax = optimization_results.plot_pareto(autoscale=False)
 glue("pareto", fig, display=False)
 ```
 
