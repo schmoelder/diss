@@ -36,7 +36,6 @@ from myst_nb import glue
 
 # Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
-print(diss_root)
 study_root = diss_root / "studies" / "operating_modes"
 sys.path.insert(0, str(study_root))
 
@@ -71,14 +70,9 @@ In situations where one of the components exhibits very strong interaction with 
 By adding such a column, the strongly adsorbing component can be retained before entering the main column, thus avoiding excessively long elution times and reducing the risk of irreversible binding.
 As soon as breakthrough of the bound impurity is imminent, the pre-column can be regenerated, replaced, or repacked {cite}`SchmidtTraub2020`.
 Alternatively, the output of the pre-column can be dynamically directed either to waste or to the second column, depending on the component currently eluting.
-
-(serial_columns_process)=
-## Process model (Serial-Columns)
-
 {numref}`serial_columns_flow_sheet` shows the flow sheet for a process with columns connected in series.
 To prevent periods where no flow occurs through a column, a second eluent {class}`~CADETProcess.processModel.Inlet` is added to the system.
 This inlet becomes active whenever flow is directed from the first column to the outlet.
-
 This case also illustrates that multiple chromatograms can be fractionated simultaneously to evaluate process performance.
 One strategy to increase productivity is to "shave off" sufficiently separated fractions of the mixture and allow only the unresolved portion to migrate through an additional column.
 
@@ -90,8 +84,11 @@ Flow sheet for the serial columns process.
 
 To model the injection, {class}`Events <CADETProcess.dynamicEvents.Event>` are introduced to modify the {attr}`~CADETProcess.processModel.Inlet.flow_rate` attribute of the {class}`~CADETProcess.processModel.Inlet` unit operations.
 To reduce the number of event times that need to be specified, event dependencies are defined to ensure that either feed or eluent is always flowing through the column.
+The process events are shown in {numref}`serial_columns_events`.
 
 ```{figure} ./figures/event_dependencies.png
+:name: serial_columns_events
+
 Events of serial columns process with event dependencies.
 ```
 ```{code-cell} ipython3
@@ -121,7 +118,7 @@ For this study a ternary separation problem with a Langmuir isotherm is consider
 
 ```{glue:figure} fig_serial_columns
 :name: fig_serial_columns
-:figwidth: 300px
+:figwidth: 50%
 
 Typical chromatogram of a serial columns process.
 **Left:** Concentration profile at outlet of first column.
@@ -130,10 +127,11 @@ Typical chromatogram of a serial columns process.
 ```
 
 (serial_columns_validation)=
-## Process validation (Serial-Columns)
+## Process validation
 
-{numref}`serial_columns_chromatogram` compares the concentration profiles at both system outlets under ideal model assumptions, demonstrating good agreement between the simulation and equilibrium theory.
+{numref}`serial_columns_chromatogram` compares the simulation against the equilibrium theory solution, following the approach described in {numref}`analytical_solutions`.
 The ternary separation is validated simultaneously at both measurement points: the first outlet captures the early-eluting fraction collected directly from the first column, while the second column outlet shows the further resolved remaining components.
+Good agreement at both outlets confirms the correctness of the process configuration.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -165,11 +163,11 @@ Comparison of serial columns simulation chromatograms (solid lines) with the ana
 ```
 
 (serial_columns_optimization)=
-## Process Optimization (Serial-Columns)
+## Process optimization
 
 To optimize the process with columns connected in series, the decision variables include both the times at which the serial connection is cut and reconnected, as well as the individual column lengths.
 The total column length is kept constant during optimization.
-To aid the optimizer with the optimization, a variable dependency is introduced to calculate $t_{serial,on}$ from both $t_{serial,off}$ and $\Delta t_{serial}$.
+To aid the optimizer with the optimization, a variable dependency is introduced to calculate $t_{\text{serial,on}}$ from both $t_{\text{serial,off}}$ and $\Delta t_{\text{serial}}$.
 The problem is summarized in {numref}`serial-columns_ternary_auto-cycle_moo-pc_overview`.
 
 ```{code-cell} ipython3
@@ -207,7 +205,7 @@ mystnb:
 display(Markdown(overview))
 ```
 
-{numref}`serial-columns_ternary_auto-cycle_moo-pc_fig_obj` depicts the evaluated objective function values across all decision variables.
+{numref}`serial-columns_ternary_auto-cycle_moo-pc_fig_obj` shows the evaluated objective function values across all decision variables.
 The Pareto-optimal solutions, including variable and KPI values, are documented in {numref}`serial-columns_ternary_auto-cycle_moo-pc_kpi`.
 The associated chromatograms are provided in {numref}`serial-columns_ternary_auto-cycle_moo-pc_fig_chrom`.
 
@@ -254,7 +252,7 @@ display(Markdown(moo_table))
 
 **Summary**
 
-This case study demonstrates that the framework can optimize processes with multiple columns and simultaneous fractionation at several outlets.
+The serial-columns configuration extends the framework to processes with multiple physically distinct columns and simultaneous fractionation at several outlets.
 The ternary separation benefits from tuning both the serial switching times and the column length ratio, with the optimal configuration depending on the chosen performance objective.
 Eluent consumption is particularly sensitive to the switching times, driven by column overloading under high-feed-volume conditions.
 
