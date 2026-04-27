@@ -64,6 +64,13 @@ cases = get_cases_by_operating_mode(
 
 In closed-loop recycling, the mixture is pumped through the column several times until the desired purity is achieved {cite}`Bombaugh1969,Heuer1995`.
 The general structure of a CLR is shown in {numref}`clr_flow_sheet`.
+To realize the recycling, the flow sheet's output states are reconfigured between injection, recycling, and elution phases via {class}`Events <CADETProcess.dynamicEvents.Event>`.
+To reduce the number of explicitly defined event times, event dependencies are introduced:
+Recycling starts immediately after injection ends, and elution begins once recycling concludes.
+For this demonstration, a difficult separation problem in the linear range is considered (see {numref}`model_parameters`).
+The components have similar binding affinities, creating a significant elution overlap that makes separation challenging for conventional methods.
+{numref}`fig_clr_demo` shows the concentration profiles of a CLR process at the column outlet and system outlet, respectively.
+The profiles illustrate that the recycled material does not fully exit the system before the end of the recycling phase.
 
 ```{figure} ./figures/clr_flow_sheet.png
 :name: clr_flow_sheet
@@ -76,14 +83,6 @@ Flow sheet for closed-loop recycling process.
 
 Events for closed-loop recycling process.
 ```
-
-The {attr}`~CADETProcess.processModel.FlowSheet.output_states` attribute of the flow sheet, which controls the flow of unit operations downstream of the column, must be modified to realize the recycling.
-To reduce the number of explicitly defined event times, event dependencies are introduced:
-Recycling starts immediately after injection ends, and elution begins once recycling concludes.
-For this demonstration, a difficult separation problem in the linear range is considered (see {numref}`model_parameters`).
-The components have similar binding affinities, creating a significant elution overlap that makes separation challenging for conventional methods.
-{numref}`fig_clr_demo` depicts the concentration profiles of a CLR process at the column outlet and system outlet, respectively.
-The profiles illustrate how the recycled material does not fully exit the system before the end of the recycling phase.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -116,7 +115,8 @@ glue("fig_clr_demo", fig_clr_demo, display=False)
 (clr_validation)=
 ## Process validation (Closed-Loop Recycling)
 
-{numref}`fig_clr_validation` compares the concentration profile of the ideal model at the column outlet, demonstrating good agreement between the simulation results and equilibrium theory.
+{numref}`fig_clr_validation` compares the simulation against the equilibrium theory solution, following the approach described in {numref}`analytical_solutions`.
+Good agreement confirms the correctness of the process configuration.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -188,7 +188,7 @@ mystnb:
 display(Markdown(overview))
 ```
 
-{numref}`clr_difficult_linear_auto-cycle_moo-pc_fig_obj` depicts the evaluated objective function values as a function of both feed duration and the recycling end time.
+{numref}`clr_difficult_linear_auto-cycle_moo-pc_fig_obj` shows the evaluated objective function values as a function of both feed duration and the recycling end time.
 Clear optima are found for all key performance indicators.
 The optimal variable values and corresponding KPIs for all Pareto edge points are summarized in {numref}`clr_difficult_linear_auto-cycle_moo-pc_kpi`, with the associated chromatograms provided in {numref}`clr_difficult_linear_auto-cycle_moo-pc_fig_chrom`.
 
@@ -198,7 +198,7 @@ The remaining mixture then undergoes one final pass.
 Process (c) shows 16.5 column cycles, demonstrating the optimizer's use of extended recycling for challenging separations.
 This recycling process is also limited by dispersion effects.
 As shown in the profiles, the front of component $A$ begins to overlap with the tail of component $B$ from the previous cycle.
-Additional recycling beyond this point would not improve separation but would cause peak smearing, effectively remixing the components.
+Additional recycling beyond this point would not improve separation; the longer time on column increases axial dispersion, causing peak broadening and eventually remixing the components.
 
 ```{glue:figure} moo_fig_obj
 :name: clr_difficult_linear_auto-cycle_moo-pc_fig_obj
@@ -255,7 +255,7 @@ Concentration profiles at column outlets for Pareto edge points (a) and (c) of C
 **Summary**
 
 While this case study successfully demonstrates how CLR processes are capable of purifying challenging separation problems, the operating mode has inherent limitations.
-Multiple passes through the column, pump and additional piping increase dispersion, degrading the separation quality.
+Multiple passes through the column, pump, and additional piping increase dispersion, degrading the separation quality.
 Peak shaving is often employed to mitigate this by removing pure regions from chromatogram edges during each cycle, reducing the number of required recycling cycles.
 However, peak shaving often proves to be non-robust in practice due to high sensitivity to process disturbances.
 Additionally, the complexity introduced by multiple optimization variables makes the implementation of model-based design challenging.
