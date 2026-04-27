@@ -67,7 +67,17 @@ cases = get_cases_by_operating_mode(
 (batch_elution_linear_et_auto-cycle-time_soo)=
 # Single-objective optimization of an idealized system
 
-To validate the framework and ensure the optimizer can recover the expected operating conditions, an idealized scenario is evaluated: the binary model system with linear binding and ET assumptions.
+To validate the framework, an idealized scenario is evaluated for which the optimal operating conditions can be derived analytically: the binary model system with linear binding and equilibrium theory assumptions.
+Using the total dead time $t_{0,t} = L_c / u = 195.4~\text{s}$ and the phase ratio $F = (1 - \varepsilon^t) / \varepsilon^t = 0.389$, the retention times of components A and B follow from {eq}`retention_time_linear`:
+
+$$t_{\text{R},A} = t_{0,t}(1 + F \cdot a_A) = 347.4~\text{s}, \qquad t_{\text{R},B} = t_{0,t}(1 + F \cdot a_B) = 423.4~\text{s}.$$
+
+For touching-band separation, where the trailing edge of component A just meets the leading edge of component B at the column outlet, the optimal feed duration equals the difference in retention times:
+
+$$t_{\text{feed}} = t_{\text{R},B} - t_{\text{R},A} = 76.0~\text{s}.$$
+
+The corresponding optimal cycle time, defined as the window from the first elution of component A to the last elution of component B under stacked injections, is $t_{\text{cycle}} = 2 \cdot t_{\text{feed}} = 152.0~\text{s}$.
+These values serve as the known reference optimum against which the optimizer's result can be verified.
 Here, the process is optimized by varying the feed duration using a single objective function with equal weights for all KPIs {eq}`weighted_objective`.
 While perfect purity is theoretically achievable in this idealized system without physical dispersion, the targeted purity is set to $99.9\%$ to account for numerical artifacts.
 The problem is summarized in {numref}`batch-elution_linear_et_auto-cycle_soo_overview`.
@@ -117,10 +127,8 @@ mystnb:
 display(Markdown(overview))
 ```
 
-The cycle time, required for KPI calculation, is automatically derived from the resulting chromatograms.
-To ensure complete elution, each simulation is initialized with a sufficiently large cycle time.
-The final cycle time is then determined by truncating regions where the chromatogram concentration drops below $0.1\%$ of the feed concentration, thereby effectively simulating stacked injection with touching-band separation.
-Under optimal conditions, the feed duration is expected to produce two pure component peaks with a cycle time that equals exactly twice the feed duration, as the injection volume is maximized until the eluting peaks just touch at the column outlet.
+The cycle time, required for KPI calculation, is determined from the simulated chromatogram: it spans from the first time point at which component A appears at the column outlet to the last time point at which component B is present, consistent with the theoretical definition above.
+To ensure complete elution, each simulation is initialized with a sufficiently large cycle time; the elution window is then identified using a $0.1\%$ concentration threshold.
 
 <!-- @Note: It is currently not possible to use inline glue with LaEeX/Math formatting.  -->
 ```{code-cell} ipython3
@@ -152,11 +160,10 @@ mystnb:
 
 display(Markdown(rf"""
 {{numref}}`batch-elution_linear_et_auto-cycle_soo_kpi` summarizes the results.
-Although the required purity is met, the yield is slightly below $100\%$ due to numerical dispersion in the simulation.
-This artifact causes artificial band broadening, creating small overlap regions between component peaks.
-As a result, the fractionation algorithm identifies these overlapping regions as waste, reducing the overall yield.
-The band broadening also directly affects the determined cycle time.
-Consequently, the determined cycle time of {cycle_time} is slightly larger than the expected time of {cycle_time_expected}, as illustrated in the corresponding chromatogram ({{numref}}`batch-elution_linear_et_auto-cycle_soo_fig_chrom`).
+Although the required purity is met, the yield is slightly below $100\%$ due to numerical dispersion, which causes artificial band broadening and creates small overlap regions between the component peaks.
+The fractionation algorithm identifies these overlapping regions as waste, reducing the overall yield.
+Band broadening also directly affects the determined cycle time: {cycle_time} versus the expected {cycle_time_expected}, as illustrated in the corresponding chromatogram ({{numref}}`batch-elution_linear_et_auto-cycle_soo_fig_chrom`).
+These small deviations are consistent with the numerical dispersion discussed in {{numref}}`batch_elution_validation`; the recovered feed duration matches the analytical optimum, confirming that the optimizer correctly identifies the expected operating point.
 """))
 ```
 
