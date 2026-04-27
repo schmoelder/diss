@@ -70,7 +70,7 @@ In addition to recycling unresolved fractions, fresh feed can be injected into t
 This concept, known as closed-loop steady-state recycling (CL-SSR), can achieve higher productivities compared to the CLR process {cite}`Quinones2000`.
 However, precise feed timing is challenging, and extra-column dispersion effects complicate the process operation.
 To address this, mixed-recycle steady-state recycling (MR-SSR) introduces a tank where recycled fractions and fresh feed are combined before reinjection {cite}`Bailly1982,Sainio2009,Kaspereit2011`, effectively decoupling fresh feed injection from recycling times.
-A schematic flow diagram of the MR-SSR process is shown below.
+A schematic flow diagram of the MR-SSR process is shown in {numref}`mrssr_flow_sheet`.
 
 ```{figure} ./figures/mrssr_flow_sheet.png
 :name: mrssr_flow_sheet
@@ -78,7 +78,7 @@ A schematic flow diagram of the MR-SSR process is shown below.
 Flow sheet for mixed-recycle steady-state recycling process.
 ```
 
-To implement recycling, the {attr}`~CADETProcess.processModel.FlowSheet.output_states` attribute of the flow sheet, which controls the flow of unit operations downstream of the column, must be modified.
+To implement recycling, the {attr}`~CADETProcess.processModel.FlowSheet.output_states` attribute of the flow sheet, which controls which unit operations receive flow downstream of the column, is reconfigured between operating phases via {class}`Events <CADETProcess.dynamicEvents.Event>`.
 To minimize the number of explicitly defined event times, event dependencies are introduced:
 - Fresh feed is pumped into the mixing tank only after injection completes.
 - The eluent flow is automatically disabled at the start of injection and re-enabled upon its completion.
@@ -141,7 +141,8 @@ Overlay of concentration profiles of all cycles, showing the transient towards s
 
 (mrssr_validation)=
 ## Process validation (Mixed-Recycle Steady-State Recycling)
-{numref}`fig_mrssr_validation` compares the concentration profile of the ideal model at the column outlet, demonstrating good agreement between the simulation results and equilibrium theory.
+{numref}`fig_mrssr_validation` compares the simulation against the equilibrium theory solution, following the approach described in {numref}`analytical_solutions`.
+Good agreement confirms the correctness of the process configuration.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -175,7 +176,7 @@ Comparison of the MR-SSR simulation chromatogram (solid line) with the analytica
 ## Process optimization (Mixed-Recycle Steady-State Recycling)
 
 To optimize the MR-SSR process, in addition to the feed duration, the times at which the recycling is switched on and off need to be optimized.
-To aid the optimizer with the optimization, a variable dependency is introduced to calculate $t_{recycle,off}$ from both $t_{recycle,on}$ and $\Delta t_{recycle}$.
+To aid the optimizer with the optimization, a variable dependency is introduced to calculate $t_{\text{recycle,off}}$ from both $t_{\text{recycle,on}}$ and $\Delta t_{\text{recycle}}$.
 The problem is summarized in {numref}`mrssr_auto-cycle_moo-pc_overview`.
 
 ```{code-cell} ipython3
@@ -209,10 +210,10 @@ mystnb:
 display(Markdown(overview))
 ```
 
-{numref}`mrssr_auto-cycle_moo-pc_fig_obj` depicts the evaluated objective function values as a function of both feed duration and the recycling times.
+{numref}`mrssr_auto-cycle_moo-pc_fig_obj` shows the evaluated objective function values as a function of both feed duration and the recycling times.
 Clear optima emerge when varying cycle time; the optimization landscape for recycling times shows less pronounced optima.
 However, recycling duration exhibits well-defined extreme points.
-This occurs because the recycling duration was added as an independent variable and $t_{recycle,off}$ depends on both $t_{recycle,on}$ and $\Delta t_{recycle}$.
+This occurs because the recycling duration was added as an independent variable and $t_{\text{recycle,off}}$ depends on both $t_{\text{recycle,on}}$ and $\Delta t_{\text{recycle}}$.
 This variable transformation creates a more favorable optimization landscape.
 The optimal variable values and corresponding KPIs for all Pareto edge points are summarized in {numref}`mrssr_auto-cycle_moo-pc_kpi`.
 The associated chromatograms are provided in {numref}`mrssr_auto-cycle_moo-pc_fig_chrom`.
