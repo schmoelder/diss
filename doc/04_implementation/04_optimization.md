@@ -158,21 +158,28 @@ CADET-Process supports such reparametrizations through user-defined dependency f
 (linear_constraints)=
 ### Linear constraints
 
-Linear constraints are a common way to restrict the feasible region of an optimization problem.
-They are typically defined using linear functions of the optimization:
+Linear constraints restrict the feasible region through linear relationships between variables.
+CADET-Process supports both inequality and equality linear constraints.
+Inequality constraints take the form:
 
 ```{math}
-:label: linear_constraints
+:label: linear_constraints_ineq
 
-A \cdot x \leq b,
+A_{\leq} \cdot x \leq b_{\leq},
 ```
 
-where $A$ is an $m \times n$ coefficient matrix, $b$ is an $m$-dimensional vector, $m$ denotes the number of constraints, and $n$ the number of variables.
-This method is especially useful for enforcing certain relationships between variables, like order or proportionality, ensuring solutions are mathematically optimal and practically viable.
+and equality constraints:
 
-Equality constraints are useful for setting specific solution conditions, thereby refining the feasible solution space.
-However, many optimizers, particularly evolutionary algorithms, encounter difficulties with linear equality constraints {cite}`BarkatUllah2012`.
-Therefore, it is often more practical to reduce the number of variables and manage equality constraints through variable dependencies, as previously discussed.
+```{math}
+:label: linear_constraints_eq
+
+A_{=} \cdot x = b_{=},
+```
+
+where $A$ is an $m \times n$ coefficient matrix whose entries define the linear combinations of variables involved in each constraint, $b$ is an $m$-dimensional vector specifying the corresponding bounds or target values, $m$ denotes the number of constraints, and $n$ the number of variables.
+Inequality constraints are useful for enforcing ordering or proportionality relationships between variables.
+Equality constraints fix specific linear relationships and can sharpen the feasible region considerably, but many optimizers, particularly evolutionary algorithms, encounter difficulties handling them {cite}`BarkatUllah2012`.
+In practice, variable dependencies (see above) are often a more robust alternative: by explicitly encoding the constraint into the parametrization, the number of free variables is reduced and the constraint is satisfied by construction, with no need for slack variables or penalty handling.
 
 (objectives_and_nonlinear_constraints)=
 ### Objectives and nonlinear constraints
