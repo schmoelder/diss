@@ -108,9 +108,8 @@ Red: Target fraction of component $B$.
 Grey areas represent waste fractions.
 ```
 
-It is important to note that in advanced chromatographic process configurations outlet chromatograms can be much more complex than the example shown in {numref}`chromatogram_fractionation` and that multiple sections of the chromatogram may represent suitable fractions $f$ for collecting one target component $i$.
-Moreover, flow sheets can have multiple outlets $k$ that have to be fractionated simultaneously, and the volumetric flow rate $Q_k$ at the outlets may depend on time.
-These aspects are considered by defining the total product amount of a component $i$ as:
+In advanced operating modes such as recycling or SMB, outlet chromatograms can be considerably more complex than the example in {numref}`chromatogram_fractionation`: multiple non-contiguous sections may contribute to the same target fraction $f$, flow sheets may have several outlets $k$ that are fractionated simultaneously, and the volumetric flow rate $Q_k$ at each outlet may vary over time.
+To accommodate these cases, the total collected amount of component $i$ is defined as:
 
 ```{math}
 :label: molar_amount

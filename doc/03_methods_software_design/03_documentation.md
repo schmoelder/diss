@@ -1,8 +1,14 @@
 (software_documentation)=
 # Documentation
 
-Well-written code alone is not sufficient if its purpose, usage, and design decisions remain unclear to users and developers.
-Documentation that simply restates what the code does is of limited value; useful documentation explains why decisions were made, how components fit together, and how to use the provided interfaces.
+Documentation makes software accessible: it communicates the purpose of a codebase, explains design decisions, and describes how components fit together and how to use the provided interfaces.
+Documentation that merely restates what the code does is of limited value; what matters is the context and reasoning that the code itself cannot express.
+If code is too complex to document clearly, this is a signal to simplify it first (see {numref}`programming_principles`).
+Effective documentation also extends beyond the API: user manuals, installation guides, and tutorials are essential for onboarding new users.
+The following sections discuss docstrings, Python's built-in mechanism for embedding documentation in source code, and Sphinx, a tool for generating reference documentation from them {cite}`sphinx`.
+
+Documentation makes software accessible: it communicates the purpose of a codebase, explains design decisions, and describes how components fit together and how to use the provided interfaces.
+Documentation that merely restates what the code does is of limited value; what matters is the context and reasoning that the code itself cannot express.
 If code is too complex to document clearly, that is a signal to simplify first (see {numref}`programming_principles`).
 Good documentation also extends beyond the API: user manuals, installation guides, and tutorials are essential for making software accessible to new users.
 The following sections discuss docstrings, Python's built-in mechanism for embedding documentation in source code, and Sphinx, a tool used to generate reference documentation from them {cite}`sphinx`.
@@ -13,7 +19,6 @@ Most programming languages have conventions for writing string literals in the s
 In Python, docstrings are string literals placed at the beginning of a module, class, or function that serve as its documentation.
 Unlike regular comments, docstrings are retained at runtime and accessible via the `__doc__` attribute, enabling interactive help systems and documentation generators.
 Their conventions are defined in *PEP-257* {cite}`PEP257`.
-
 A one-line summary should first provide a brief description of the corresponding source code.
 Relevant details of the code segment are then described in subsequent sections.
 In the following, some of the most important sections are presented using *Numpy*'s formatting convention {cite}`numpy_docstring`:
@@ -35,6 +40,8 @@ c_in
 ```
 
 **Returns**
+
+Description of the return value and its type.
 
 ```
 Returns
@@ -66,4 +73,3 @@ Its *autodoc* extension reads type annotations (see {numref}`type_annotations`) 
 By combining background information, tutorials, and advanced examples with the extracted docstrings, these reference manuals become a useful starting point for new users.
 *Sphinx* integrates naturally with Read The Docs, an online platform for hosting and publishing documentation: https://readthedocs.org.
 In CADET-Process, all public classes and functions include docstrings following the NumPy convention, and the reference documentation is hosted at https://cadet-process.readthedocs.io and automatically rebuilt whenever changes are made to the source code (see {numref}`ci_cd`).
-The following chapter discusses how automated testing ensures that the documented behavior matches the actual behavior of the code.

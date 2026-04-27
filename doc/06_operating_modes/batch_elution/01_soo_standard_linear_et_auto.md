@@ -139,7 +139,12 @@ mystnb:
 ---
 
 display(Markdown(rf"""
-{{numref}}`batch-elution_linear_et_auto-cycle_soo_fig_obj` shows the evaluated objective function values as a function of the feed duration, with a clear maximum at {feed_duration}.
+{{numref}}`batch-elution_linear_et_auto-cycle_soo_fig_obj` shows the objective function values as a function of the feed duration, with a clear maximum at {feed_duration}.
+{{numref}}`batch-elution_linear_et_auto-cycle_soo_kpi` summarizes the results.
+Although the required purity is met, the yield is slightly below $100\%$ due to numerical dispersion, which causes artificial band broadening and creates small overlap regions between the component peaks.
+The fractionation algorithm identifies these overlapping regions as waste, reducing the overall yield.
+Band broadening also affects the determined cycle time: {cycle_time} versus the expected {cycle_time_expected}, as illustrated in the corresponding chromatogram ({{numref}}`batch-elution_linear_et_auto-cycle_soo_fig_chrom`).
+These small deviations are consistent with the numerical dispersion discussed in {{numref}}`batch_elution_validation`; the recovered feed duration matches the analytical optimum, confirming that the optimizer correctly identifies the expected operating point.
 """))
 ```
 
@@ -150,22 +155,6 @@ display(Markdown(rf"""
 {glue:text}`soo_fig_obj_caption`
 ```
 
-<!-- @Note: It is currently not possible to use inline glue with LaEeX/Math formatting.  -->
-```{code-cell} ipython3
----
-mystnb:
-  markdown_format: myst
-  remove_code_source: true
----
-
-display(Markdown(rf"""
-{{numref}}`batch-elution_linear_et_auto-cycle_soo_kpi` summarizes the results.
-Although the required purity is met, the yield is slightly below $100\%$ due to numerical dispersion, which causes artificial band broadening and creates small overlap regions between the component peaks.
-The fractionation algorithm identifies these overlapping regions as waste, reducing the overall yield.
-Band broadening also directly affects the determined cycle time: {cycle_time} versus the expected {cycle_time_expected}, as illustrated in the corresponding chromatogram ({{numref}}`batch-elution_linear_et_auto-cycle_soo_fig_chrom`).
-These small deviations are consistent with the numerical dispersion discussed in {{numref}}`batch_elution_validation`; the recovered feed duration matches the analytical optimum, confirming that the optimizer correctly identifies the expected operating point.
-"""))
-```
 
 ```{code-cell} ipython3
 ---

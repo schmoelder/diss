@@ -14,13 +14,12 @@ Shortcut methods refer to techniques for the design and optimization of processe
 By exploiting simplified problem formulations or analytical results, they avoid the need for full numerical simulations, making them particularly useful as a first step in process design or as a source of initial estimates for subsequent optimization.
 Examples include the use of empirical equations or pre-determined values to estimate key parameters, statistical or machine learning techniques to model process behavior, and optimization algorithms to efficiently identify the best solutions.
 
-One notable shortcut method is the application of equilibrium theory.
-Although it assumes the absence of kinetic limitations, which may not hold for certain scenarios, such as the separation of larger molecules, it serves as a foundational concept in several design methods.
-Equilibrium theory provides inherent boundaries for process design, making it a valuable starting point {cite}`SchmidtTraub2020`.
-This approach is particularly useful in the design and operation of SMB processes.
-The central idea is to determine an operating region for dimensionless flow rate ratios where a complete separation of a two-component mixture is achievable in a (theoretical) true moving bed (TMB) process.
-For linear isotherms, this operating region takes the shape of a triangle and is commonly referred to as the *triangle theory*.
-Originally developed for linear isotherms, this theory has since been extended to other isotherm models, such as the Langmuir isotherm {cite}`Mazzotti2006`.
+One notable shortcut method is the application of equilibrium theory (see {numref}`equilibrium_model` and {numref}`analytical_solutions`).
+Although it assumes the absence of kinetic limitations, which may not hold in all scenarios, its analytical framework captures fundamental multicomponent phenomena and underpins several shortcut design methods {cite}`SchmidtTraub2020`.
+A prominent application is the design and operation of SMB processes.
+The central idea is to identify an operating region of dimensionless flow rate ratios for which complete separation of a two-component mixture is achievable in a (theoretical) true moving bed (TMB) process.
+For linear isotherms, this region has a triangular shape and is commonly referred to as the *triangle theory*.
+While originally derived for linear isotherms, the framework has since been extended to nonlinear models such as the Langmuir isotherm {cite}`Mazzotti2006`.
 
 Equilibrium theory also finds application in the design of MR-SSR processes (see {numref}`mrssr`).
 In this context, it is used to predict the breakthrough of components and determine the optimal times to switch recycling valves and fractionation intervals {cite}`Kaspereit2005,Kaspereit2011`.

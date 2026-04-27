@@ -64,7 +64,7 @@ cases = get_cases_by_operating_mode(
 Flip-flop chromatography, also known as flip-flow or two-way chromatography, refers to an operation mode in which the flow direction through the column is periodically reversed during the separation process.
 The operating mode was first proposed by {cite:t}`Martin1979` as a method suitable for separating mixtures containing both highly adsorptive and fast-eluting components.
 {cite:t}`Bailly1981` later highlighted its effectiveness in improving resolution while reducing peak tailing and eluent consumption.
-Further development was carried out by Colin et al. {cite}`Colin1991`.
+Colin et al. later extended the method {cite}`Colin1991`.
 
 The fundamental principle is to inject the feed mixture at one end of the column and allow the early-eluting components to exit at the opposite end.
 The flow reversal occurs when fast-eluting components have cleared the column, typically determined by monitoring the column effluent.
@@ -83,8 +83,7 @@ Flow sheet for the flip-flop process.
 To model injection and elution, {class}`Events <CADETProcess.dynamicEvents.Event>` are introduced to modify the {attr}`~CADETProcess.processModel.Inlet.flow_rate` attribute of the {class}`~CADETProcess.processModel.Inlet` unit operations.
 To reduce the number of event times that need to be specified, event dependencies are defined to ensure that either feed or eluent is always flowing through the column.
 Moreover, after a given $\Delta t_{\text{reversal}}$, the {attr}`~CADETProcess.processModel.LumpedRateModelWithPores.flow_direction` attribute of the {class}`~CADETProcess.processModel.LumpedRateModelWithPores` is set to $-1$, indicating a flow reversal.
-By convention, in CADET-Process a full cycle requires that all parameters repeat.
-Consequently, a second injection is then executed while the flow is still reversed.
+In CADET-Process, a full cycle requires all parameters to return to their initial state, so a second injection is executed while the flow is still reversed.
 To ensure full elution of the strongly bound component, the injection is delayed by $\Delta t_{\text{delay}}$.
 The process events are shown in {numref}`flip_flop_flow_events`.
 
@@ -202,18 +201,13 @@ mystnb:
 display(Markdown(overview))
 ```
 
-{numref}`flip-flop_simple_linear_auto-cycle_moo-pc_fig_obj` shows the evaluated objective function values as a function of both feed duration and the flip-flop delay times.
+{numref}`flip-flop_simple_linear_auto-cycle_moo-pc_fig_obj` shows the objective function values as a function of both feed duration and the flip-flop delay times.
 The optimal solutions and corresponding KPIs for all Pareto points are summarized in {numref}`flip-flop_simple_linear_auto-cycle_moo-pc_kpi`.
 The corresponding chromatograms are provided in {numref}`flip-flop_simple_linear_auto-cycle_moo-pc_fig_chrom`.
-
 The optimization results reveal well-defined optima for all performance indicators.
-When focusing on productivity maximization, the analysis identifies several characteristic operational behaviors.
-The process achieves extreme overloading conditions by operating at high feed volumes to maximize throughput.
-A touching band separation emerges where fast-eluting components exit the column first.
-Flow reversal then occurs before the slow components reach the original outlet.
-This causes the components to elute at what was originally the inlet (now functioning as the outlet), with minimal but non-zero waste fractions.
-It should be noted that the simple separation problem used here does not fully exploit the strengths of the flip-flop mode; a mixture with a larger spread in binding affinities would yield more characteristic results.
-This is a limitation of the chosen example rather than of the operating mode or the framework itself.
+When focusing on productivity maximization, the process achieves extreme overloading conditions by operating at high feed volumes to maximize throughput.
+A touching-band separation emerges: fast-eluting components exit the column first, flow reversal occurs before the slow components reach the original outlet, and those components then elute from the original inlet with minimal waste.
+The simple separation problem used here does not fully exploit the strengths of the flip-flop mode; a mixture with a larger spread in binding affinities would yield more characteristic results, as this is a limitation of the chosen example rather than of the operating mode or the framework itself.
 
 ```{glue:figure} moo_fig_obj
 :name: flip-flop_simple_linear_auto-cycle_moo-pc_fig_obj

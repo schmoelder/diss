@@ -148,10 +148,12 @@ Comparison of the CLR simulation chromatogram (solid line) with the analytical e
 ## Process optimization (Closed-Loop Recycling)
 
 The CLR process requires optimization of both feed duration and the recycling end time.
-This optimization balances sufficient recycling periods for component separation against reasonable cycle times to maintain productivity.
-While longer recycling improves resolution of nearly-identical components, extended cycle times reduce overall productivity.
-A linear constraint is implemented to ensure recycling concludes only after injection completion.
+The key trade-off is between longer recycling periods, which improve resolution of nearly-identical components, and shorter cycle times, which preserve productivity.
+A linear constraint ensures recycling concludes only after the injection is complete.
 The optimization problem is summarized in {numref}`clr_difficult_linear_auto-cycle_moo-pc_overview`.
+{numref}`clr_difficult_linear_auto-cycle_moo-pc_fig_obj` shows the objective function values as a function of both feed duration and the recycling end time.
+Clear optima are found for all key performance indicators.
+The optimal variable values and corresponding KPIs for all Pareto edge points are summarized in {numref}`clr_difficult_linear_auto-cycle_moo-pc_kpi`, with the associated chromatograms provided in {numref}`clr_difficult_linear_auto-cycle_moo-pc_fig_chrom`.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -187,11 +189,6 @@ mystnb:
 ---
 display(Markdown(overview))
 ```
-
-{numref}`clr_difficult_linear_auto-cycle_moo-pc_fig_obj` shows the evaluated objective function values as a function of both feed duration and the recycling end time.
-Clear optima are found for all key performance indicators.
-The optimal variable values and corresponding KPIs for all Pareto edge points are summarized in {numref}`clr_difficult_linear_auto-cycle_moo-pc_kpi`, with the associated chromatograms provided in {numref}`clr_difficult_linear_auto-cycle_moo-pc_fig_chrom`.
-
 To further analyze the results, {numref}`clr_moo-pc_fig_outlet` presents the concentration profiles at the column outlet for processes (a) and (c).
 In process (a), components complete 10 full column cycles before the pure B fraction is collected.
 The remaining mixture then undergoes one final pass.

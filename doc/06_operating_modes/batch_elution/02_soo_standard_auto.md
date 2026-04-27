@@ -101,7 +101,12 @@ mystnb:
 display(Markdown(overview))
 ```
 
-{numref}`batch-elution_auto-cycle_soo_fig_obj` again shows the evaluated objective function values as a function of the feed duration, with a clear maximum.
+{numref}`batch-elution_auto-cycle_soo_fig_obj` shows the objective function values as a function of the feed duration, with a clear maximum.
+{numref}`batch-elution_auto-cycle_soo_kpi` summarizes the results.
+The required purity is met, with a small residual deviation attributable to the finite resolution of the fractionation algorithm; tightening its tolerances would reduce this at the cost of computational speed.
+Overall recovery is lower than in the idealized case due to the larger waste fraction, as shown in {numref}`batch-elution_auto-cycle_soo_fig_chrom`.
+The chromatogram reveals both the characteristic "overshoot" of competitive nonlinear binding and incomplete separation from dispersive effects, which together create broader overlap regions that must be discarded as waste.
+Despite this added complexity, the optimizer identifies a well-defined operating point, confirming that the framework handles the added complexity without loss of convergence quality.
 
 ```{glue:figure} soo_fig_obj
 :name: batch-elution_auto-cycle_soo_fig_obj
@@ -109,12 +114,6 @@ display(Markdown(overview))
 
 {glue:text}`soo_fig_obj_caption`
 ```
-
-{numref}`batch-elution_auto-cycle_soo_kpi` summarizes the results.
-The required purity is met, with a small residual deviation attributable to the finite resolution of the fractionation algorithm; tightening its tolerances would reduce this at the cost of computational speed.
-Overall recovery is lower than in the idealized case due to the larger waste fraction, as shown in {numref}`batch-elution_auto-cycle_soo_fig_chrom`.
-The chromatogram reveals both the characteristic "overshoot" of competitive nonlinear binding and incomplete separation from dispersive effects, which together create broader overlap regions that must be discarded as waste.
-Despite this added complexity, the optimizer identifies a well-defined operating point, demonstrating that the framework extends naturally to the realistic setting.
 
 ```{code-cell} ipython3
 ---

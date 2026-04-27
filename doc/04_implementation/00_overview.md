@@ -18,8 +18,7 @@ It supports complex chromatographic setups including elaborate valve switching s
 Routines for evaluating cyclic stationarity and determining optimal fractionation times allow direct assessment of performance indicators such as yield, purity, and productivity.
 Optimization problems, including multi-objective formulations and nonlinear constraints, can be configured directly within the framework.
 
-This chapter introduces the core software architecture of CADET-Process and provides practical demonstrations of setting up chromatographic processes, simulation techniques, and tools for the evaluation of results.
-It also showcases how to configure optimization problems for both parameter estimation and process design.
+This chapter introduces the core software architecture of CADET-Process and provides practical demonstrations of setting up chromatographic processes, running simulations, evaluating results, and formulating optimization problems.
 For a more comprehensive documentation, visit the [CADET-Process documentation website](https://cadet-process.readthedocs.io/) {cite}`CADET-Process_documentation`.
 
 The framework is organized around a modular workflow: a process is first configured, then simulated, the results evaluated, and finally an optimizer uses those evaluations to improve the process design.
@@ -44,5 +43,4 @@ Additionally, KPIs, including purity, yield, and productivity (see {numref}`frac
 
 These metrics can be used as objectives in an {class}`~CADETProcess.optimization.OptimizationProblem`, which serves to configure optimization studies.
 Any process parameter can be added as an optimization variable and the provided evaluation methods can be used to construct objectives and constraint functions.
-This enables many different scenarios such as parameter estimation and process optimization.
 The abstract {class}`Optimizer <CADETProcess.optimization.OptimizerBase>` provides a unified interface to external optimization algorithms such as the genetic algorithm {class}`U-NSGA-3 <CADETProcess.optimization.U_NSGA3>` (see {numref}`optimization`).

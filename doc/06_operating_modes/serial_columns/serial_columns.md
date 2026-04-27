@@ -205,14 +205,12 @@ mystnb:
 display(Markdown(overview))
 ```
 
-{numref}`serial-columns_ternary_auto-cycle_moo-pc_fig_obj` shows the evaluated objective function values across all decision variables.
+{numref}`serial-columns_ternary_auto-cycle_moo-pc_fig_obj` shows the objective function values across all decision variables.
 The Pareto-optimal solutions, including variable and KPI values, are documented in {numref}`serial-columns_ternary_auto-cycle_moo-pc_kpi`.
 The associated chromatograms are provided in {numref}`serial-columns_ternary_auto-cycle_moo-pc_fig_chrom`.
-
-The multi-objective optimization reveals several characteristics of serial-column operation.
-Well-defined optima emerge for most objectives and decision variables.
+The multi-objective optimization reveals well-defined optima for all objectives, along with several characteristics specific to serial-column operation.
 Interestingly, the serial duration variable shows no significant sensitivity improvement compared to the individual $t_{\text{serial,on}}$ variable, contrasting with observations for MR-SSR in {numref}`mrssr_auto-cycle_moo-pc_fig_obj`.
-This reduced sensitivity can be attributed to the added complexity of the ternary separation problem.
+This reduced sensitivity results from the added complexity of the ternary separation problem.
 Across all Pareto-optimal solutions, the chromatograms show successful ternary separation with baseline resolution between all components.
 Particularly notable is the strong dependence of the eluent consumption objective on the serial switching times, which results from extreme overloading conditions experienced by component $C$ in certain operating regimes.
 The optimization also reveals potential for tuning geometric column parameters: the optimal column length ratio depends on both the target component and the dominant performance indicator.

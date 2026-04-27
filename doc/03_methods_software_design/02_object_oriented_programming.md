@@ -134,13 +134,11 @@ The objects `cstr` and `large_cstr` are instances of the same `CSTR` class but s
 (uml)=
 ## UML class diagrams
 
-Object-oriented designs are commonly visualized using *Unified Modeling Language* (UML) class diagrams {cite}`Rumbaugh2010`.
-These diagrams provide a standardized notation for depicting classes, their attributes and methods, and the relationships between them, making the structure of a system immediately legible.
-{numref}`uml_unit_operation_oop` shows the UML class diagram for the `UnitOperationBase` and `CSTR` classes introduced above.
-The abstract base class appears at the top with its interface, with abstract elements typically indicated in UML (e.g. via «abstract»).
-`CSTR` is shown below, connected by a generalization (inheritance) relationship.
-Attributes are listed alongside their types, directly reflecting the type annotations in the class definitions; visibility may optionally be indicated using UML conventions (e.g. `+` for public, `-` for private), although this distinction is less strict in Python.
-More complex diagrams may additionally include associations, aggregations, or compositions to represent interactions between objects; these are omitted here for clarity.
+Object-oriented designs are commonly visualized using *Unified Modeling Language* (UML) class diagrams, which provide a standardized notation for classes, their attributes and methods, and the relationships between them {cite}`Rumbaugh2010`.
+{numref}`uml_unit_operation_oop` shows the diagram for the example above.
+Attributes are listed with their types, reflecting the type annotations in the code; visibility may optionally be indicated using UML conventions (e.g. `+` for public, `-` for private), though this distinction is less strict in Python.
+More complex diagrams additionally include associations, aggregations, or compositions, which are omitted here for clarity.
+This pattern of abstract base classes and concrete subclasses recurs throughout CADET-Process, and UML diagrams are used in {numref}`implementation` to document its architecture.
 
 ```{figure} ./figures/uml_unit_operation.png
 :name: uml_unit_operation_oop
@@ -149,8 +147,6 @@ More complex diagrams may additionally include associations, aggregations, or co
 UML class diagram of `UnitOperationBase` and `CSTR`.
 The abstract base class defines the common interface; `CSTR` inherits from it and adds model-specific parameters.
 ```
-
-This pattern of abstract base classes and concrete implementations recurs throughout CADET-Process, and UML diagrams are used in {numref}`implementation` to illustrate the resulting architecture.
 
 (type_annotations)=
 ## Type annotations
@@ -195,11 +191,5 @@ The key to the Strategy pattern is the definition of a common interface or abstr
 In CADET-Process, binding models are an example of the Strategy pattern: each binding model implements a common interface (computing the adsorption isotherm), and any binding model can be assigned to a unit operation and swapped at runtime without modifying the unit operation itself.
 This decoupling is precisely what makes the framework extensible — adding a new isotherm model requires no changes to the surrounding transport equations.
 
-Design patterns are not a universal solution and should be applied with judgement.
-Overuse leads to unnecessary abstraction layers that obscure rather than clarify.
-A balance between established patterns and the KISS principle from the previous section is therefore essential.
-
-In CADET-Process, OOP principles are applied throughout the framework.
-Unit operations, binding models, and optimization algorithms each share common base classes that define their interfaces, allowing them to be combined and exchanged without modifying the surrounding code.
-This modularity enables the flexible process configurations described in {numref}`implementation`.
-The following chapter discusses how the resulting codebase is documented to remain accessible to users and contributors.
+Design patterns are not a universal solution: overuse leads to unnecessary abstraction that obscures rather than clarifies, and a balance with the KISS principle is crucial.
+In CADET-Process, this balance is reflected in how OOP principles are applied: unit operations, binding models, and optimization algorithms each share common base classes that define their interfaces, allowing them to be combined and exchanged without modifying the surrounding code, as described in {numref}`implementation`.

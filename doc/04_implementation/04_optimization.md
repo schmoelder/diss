@@ -192,10 +192,8 @@ Additionally, any number of nonlinear constraint functions can be incorporated i
 
 In many complex optimization cases, optimization variables cannot be passed directly into an objective or nonlinear constraint function.
 Instead, a sequence of processing steps is required to derive the metrics computed by those functions.
-Take, for example, the fitting of adsorption parameters (see {numref}`adsorption_parameters`).
-Here, the parameters are deeply nested within the {class}`~CADETProcess.processModel.Process` object, specifically as part of the binding model in one of the unit operations of the process flow sheet.
-There, each optimization variable must be mapped to the corresponding model parameter.
-Before calculating objectives, the process needs to be simulated, and the simulation results have to be passed to the {class}`~CADETProcess.comparison.Comparator` to compute the difference metrics by comparing the output with experimental reference data (see {numref}`comparison`).
+Take, for example, the fitting of adsorption parameters (see {numref}`adsorption_parameters`): the optimization variables must first be mapped to the corresponding parameters of the binding model, which are deeply nested within the {class}`~CADETProcess.processModel.Process` object.
+The process is then simulated, and the results are passed to the {class}`~CADETProcess.comparison.Comparator`, which computes difference metrics against experimental reference data (see {numref}`comparison`).
 {numref}`evaluation_example_comparator` shows the steps typically required for this calculation.
 
 ```{figure} ./figures/evaluation_example_comparator.png
@@ -278,12 +276,10 @@ The {class}`~CADETProcess.optimization.OptimizerBase` offers a unified interface
 It converts the {class}`~CADETProcess.optimization.OptimizationProblem` configuration into the specific API of the chosen external optimizer.
 Currently, adapters for {class}`Pymoo <CADETProcess.optimization.PymooInterface>` {cite}`pymoo2020` and {class}`Scipy's <CADETProcess.optimization.SciPyInterface>` optimization suite {cite}`SciPyContributors2020` are available, both of which are released under open source licenses permitting academic and commercial use.
 
-Before starting the optimization, the optimizer must be initialized and configured.
-Some options are universal across all optimizers, including convergence criteria and tolerances for constraint violations.
-CADET-Process also facilitates the parallel evaluation of candidates; in this case, the number of cores to be used must be specified, i.e., if the optimizer supports parallel evaluation.
+All optimizers share a common set of configuration options, including convergence criteria and tolerances for constraint violations.
+CADET-Process also supports the parallel evaluation of candidates; in this case, the number of cores must be specified when the optimizer supports it.
 Each optimizer implementation offers additional configuration options, such as the population size for a genetic algorithm.
-
-To highlight some of the optimizer's features, consider the following (generic) multi-objective optimization problem which is solved using {class}`~CADETProcess.optimization.U_NSGA3`, a genetic algorithm {cite}`Seada2016`.
+The following example illustrates these features using a generic multi-objective optimization problem solved with {class}`~CADETProcess.optimization.U_NSGA3`, a genetic algorithm {cite}`Seada2016`.
 
 ```{math}
 :label: optimization_problem_example
@@ -362,7 +358,7 @@ This includes:
 - {attr}`~CADETProcess.optimization.OptimizationResults.g`: Optimal nonlinear constraint values.
 
 Moreover, multiple plot methods are provided to visualize the results.
-The {meth}`~CADETProcess.optimization.OptimizationResults.plot_objectives` method shows the values of all objectives as a function of the input variables (see {numref}`objectives`).
+{meth}`~CADETProcess.optimization.OptimizationResults.plot_objectives` shows the objective values as a function of the input variables (see {numref}`objectives`), {meth}`~CADETProcess.optimization.OptimizationResults.plot_pareto` provides a pairwise Pareto plot to visualize trade-offs between objectives (see {numref}`pareto`), and {meth}`~CADETProcess.optimization.OptimizationResults.plot_convergence` tracks the objective values against the number of function evaluations (see {numref}`convergence`).
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -384,8 +380,6 @@ Darker shades represent individuals evaluated in later generations.
 The prominent minima are indicative of successful convergence.
 ```
 
-The {meth}`~CADETProcess.optimization.OptimizationResults.plot_pareto` method shows a pairwise Pareto plot, where each objective is plotted against every other objective in a scatter plot, allowing for a visualization of the trade-offs between the objectives (see {numref}`pareto`).
-
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
@@ -399,8 +393,6 @@ glue("pareto", fig, display=False)
 
 Pareto plot of all evaluated individuals.
 ```
-
-The {meth}`~CADETProcess.optimization.OptimizationResults.plot_convergence` method visualizes the convergence of the optimization, plotting the objective value against the number of function evaluations (see {numref}`convergence`).
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
