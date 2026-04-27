@@ -27,7 +27,8 @@ from myst_nb import glue
 
 # Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
-sys.path.insert(0, str(diss_root / "studies" / "parameter_estimation" / "parameter_estimation" ))
+study_root = diss_root / "studies" / "parameter_estimation"
+sys.path.insert(0, str(study_root / "parameter_estimation"))
 
 from utils import final_parameters_branch, load_all_parameters
 parameters_all = load_all_parameters(final_parameters_branch)
@@ -52,7 +53,7 @@ The sum of all NRMSE values serves as a meta score in a multi-criteria decision 
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-from comparison_plots import plot_lysozyme
+from comparison_plots import embed_figure_in_directive, plot_meta_score, plot_lysozyme
 fig, ax_lysozyme, ax_salt = plot_lysozyme(
     parameters_all["e9_lrmp_4_cv"],
     pH=5.0,
@@ -118,3 +119,37 @@ Beyond this, the multi-objective formulation provides an additional diagnostic c
 Notably, the combined optimum for $k_\text{eq}$ lies above the range of all individual optima, meaning the aggregated objective converges to a value that no single experiment would independently suggest.
 If the model were perfectly consistent across all gradient slopes, the individual and combined optima would coincide and the Pareto front would collapse to a single point.
 The spread observed instead indicates that the model cannot simultaneously satisfy all experiments equally well, pointing to gradient-dependent effects not captured by the current model structure.
+
+```{code-cell} ipython3
+:tags: [remove-cell]
+
+fig, axs = plot_meta_score(
+    study_root,
+    parameters_all["e9_lrmp_4_cv"]["branch_name"],
+)
+
+glue("fig_e9_meta_scores", fig, display=False)
+```
+
+```{glue:figure} fig_e9_meta_scores
+:name: fig_e9_meta_scores
+:scale: 100%
+
+Sum of evaluated objective values per optimization variable in experiment `E9`, assuming non-limiting film diffusion and rapid equilibrium.
+```
+
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
+e9_objectives = embed_figure_in_directive(
+    study_root,
+    parameters_all["e9_lrmp_4_cv"]["branch_name"],
+    "figures/objectives.png",
+    "e9_objectives",
+    "Evaluated objective values per optimization variable in experiment `E9`, assuming non-limiting film diffusion and rapid equilibrium.",
+)
+display(Markdown(e9_objectives))
+```

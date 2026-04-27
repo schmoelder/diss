@@ -30,12 +30,10 @@ diss_root = Path(Repo(search_parent_directories=True).working_dir)
 study_root = diss_root / "studies" / "parameter_estimation"
 sys.path.insert(0, str(study_root / "parameter_estimation"))
 
-from utils import (
-    final_parameters_branch, load_all_parameters, parameters_branch_e7_film_diffusion
-)
+from utils import final_parameters_branch, load_all_parameters
 parameters_all = load_all_parameters(final_parameters_branch)
 
-from comparison_plots import embed_figure_in_directive, plot_meta_score
+from comparison_plots import embed_figure_in_directive
 ```
 
 (characterization_appendix)=
@@ -150,70 +148,4 @@ e6_objectives = embed_figure_in_directive(
     "Evaluated objective values per optimization variable in experiment `E6`.",
 )
 display(Markdown(e6_objectives))
-```
-
-```{code-cell} ipython3
----
-mystnb:
-  markdown_format: myst
-  remove_code_source: true
----
-e7_objectives = embed_figure_in_directive(
-    study_root,
-    parameters_branch_e7_film_diffusion,
-    "figures/objectives.png",
-    "e7_objectives_film_diffusion",
-    "Evaluated objective values per optimization variable in experiment `E7`.",
-)
-display(Markdown(e7_objectives))
-```
-
-```{code-cell} ipython3
----
-mystnb:
-  markdown_format: myst
-  remove_code_source: true
----
-e7_objectives = embed_figure_in_directive(
-    study_root,
-    parameters_all["e7_lrmp"]["branch_name"],
-    "figures/objectives.png",
-    "e7_objectives",
-    "Evaluated objective values per optimization variable in experiment `E7`, assuming non-limiting film diffusion.",
-)
-display(Markdown(e7_objectives))
-```
-
-```{code-cell} ipython3
----
-mystnb:
-  markdown_format: myst
-  remove_code_source: true
----
-e9_objectives = embed_figure_in_directive(
-    study_root,
-    parameters_all["e9_lrmp_4_cv"]["branch_name"],
-    "figures/objectives.png",
-    "e9_objectives",
-    "Evaluated objective values per optimization variable in experiment `E9`, assuming non-limiting film diffusion and rapid equilibrium.",
-)
-display(Markdown(e9_objectives))
-```
-
-```{code-cell} ipython3
-:tags: [remove-cell]
-
-fig, axs = plot_meta_score(
-    study_root,
-    parameters_all["e9_lrmp_4_cv"]["branch_name"],
-)
-
-glue("fig_e9_meta_scores", fig, display=False)
-```
-
-```{glue:figure} fig_e9_meta_scores
-:name: fig_e9_meta_scores
-:scale: 100%
-
-Sum of evaluated objective values per optimization variable in experiment `E9`, assuming non-limiting film diffusion and rapid equilibrium.
 ```
