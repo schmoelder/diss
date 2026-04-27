@@ -149,12 +149,11 @@ Sampling with log-normalization applied to $D_{\text{ax}}$ (logarithmic scale): 
 (variable_dependencies)=
 ### Variable dependencies
 
-Handling a large number of variables simultaneously can lead to high complexity, as the volume of the variable space grows exponentially with the number of variables.
-Reducing the degrees of freedom simplifies the optimization process, leading to faster convergence and improved results.
-One method to achieve this is by defining dependencies between individual variables, which can be done using different mechanisms such as linear combinations or custom functions.
-Consider, for example, the equilibrium constant $K_{eq} = k_a / k_d$ in an adsorption model, with $k_a$ as the adsorption rate and $k_d$ as the desorption rate.
-Optimizing both $k_a$ and $k_d$ separately is less efficient than optimizing $k_a$ and $k_{eq}$ {cite}`Heymann2022`.
-This method allows for the independent determination of equilibrium and kinetic parameters of the reaction (see also {numref}`adsorption_parameters`).
+Variable dependencies allow complex interdependencies between parameters to be made explicit, enabling a more effective problem formulation.
+Rather than optimizing in the original parameter space, it is often advantageous to reparametrize in terms of quantities that are more physically independent and better-conditioned for the optimizer.
+Consider, for example, the adsorption rate constant $k_a$ and the desorption rate constant $k_d$: these two parameters are not independent, as the equilibrium behavior is governed by their ratio $K_{eq} = k_a / k_d$.
+Optimizing $K_{eq}$ and a kinetic parameter such as $k_a$ directly is therefore more efficient than estimating $k_a$ and $k_d$ separately, since the two original parameters are strongly correlated {cite}`Heymann2022`.
+CADET-Process supports such reparametrizations through user-defined dependency functions, which map the optimizer's variables to the physical parameters used during evaluation (see also {numref}`adsorption_parameters`).
 
 (linear_constraints)=
 ### Linear constraints
