@@ -402,6 +402,11 @@ Pareto plot of all evaluated individuals.
 fig, axs = optimization_results.plot_convergence()
 glue("convergence", fig, display=False)
 ```
+---
+
+With the CADET-Process framework fully established, covering process configuration, simulation, performance evaluation, and optimization, the focus shifts to its practical application.
+The following chapters demonstrate how these tools address real-world problems, starting with the characterization of a representative laboratory system (see {numref}`characterization`).
+Subsequent optimization studies explore a range of advanced operating concepts (see {numref}`Chapter %s <operating_modes>`).
 
 ```{glue:figure} convergence
 :name: convergence
