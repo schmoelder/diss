@@ -107,5 +107,5 @@ Writing these kinds of tests incentivizes programmers to think about code modula
 
 In CADET-Process, tests are located in the `tests/` directory of the repository and cover both unit and integration tests using a combination of *Python*'s standard `unittest` module and *pytest* {cite}`pytest`.
 Using *Github Actions*, these tests are automatically run whenever the code is updated (see {numref}`ci_cd`), ensuring that new contributions do not break existing functionality.
-Test coverage, i.e. the fraction of source code executed by the test suite, is tracked using [*Codecov*](https://app.codecov.io/github/fau-advanced-separations/CADET-Process/tree/dev) (https://app.codecov.io/github/fau-advanced-separations/CADET-Process) and currently stands at approximately 73\% (as of April 2026).
+Test coverage, i.e. the fraction of source code executed by the test suite, is tracked using *Codecov* and currently stands at approximately 73\% (as of April 2026).
 The following chapter discusses how version control enables structured collaboration and tracks the full history of these changes.

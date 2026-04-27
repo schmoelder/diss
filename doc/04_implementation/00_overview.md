@@ -2,15 +2,15 @@
 # Implementation of the CADET-Process framework
 
 **CADET-Process** is a Python framework developed in this work for the modeling, simulation, and optimization of chromatographic processes.
-The source code is freely available on [*GitHub*](https://github.com/fau-advanced-separations/CADET-Process) {cite}`CADET-Process_source`, and a scientific paper describing its design and application has been published in [*MDPI Processes*](https://doi.org/10.3390/pr8010065) {cite}`Schmoelder2020`.
+The source code is freely available on *GitHub* {cite}`CADET-Process_source`, and a scientific paper describing its design and application has been published in *MDPI Processes* {cite}`Schmoelder2020`.
 *Python* was chosen as the implementation language due to its widespread adoption in the scientific community and the easy integration of numerical and scientific packages, making it well suited for the modular approach adopted in this work.
-CADET-Process is available on the *Python Package Index* ([*PyPI*)](https://pypi.org/project/CADET-Process) and can be installed via `pip` {cite}`CADET-Process_pypi`.
+CADET-Process is available on the *Python Package Index* (*PyPI*) and can be installed via `pip` {cite}`CADET-Process_pypi`.
 
 ```bash
 pip install cadet-process
 ```
 
-The [**CADET-Core**](https://cadet.github.io) simulator is a robust numerical engine that can simulate a wide range of physico-chemical models used in chromatography and other biochemical processes {cite}`Leweke2018`.
+The **CADET-Core** simulator is a robust numerical engine that can simulate a wide range of physico-chemical models used in chromatography and other biochemical processes {cite}`Leweke2018`.
 However, CADET-Core is configured through HDF5 files with a deep hierarchical structure, requiring precise knowledge of internal variable names and offering no validation or high-level abstractions for complex setups such as valve switching or multi-column processes.
 Moreover, the structure of these files may change during process optimization, such as when the sequence of dynamic events is altered, making direct use of CADET-Core challenging without an additional layer of abstraction.
 CADET-Process addresses this by providing an object-oriented model builder that simplifies process setup, exposes all model parameters through a consistent interface, validates their values automatically, and sets sensible defaults, reducing the risk of ill-defined configurations.

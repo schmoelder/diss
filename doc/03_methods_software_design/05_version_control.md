@@ -62,5 +62,5 @@ One widely used scheme is *Semantic Versioning* {cite}`semantic`, which encodes 
 The MAJOR version is incremented when incompatible changes are made to the API, the MINOR version for backwards-compatible new functionality, and the PATCH version for backwards-compatible bug fixes.
 From a user perspective, updating to a new PATCH or MINOR version is generally safe, whereas a new MAJOR version may require changes to existing scripts or workflows.
 
-All releases of CADET-Process, together with a changelog describing new features or API changes, are published on GitHub (https://github.com/fau-advanced-separations/CADET-Process/releases) and on PyPI.
+All releases of CADET-Process, together with a changelog describing new features or API changes, are published on GitHub and on PyPI.
 The release process itself is automated as part of the CI/CD pipeline, described in the following chapter.

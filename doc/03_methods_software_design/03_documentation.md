@@ -71,5 +71,5 @@ It can be customized with themes and extensions to embed images, diagrams, and m
 Its *autodoc* extension reads type annotations (see {numref}`type_annotations`) directly from the source code, integrating them into the generated reference documentation without manual duplication.
 
 By combining background information, tutorials, and advanced examples with the extracted docstrings, these reference manuals become a useful starting point for new users.
-*Sphinx* integrates naturally with Read The Docs, an online platform for hosting and publishing documentation: https://readthedocs.org.
+*Sphinx* integrates naturally with Read The Docs, an online platform for hosting and publishing documentation.
 In CADET-Process, all public classes and functions include docstrings following the NumPy convention, and the reference documentation is hosted at https://cadet-process.readthedocs.io and automatically rebuilt whenever changes are made to the source code (see {numref}`ci_cd`).
