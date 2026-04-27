@@ -443,6 +443,17 @@ WENO
 {raw-latex}`\clearpage`
 {raw-latex}`\section*{List of Symbols}`
 {raw-latex}`\phantomsection\addcontentsline{toc}{chapter}{List of Symbols}`
+```{raw} latex
+\let\origthetable\thetable
+\let\origtablename\tablename
+\renewcommand{\thetable}{}
+\renewcommand{\tablename}{}
+\makeatletter
+\@ifundefined{tablecontinued}{}{%
+  \let\origTableContinued\tablecontinued
+  \renewcommand{\tablecontinued}[1]{continued from previous page}}
+\makeatother
+```
 
 **Symbols**
 
@@ -545,5 +556,13 @@ WENO
 | $(\cdot)_{\text{react}}$                         | Reaction                  |
 
 
+```{raw} latex
+\let\thetable\origthetable
+\let\tablename\origtablename
+\makeatletter
+\@ifundefined{origTableContinued}{}{%
+  \let\tablecontinued\origTableContinued}
+\makeatother
+```
 {raw-latex}`\clearpage`
 {raw-latex}`\pagenumbering{arabic}`
