@@ -63,21 +63,15 @@ cases = get_cases_by_operating_mode(
 (batch_elution_study)=
 # Batch-elution chromatography
 
-A basic chromatographic batch-elution setup comprises `feed` and `eluent` reservoirs, a pump to deliver the required flow rate against the column's pressure drop, a valve to switch between feed and eluent, the column itself, and one or more valves for fraction collection.
-In CADET-Process, this setup is modeled by connecting two {class}`Inlets <CADETProcess.processModel.Inlet>` and a column unit operation (e.g., {class}`~CADETProcess.processModel.LumpedRateModelWithPores`).
-In addition, an {class}`~CADETProcess.processModel.Outlet` is added to the {class}`~CADETProcess.processModel.FlowSheet`.
-This allows optimal fractionation times to be identified through chromatogram analysis (see {numref}`fractionation`), eliminating the need for predefined fractionation points and demonstrating a key advantage of model-based design.
-The flow sheet is demonstrated in {numref}`batch_elution_flow_sheet`.
+A basic chromatographic batch-elution setup comprises feed and eluent reservoirs, a pump, a valve to switch between feed and eluent, the column itself, and one or more valves for fraction collection.
+The CADET-Process implementation follows the structure described in {numref}`process_model`: two {class}`Inlets <CADETProcess.processModel.Inlet>` and a column are connected to an {class}`~CADETProcess.processModel.Outlet` in a {class}`~CADETProcess.processModel.FlowSheet` (see {numref}`batch_elution_flow_sheet`).
+{class}`Events <CADETProcess.dynamicEvents.Event>` with dependencies ensure that feed and eluent are switched alternately, reducing the degrees of freedom in the optimization (see {numref}`batch_elution_events`).
 
 ```{figure} ./figures/flow_sheet.png
 :name: batch_elution_flow_sheet
 
 Flow sheet for the batch-elution process.
 ```
-
-To model the injection, {class}`Events <CADETProcess.dynamicEvents.event.Event>` are introduced that modify the {attr}`~CADETProcess.processModel.Inlet.flow_rate` attribute of the {class}`~CADETProcess.processModel.Inlet` unit operations.
-To reduce the degrees of freedom that need to be explicitly specified, event dependencies are added to ensure that either feed or eluent is always flowing through the column.
-The events and durations are depicted in {numref}`batch_elution_events`.
 
 ```{figure} ./figures/event_dependencies.png
 :name: batch_elution_events
@@ -118,7 +112,10 @@ Typical chromatogram of a batch-elution process.
 
 To validate the process configuration, simulation results are compared with analytical solutions derived from equilibrium theory (see {numref}`analytical_solutions`).
 For this comparison, a linear isotherm with equivalent Henry coefficients $a_i$ is assumed, and all transport-limiting effects are neglected.
-{numref}`fig_batch_elution_validation` compares the concentration profile at the column outlet, demonstrating good agreement between the simulation results and the predictions of equilibrium theory.
+{numref}`fig_batch_elution_validation` compares the concentration profile at the column outlet.
+The simulation correctly reproduces the key characteristics predicted by equilibrium theory: component separation and the relative retention times of both peaks.
+The small discrepancy visible near the concentration fronts is a consequence of numerical dispersion inherent to finite-volume discretization of steep gradients; it is not specific to CADET and becomes negligible when physical dispersion or mass-transfer resistances are present.
+While increasing the spatial discretization would reduce this artifact, steep concentration fronts make convergence slow, and in practice physical dispersion dominates once realistic transport parameters are used.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -150,6 +147,6 @@ Comparison of a batch-elution simulation chromatogram (solid line) with an analy
 
 The following sections present a series of optimization scenarios of increasing complexity:
 First, a simple batch-elution case with ideal assumptions is used to validate the optimization framework.
-Next, a more realistic separation problem is considered, followed by multi-objective optimization.
-The cycle time is then included as an optimization variable.
+Next, a more realistic separation problem is considered, followed by the introduction of a multi-objective optimization approach.
+The cycle time is then also included as an optimization variable.
 Finally, the optimization of a ternary separation problem is addressed.
