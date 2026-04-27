@@ -106,8 +106,8 @@ mystnb:
 display(Markdown(overview))
 ```
 
-{numref}`batch-elution_moo-pc_fig_obj` depicts the evaluated objective function values as a function of both feed duration and cycle time.
-In contrast to the previous multi-objective study ({numref}`batch-elution_auto-cycle_moo-pc_fig_obj`), each variable value now corresponds to multiple objective values, reflecting the two-dimensional optimization space.
+{numref}`batch-elution_moo-pc_fig_obj` shows the evaluated objective function values as a function of both feed duration and cycle time.
+Unlike the one-dimensional landscape of the previous study ({numref}`batch-elution_auto-cycle_moo-pc_fig_obj`), the optimization space is now two-dimensional; each feed duration value therefore corresponds to a range of objective values depending on the simultaneously varying cycle time.
 Consistent trends are observed: productivity shows a distinct optimum with respect to feed duration, while maximum yield is attained for short injections.
 A minimum cycle time is required to avoid excessive cycle-to-cycle overlap.
 Eluent consumption peaks as a function of cycle time but plateaus with increasing feed duration.
@@ -115,7 +115,7 @@ Eluent consumption peaks as a function of cycle time but plateaus with increasin
 The optimal variable values and KPIs for all Pareto edge points are summarized in {numref}`batch-elution_moo-pc_kpi`.
 Compared to the previous study, where cycle-to-cycle overlaps were not accounted for ({numref}`batch-elution_auto-cycle_moo-pc_kpi`), higher KPI values could be achieved.
 Notably, productivity and eluent consumption show significant improvement because the tailing end of component $B$'s peak from one injection overlaps with the leading edge of component $A$'s peak from the subsequent injection.
-This cycle-to-cycle overlap creates more efficient use of the stationary phase, as demonstrated in {numref}`batch-elution_moo-pc_fig_chrom`.
+This cycle-to-cycle overlap enables more efficient use of the stationary phase, as demonstrated in {numref}`batch-elution_moo-pc_fig_chrom`.
 
 ```{glue:figure} moo_fig_obj
 :name: batch-elution_moo-pc_fig_obj
