@@ -92,6 +92,8 @@ In this scenario, the evaluator stopped the simulator after {glue:text}`n_cycles
 
 from examples.recycling.mrssr_process import process
 
+process.flow_sheet.tank.c = [0, 0]
+
 from CADETProcess.stationarity import StationarityEvaluator
 evaluator = StationarityEvaluator()
 
