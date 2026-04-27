@@ -26,7 +26,6 @@
 ```
 
 ## Preface
-
 All models are wrong, but some are useful.
 As a modeling engineer, it is my job to find out what is important: to select an effective model for the problem at hand, test the software that runs it, and validate it against reality.
 This work addresses all three: it presents models for chromatographic separation processes, the software to simulate them, and experimental validation against real data.
@@ -34,17 +33,16 @@ This work addresses all three: it presents models for chromatographic separation
 This is inherently a complex undertaking.
 Models are, by definition, approximations, and the software that implements them may contain omissions or undiscovered errors; this work is no exception.
 Yet even imperfect tools can be useful.
-The software developed here provides useful tools to simulate the diverse physicochemical effects and operating conditions that govern chromatographic separations.
+The software developed here provides tools to simulate the diverse physicochemical effects and operating conditions that govern chromatographic separations.
 
-The early decision to modularize the framework's code was key: by separating functionality and defining clear interfaces, development, testing, and integration become more efficient. (todo: revisit "key")
+The early decision to modularize the framework's code was the key to streamlining its development: by separating functionality and defining clear interfaces, development, testing, and integration become more efficient.
 This modularity also supports incremental improvement, allowing emerging issues or missing features to be addressed without disrupting other software components.
-
 Open-source principles, combined with adaptability to different standards, further strengthen this approach by promoting transparency and collaboration within the scientific community.
 In fact, many of the strongest modules emerged from such joint efforts, and I am grateful to all who contributed their expertise and perspective.
-Much of this work was made easier by the willingness of others to go the *extra mile*, and their enthusiasm has been a constant source of motivation.
+Learning from the enthusiasm of others is an unmatched shortcut to understanding.
 
 Looking ahead, I hope to continue developing this software.
-However, knowing what is *good enough* is an Art in itself, and for now, this thesis represents the current state of my efforts.
+However, knowing what is good enough is an Art in itself, and for now, this thesis represents the current state of my efforts.
 
 
 {raw-latex}`\clearpage`
@@ -178,7 +176,7 @@ Dabei werden eine sterische Massenwirkungsgesetz-Isotherme, Säulentransportphä
 Eine zusätzliche Serie synthetischer Fallstudien demonstriert die Optimierungsmöglichkeiten des Frameworks für verschiedene Betriebskonzepte, darunter Batch-Elution, Closed-Loop- und stationäres Recycling, Flip-Flop-Chromatographie sowie Säulenschaltungen in Reihe.
 Die Simulationsergebnisse werden gegen analytische Lösungen der Gleichgewichtstheorie validiert.
 Die Mehrzieloptimierung identifiziert dabei nicht-intuitive Betriebsstrategien, einschließlich Serieninjektionen, intermediärer Abfallfraktionen und Peakverschachtelung unter überladenen Bedingungen.
-Ein zentrales Ergebnis ist, dass sich die Batch-Elution als produktivitätsoptimaler Grenzfall komplexerer Recyclingkonfigurationen ergibt.
+Ein bemerkenswertes Ergebnis ist, dass sich die Batch-Elution als produktivitätsoptimaler Grenzfall komplexerer Recyclingkonfigurationen ergibt.
 Dieses Resultat wurde nicht *a priori* vorgegeben, sondern ergibt sich natürlich aus der Struktur der Entscheidungsvariablen, und unterstreicht das Potenzial des Frameworks für die Superstrukturoptimierung, bei der das Betriebskonzept selbst als Entwurfsvariable behandelt wird.
 
 Durch diese Entwicklungen etabliert sich CADET-Process als umfassendes Open-Source-Framework zur Auslegung und Optimierung chromatographischer Prozesse, das der wissenschaftlichen Gemeinschaft frei zur Verfügung steht und sowohl akademische Forschung als auch industrielle Anwendungen unterstützt.
@@ -203,7 +201,7 @@ A steric mass action law isotherm, column transport phenomena, and system periph
 An additional series of synthetic case studies demonstrates the optimization capabilities of the framework for various operating concepts, including batch elution, closed-loop and steady-state recycling, flip-flop chromatography, and column trains.
 Simulation results are validated against analytical solutions from equilibrium theory.
 Multi-objective optimization reveals non-intuitive operating strategies, including serial injections, intermediate waste fractions, and peak interlocking under overloaded conditions.
-A key finding is that batch elution emerges as the productivity-optimal limiting case of more complex recycling configurations.
+A notable finding is that batch elution emerges as the productivity-optimal limiting case of more complex recycling configurations.
 This result was not imposed *a priori* but arose naturally from the structure of the decision variables, highlighting the potential of the framework for superstructure optimization, in which the operating concept itself is treated as a design variable.
 
 Overall, CADET-Process establishes itself as a comprehensive open-source framework for the design and optimization of chromatographic processes, freely available to the scientific community and supporting both academic research and industrial applications.
