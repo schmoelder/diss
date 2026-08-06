@@ -119,6 +119,10 @@ sphinx:
         \usepackage{pdflscape}
         \usepackage{unicode-math}
 
+        % German title, required on the title page for English-language dissertations
+        % (RPromO 2024, Anlage).
+        \newcommand{\germantitle}{Ein modulares Framework zur Modellierung und Optimierung chromatographischer Prozesse}
+
         % Epigraph
         \usepackage{epigraph}
         \setlength\epigraphwidth{.8\textwidth}
@@ -282,6 +286,10 @@ sphinx:
               \sphinxlogo
               \py@HeaderFamily
               {\LARGE \@title \par}
+              \vspace{1em}
+              % RPromO Anlage: foreign-language dissertations name the foreign title
+              % first, then the German one.
+              {\large \germantitle \par}
               \vfill\vfill
             \end{flushright}%\par
             {\large
@@ -291,8 +299,7 @@ sphinx:
               der Friedrich-Alexander-Universität\\
               Erlangen-Nürnberg\\
               zur\\
-              Erlangung des Doktorgrades\\[2em]
-              D\,O\,K\,T\,O\,R\,-\,I\,N\,G\,E\,N\,I\,E\,U\,R\\[2em]
+              Erlangung des Doktorgrades Dr.-Ing.\\[2em]
               vorgelegt von\\
               \@author\\
               aus Bamberg\\
@@ -311,11 +318,12 @@ sphinx:
               Als Dissertation genehmigt\\
               von der Technischen Fakultät\\
               der Friedrich-Alexander-Universität Erlangen-Nürnberg\\[1em]
-              \begin{tabular}{@{}p{4.5cm}p{7cm}}
-                  Tag der mündlichen \\Prüfung:& \textbf{Tag. Monat Jahr}\\[1em]
-                  Vorsitzender des \\Promotionsorgans: &\textbf{Prof. Dr.-Ing.}\\[1em]
-                  Gutachter: & \textbf{Prof. Dr.-Ing. Malte Kaspereit}\\
-                             & \textbf{Prof. Dr.-Ing. }\\
+              % The date stays blank; it is filled in before publication, not for
+              % submission.
+              \begin{tabular}{@{}p{6cm}p{7cm}}
+                  Tag der mündlichen Prüfung: & \\[1em]
+                  Gutachter/in: & \textbf{Prof. Dr.-Ing. Malte Kaspereit}\\
+                                & \textbf{Prof. Dr.-Ing. Matthias Franzreb}\\
               \end{tabular}
             \end{doublespacing}
           }
