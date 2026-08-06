@@ -10,17 +10,17 @@ kernelspec:
 (design_formulation)=
 # Formulation of chromatographic design problems
 
-The formulation of chromatographic design problems typically involves three distinct classes of parameters: model parameters, design parameters, and operating parameters {cite}`SchmidtTraub2020`.
-
-*Model parameters* are inherent to the chosen chromatographic system and describe its physical and chemical properties.
-These include parameters related to thermodynamics, fluid dynamics, dispersion effects, and mass transfer resistances.
-Model parameters can often be measured directly, obtained through correlations, or determined using inverse methods, where they are adjusted to align with experimental data or other sources of information (see {numref}`model_calibration` and {numref}`characterization`).
-The accurate determination of model parameters is essential for developing precise chromatographic process models.
+The formulation of chromatographic design problems typically involves three distinct classes of parameters: design parameters, model parameters, and operating parameters {cite}`SchmidtTraub2020`.
 
 *Design parameters* define the overall setup and operational configuration of a chromatographic plant, which remain fixed during operation.
 These parameters include decisions about operating modes (e.g., batch-elution or recycling techniques), column geometry (length and diameter), adsorbent type, and, for SMB systems: zone configurations such as the number of columns per zone.
 The selection of the operating mode itself is an important design parameter, which can be systematically addressed using superstructure optimization with discrete decision variables to evaluate various configurations.
 While selecting the most suitable operating mode is a critical aspect of chromatographic process design, this work focuses primarily on optimizing processes for a given configuration, rather than identifying the optimal operating mode.
+
+*Model parameters* are inherent to the chosen chromatographic system and describe its physical and chemical properties.
+These include parameters related to thermodynamics, fluid dynamics, dispersion effects, and mass transfer resistances.
+Model parameters can often be measured directly, obtained through correlations, or determined using inverse methods, where they are adjusted to align with experimental data or other sources of information (see {numref}`model_calibration` and {numref}`characterization`).
+The accurate determination of model parameters is essential for developing precise chromatographic process models.
 
 *Operating parameters* refer to variables that can be adjusted during the operation of a chromatographic plant.
 These include flow rates, concentrations, and valve switch times, which are critical for fine-tuning the process to achieve optimal performance.
