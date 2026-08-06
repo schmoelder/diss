@@ -1,6 +1,7 @@
 *.bak
 *.sav
 **/_build/*
+__pycache__/
 log
 diskcache_*/
 results_*/
