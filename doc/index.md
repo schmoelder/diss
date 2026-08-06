@@ -73,54 +73,7 @@ In a time of need, they offered me scientific refuge and a desk free from distra
 
 {raw-latex}`\clearpage`
 
-## Published work
-
-Parts of this thesis were and are being published as in peer-reviewed journals, at conferences, in supervised students' theses and in the form of open source software packages.
-Any thought, methodology, result, conclusion and direct or indirect contribution to this work is considered as properly cited by the following listing:
-
-```{bibliography} ./references.bib
-:list: bullet
-:style: unsrt
-:filter: false
-
-Dienstbier2020
-Schmoelder2020
-Breuer2023
-Leweke2025
-Li2026
-```
-
-**Conference and symposium talks:**
-
-```{bibliography} ./references.bib
-:list: bullet
-:style: unsrt
-:filter: false
-
-Schmoelder2016
-Schmoelder2017
-Schmoelder2018Talk
-Schmoelder2019
-Schmoelder2021
-Hassan2022
-Breuer2024
-```
-
-**Conference posters:**
-
-```{bibliography} ./references.bib
-:list: bullet
-:style: unsrt
-:filter: false
-
-Schmoelder2018Poster
-Schmoelder2020ProcessNet
-Schmoelder2022
-Li2024
-Schmoelder2024
-```
-
-{raw-latex}`\clearpage`
+## Data and code availability
 
 **Code repositories and software packages**:
 - **CADET-Process:** [https://github.com/fau-advanced-separations/CADET-Process](https://github.com/fau-advanced-separations/CADET-Process)
@@ -132,29 +85,6 @@ Schmoelder2024
 - This thesis: [https://github.com/schmoelder/diss](https://github.com/schmoelder/diss)
 - Model of a typical chromatographic laboratory system: [https://github.com/schmoelder/diss_parameter_estimation](https://github.com/schmoelder/diss_parameter_estimation)
 - Optimization of advanced operating concepts: [https://github.com/schmoelder/diss_operating_modes](https://github.com/schmoelder/diss_operating_modes)
-
-**Supervised and co-supervised student projects**:
-
-```{bibliography} ./references.bib
-:list: bullet
-:style: unsrt
-:filter: false
-
-Ullrich2017
-Wolf2017
-Popp2017
-Derleth2017
-Schlumberger2018
-Cortelezzi2018
-Dienstbier2019
-Tauber2019
-Breuer2022
-Thiel2023
-Christiansen2022
-Klauß2024a
-Klauß2024b
-Hülsmann2025
-```
 
 {raw-latex}`\clearpage`
 
