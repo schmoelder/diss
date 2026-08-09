@@ -28,12 +28,44 @@ from myst_nb import glue
 
 # Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
+sys.path.insert(0, str(diss_root / "doc" / "_ext"))
 sys.path.insert(0, str(diss_root / "studies" / "parameter_estimation" / "parameter_estimation" ))
 
+from parameter_branches import final_parameters_branch
 from utils import (
-    final_parameters_branch, load_all_parameters, parameters_branch_e7_film_diffusion
+    load_all_parameters, parameters_branch_e7_film_diffusion
 )
 parameters_all = load_all_parameters(final_parameters_branch)
+
+from comparison_plots import load_cached_objective_results
+from parameter_estimation_figures import save_split_objective_figures
+
+appendix_objectives_dir = diss_root / "doc" / "99_appendix" / "figures" / "objectives"
+for experiment_id in ("e5", "e6"):
+    optimization_results = load_cached_objective_results(
+        diss_root / "studies" / "parameter_estimation",
+        parameters_all[experiment_id]["branch_name"],
+    )
+    save_split_objective_figures(
+        optimization_results,
+        appendix_objectives_dir,
+        file_stem=f"{experiment_id}_objectives",
+    )
+
+e7_objectives_dir = diss_root / "doc" / "05_characterization" / "figures" / "objectives"
+for branch_name, file_stem in (
+    (parameters_branch_e7_film_diffusion, "e7_objectives_film_diffusion"),
+    (parameters_all["e7_lrmp"]["branch_name"], "e7_objectives"),
+):
+    optimization_results = load_cached_objective_results(
+        diss_root / "studies" / "parameter_estimation",
+        branch_name,
+    )
+    save_split_objective_figures(
+        optimization_results,
+        e7_objectives_dir,
+        file_stem=file_stem,
+    )
 
 d_ax_blue_dextran = parameters_all["e5"]["column"]["axial_dispersion"]["Blue Dextran"]
 d_ax_blue_dextran = np.format_float_scientific(
@@ -76,7 +108,6 @@ To estimate some of the remaining column parameters, additional experiments were
 
 from comparison_plots import (
     create_column_table,
-    embed_figure_in_directive,
     plot_comparison_with_column,
 )
 fig, *_ = plot_comparison_with_column(
@@ -98,28 +129,11 @@ The data were fitted using a {class}`~CADETProcess.processModel.LumpedRateModelW
 {numref}`e7_objectives_film_diffusion` plots the objective function value against each optimization variable: while axial dispersion and particle porosity both exhibit minima, the film diffusion coefficient converged toward large values without a clear optimum, indicating that it could not be determined definitively.
 The only conclusion that could be drawn was that the film diffusion coefficient must exceed $1~\times 10^{-5}~\text{m}~\text{s}^{-1}$, suggesting that film diffusion is not rate-limiting under the experimental conditions.
 
-```{code-cell} ipython3
-:tags: [remove-cell]
+```{figure} figures/objectives/e7_objectives_film_diffusion.png
+:name: e7_objectives_film_diffusion
+:scale: 100%
 
-study_root = diss_root / "studies" / "parameter_estimation"
-sys.path.insert(0, str(study_root / "parameter_estimation"))
-
-e7_objectives = embed_figure_in_directive(
-    study_root,
-    parameters_branch_e7_film_diffusion,
-    "figures/objectives.png",
-    "e7_objectives_film_diffusion",
-    "Objective function values per optimization variable for experiment E7.",
-)
-```
-
-```{code-cell} ipython3
----
-mystnb:
-  markdown_format: myst
-  remove_code_source: true
----
-display(Markdown(e7_objectives))
+Objective function values per optimization variable for experiment E7.
 ```
 
 The data were therefore refitted under the assumption of non-limiting film diffusion.
@@ -127,24 +141,11 @@ Since CADET does not natively support this condition, a high numerical value of 
 {numref}`e7_objectives` shows the resulting objective landscape: the minima for both axial dispersion and particle porosity are now more sharply defined.
 Both fitting approaches resulted in similar particle porosities, and film diffusion was assumed to be non-limiting for all molecules in subsequent analyses.
 
-```{code-cell} ipython3
-:tags: [remove-cell]
+```{figure} figures/objectives/e7_objectives.png
+:name: e7_objectives
+:scale: 100%
 
-e7_objectives = embed_figure_in_directive(
-    study_root,
-    parameters_all["e7_lrmp"]["branch_name"],
-    "figures/objectives.png",
-    "e7_objectives",
-    "Objective function values per optimization variable for experiment E7, assuming non-limiting film diffusion.",
-)
-```
-```{code-cell} ipython3
----
-mystnb:
-  markdown_format: myst
-  remove_code_source: true
----
-display(Markdown(e7_objectives))
+Objective function values per optimization variable for experiment E7, assuming non-limiting film diffusion.
 ```
 
 Additionally, a slightly smaller particle porosity was determined, consistent with the larger size of the protein compared to acetone (used in `E6`).

@@ -28,10 +28,25 @@ from myst_nb import glue
 # Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
 study_root = diss_root / "studies" / "parameter_estimation"
+sys.path.insert(0, str(diss_root / "doc" / "_ext"))
 sys.path.insert(0, str(study_root / "parameter_estimation"))
 
-from utils import final_parameters_branch, load_all_parameters
+from parameter_branches import final_parameters_branch
+from utils import load_all_parameters
 parameters_all = load_all_parameters(final_parameters_branch)
+
+from comparison_plots import load_cached_objective_results
+from parameter_estimation_figures import save_split_objective_figures
+
+optimization_results = load_cached_objective_results(
+    study_root,
+    parameters_all["e9_lrmp_4_cv"]["branch_name"],
+)
+save_split_objective_figures(
+    optimization_results,
+    diss_root / "doc" / "05_characterization" / "figures" / "objectives",
+    file_stem="e9_objectives",
+)
 ```
 
 (adsorption_parameters)=
@@ -53,7 +68,7 @@ The sum of all NRMSE values serves as a meta score in a multi-criteria decision 
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-from comparison_plots import embed_figure_in_directive, plot_meta_score, plot_lysozyme
+from comparison_plots import plot_meta_score, plot_lysozyme
 fig, ax_lysozyme, ax_salt = plot_lysozyme(
     parameters_all["e9_lrmp_4_cv"],
     pH=5.0,
@@ -138,18 +153,9 @@ glue("fig_e9_meta_scores", fig, display=False)
 Sum of evaluated objective values per optimization variable in experiment `E9`, assuming non-limiting film diffusion and rapid equilibrium.
 ```
 
-```{code-cell} ipython3
----
-mystnb:
-  markdown_format: myst
-  remove_code_source: true
----
-e9_objectives = embed_figure_in_directive(
-    study_root,
-    parameters_all["e9_lrmp_4_cv"]["branch_name"],
-    "figures/objectives.png",
-    "e9_objectives",
-    "Evaluated objective values per optimization variable in experiment `E9`, assuming non-limiting film diffusion and rapid equilibrium.",
-)
-display(Markdown(e9_objectives))
+```{figure} figures/objectives/e9_objectives.png
+:name: e9_objectives
+:scale: 100%
+
+Evaluated objective values per optimization variable in experiment `E9`, assuming non-limiting film diffusion and rapid equilibrium.
 ```

@@ -26,9 +26,11 @@ from myst_nb import glue
 
 # Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
+sys.path.insert(0, str(diss_root / "doc" / "_ext"))
 sys.path.insert(0, str(diss_root / "studies" / "parameter_estimation" / "parameter_estimation" ))
 
-from utils import final_parameters_branch, load_all_parameters
+from parameter_branches import final_parameters_branch
+from utils import load_all_parameters
 parameters_all = load_all_parameters(final_parameters_branch)
 ```
 

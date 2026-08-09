@@ -27,10 +27,28 @@ from myst_nb import glue
 
 # Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
-sys.path.insert(0, str(diss_root / "studies" / "parameter_estimation" / "parameter_estimation" ))
+study_root = diss_root / "studies" / "parameter_estimation"
+sys.path.insert(0, str(diss_root / "doc" / "_ext"))
+sys.path.insert(0, str(study_root / "parameter_estimation" ))
 
-from utils import final_parameters_branch, load_all_parameters
+from parameter_branches import final_parameters_branch
+from utils import load_all_parameters
 parameters_all = load_all_parameters(final_parameters_branch)
+
+from comparison_plots import load_cached_objective_results
+from parameter_estimation_figures import save_split_objective_figures
+
+appendix_objectives_dir = diss_root / "doc" / "99_appendix" / "figures" / "objectives"
+for experiment_id in ("e1", "e2", "e3", "e4"):
+    optimization_results = load_cached_objective_results(
+        study_root,
+        parameters_all[experiment_id]["branch_name"],
+    )
+    save_split_objective_figures(
+        optimization_results,
+        appendix_objectives_dir,
+        file_stem=f"{experiment_id}_objectives",
+    )
 ```
 
 (system_periphery)=

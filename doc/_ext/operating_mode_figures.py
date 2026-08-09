@@ -39,16 +39,20 @@ MOO_CHROMATOGRAM_GRID_PRESET = SplitFigurePreset(
 )
 
 
-def chunked(items: Iterable[int], chunk_size: int) -> Iterable[tuple[int, ...]]:
-    chunk = []
-    for item in items:
-        chunk.append(item)
-        if len(chunk) == chunk_size:
-            yield tuple(chunk)
-            chunk = []
+def balanced_chunks(items: Iterable[int], max_chunk_size: int) -> Iterable[tuple[int, ...]]:
+    items = list(items)
+    n_items = len(items)
+    n_chunks = int(np.ceil(n_items / max_chunk_size))
+    chunk_size = n_items // n_chunks
+    n_larger_chunks = n_items % n_chunks
 
-    if chunk:
-        yield tuple(chunk)
+    start = 0
+    for i_chunk in range(n_chunks):
+        stop = start + chunk_size
+        if i_chunk < n_larger_chunks:
+            stop += 1
+        yield tuple(items[start:stop])
+        start = stop
 
 
 def _create_split_axes(
@@ -63,8 +67,8 @@ def _create_split_axes(
     layout: str = THESIS_FIGURE_LAYOUT,
 ) -> tuple[list[plt.Figure], np.ndarray, list[tuple[tuple[int, ...], tuple[int, ...]]]]:
     figures = []
-    row_groups = list(chunked(range(nrows), rows_per_figure))
-    column_groups = list(chunked(range(ncols), columns_per_figure))
+    row_groups = list(balanced_chunks(range(nrows), rows_per_figure))
+    column_groups = list(balanced_chunks(range(ncols), columns_per_figure))
     figure_groups = []
     axes_full = np.empty((nrows, ncols), dtype=object)
 
@@ -329,7 +333,7 @@ def plot_moo_chromatogram_figures(
     simulation_results,
     fractionators,
     columns_per_figure: int | None = None,
-    rows_per_figure: int = 4,
+    rows_per_figure: int = 5,
     row_height_in: float = MOO_CHROMATOGRAM_GRID_PRESET.row_height_in,
     column_width_in: float = MOO_CHROMATOGRAM_GRID_PRESET.column_width_in,
     set_global_limits: bool = True,

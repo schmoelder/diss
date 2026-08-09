@@ -20,7 +20,6 @@ execution:
 from pathlib import Path
 import sys
 
-from IPython.display import display, Markdown
 from git import Repo
 from myst_nb import glue
 %config InlineBackend.figure_format = 'retina'
@@ -28,12 +27,12 @@ from myst_nb import glue
 # Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
 study_root = diss_root / "studies" / "parameter_estimation"
+sys.path.insert(0, str(diss_root / "doc" / "_ext"))
 sys.path.insert(0, str(study_root / "parameter_estimation"))
 
-from utils import final_parameters_branch, load_all_parameters
+from parameter_branches import final_parameters_branch
+from utils import load_all_parameters
 parameters_all = load_all_parameters(final_parameters_branch)
-
-from comparison_plots import embed_figure_in_directive
 ```
 
 (characterization_appendix)=
@@ -54,98 +53,44 @@ glue("fig_conductivity", fig, display=False)
 Calibration curve for conductivity sensor.
 ```
 
-```{code-cell} ipython3
----
-mystnb:
-  markdown_format: myst
-  remove_code_source: true
----
-e1_objectives = embed_figure_in_directive(
-    study_root,
-    parameters_all["e1"]["branch_name"],
-    "figures/objectives.png",
-    "e1_objectives",
-    "Evaluated objective values per optimization variable in experiment `E1`.",
-)
-display(Markdown(e1_objectives))
+```{figure} figures/objectives/e1_objectives.png
+:name: e1_objectives
+:scale: 100%
+
+Evaluated objective values per optimization variable in experiment `E1`.
 ```
 
-```{code-cell} ipython3
----
-mystnb:
-  markdown_format: myst
-  remove_code_source: true
----
-e2_objectives = embed_figure_in_directive(
-    study_root,
-    parameters_all["e2"]["branch_name"],
-    "figures/objectives.png",
-    "e2_objectives",
-    "Evaluated objective values per optimization variable in experiment `E2`.",
-)
-display(Markdown(e2_objectives))
+```{figure} figures/objectives/e2_objectives.png
+:name: e2_objectives
+:scale: 100%
+
+Evaluated objective values per optimization variable in experiment `E2`.
 ```
 
-```{code-cell} ipython3
----
-mystnb:
-  markdown_format: myst
-  remove_code_source: true
----
-e3_objectives = embed_figure_in_directive(
-    study_root,
-    parameters_all["e3"]["branch_name"],
-    "figures/objectives.png",
-    "e3_objectives",
-    "Evaluated objective values per optimization variable in experiment `E3`.",
-)
-display(Markdown(e3_objectives))
+```{figure} figures/objectives/e3_objectives.png
+:name: e3_objectives
+:scale: 100%
+
+Evaluated objective values per optimization variable in experiment `E3`.
 ```
 
-```{code-cell} ipython3
----
-mystnb:
-  markdown_format: myst
-  remove_code_source: true
----
-e4_objectives = embed_figure_in_directive(
-    study_root,
-    parameters_all["e4"]["branch_name"],
-    "figures/objectives.png",
-    "e4_objectives",
-    "Evaluated objective values per optimization variable in experiment `E4`.",
-)
-display(Markdown(e4_objectives))
+```{figure} figures/objectives/e4_objectives.png
+:name: e4_objectives
+:scale: 100%
+
+Evaluated objective values per optimization variable in experiment `E4`.
 ```
 
-```{code-cell} ipython3
----
-mystnb:
-  markdown_format: myst
-  remove_code_source: true
----
-e5_objectives = embed_figure_in_directive(
-    study_root,
-    parameters_all["e5"]["branch_name"],
-    "figures/objectives.png",
-    "e5_objectives",
-    "Evaluated objective values per optimization variable in experiment `E5`.",
-)
-display(Markdown(e5_objectives))
+```{figure} figures/objectives/e5_objectives.png
+:name: e5_objectives
+:scale: 100%
+
+Evaluated objective values per optimization variable in experiment `E5`.
 ```
 
-```{code-cell} ipython3
----
-mystnb:
-  markdown_format: myst
-  remove_code_source: true
----
-e6_objectives = embed_figure_in_directive(
-    study_root,
-    parameters_all["e6"]["branch_name"],
-    "figures/objectives.png",
-    "e6_objectives",
-    "Evaluated objective values per optimization variable in experiment `E6`.",
-)
-display(Markdown(e6_objectives))
+```{figure} figures/objectives/e6_objectives.png
+:name: e6_objectives
+:scale: 100%
+
+Evaluated objective values per optimization variable in experiment `E6`.
 ```

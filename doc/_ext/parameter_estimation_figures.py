@@ -26,16 +26,20 @@ OBJECTIVE_GRID_PRESET = SplitFigurePreset(
 )
 
 
-def chunked(items: Iterable[int], chunk_size: int) -> Iterable[tuple[int, ...]]:
-    chunk = []
-    for item in items:
-        chunk.append(item)
-        if len(chunk) == chunk_size:
-            yield tuple(chunk)
-            chunk = []
+def balanced_chunks(items: Iterable[int], max_chunk_size: int) -> Iterable[tuple[int, ...]]:
+    items = list(items)
+    n_items = len(items)
+    n_chunks = int(np.ceil(n_items / max_chunk_size))
+    chunk_size = n_items // n_chunks
+    n_larger_chunks = n_items % n_chunks
 
-    if chunk:
-        yield tuple(chunk)
+    start = 0
+    for i_chunk in range(n_chunks):
+        stop = start + chunk_size
+        if i_chunk < n_larger_chunks:
+            stop += 1
+        yield tuple(items[start:stop])
+        start = stop
 
 
 def _format_objective_variable_label(label: str) -> str:
@@ -60,7 +64,7 @@ def _format_objective_variable_label(label: str) -> str:
 
 def create_split_objective_figures(
     optimization_results,
-    rows_per_figure: int = 2,
+    rows_per_figure: int = 4,
     columns_per_figure: int = 2,
     row_height_in: float = OBJECTIVE_GRID_PRESET.row_height_in,
     column_width_in: float = OBJECTIVE_GRID_PRESET.column_width_in,
@@ -79,8 +83,8 @@ def create_split_objective_figures(
     figures = []
     axes_full = np.empty((nrows, ncols), dtype=object)
     figure_groups = []
-    row_groups = list(chunked(range(nrows), rows_per_figure))
-    column_groups = list(chunked(range(ncols), columns_per_figure))
+    row_groups = list(balanced_chunks(range(nrows), rows_per_figure))
+    column_groups = list(balanced_chunks(range(ncols), columns_per_figure))
 
     with plotting.mpl_style_context(OBJECTIVE_GRID_PRESET.layout):
         for row_group in row_groups:
@@ -129,13 +133,22 @@ def save_split_objective_figures(
     optimization_results,
     output_dir: Path,
     file_stem: str = "objectives",
-    rows_per_figure: int = 2,
+    rows_per_figure: int = 4,
     columns_per_figure: int = 2,
     **kwargs,
 ) -> list[Path]:
     """Save split objective figures as thesis-ready artifacts."""
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
+    stale_paths = [output_dir / f"{file_stem}.png"]
+    stale_paths.extend(
+        path
+        for path in output_dir.glob(f"{file_stem}_*.png")
+        if path.stem.removeprefix(f"{file_stem}_").isdigit()
+    )
+    for path in stale_paths:
+        if path.exists():
+            path.unlink()
 
     figures, _, _ = create_split_objective_figures(
         optimization_results,
