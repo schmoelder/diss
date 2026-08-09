@@ -1,4 +1,5 @@
 from collections.abc import Iterable
+from dataclasses import dataclass
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -16,6 +17,26 @@ from operating_modes.post_processing import (
 TEXT_WIDTH_IN = 156 / 25.4
 OBJECTIVE_MARKER_SIZE = 4.0
 OBJECTIVE_UNIT_NOTE = "Objective and KPI units follow the corresponding result table."
+THESIS_FIGURE_LAYOUT = "1.5_col"
+
+
+@dataclass(frozen=True)
+class SplitFigurePreset:
+    row_height_in: float
+    column_width_in: float
+    min_width_in: float = 3.0
+    max_width_in: float = TEXT_WIDTH_IN
+    layout: str = THESIS_FIGURE_LAYOUT
+
+
+OBJECTIVE_GRID_PRESET = SplitFigurePreset(
+    row_height_in=1.5,
+    column_width_in=2.05,
+)
+MOO_CHROMATOGRAM_GRID_PRESET = SplitFigurePreset(
+    row_height_in=1.45,
+    column_width_in=2.05,
+)
 
 
 def chunked(items: Iterable[int], chunk_size: int) -> Iterable[tuple[int, ...]]:
@@ -36,10 +57,10 @@ def _create_split_axes(
     rows_per_figure: int,
     columns_per_figure: int,
     row_height_in: float,
-    column_width_in: float = 1.4,
+    column_width_in: float,
     min_width_in: float = 3.0,
     max_width_in: float = TEXT_WIDTH_IN,
-    layout: str = "1_col",
+    layout: str = THESIS_FIGURE_LAYOUT,
 ) -> tuple[list[plt.Figure], np.ndarray, list[tuple[tuple[int, ...], tuple[int, ...]]]]:
     figures = []
     row_groups = list(chunked(range(nrows), rows_per_figure))
@@ -174,8 +195,8 @@ def plot_soo_objective_figures(
     optimization_results,
     columns_per_figure: int = 3,
     rows_per_figure: int | None = None,
-    row_height_in: float = 2.0,
-    column_width_in: float = 1.7,
+    row_height_in: float = OBJECTIVE_GRID_PRESET.row_height_in,
+    column_width_in: float = OBJECTIVE_GRID_PRESET.column_width_in,
     marker_size: float = OBJECTIVE_MARKER_SIZE,
 ) -> tuple[
     list[plt.Figure],
@@ -193,7 +214,7 @@ def plot_soo_objective_figures(
     if rows_per_figure is None:
         rows_per_figure = nrows
 
-    with plotting.mpl_style_context("1.5_col"):
+    with plotting.mpl_style_context(OBJECTIVE_GRID_PRESET.layout):
         figures, axes, figure_groups = _create_split_axes(
             nrows,
             ncols,
@@ -201,6 +222,9 @@ def plot_soo_objective_figures(
             columns_per_figure,
             row_height_in,
             column_width_in,
+            OBJECTIVE_GRID_PRESET.min_width_in,
+            OBJECTIVE_GRID_PRESET.max_width_in,
+            OBJECTIVE_GRID_PRESET.layout,
         )
         optimization_results.plot_objectives(
             autoscale=False,
@@ -233,8 +257,8 @@ def plot_moo_objective_figures(
     optimization_results,
     columns_per_figure: int = 3,
     rows_per_figure: int = 5,
-    row_height_in: float = 1.35,
-    column_width_in: float = 2.2,
+    row_height_in: float = OBJECTIVE_GRID_PRESET.row_height_in,
+    column_width_in: float = OBJECTIVE_GRID_PRESET.column_width_in,
     marker_size: float = OBJECTIVE_MARKER_SIZE,
 ) -> tuple[
     list[plt.Figure],
@@ -253,7 +277,7 @@ def plot_moo_objective_figures(
     ncols = _n_x(optimization_results)
     nrows = _n_f(optimization_results) + _n_m(optimization_results)
 
-    with plotting.mpl_style_context("1.5_col"):
+    with plotting.mpl_style_context(OBJECTIVE_GRID_PRESET.layout):
         figures, axes, figure_groups = _create_split_axes(
             nrows,
             ncols,
@@ -261,6 +285,9 @@ def plot_moo_objective_figures(
             columns_per_figure,
             row_height_in,
             column_width_in,
+            OBJECTIVE_GRID_PRESET.min_width_in,
+            OBJECTIVE_GRID_PRESET.max_width_in,
+            OBJECTIVE_GRID_PRESET.layout,
         )
         optimization_results.plot_objectives(
             autoscale=False,
@@ -302,9 +329,9 @@ def plot_moo_chromatogram_figures(
     simulation_results,
     fractionators,
     columns_per_figure: int | None = None,
-    rows_per_figure: int = 5,
-    row_height_in: float = 1.6,
-    column_width_in: float = 2.4,
+    rows_per_figure: int = 4,
+    row_height_in: float = MOO_CHROMATOGRAM_GRID_PRESET.row_height_in,
+    column_width_in: float = MOO_CHROMATOGRAM_GRID_PRESET.column_width_in,
     set_global_limits: bool = True,
 ) -> tuple[
     list[plt.Figure],
@@ -339,7 +366,7 @@ def plot_moo_chromatogram_figures(
     ).reshape(n_metrics, n_comp)
     frac_meta = fractionators[-1]
 
-    with plotting.mpl_style_context("1.5_col"):
+    with plotting.mpl_style_context(MOO_CHROMATOGRAM_GRID_PRESET.layout):
         figures, axes, figure_groups = _create_split_axes(
             nrows,
             ncols,
@@ -347,6 +374,9 @@ def plot_moo_chromatogram_figures(
             columns_per_figure,
             row_height_in,
             column_width_in,
+            MOO_CHROMATOGRAM_GRID_PRESET.min_width_in,
+            MOO_CHROMATOGRAM_GRID_PRESET.max_width_in,
+            MOO_CHROMATOGRAM_GRID_PRESET.layout,
         )
         plot_moo_chromatograms(
             optimization_problem,
