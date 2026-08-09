@@ -259,7 +259,7 @@ def plot_soo_objective_figures(
 def plot_moo_objective_figures(
     case,
     optimization_results,
-    columns_per_figure: int = 3,
+    columns_per_figure: int = 4,
     rows_per_figure: int = 5,
     row_height_in: float = OBJECTIVE_GRID_PRESET.row_height_in,
     column_width_in: float = OBJECTIVE_GRID_PRESET.column_width_in,

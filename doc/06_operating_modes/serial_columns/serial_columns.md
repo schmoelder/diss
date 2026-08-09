@@ -124,7 +124,7 @@ For this study a ternary separation problem with a Langmuir isotherm is consider
 
 ```{glue:figure} fig_serial_columns
 :name: fig_serial_columns
-:figwidth: 50%
+:scale: 100%
 
 Typical chromatogram of a serial columns process.
 **Left:** Concentration profile at outlet of first column.
@@ -161,7 +161,7 @@ glue("fig_serial_validation", fig_serial_validation, display=False)
 
 ```{glue:figure} fig_serial_validation
 :name: serial_columns_chromatogram
-:scale: 50%
+:scale: 100%
 
 Comparison of serial columns simulation chromatograms (solid lines) with the analytical equilibrium theory solution (dashed lines), assuming a linear binding model and neglecting axial dispersion and other transport-limiting effects.
 **Left:** Concentration profile at first system outlet.

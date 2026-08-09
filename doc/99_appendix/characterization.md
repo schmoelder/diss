@@ -48,7 +48,7 @@ glue("fig_conductivity", fig, display=False)
 
 ```{glue:figure} fig_conductivity
 :name: fig_conductivity
-:scale: 50%
+:scale: 100%
 
 Calibration curve for conductivity sensor.
 ```

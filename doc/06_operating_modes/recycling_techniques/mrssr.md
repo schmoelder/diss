@@ -123,7 +123,7 @@ glue("ssr_overlay", fig_overlay, display=False)
 
 ```{glue:figure} ssr_last
 :name: ssr_last
-:scale: 50%
+:scale: 100%
 
 Example MR-SSR process in mixed-recycle operation for the separation of two components (blue and red) reaching cyclic steady state after 35 cycles.
 **Left:** Concentration profiles at the column's outlet.
@@ -140,7 +140,7 @@ For this demonstration, a standard two-component system with a Langmuir isotherm
 
 ```{glue:figure} ssr_overlay
 :name: ssr_overlay
-:scale: 50%
+:scale: 100%
 
 Overlay of concentration profiles of all cycles, showing the transient towards stationarity.
 ```

@@ -154,7 +154,7 @@ glue("fig_purity", fig_purity, display=False)
 
 ```{glue:figure} fig_purity
 :name: fig_purity
-:figwidth: 300px
+:scale: 100%
 
 **Top:** Chromatogram of binary separation.
 **Bottom:** Local purity profile of the chromatogram with initial fraction start and end times indicated; color regions highlight intervals where local purity exceeds the minimum required threshold.

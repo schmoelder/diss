@@ -127,7 +127,7 @@ glue("fig_initial_values_normalized", fig, display=False)
 
 ```{glue:figure} fig_initial_values
 :name: fig_initial_values
-:scale: 50%
+:scale: 100%
 
 Sampling without normalization: $D_{\text{ax}}$ values cluster near the upper bound, leaving the lower orders of magnitude nearly unexplored.
 ```
@@ -138,7 +138,7 @@ Sampling without normalization: $D_{\text{ax}}$ values cluster near the upper bo
 
 ```{glue:figure} fig_initial_values_normalized
 :name: fig_initial_values_normalized
-:scale: 50%
+:scale: 100%
 
 Sampling with log-normalization applied to $D_{\text{ax}}$ (logarithmic scale): coverage is near-uniform across the full five orders of magnitude.
 ```
@@ -341,7 +341,7 @@ glue("uniform_samples", fig, display=False)
 
 ```{glue:figure} uniform_samples
 :name: uniform_samples
-:scale: 50%
+:scale: 100%
 
 Example for uniform sampling of parameter space with linear inequality constraints, used for initial values.
 ```
@@ -375,7 +375,7 @@ glue("objectives", fig, display=False)
 
 ```{glue:figure} objectives
 :name: objectives
-:scale: 50%
+:scale: 100%
 
 Objective function values for all evaluated individuals.
 Darker shades represent individuals evaluated in later generations.
@@ -391,7 +391,7 @@ glue("pareto", fig, display=False)
 
 ```{glue:figure} pareto
 :name: pareto
-:scale: 50%
+:scale: 100%
 
 Pareto plot of all evaluated individuals.
 ```
@@ -410,7 +410,7 @@ Subsequent optimization studies explore a range of advanced operating concepts (
 
 ```{glue:figure} convergence
 :name: convergence
-:scale: 50%
+:scale: 100%
 
 Convergence of the optimization algorithm: objective values plotted against the number of function evaluations.
 ```

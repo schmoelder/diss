@@ -84,7 +84,7 @@ glue("chromatogram", fig, display=False)
 
 ```{glue:figure} chromatogram
 :name: "chromatogram"
-:scale: 50%
+:scale: 100%
 
 Left: Concentration profile at the column inlet.
 Right: Chromatogram recorded at the column outlet with components $A$ and $B$ partially separated.

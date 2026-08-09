@@ -106,7 +106,7 @@ display(Markdown(tab_lysozyme))
 
 ```{glue:figure} fig_lysozyme
 :name: fig_lysozyme
-:scale: 75%
+:scale: 100%
 
 Comparison of experimental data with simulation results at pH 5 for 4, 8, 12, and 16 CV gradients.
 ```
@@ -116,7 +116,7 @@ To further validate the model, two additional gradient experiments using 6 and 1
 
 ```{glue:figure} fig_lysozyme_validation
 :name: fig_lysozyme_validation
-:scale: 75%
+:scale: 100%
 
 Comparison of experimental data with simulation results at pH 5 for 6 and 14 CV gradients.
 ```

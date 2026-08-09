@@ -101,7 +101,7 @@ glue("fig_batch_elution", fig_batch_elution, display=False)
 
 ```{glue:figure} fig_batch_elution
 :name: fig_batch_elution
-:figwidth: 300px
+:scale: 100%
 
 Typical chromatogram of a batch-elution process.
 ```
