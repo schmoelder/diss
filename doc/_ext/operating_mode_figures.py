@@ -15,6 +15,7 @@ from operating_modes.post_processing import (
 
 TEXT_WIDTH_IN = 156 / 25.4
 OBJECTIVE_MARKER_SIZE = 4.0
+OBJECTIVE_UNIT_NOTE = "Objective and KPI units follow the corresponding result table."
 
 
 def chunked(items: Iterable[int], chunk_size: int) -> Iterable[tuple[int, ...]]:
@@ -80,6 +81,8 @@ def create_figure_directives(
 ) -> str:
     directives = []
     include_part_note = len(figure_groups) > 1
+    if column_label == "decision variables":
+        caption = f"{caption} {OBJECTIVE_UNIT_NOTE}"
 
     for i, (row_group, column_group) in enumerate(figure_groups, start=1):
         if i == 1:
@@ -210,7 +213,7 @@ def plot_soo_objective_figures(
         for i_var, variable_info in enumerate(variable_infos):
             ax = axes[0, i_var]
             _format_variable_axis(ax, variable_info)
-            ax.set_ylabel(f"${metrics['meta']['symbol']}~/~{metrics['meta']['unit']}$")
+            ax.set_ylabel(f"${metrics['meta']['symbol']}$")
             ax.yaxis.set_major_formatter(
                 ticker.FuncFormatter(
                     lambda y, _: f"{y * metrics['meta']['factor']:.4g}"
@@ -275,7 +278,7 @@ def plot_moo_objective_figures(
                     ax = axes[n_comp * i_metric + i_comp, i_var]
                     _format_variable_axis(ax, variable_info)
                     ax.set_ylabel(
-                        f"${metric_info['symbol']}_{{{i_comp}}}~/~{metric_info['unit']}$"
+                        f"${metric_info['symbol']}_{{{i_comp}}}$"
                     )
                     ax.yaxis.set_major_formatter(
                         ticker.FuncFormatter(
