@@ -5,19 +5,6 @@ This chapter provides an overview of the formulation of chromatographic process 
 It begins with models for retention mechanisms, followed by a description of the equations used to describe the phenomena occurring within the column and their coupling to adsorption isotherm models.
 Moreover, the chapter considers effects that occur outside the column, in the system's periphery.
 
-## Digression: machine learning models
-
-In recent years, machine learning (ML) models have gained increasing popularity in the field of chromatography due to their ability to efficiently handle large datasets and accurately model complex systems {cite}`Subraveti2022`.
-These models are predominantly data-driven, meaning they rely less on a physical understanding of the system and instead focus on approximating and interpolating measured outputs as functions of input variables.
-Machine learning approaches are particularly valuable in scenarios where the underlying mechanisms are not fully understood or when direct measurement of necessary parameters is challenging.
-In addition, ML models can be employed for surrogate modeling, providing simplified approximations of complex, computationally expensive models {cite}`Jaepel2022`.
-The modular architecture of CADET-Process naturally supports replacing individual parts with data-driven models.
-For example, the simulator could be replaced by a PINN, or surrogate models could be trained to map process inputs directly to performance indicators, replacing the entire chain from simulation to evaluation.
-This hybrid approach allows combining mechanistic and data-driven elements.
-While machine learning offers powerful tools, mechanistic models remain essential, particularly in cases where they are used to inform or train machine learning models for chromatographic applications.
-Understanding the design criteria and defining the overall structure of mechanistic models are critical steps in optimizing chromatographic processes.
-As such, this work focuses exclusively on mechanistic models.
-
 (isotherm_models)=
 ## Adsorption isotherm models
 
@@ -494,8 +481,8 @@ Its mass balance is given by
 \frac{\text{d}}{\text{d}t} (V c_i) = Q_{\text{in}} c_{\text{in},i} - Q_{\text{out}} c_i,
 ```
 
-where $Q_{\text{in}}$ and $Q_{\text{out}}$ denote the inlet and outlet volumetric flow rates,
-Note, in contrast to other unit operations, the volume of the CSTR can also vary over time.
+where $Q_{\text{in}}$ and $Q_{\text{out}}$ denote the inlet and outlet volumetric flow rates.
+Note that, in contrast to other unit operations, the volume of the CSTR can also vary over time.
 The change of the tank volume is given by
 
 ```{math}
@@ -505,4 +492,17 @@ The change of the tank volume is given by
 ```
 
 Together, the isotherm models, transport equations, and unit operation building blocks introduced in this chapter form the mathematical description of chromatographic processes.
+
+(data_driven_hybrid_models)=
+## Data-driven and hybrid models
+
+Beyond such mechanistic descriptions, data-driven and machine learning models have gained increasing attention in chromatography due to their ability to approximate complex input-output relationships from experimental or simulated data {cite}`Subraveti2022`.
+These approaches are particularly useful when the underlying mechanisms are not fully known, when parameters are difficult to measure directly, or when a computationally expensive mechanistic model should be replaced by a faster surrogate {cite}`Jaepel2022`.
+They can also be combined with mechanistic modeling, for example by using mechanistic simulations to generate training data, by embedding physical constraints in physics-informed neural networks, or by replacing selected modules in a larger process-design workflow.
+The modular architecture of CADET-Process supports such hybrid formulations, for example by replacing the simulator with a surrogate model or by mapping process inputs directly to performance indicators.
+
+This work focuses on mechanistic models.
+The questions addressed here require explicit representation of transport, binding, fractionation, and process connectivity, which yields interpretable parameters, physically meaningful extrapolation limits, and reusable building blocks for the advanced operating modes considered in later chapters.
+Mechanistic models also remain the source of the training data on which data-driven approaches for chromatography depend.
+
 The following chapter addresses how these model equations are solved, both analytically and numerically.
