@@ -36,9 +36,9 @@ from myst_nb import glue
 
 # Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
-print(diss_root)
 study_root = diss_root / "studies" / "operating_modes"
 sys.path.insert(0, str(study_root))
+sys.path.insert(0, str(diss_root / "doc" / "_ext"))
 
 # Setup cases for operating mode
 from operating_modes.main import setup_process
@@ -48,6 +48,7 @@ from operating_modes.post_processing import (
     process_moo_results,
     setup_overview,
 )
+from operating_mode_figures import create_figure_directives, plot_soo_objective_figures
 ```
 
 ```{code-cell} ipython3
@@ -100,8 +101,18 @@ overview = setup_overview(case)
     load_kwargs={"allow_commit_hash_mismatch": True},
     return_results=True,
 )
-glue("soo_fig_obj", soo_fig_obj, display=False)
+soo_fig_obj_parts, _, soo_fig_obj_groups = plot_soo_objective_figures(case, soo_results)
+plt.close(soo_fig_obj)
+
+for i, fig in enumerate(soo_fig_obj_parts, start=1):
+    glue(f"soo_fig_obj_{i}", fig, display=False)
 glue("soo_fig_obj_caption", soo_fig_obj_caption)
+soo_fig_obj_directives = create_figure_directives(
+    "soo_fig_obj",
+    "batch-elution_linear_et_auto-cycle_soo_fig_obj",
+    soo_fig_obj_caption,
+    soo_fig_obj_groups,
+)
 
 glue("soo_fig_chrom", soo_fig_chrom, display=False)
 glue("soo_fig_chrom_caption", soo_fig_chrom_caption)
@@ -148,11 +159,13 @@ These small deviations are consistent with the numerical dispersion discussed in
 """))
 ```
 
-```{glue:figure} soo_fig_obj
-:name: batch-elution_linear_et_auto-cycle_soo_fig_obj
-:scale: 100%
-
-{glue:text}`soo_fig_obj_caption`
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
+display(Markdown(soo_fig_obj_directives))
 ```
 
 

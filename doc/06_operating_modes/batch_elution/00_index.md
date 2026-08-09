@@ -36,7 +36,6 @@ from myst_nb import glue
 
 # Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
-print(diss_root)
 study_root = diss_root / "studies" / "operating_modes"
 sys.path.insert(0, str(study_root))
 

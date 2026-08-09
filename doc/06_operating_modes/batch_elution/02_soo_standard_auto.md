@@ -38,6 +38,7 @@ from myst_nb import glue
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
 study_root = diss_root / "studies" / "operating_modes"
 sys.path.insert(0, str(study_root))
+sys.path.insert(0, str(diss_root / "doc" / "_ext"))
 
 # Setup cases for operating mode
 from operating_modes.main import setup_process
@@ -47,6 +48,7 @@ from operating_modes.post_processing import (
     process_moo_results,
     setup_overview,
 )
+from operating_mode_figures import create_figure_directives, plot_soo_objective_figures
 ```
 
 ```{code-cell} ipython3
@@ -81,12 +83,26 @@ overview = setup_overview(case)
     (soo_fig_obj, _, soo_fig_obj_caption),
     (soo_fig_chrom, _, soo_fig_chrom_caption),
     soo_table,
+    soo_results,
+    _,
+    _,
 ) = process_soo_results(
     case,
     load_kwargs={"allow_commit_hash_mismatch": True},
+    return_results=True,
 )
-glue("soo_fig_obj", soo_fig_obj, display=False)
+soo_fig_obj_parts, _, soo_fig_obj_groups = plot_soo_objective_figures(case, soo_results)
+plt.close(soo_fig_obj)
+
+for i, fig in enumerate(soo_fig_obj_parts, start=1):
+    glue(f"soo_fig_obj_{i}", fig, display=False)
 glue("soo_fig_obj_caption", soo_fig_obj_caption)
+soo_fig_obj_directives = create_figure_directives(
+    "soo_fig_obj",
+    "batch-elution_auto-cycle_soo_fig_obj",
+    soo_fig_obj_caption,
+    soo_fig_obj_groups,
+)
 
 glue("soo_fig_chrom", soo_fig_chrom, display=False)
 glue("soo_fig_chrom_caption", soo_fig_chrom_caption)
@@ -108,11 +124,13 @@ Overall recovery is lower than in the idealized case due to the larger waste fra
 The chromatogram reveals both the characteristic "overshoot" of competitive nonlinear binding and incomplete separation from dispersive effects, which together create broader overlap regions that must be discarded as waste.
 Despite this added complexity, the optimizer identifies a well-defined operating point, confirming that the framework handles the added complexity without loss of convergence quality.
 
-```{glue:figure} soo_fig_obj
-:name: batch-elution_auto-cycle_soo_fig_obj
-:scale: 100%
-
-{glue:text}`soo_fig_obj_caption`
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
+display(Markdown(soo_fig_obj_directives))
 ```
 
 ```{code-cell} ipython3

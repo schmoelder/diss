@@ -31,9 +31,9 @@ from myst_nb import glue
 
 # Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
-print(diss_root)
 study_root = diss_root / "studies" / "operating_modes"
 sys.path.insert(0, str(study_root))
+sys.path.insert(0, str(diss_root / "doc" / "_ext"))
 
 # Setup cases for operating mode
 from operating_modes.main import setup_process
@@ -42,6 +42,11 @@ from operating_modes.post_processing import (
     process_soo_results,
     process_moo_results,
     setup_overview,
+)
+from operating_mode_figures import (
+    create_figure_directives,
+    plot_moo_chromatogram_figures,
+    plot_moo_objective_figures,
 )
 ```
 
@@ -174,11 +179,35 @@ overview = setup_overview(case)
     return_results=True,
 )
 
-glue("moo_fig_obj", moo_fig_obj, display=False)
-glue("moo_fig_obj_caption", moo_fig_obj_caption)
+moo_fig_obj_parts, _, moo_fig_obj_groups = plot_moo_objective_figures(case, moo_results)
+moo_fig_chrom_parts, _, moo_fig_chrom_groups = plot_moo_chromatogram_figures(
+    case,
+    moo_results,
+    simulation_results,
+    fractionators,
+)
+plt.close(moo_fig_obj)
+plt.close(moo_fig_chrom)
 
-glue("moo_fig_chrom", moo_fig_chrom, display=False)
+for i, fig in enumerate(moo_fig_obj_parts, start=1):
+    glue(f"moo_fig_obj_{i}", fig, display=False)
+for i, fig in enumerate(moo_fig_chrom_parts, start=1):
+    glue(f"moo_fig_chrom_{i}", fig, display=False)
+glue("moo_fig_obj_caption", moo_fig_obj_caption)
 glue("moo_fig_chrom_caption", moo_fig_chrom_caption)
+moo_fig_obj_directives = create_figure_directives(
+    "moo_fig_obj",
+    "clr_difficult_linear_auto-cycle_moo-pc_fig_obj",
+    moo_fig_obj_caption,
+    moo_fig_obj_groups,
+)
+moo_fig_chrom_directives = create_figure_directives(
+    "moo_fig_chrom",
+    "clr_difficult_linear_auto-cycle_moo-pc_fig_chrom",
+    moo_fig_chrom_caption,
+    moo_fig_chrom_groups,
+    column_label="chromatograms",
+)
 ```
 
 ```{code-cell} ipython3
@@ -197,11 +226,13 @@ This recycling process is also limited by dispersion effects.
 As shown in the profiles, the front of component $A$ begins to overlap with the tail of component $B$ from the previous cycle.
 Additional recycling beyond this point would not improve separation; the longer time on column increases axial dispersion, causing peak broadening and eventually remixing the components.
 
-```{glue:figure} moo_fig_obj
-:name: clr_difficult_linear_auto-cycle_moo-pc_fig_obj
-:scale: 100%
-
-{glue:text}`moo_fig_obj_caption`
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
+display(Markdown(moo_fig_obj_directives))
 ```
 
 ```{code-cell} ipython3
@@ -213,11 +244,13 @@ mystnb:
 display(Markdown(moo_table))
 ```
 
-```{glue:figure} moo_fig_chrom
-:name: clr_difficult_linear_auto-cycle_moo-pc_fig_chrom
-:scale: 100%
-
-{glue:text}`moo_fig_chrom_caption`
+```{code-cell} ipython3
+---
+mystnb:
+  markdown_format: myst
+  remove_code_source: true
+---
+display(Markdown(moo_fig_chrom_directives))
 ```
 
 ```{code-cell} ipython3
