@@ -22,11 +22,20 @@ Filtration and membrane separations introduce additional challenges related to p
 Bioreactors incorporating cell growth and enzymatic reactions could be coupled with compartment models derived from computational fluid dynamics, capturing mixing effects and reaction kinetics simultaneously {cite}`Li2026`.
 In parallel, design elements developed within CADET-Process, such as a more modular interface structure, explicit event ordering, and pre-processing of flow rates, are being migrated into CADET-Core to strengthen the broader ecosystem.
 
-As model scope and dimensionality increase, methodological advances become increasingly important.
-Surrogate modeling techniques are used to characterize the relationship between high-dimensional process parameters and performance metrics, enabling conditional design studies.
-Building on these surrogates, Bayesian optimization provides a sample-efficient approach for process design by balancing exploration and exploitation of the parameter space, while computationally intensive methods such as MCMC enable rigorous uncertainty quantification {cite}`Heymann2023`.
-Translating these methods into practical workflows motivates further development for practical applications.
-This includes model-based control strategies for real-time optimization, graphical user interfaces to improve accessibility, teaching materials for educational use, and templates for industrial deployment.
+These extensions raise the computational cost on two sides.
+An integrated process with more unit operations and coupled physics is considerably more expensive to simulate than a single column.
+At the same time, a larger design space takes more simulations to explore.
+Evaluating every candidate design directly therefore stops being affordable, and methodological advances are needed alongside the models themselves.
+Surrogate models address the first side by replacing the simulation with an approximation trained on its outputs.
+Because they predict performance metrics directly instead of resolving the underlying concentration profiles, conditional design studies over high-dimensional parameter spaces become tractable.
+Bayesian optimization addresses the second side, selecting each new simulation for the information it adds rather than sampling the space uniformly.
+
+Cheaper evaluation also opens up analyses that are out of reach today.
+Rigorous uncertainty quantification by sampling-based methods such as MCMC requires very many model evaluations, which currently restricts it to comparatively cheap models, and a fast surrogate removes that restriction {cite}`Heymann2023`.
+All of these methods act on the evaluation of a process rather than on its formulation, so the separation of process configuration, evaluation, and optimization is what allows them to be added without changing the process models.
+
+Making such methods available in routine practice is a separate task from developing them.
+Model-based control for real-time optimization is the most demanding of the directions ahead, while graphical user interfaces, teaching material, and deployment templates determine how widely the framework can be adopted.
 
 The preface opened with a familiar provocation: all models are wrong, but some are useful.
 The results presented here make that statement operational rather than rhetorical.
