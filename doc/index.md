@@ -410,6 +410,7 @@ WENO
 | $C_{\text{depreciation}}$          | Depreciation cost                                           | $\text{€}\,\text{mol}^{-1}$                    |
 | $C_{\text{operating}}$             | Operating cost (overhead, wages, maintenance)               | $\text{€}\,\text{mol}^{-1}$                    |
 | $D_{ax}$                           | Axial dispersion coefficient                                | $\text{m}^{2}\,\text{s}^{-1}$                  |
+| $D_p$                              | Pore diffusion coefficient                                  | $\text{m}^{2}\,\text{s}^{-1}$                  |
 | $e_{\text{fwd}/\text{bwd},\ell,r}$ | Reaction order of component $\ell$ in reaction $r$          |                                                |
 | $EC_i$                             | Specific eluent consumption for component $i$               | $\text{m}^{3}\,\text{mol}^{-1}$                |
 | $F$                                | Phase ratio                                                 |                                                |
@@ -436,6 +437,7 @@ WENO
 | $PR_i$                             | Specific productivity of component $i$                      | $\text{mol}\,\text{m}^{-3}\,\text{s}^{-1}$     |
 | $PU_i$                             | Product purity of component $i$                             | $\%$                                           |
 | $Q$                                | Volumetric flow rate                                        | $\text{m}^{3}\,\text{s}^{-1}$                  |
+| $r$                                | Radial coordinate                                           | $\text{m}$                                     |
 | $r^p$                              | Particle radius                                             | $\text{m}$                                     |
 | $s_{i,r}$                          | Stoichiometric coefficient of component $i$ in reaction $r$ |                                                |
 | $t$                                | Time                                                        | $\text{s}$                                     |

@@ -448,26 +448,47 @@ Here:
 - $f_{\text{ads}}(c^p, c^s)$ is the adsorption isotherm model equation (describing binding dynamics),
 - $f_{\text{react}}^s(c^p, c^s)$ accounts for surface reactions on the stationary phase.
 
-(hdr)=
-### High definition models
+(high_fidelity_models)=
+### High-fidelity models
 
-The general rate model (GRM) is often regarded as the most comprehensive chromatography model.
-In addition to the transport effects described above, it accounts for both intraparticle and surface diffusion.
-Although the GRM is not utilized in this work, readers are encouraged to refer to {cite:t}`Guiochon2006` and {cite:t}`SchmidtTraub2020` for a detailed description.
-It is worth noting that even more sophisticated models than the GRM exist.
-For example, {cite:t}`Leweke2018` consider advanced features such as various particle geometries, polydisperse particle properties (e.g., particle size and adsorption isotherms), and pore accessibility factors.
-To better understand and optimize chromatography processes, 2D column models have been proposed.
-These models enable the simulation of radial variations in column properties, such as porosity, velocity, or dispersion coefficients {cite}`Puettmann2014,Qamar2017`.
-Furthermore, 3D models provide deeper insights into flow, transport, and adsorption processes by capturing the effects of geometrical inhomogeneities on column performance.
-These models allow the incorporation of more complex geometries and offer higher accuracy in simulating column performance {cite}`Rao2023`.
+The general rate model (GRM) is often regarded as the most comprehensive of the commonly used one-dimensional chromatography models.
+In addition to the transport effects described above, it resolves concentration gradients within the particles, such that the pore phase concentration $c^p_i$ depends on the radial coordinate $r$.
+Assuming spherical, monodisperse particles with a homogeneous pore structure, the particle mass balance is given by
 
-Data generated from high definition simulations can serve as a source of ground truth for identifying and calibrating reduced-order models.
-This is particularly valuable when certain parameters, such as dispersion coefficients, cannot be directly measured.
-Instead, these parameters can be inferred by analyzing simulation results.
-Once calibrated, reduced-order models can then be derived to optimize process design and enhance computational efficiency.
-This is especially important because fully spatially resolved simulations, while accurate, are computationally expensive and often impractical for routine optimization tasks.
+```{math}
+:label: mass_balance_grm
 
-Due to their spatial resolution, these models are computationally expensive and are rarely applied directly in process optimization.
+\frac{\partial c^p_i}{\partial t} + \frac{1 - \varepsilon^p}{\varepsilon^p} \frac{\partial c^s_i}{\partial t} = D_{p,i} \frac{1}{r^2} \frac{\partial}{\partial r} \left( r^2 \frac{\partial c^p_i}{\partial r} \right) + f^p_{\text{react}}(c^p, c^s) + \frac{1 - \varepsilon^p}{\varepsilon^p} f^s_{\text{react}}(c^p, c^s),
+```
+
+where $D_{p,i}$ denotes the pore diffusion coefficient of component $i$.
+Surface diffusion of the bound state can be incorporated analogously but is neglected here.
+The equation is closed by two boundary conditions, symmetry at the particle center and continuity of the mass transfer flux at the particle surface,
+
+```{math}
+:label: boundary_conditions_grm
+
+\left. \frac{\partial c^p_i}{\partial r} \right|_{r=0} = 0, \qquad \left. \varepsilon^p D_{p,i} \frac{\partial c^p_i}{\partial r} \right|_{r=r^p} = k_{f,i} \left( c^b_i - \left. c^p_i \right|_{r=r^p} \right).
+```
+
+The bulk phase balance is identical to that of the LRMP (eq. {eq}`mass_balance_lrmp`), with $c^p_i$ evaluated at the particle surface, $r = r^p$.
+The film mass transfer coefficient $k_{f,i}$ therefore enters through a boundary flux rather than a volumetric source term, which constitutes the principal structural difference between the GRM and the LRMP.
+The GRM is not employed in this work; detailed descriptions are provided by {cite:t}`Guiochon2006` and {cite:t}`SchmidtTraub2020`.
+
+The column models introduced above form a hierarchy connected by limiting assumptions on the relevant transport resistances.
+In the limit of rapid intraparticle diffusion, the GRM reduces to the LRMP; rapid film mass transfer reduces the LRMP to the LRM; and negligible axial dispersion reduces the LRM to the equilibrium model.
+Within this hierarchy, the GRM represents the highest level of spatial resolution.
+Further refinements relax assumptions concerning the particle population or the column geometry rather than eliminating an additional transport resistance.
+For example, CADET-Core implements extensions involving different particle geometries, distributions of particle properties such as size and adsorption behavior, and pore accessibility effects {cite}`Leweke2018,Leweke2025`.
+
+Higher-dimensional column models additionally relax the assumption of radial homogeneity.
+Two-dimensional models resolve radial variations in quantities such as porosity, velocity, and dispersion coefficients {cite}`Puettmann2014,Qamar2017`.
+Three-dimensional models further represent geometrical inhomogeneities and their effects on flow, mass transport, and adsorption, providing a more detailed description of column behavior {cite}`Rao2023`.
+
+Data obtained from such high-fidelity simulations can provide reference information for identifying and calibrating reduced-order models.
+This is particularly useful for effective parameters, such as dispersion coefficients, that are difficult to determine independently.
+By matching reduced-order models to spatially resolved simulations, these parameters can be inferred under controlled conditions while retaining a model inexpensive enough for process design, optimization, and control.
+Such model reduction is important because fully spatially resolved simulations, although capable of representing more detailed transport phenomena, are often too computationally demanding for routine optimization.
 
 (cstr)=
 ### Continuous stirred tank reactor model
