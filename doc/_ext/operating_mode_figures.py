@@ -185,15 +185,46 @@ def _prune_redundant_axis_labels(
     figure_groups: list[tuple[tuple[int, ...], tuple[int, ...]]],
 ) -> None:
     for row_group, column_group in figure_groups:
+        bottom_visible_rows = {}
+        for global_col in column_group:
+            visible_rows = [
+                global_row
+                for global_row in row_group
+                if axes[global_row, global_col].axison
+            ]
+            if visible_rows:
+                bottom_visible_rows[global_col] = visible_rows[-1]
+
         for global_row in row_group:
             for global_col in column_group:
                 ax = axes[global_row, global_col]
-                if global_row != row_group[-1]:
+                if global_row != bottom_visible_rows.get(global_col):
                     ax.set_xlabel("")
                     ax.tick_params(labelbottom=False)
                 if global_col != column_group[0]:
                     ax.set_ylabel("")
                     ax.tick_params(labelleft=False)
+
+
+def _label_bottom_x_axes(
+    axes: np.ndarray,
+    figure_groups: list[tuple[tuple[int, ...], tuple[int, ...]]],
+) -> None:
+    xlabels = [ax.get_xlabel() for ax in axes.flatten() if ax.get_xlabel()]
+    if not xlabels:
+        return
+
+    xlabel = xlabels[0]
+    for row_group, column_group in figure_groups:
+        for global_col in column_group:
+            visible_rows = [
+                global_row
+                for global_row in row_group
+                if axes[global_row, global_col].axison
+            ]
+            if visible_rows:
+                ax = axes[visible_rows[-1], global_col]
+                ax.set_xlabel(xlabel)
 
 
 def _set_scatter_marker_size(axes: np.ndarray, marker_size: float) -> None:
@@ -426,6 +457,7 @@ def plot_moo_chromatogram_figures(
                 handles, labels = ax.get_legend_handles_labels()
             legend.remove()
 
+        _label_bottom_x_axes(axes, figure_groups)
         _prune_redundant_axis_labels(axes, figure_groups)
 
         for fig in figures:
