@@ -11,28 +11,28 @@ To simplify the analysis, system periphery effects are neglected.
 The scenarios considered include a standard binary separation, an easily separable system with a high separation factor, a challenging system with a low separation factor, and a ternary separation problem.
 The corresponding model parameters are summarized in {numref}`model_parameters`.
 
-```{table} Parameters of column geometry, mass transport and binding of the model molecules ($i \in \{A, B\}$).
+```{table} Parameters of column geometry, mass transport and binding of the model molecules ($i \in \{A, B\}$; the ternary separation problem adds a third component $C$).
 :name: model_parameters
 :align: center
 | Catalog                 | Symbol               | Description               | Value                 | Unit                                   |
 | ----------------------- | -------------------- | ------------------------- | --------------------- | -------------------------------------- |
 | **Geometry**            | $L$                  | Column length             | $0.6$                 | $\text{m}$                             |
-|                         | $D_c$                  | Column diameter           | $0.024$               | $\text{m}$                             |
-|                         | $r^p$                | Particle radius           | $1.0 \times 10^{-5}$  | $\text{m}$                             |
+|                         | $D_c$                | Column diameter           | $0.024$               | $\text{m}$                             |
+|                         | $r^p$                | Particle radius           | $5.0 \times 10^{-6}$  | $\text{m}$                             |
 |                         | $\varepsilon^b$      | Bed porosity              | $0.3$                 | -                                      |
 |                         | $\varepsilon^p$      | Particle porosity         | $0.6$                 | -                                      |
 | **Transport**           | $D_{ax,i}$           | Axial dispersion coeff.   | $1.0 \times 10^{-6}$  | $\text{m}^{2}~\text{s}^{-1}$           |
 |                         | $k_{f,i}$            | Film mass transfer coeff. | $1.0 \times 10^{-3}$  | $\text{m}~\text{s}^{-1}$               |
 | **Binding (standard)**  | $K_{\text{eq},i}$    | Equilibrium constant      | $[0.02, 0.03]$        | $\text{m}^{3}~\text{mol}^{-1}$         |
-|                         | $c^s_{\text{max},i}$ | Saturation capacities     | $[100, 100]$          | $\text{mol}~\text{m}_{\text{sp}}^{-1}$ |
+|                         | $c^s_{\text{max},i}$ | Saturation capacity       | $[100, 100]$          | $\text{mol}~\text{m}_{\text{sp}}^{-3}$ |
 | **Binding (ternary)**   | $K_{\text{eq},i}$    | Equilibrium constant      | $[0.01, 0.015, 0.03]$ | $\text{m}^{3}~\text{mol}^{-1}$         |
-|                         | $c^s_{\text{max},i}$ | Saturation capacities     | $[100, 100, 200]$     | $\text{mol}~\text{m}_{\text{sp}}^{-1}$ |
+|                         | $c^s_{\text{max},i}$ | Saturation capacity       | $[100, 100, 200]$     | $\text{mol}~\text{m}_{\text{sp}}^{-3}$ |
 | **Binding (simple)**    | $K_{\text{eq},i}$    | Equilibrium constant      | $[0.01, 0.20]$        | $\text{m}^{3}~\text{mol}^{-1}$         |
-|                         | $c^s_{\text{max},i}$ | Saturation capacities     | $[100, 100]$          | $\text{mol}~\text{m}_{\text{sp}}^{-1}$ |
-| **Binding (difficult)** | $K_{\text{eq},i}$    | Equilibrium constant      | $[0.01, 0.015]$       | $\text{m}^{3}~\text{mol}^{-1}$         |
-|                         | $c^s_{\text{max},i}$ | Saturation capacities     | $[100, 100]$          | $\text{mol}~\text{m}_{\text{sp}}^{-1}$ |
-| **Process**             | $Q$                  | Flow rate                 | $[0.01, 0.05]$        | $\text{m}^{3}~\text{s}^{-1}$           |
-|                         | $c_{\text{feed}}$    | Concentration             | $[10.0, 10.0, 10.0]$  | $\text{mol}~\text{m}^{-3}$             |
+|                         | $c^s_{\text{max},i}$ | Saturation capacity       | $[100, 100]$          | $\text{mol}~\text{m}_{\text{sp}}^{-3}$ |
+| **Binding (difficult)** | $K_{\text{eq},i}$    | Equilibrium constant      | $[0.01, 0.011]$       | $\text{m}^{3}~\text{mol}^{-1}$         |
+|                         | $c^s_{\text{max},i}$ | Saturation capacity       | $[100, 100]$          | $\text{mol}~\text{m}_{\text{sp}}^{-3}$ |
+| **Process**             | $Q$                  | Flow rate                 | $1.0 \times 10^{-6}$  | $\text{m}^{3}~\text{s}^{-1}$           |
+|                         | $c_{\text{feed},i}$  | Feed concentration        | $[10.0, 10.0, 10.0]$  | $\text{mol}~\text{m}^{-3}$             |
 ```
 
 For each operating mode, the process configuration is defined via a {class}`~CADETProcess.processModel.FlowSheet` in combination with dynamic {class}`Events <CADETProcess.dynamicEvents.Event>` that specify time-dependent boundary conditions, parameters, and valve switches.
