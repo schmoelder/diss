@@ -16,6 +16,7 @@ For example, the equilibrium model can be solved analytically for the linear iso
 Moreover, Fechtner et al. have demonstrated a semi-analytical approach applicable to any implicit isotherm model in the equilibrium model {cite}`Fechtner2017`.
 
 Additionally, even more complex models can be solved analytically when a linear adsorption isotherm is assumed {cite}`Qamar2014,Leweke2021`.
+Moment analysis provides a further analytical route, deriving integral characteristics such as retention time and peak variance without evaluating the concentration profile, which makes it widely used for initial parameter determination {cite}`Guiochon2006`.
 However, the restrictive assumptions required for these solutions limit their utility as general-purpose modeling tools, and numerical approaches are commonly employed to approximate the solutions of chromatographic models.
 
 Despite their limitations, analytical solutions remain valuable in the context of chromatography.
@@ -67,19 +68,27 @@ t_{\text{R,lin},i} = t_{0,t} \cdot \left( 1 + F \cdot a_i \right).
 (numerical_solutions)=
 ## Numerical solution
 
-To numerically approximate the solution of the model equations, the method of lines is commonly applied.
-In this approach, the spatial coordinates are first discretized, resulting in a system of ordinary differential equations (ODEs) or differential-algebraic equations (DAEs), depending on the isotherm being used.
-This step is often referred to as spatial semi-discretization because only the spatial dimensions are discretized, leaving time as a continuous variable.
-Next, the resulting system of equations is discretized in time using either explicit or implicit methods.
-Generally, the finer the grid used to discretize the continuous space-time domain, the closer the numerical approximation will be to the exact solution.
-However, this comes at the cost of increased computational effort.
-The performance of a numerical solution method is often evaluated by examining its order of convergence, which measures how quickly the numerical solution approaches the exact solution as the grid is refined.
-Higher convergence orders generally lead to faster and more accurate solutions, but they may also require more computational resources per grid point.
-The expected convergence order is typically only achieved asymptotically: a sufficient number of grid points is needed before the method reaches its theoretical accuracy.
-Despite these trade-offs, numerical methods with high convergence orders are recommended for solving chromatographic models, as they often provide a good balance between accuracy and computational efficiency.
-Additionally, higher-order methods tend to exhibit other advantageous properties, such as improved stability {cite}`Atkinson2011`.
-Several numerical methods have been successfully applied to solve chromatographic models.
-The following sections provide an overview of commonly used methods in state-of-the-art simulation software.
+Where analytical solutions are unavailable, numerical approaches approximate the solution of the model equations and can be applied to more complex model formulations.
+They differ in how they represent or discretize the underlying continuous transport equations.
+Plate and cell models postulate a cascade of equilibrium stages as the model itself and thus yield an ODE system without an intermediate partial differential equation.
+This construction can also be interpreted as a low-order discretization of the transport equations, with the number of stages controlling the effective axial dispersion {cite}`SchmidtTraub2020`.
+
+In contrast, for models formulated in terms of continuous transport equations, the method of lines is commonly applied.
+It discretizes space first while leaving time continuous, allowing the spatial discretization and the time integrator to be chosen independently.
+This also provides access to established adaptive integrators for stiff ODE and DAE systems, which is important here because transport processes and fast adsorption kinetics can act on widely separated time scales.
+
+The spatial semi-discretization transforms the governing equations into a system of ordinary differential equations (ODEs) or differential-algebraic equations (DAEs), depending on the model formulation and the algebraic constraints it contains.
+The resulting system is then integrated in time using an explicit or implicit time-integration method.
+
+Provided the discretization is consistent and stable, refining the grid reduces the discretization error, although at the cost of increased computational effort.
+The performance of a numerical method is often characterized by its order of convergence, which describes how rapidly the numerical solution approaches the exact solution as the grid is refined {cite}`Atkinson2011`.
+Higher-order methods can reduce the discretization error more rapidly and may therefore attain a prescribed accuracy with fewer grid points, but can require greater computational effort per degree of freedom.
+The theoretical convergence order is, however, an asymptotic property and is typically observed only once the grid is sufficiently fine for the expected error behavior to emerge.
+On coarser grids, other error contributions may dominate, such that a higher formal order does not necessarily result in a more accurate solution.
+The practical advantage of higher-order methods therefore depends on the required accuracy, the characteristics of the solution, and the associated computational cost.
+
+Several numerical methods have been successfully applied to chromatographic models.
+The following sections provide an overview of commonly used methods in established chromatography simulation software.
 First, different approaches for spatial semi-discretization are discussed, followed by an overview of methods for time integration.
 
 
