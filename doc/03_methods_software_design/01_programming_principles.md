@@ -68,7 +68,8 @@ When sharing code or seeking assistance, the coding style will be evaluated, eve
 
 Guido van Rossum, the creator of the Python programming language, introduced a style guide with best practices and guidelines in the Python Enhancement Proposal 8 (*PEP-8*) {cite}`PEP8`.
 *PEP-8* includes specific recommendations regarding naming conventions, whitespace, and other aspects of code formatting to promote consistency and readability.
-Moreover, the "Zen of Python", introduced in *PEP-20*, captures these ideas in 19 short guiding principles:
+Alongside *PEP-8*, the "Zen of Python" (*PEP-20*) condenses the same attitude into 19 aphorisms, several of which restate the principles discussed above in compressed form.
+Their phrasing is deliberately light, and one entry is an in-joke about Van Rossum's Dutch nationality, but the collection is not decorative: it records the design consensus of the community that maintains the language, and it is the standard against which Python code is judged in review.
 
 > 1. Beautiful is better than ugly.
 > 1. Explicit is better than implicit.
@@ -92,9 +93,10 @@ Moreover, the "Zen of Python", introduced in *PEP-20*, captures these ideas in 1
 >
 > — Tim Peters, *PEP 20 – The Zen of Python* {cite}`PEP20`
 
-While these principles provide general guidance, adherence to the coding conventions outlined in *PEP 8* is essential for maintaining consistency and readability.
-To enforce these standards, several tools and packages are available.
+None of these principles is enforceable in the way a compiler enforces syntax.
+They decide between implementations that are all technically correct, and they hold because the community applies them in review and in discussion, which makes them a matter of culture rather than of rules.
+What can be checked mechanically is the narrower style layer of *PEP-8*, and several tools are available for it.
 In this work, the *pre-commit* package is employed to automatically execute scripts on each commit {cite}`pre-commit`.
-This includes using the *ruff* package to auto-format code according to *PEP 8* and to perform supplementary checks, such as verifying the presence of docstrings and type annotations {cite}`ruff`.
-Together, these tools ensure that the codebase remains consistent in style, readable, and compliant with *PEP 8* recommendations.
+This includes using the *ruff* package to auto-format code according to *PEP-8* and to perform supplementary checks, such as verifying the presence of docstrings and type annotations {cite}`ruff`.
+Together, these tools ensure that the codebase remains consistent in style, readable, and compliant with *PEP-8* recommendations.
 The following chapter discusses how these principles are applied at a higher level of abstraction through object-oriented programming.
