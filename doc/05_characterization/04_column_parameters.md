@@ -138,6 +138,7 @@ The only conclusion that could be drawn was that the film diffusion coefficient 
 :scale: 100%
 
 Objective function values per optimization variable for experiment E7.
+Darker shades represent individuals evaluated in later generations.
 ```
 
 The data were therefore refitted under the assumption of non-limiting film diffusion.
@@ -150,6 +151,7 @@ Both fitting approaches resulted in similar particle porosities, and film diffus
 :scale: 100%
 
 Objective function values per optimization variable for experiment E7, assuming non-limiting film diffusion.
+Darker shades represent individuals evaluated in later generations.
 ```
 
 Additionally, a slightly smaller particle porosity was determined, consistent with the larger size of the protein compared to acetone (used in `E6`).

@@ -156,6 +156,7 @@ glue("fig_e9_meta_scores", fig, display=False)
 :scale: 100%
 
 Sum of evaluated objective values per optimization variable in experiment `E9`, assuming non-limiting film diffusion and rapid equilibrium.
+Darker shades represent individuals evaluated in later generations.
 ```
 
 ```{figure} figures/objectives/e9_objectives.png
@@ -163,4 +164,5 @@ Sum of evaluated objective values per optimization variable in experiment `E9`, 
 :scale: 100%
 
 Evaluated objective values per optimization variable in experiment `E9`, assuming non-limiting film diffusion and rapid equilibrium.
+Darker shades represent individuals evaluated in later generations.
 ```

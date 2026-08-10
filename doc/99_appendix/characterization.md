@@ -38,6 +38,8 @@ parameters_all = load_all_parameters(final_parameters_branch)
 (characterization_appendix)=
 # Characterization
 
+In all objective function value plots of this section, darker shades represent individuals evaluated in later generations.
+
 ```{code-cell} ipython3
 :tags: [remove-cell]
 

@@ -16,7 +16,8 @@ from operating_modes.post_processing import (
 
 TEXT_WIDTH_IN = 156 / 25.4
 OBJECTIVE_MARKER_SIZE = 4.0
-OBJECTIVE_UNIT_NOTE = "Objective and KPI units follow the corresponding result table."
+OBJECTIVE_UNIT_NOTE = "Objective and KPI units follow the corresponding results table."
+OBJECTIVE_COLOR_NOTE = "Darker shades represent individuals evaluated in later generations."
 THESIS_FIGURE_LAYOUT = "1.5_col"
 
 
@@ -115,7 +116,7 @@ def create_figure_directives(
     directives = []
     include_part_note = len(figure_groups) > 1
     if column_label == "decision variables":
-        caption = f"{caption} {OBJECTIVE_UNIT_NOTE}"
+        caption = f"{caption} {OBJECTIVE_UNIT_NOTE} {OBJECTIVE_COLOR_NOTE}"
 
     for i, (row_group, column_group) in enumerate(figure_groups, start=1):
         if i == 1:
@@ -129,8 +130,8 @@ def create_figure_directives(
             first_col = column_group[0] + 1
             last_col = column_group[-1] + 1
             caption_text = (
-                f"{caption} Panels {row_label} {first_row}--{last_row}, "
-                f"{column_label} {first_col}--{last_col}."
+                f"{caption} This part shows {row_label} {first_row}--{last_row} "
+                f"and {column_label} {first_col}--{last_col}."
             )
         else:
             caption_text = caption
