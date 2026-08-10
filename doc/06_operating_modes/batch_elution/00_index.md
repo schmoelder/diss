@@ -38,6 +38,7 @@ from myst_nb import glue
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
 study_root = diss_root / "studies" / "operating_modes"
 sys.path.insert(0, str(study_root))
+sys.path.insert(0, str(diss_root / "doc" / "_ext"))
 
 # Setup cases for operating mode
 from operating_modes.main import setup_process
@@ -47,6 +48,7 @@ from operating_modes.post_processing import (
     process_moo_results,
     setup_overview,
 )
+from operating_mode_figures import resize_chromatogram_figure
 
 operating_mode = "batch-elution"
 case_module = importlib.import_module(
@@ -96,6 +98,7 @@ process_simulator = Cadet()
 
 simulation_results = process_simulator.simulate(process_demo)
 fig_batch_elution, ax = simulation_results.solution.column.outlet.plot()
+resize_chromatogram_figure(fig_batch_elution, ncols=1)
 glue("fig_batch_elution", fig_batch_elution, display=False)
 ```
 
@@ -132,6 +135,7 @@ process_validation = setup_process(
 from operating_modes.et_simulator import compare_cadet_with_et
 
 fig_batch_elution_validation, ax = compare_cadet_with_et(process_validation)
+resize_chromatogram_figure(fig_batch_elution_validation, ncols=1)
 glue("fig_batch_elution_validation", fig_batch_elution_validation, display=False)
 ```
 

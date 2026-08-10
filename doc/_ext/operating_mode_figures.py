@@ -33,8 +33,16 @@ OBJECTIVE_GRID_PRESET = SplitFigurePreset(
     row_height_in=1.5,
     column_width_in=2.05,
 )
+SOO_OBJECTIVE_GRID_PRESET = SplitFigurePreset(
+    row_height_in=1.8,
+    column_width_in=2.05,
+)
 MOO_CHROMATOGRAM_GRID_PRESET = SplitFigurePreset(
     row_height_in=1.45,
+    column_width_in=2.05,
+)
+CHROMATOGRAM_PANEL_PRESET = SplitFigurePreset(
+    row_height_in=2.35,
     column_width_in=2.05,
 )
 
@@ -143,6 +151,23 @@ def create_figure_directives(
     return "\n\n".join(directives)
 
 
+def resize_chromatogram_figure(
+    fig: plt.Figure,
+    ncols: int = 1,
+    row_height_in: float = CHROMATOGRAM_PANEL_PRESET.row_height_in,
+    column_width_in: float = CHROMATOGRAM_PANEL_PRESET.column_width_in,
+    min_width_in: float = CHROMATOGRAM_PANEL_PRESET.min_width_in,
+    max_width_in: float = CHROMATOGRAM_PANEL_PRESET.max_width_in,
+) -> plt.Figure:
+    width_in = min(
+        max_width_in,
+        max(min_width_in, column_width_in * ncols),
+    )
+    fig.set_size_inches(width_in, row_height_in)
+    fig.tight_layout()
+    return fig
+
+
 def _format_variable_axis(ax, variable_info):
     ax.set_xlabel(f"${variable_info['symbol']}~/~{variable_info['unit']}$")
     if variable_info.get("format_mm_ss"):
@@ -199,8 +224,8 @@ def plot_soo_objective_figures(
     optimization_results,
     columns_per_figure: int = 3,
     rows_per_figure: int | None = None,
-    row_height_in: float = OBJECTIVE_GRID_PRESET.row_height_in,
-    column_width_in: float = OBJECTIVE_GRID_PRESET.column_width_in,
+    row_height_in: float = SOO_OBJECTIVE_GRID_PRESET.row_height_in,
+    column_width_in: float = SOO_OBJECTIVE_GRID_PRESET.column_width_in,
     marker_size: float = OBJECTIVE_MARKER_SIZE,
 ) -> tuple[
     list[plt.Figure],
@@ -226,9 +251,9 @@ def plot_soo_objective_figures(
             columns_per_figure,
             row_height_in,
             column_width_in,
-            OBJECTIVE_GRID_PRESET.min_width_in,
-            OBJECTIVE_GRID_PRESET.max_width_in,
-            OBJECTIVE_GRID_PRESET.layout,
+            SOO_OBJECTIVE_GRID_PRESET.min_width_in,
+            SOO_OBJECTIVE_GRID_PRESET.max_width_in,
+            SOO_OBJECTIVE_GRID_PRESET.layout,
         )
         optimization_results.plot_objectives(
             autoscale=False,

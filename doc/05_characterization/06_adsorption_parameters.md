@@ -36,7 +36,10 @@ from utils import load_all_parameters
 parameters_all = load_all_parameters(final_parameters_branch)
 
 from comparison_plots import load_cached_objective_results
-from parameter_estimation_figures import save_split_objective_figures
+from parameter_estimation_figures import (
+    resize_comparison_figure,
+    save_split_objective_figures,
+)
 
 optimization_results = load_cached_objective_results(
     study_root,
@@ -75,6 +78,7 @@ fig, ax_lysozyme, ax_salt = plot_lysozyme(
     include_pore_diffusion=False,
     is_kinetic=False,
 )
+resize_comparison_figure(fig)
 glue("fig_lysozyme", fig, display=False)
 
 from comparison_plots import create_lysozyme_table
@@ -92,6 +96,7 @@ fig_validation, ax_lysozyme, ax_salt = plot_lysozyme(
     is_kinetic=False,
     use_validation=True,
 )
+resize_comparison_figure(fig_validation)
 glue("fig_lysozyme_validation", fig_validation, display=False)
 ```
 

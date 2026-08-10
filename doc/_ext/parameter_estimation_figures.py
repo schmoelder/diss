@@ -24,6 +24,20 @@ OBJECTIVE_GRID_PRESET = SplitFigurePreset(
     row_height_in=1.5,
     column_width_in=2.05,
 )
+SINGLE_OBJECTIVE_GRID_PRESET = SplitFigurePreset(
+    row_height_in=1.8,
+    column_width_in=2.05,
+)
+
+
+def resize_comparison_figure(
+    fig: plt.Figure,
+    width_in: float = 5.25,
+    height_in: float = 3.2,
+) -> plt.Figure:
+    fig.set_size_inches(width_in, height_in)
+    fig.tight_layout()
+    return fig
 
 
 def balanced_chunks(items: Iterable[int], max_chunk_size: int) -> Iterable[tuple[int, ...]]:
@@ -66,7 +80,7 @@ def create_split_objective_figures(
     optimization_results,
     rows_per_figure: int = 4,
     columns_per_figure: int = 2,
-    row_height_in: float = OBJECTIVE_GRID_PRESET.row_height_in,
+    row_height_in: float | None = None,
     column_width_in: float = OBJECTIVE_GRID_PRESET.column_width_in,
     max_width_in: float = OBJECTIVE_GRID_PRESET.max_width_in,
 ) -> tuple[
@@ -79,6 +93,11 @@ def create_split_objective_figures(
     if optimization_results.m is not None:
         nrows += optimization_results.m.shape[1]
     ncols = optimization_results.x.shape[1]
+    if row_height_in is None:
+        if nrows == 1:
+            row_height_in = SINGLE_OBJECTIVE_GRID_PRESET.row_height_in
+        else:
+            row_height_in = OBJECTIVE_GRID_PRESET.row_height_in
 
     figures = []
     axes_full = np.empty((nrows, ncols), dtype=object)

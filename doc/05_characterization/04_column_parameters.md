@@ -38,7 +38,10 @@ from utils import (
 parameters_all = load_all_parameters(final_parameters_branch)
 
 from comparison_plots import load_cached_objective_results
-from parameter_estimation_figures import save_split_objective_figures
+from parameter_estimation_figures import (
+    resize_comparison_figure,
+    save_split_objective_figures,
+)
 
 appendix_objectives_dir = diss_root / "doc" / "99_appendix" / "figures" / "objectives"
 for experiment_id in ("e5", "e6"):
@@ -115,6 +118,7 @@ fig, *_ = plot_comparison_with_column(
     parameters_all["e6"],
     parameters_all["e7_lrmp"],
 )
+resize_comparison_figure(fig)
 glue("fig_comparison_with_column", fig, display=False)
 tab_column_parameters = create_column_table(parameters_all["e9_lrmp_4_cv"])
 ```

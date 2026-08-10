@@ -52,6 +52,7 @@ from operating_mode_figures import (
     create_figure_directives,
     plot_moo_chromatogram_figures,
     plot_moo_objective_figures,
+    resize_chromatogram_figure,
 )
 ```
 
@@ -116,6 +117,7 @@ process_simulator = Cadet()
 
 simulation_results = process_simulator.simulate(process_demo)
 fig_serial_columns, _ = case_module.plot_results(simulation_results)
+resize_chromatogram_figure(fig_serial_columns, ncols=3)
 glue("fig_serial_columns", fig_serial_columns, display=False)
 ```
 
@@ -156,6 +158,7 @@ process_validation = setup_process(
 
 from operating_modes.et_simulator import compare_cadet_with_et
 fig_serial_validation, ax = compare_cadet_with_et(process_validation)
+resize_chromatogram_figure(fig_serial_validation, ncols=2)
 glue("fig_serial_validation", fig_serial_validation, display=False)
 ```
 

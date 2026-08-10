@@ -52,6 +52,7 @@ from operating_mode_figures import (
     create_figure_directives,
     plot_moo_chromatogram_figures,
     plot_moo_objective_figures,
+    resize_chromatogram_figure,
 )
 ```
 
@@ -114,10 +115,12 @@ process_simulator.evaluate_stationarity = True
 simulation_results = process_simulator.simulate(process_demo)
 
 fig_last, _ = case_module.plot_last_cycle(simulation_results)
+resize_chromatogram_figure(fig_last, ncols=2)
 glue("ssr_last", fig_last, display=False)
 fig_all, _ = simulation_results.solution.outlet.outlet.plot()
 glue("ssr_all", fig_all, display=False)
 fig_overlay, _ = case_module.plot_overlay(simulation_results)
+resize_chromatogram_figure(fig_overlay, ncols=1)
 glue("ssr_overlay", fig_overlay, display=False)
 ```
 
@@ -168,6 +171,7 @@ process_validation = setup_process(
 from operating_modes.et_simulator import compare_cadet_with_et
 
 fig_mrssr_validation, ax = compare_cadet_with_et(process_validation)
+resize_chromatogram_figure(fig_mrssr_validation, ncols=1)
 glue("fig_mrssr_validation", fig_mrssr_validation, display=False)
 ```
 

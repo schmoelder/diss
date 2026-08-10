@@ -36,7 +36,10 @@ from utils import load_all_parameters
 parameters_all = load_all_parameters(final_parameters_branch)
 
 from comparison_plots import load_cached_objective_results
-from parameter_estimation_figures import save_split_objective_figures
+from parameter_estimation_figures import (
+    resize_comparison_figure,
+    save_split_objective_figures,
+)
 
 appendix_objectives_dir = diss_root / "doc" / "99_appendix" / "figures" / "objectives"
 for experiment_id in ("e1", "e2", "e3", "e4"):
@@ -68,6 +71,7 @@ The experimental protocol consists of:
 
 from comparison_plots import plot_comparison_without_column
 fig, *_ = plot_comparison_without_column(parameters_all["e4"])
+resize_comparison_figure(fig)
 glue("fig_comparison_without_column", fig, display=False)
 
 from comparison_plots import create_system_table

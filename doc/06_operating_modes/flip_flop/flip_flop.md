@@ -47,6 +47,7 @@ from operating_mode_figures import (
     create_figure_directives,
     plot_moo_chromatogram_figures,
     plot_moo_objective_figures,
+    resize_chromatogram_figure,
 )
 ```
 
@@ -156,6 +157,7 @@ process_validation = setup_process(
 from operating_modes.et_simulator import compare_cadet_with_et
 
 fig_flip_flop_validation, ax = compare_cadet_with_et(process_validation)
+resize_chromatogram_figure(fig_flip_flop_validation, ncols=1)
 glue("fig_flip_flop_validation", fig_flip_flop_validation, display=False)
 ```
 
