@@ -53,6 +53,7 @@ from operating_mode_figures import (
     plot_moo_chromatogram_figures,
     plot_moo_objective_figures,
     resize_chromatogram_figure,
+    resize_sparse_chromatogram_figure,
 )
 ```
 
@@ -158,7 +159,7 @@ process_validation = setup_process(
 
 from operating_modes.et_simulator import compare_cadet_with_et
 fig_serial_validation, ax = compare_cadet_with_et(process_validation)
-resize_chromatogram_figure(fig_serial_validation, ncols=2)
+resize_sparse_chromatogram_figure(fig_serial_validation, ncols=2)
 glue("fig_serial_validation", fig_serial_validation, display=False)
 ```
 
@@ -284,6 +285,8 @@ mystnb:
 ---
 display(Markdown(moo_fig_chrom_directives))
 ```
+
+{raw-latex}`\FloatBarrier`
 
 **Summary**
 

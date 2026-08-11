@@ -46,6 +46,10 @@ CHROMATOGRAM_PANEL_PRESET = SplitFigurePreset(
     row_height_in=2.35,
     column_width_in=2.05,
 )
+SPARSE_CHROMATOGRAM_PANEL_PRESET = SplitFigurePreset(
+    row_height_in=2.25,
+    column_width_in=2.8,
+)
 
 
 def balanced_chunks(items: Iterable[int], max_chunk_size: int) -> Iterable[tuple[int, ...]]:
@@ -167,6 +171,20 @@ def resize_chromatogram_figure(
     fig.set_size_inches(width_in, row_height_in)
     fig.tight_layout()
     return fig
+
+
+def resize_sparse_chromatogram_figure(
+    fig: plt.Figure,
+    ncols: int = 1,
+) -> plt.Figure:
+    return resize_chromatogram_figure(
+        fig,
+        ncols=ncols,
+        row_height_in=SPARSE_CHROMATOGRAM_PANEL_PRESET.row_height_in,
+        column_width_in=SPARSE_CHROMATOGRAM_PANEL_PRESET.column_width_in,
+        min_width_in=SPARSE_CHROMATOGRAM_PANEL_PRESET.min_width_in,
+        max_width_in=SPARSE_CHROMATOGRAM_PANEL_PRESET.max_width_in,
+    )
 
 
 def _format_variable_axis(ax, variable_info):

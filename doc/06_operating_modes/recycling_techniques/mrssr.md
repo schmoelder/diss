@@ -53,6 +53,7 @@ from operating_mode_figures import (
     plot_moo_chromatogram_figures,
     plot_moo_objective_figures,
     resize_chromatogram_figure,
+    resize_sparse_chromatogram_figure,
 )
 ```
 
@@ -115,7 +116,7 @@ process_simulator.evaluate_stationarity = True
 simulation_results = process_simulator.simulate(process_demo)
 
 fig_last, _ = case_module.plot_last_cycle(simulation_results)
-resize_chromatogram_figure(fig_last, ncols=2)
+resize_sparse_chromatogram_figure(fig_last, ncols=2)
 glue("ssr_last", fig_last, display=False)
 fig_all, _ = simulation_results.solution.outlet.outlet.plot()
 glue("ssr_all", fig_all, display=False)
@@ -171,7 +172,7 @@ process_validation = setup_process(
 from operating_modes.et_simulator import compare_cadet_with_et
 
 fig_mrssr_validation, ax = compare_cadet_with_et(process_validation)
-resize_chromatogram_figure(fig_mrssr_validation, ncols=1)
+resize_sparse_chromatogram_figure(fig_mrssr_validation)
 glue("fig_mrssr_validation", fig_mrssr_validation, display=False)
 ```
 
@@ -302,6 +303,8 @@ mystnb:
 ---
 display(Markdown(moo_fig_chrom_directives))
 ```
+
+{raw-latex}`\FloatBarrier`
 
 **Summary**
 

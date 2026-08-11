@@ -48,7 +48,11 @@ from operating_modes.post_processing import (
     process_moo_results,
     setup_overview,
 )
-from operating_mode_figures import create_figure_directives, plot_soo_objective_figures
+from operating_mode_figures import (
+    create_figure_directives,
+    plot_soo_objective_figures,
+    resize_sparse_chromatogram_figure,
+)
 ```
 
 ```{code-cell} ipython3
@@ -104,6 +108,7 @@ soo_fig_obj_directives = create_figure_directives(
     soo_fig_obj_groups,
 )
 
+resize_sparse_chromatogram_figure(soo_fig_chrom)
 glue("soo_fig_chrom", soo_fig_chrom, display=False)
 glue("soo_fig_chrom_caption", soo_fig_chrom_caption)
 ```

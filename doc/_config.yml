@@ -117,6 +117,7 @@ sphinx:
         \usepackage{mhchem}
         \usepackage{needspace}
         \usepackage{pdflscape}
+        \usepackage{placeins}
         \usepackage{unicode-math}
 
         % German title, required on the title page for English-language dissertations
