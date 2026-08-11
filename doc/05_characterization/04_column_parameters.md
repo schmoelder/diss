@@ -31,10 +31,8 @@ diss_root = Path(Repo(search_parent_directories=True).working_dir)
 sys.path.insert(0, str(diss_root / "doc" / "_ext"))
 sys.path.insert(0, str(diss_root / "studies" / "parameter_estimation" / "parameter_estimation" ))
 
-from parameter_branches import final_parameters_branch
-from utils import (
-    load_all_parameters, parameters_branch_e7_film_diffusion
-)
+from parameter_branches import final_parameters_branch, parameters_branch_e7_film_diffusion
+from utils import load_all_parameters
 parameters_all = load_all_parameters(final_parameters_branch)
 
 from comparison_plots import load_cached_objective_results
