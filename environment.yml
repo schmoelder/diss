@@ -2,8 +2,8 @@ name: diss
 channels:
   - conda-forge
 dependencies:
-  - python=3.14
-  - cadet>=5.1.0,<6.0
+  - python==3.14.3
+  - cadet==5.1.1  # build h56c1e75_1
   - jupyter-book<2.0
   - jupyter_contrib_nbextensions
   - jupytext
@@ -15,5 +15,5 @@ dependencies:
   - tabulate
   - pip
   - pip:
-      - cadet-rdm>=1.0.0
-      - cadet-process>=0.11.1,<1.0
+      - cadet-rdm==1.1.2
+      - cadet-process==0.12.0
