@@ -1,2 +1,2 @@
-final_parameters_branch = "2026-04-22_07-59-28_main_8ce92ef"  # pH = 5.0
-parameters_branch_e7_film_diffusion = "2026-04-21_13-07-28_main_ab1f4f5"  # limiting film diffusion
+final_parameters_branch = "2026-08-12_05-48-05_main_9ab2797"  # pH = 5.0
+parameters_branch_e7_film_diffusion = "2026-08-11_11-21-09_main_9ab2797"  # limiting film diffusion
