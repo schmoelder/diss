@@ -1,0 +1,6 @@
+[submodule "studies/operating_modes"]
+	path = studies/operating_modes
+	url = https://github.com/schmoelder/diss_operating_modes.git
+[submodule "studies/parameter_estimation"]
+	path = studies/parameter_estimation
+	url = https://github.com/schmoelder/diss_parameter_estimation.git
