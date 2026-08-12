@@ -67,6 +67,7 @@ Being surrounded by mathematicians and software engineers revealed both how much
 Once again, I was given the freedom to explore and proceed at my own pace.
 One of the most rewarding experiences was contributing to the evolution of **CADET** from an academic code to software now used worldwide in both academia and industry.
 I am deeply grateful to the entire **ModSim** group, especially Eric von Lieres, Hannah Lanzrath, and Jan Breuer, for their unwavering support.
+I am also grateful to Lukas Thiel for recording the experimental data that formed the basis of the characterization study in Chapter 5.
 
 Finally, I owe my sincere gratitude to Prof. Matthias Franzreb and Juliane Diehm from KIT.
 In a time of need, they offered me scientific refuge and a desk free from distractions, allowing me to finally complete what I had started more than ten years ago.
