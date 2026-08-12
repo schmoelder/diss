@@ -28,4 +28,4 @@ The process involves several key steps:
 - **Protein-specific parameters**: Additional experiments estimate protein-specific particle porosity and transport parameters, aiding in selecting the appropriate column model.
 - **Binding parameters**: Experiments are conducted to determine binding parameters, considering factors like pH and salt concentration. These experiments involve linear gradients at various pH levels and column volumes for calibration and validation.
 
-Scripts to reproduce the simulations and optimization studies are provided in the supplementary material and are publicly available at: [https://github.com/schmoelder/diss_parameter_estimation](https://github.com/schmoelder/diss_parameter_estimation).
+The study repository, including scripts and CADET-RDM provenance for the reported results, is publicly available at: [https://github.com/schmoelder/diss_parameter_estimation](https://github.com/schmoelder/diss_parameter_estimation).

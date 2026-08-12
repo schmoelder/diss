@@ -90,6 +90,9 @@ In a time of need, they offered me scientific refuge and a desk free from distra
 - Model of a typical chromatographic laboratory system: [https://github.com/schmoelder/diss_parameter_estimation_output](https://github.com/schmoelder/diss_parameter_estimation_output)
 - Optimization of advanced operating concepts: [https://github.com/schmoelder/diss_operating_modes_output](https://github.com/schmoelder/diss_operating_modes_output)
 
+The thesis repository builds the dissertation from pinned study submodules and cached CADET-RDM results.
+The Jupyter Book build does not recompute the full study campaigns; the linked study repositories and output archives provide the provenance, commands, and result caches needed to reproduce the reported data.
+
 {raw-latex}`\clearpage`
 
 ## Declaration on the use of generative AI and AI-assisted technologies

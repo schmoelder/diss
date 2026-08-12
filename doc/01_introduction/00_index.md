@@ -93,6 +93,7 @@ Since process engineers are usually not trained in this field, a chapter of this
 
 % Demonstrations
 To demonstrate the flexibility of the framework, several case studies are presented in this work.
+All case studies were managed using CADET-RDM to retain the link between source code, execution environment, input configurations, and generated results.
 First, the parameter estimation capabilities of CADET-Process are demonstrated through the systematic characterization of a typical chromatographic laboratory system for a protein purification step.
 The study covers several experiment types and progressively builds up a full process model, incorporating system periphery effects such as valves and tubing that are often neglected, and culminating in a load-wash-elute process for lysozyme using the steric mass-action binding model with a salt gradient.
 
