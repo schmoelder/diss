@@ -184,7 +184,6 @@ overview = setup_overview(case)
     fractionators,
 ) = process_moo_results(
     case,
-    load_kwargs={"allow_commit_hash_mismatch": True},
     return_results=True,
 )
 

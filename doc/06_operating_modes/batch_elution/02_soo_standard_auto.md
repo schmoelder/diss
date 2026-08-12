@@ -92,7 +92,6 @@ overview = setup_overview(case)
     _,
 ) = process_soo_results(
     case,
-    load_kwargs={"allow_commit_hash_mismatch": True},
     return_results=True,
 )
 soo_fig_obj_parts, _, soo_fig_obj_groups = plot_soo_objective_figures(case, soo_results)
