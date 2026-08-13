@@ -37,8 +37,11 @@ from myst_nb import glue
 # Import the study module
 diss_root = Path(Repo(search_parent_directories=True).working_dir)
 study_root = diss_root / "studies" / "operating_modes"
-sys.path.insert(0, str(study_root))
 sys.path.insert(0, str(diss_root / "doc" / "_ext"))
+from thesis_submodules import restore_pinned_submodule
+
+restore_pinned_submodule(diss_root, "studies/operating_modes")
+sys.path.insert(0, str(study_root))
 
 # Setup cases for operating mode
 from operating_modes.main import setup_process
@@ -69,6 +72,7 @@ cases = get_cases_by_operating_mode(
     index_by_name=True,
     work_dir=study_root,
 )
+restore_pinned_submodule(diss_root, "studies/operating_modes")
 ```
 
 (clr)=
