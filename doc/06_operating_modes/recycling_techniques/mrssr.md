@@ -96,6 +96,8 @@ To minimize the number of explicitly defined event times, event dependencies are
 - The eluent flow is automatically disabled at the start of injection and re-enabled upon its completion.
 - Additionally, the injection duration is determined as a function of both the feed duration and the recycling duration.
 
+{numref}`mrssr_events` shows the resulting event structure.
+
 ```{figure} ./figures/mrssr_events.png
 :name: mrssr_events
 
@@ -128,6 +130,8 @@ fig_overlay, _ = case_module.plot_overlay(simulation_results)
 resize_chromatogram_figure(fig_overlay, ncols=1)
 glue("ssr_overlay", fig_overlay, display=False)
 ```
+
+{numref}`ssr_last` shows the resulting process at cyclic steady state, at the column outlet and at the system outlet.
 
 ```{glue:figure} ssr_last
 :name: ssr_last

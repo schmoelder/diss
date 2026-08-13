@@ -83,6 +83,7 @@ The general structure of a CLR is shown in {numref}`clr_flow_sheet`.
 To realize the recycling, the flow sheet's output states are reconfigured between injection, recycling, and elution phases via {class}`Events <CADETProcess.dynamicEvents.Event>`.
 To reduce the number of explicitly defined event times, event dependencies are introduced:
 Recycling starts immediately after injection ends, and elution begins once recycling concludes.
+{numref}`clr_events` shows the resulting event structure.
 For this demonstration, a difficult separation problem in the linear range is considered (see {numref}`model_parameters`).
 The components have similar binding affinities, creating a significant elution overlap that makes separation challenging for conventional methods.
 {numref}`fig_clr_demo` shows the concentration profiles of a CLR process at the column outlet and system outlet, respectively.

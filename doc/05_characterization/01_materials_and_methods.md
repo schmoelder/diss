@@ -86,6 +86,7 @@ Conductivity, measured in Siemens per meter ($\text{S}~\text{m}^{-1}$), quantifi
 To quantify the relationship between salt concentration and conductivity, a calibration curve was recorded by measuring the conductivity of solutions with varying salt concentrations at a constant pH of 5.
 Conductivity values were recorded over one minute at predefined salt concentrations ($20~\text{mM}$, $270~\text{mM}$, $570~\text{mM}$, $770~\text{mM}$, and $1020~\text{mM}$).
 Since the relationship between salt concentration and conductivity is nonlinear, a quadratic function was fitted to the measured data using the least squares method.
+The resulting calibration curve is shown in {numref}`fig_conductivity`.
 This function was then used to determine salt concentration from conductivity in subsequent analyses.
 
 (uv_calibration)=
