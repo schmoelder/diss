@@ -277,7 +277,7 @@ from operating_modes.post_processing import (
     slice_population
 )
 
-fig_column_outlet, axs = plotting.setup_figure(nrows=2, ncols=1, scale_with_subplots=True)
+fig_column_outlet, axs = plotting.setup_figure(nrows=1, ncols=2, scale_with_subplots=True)
 
 simulation_results[0].solution.column.outlet.plot(ax=axs[0], end=55*60)
 plotting.add_text(axs[0], r"(a)")
