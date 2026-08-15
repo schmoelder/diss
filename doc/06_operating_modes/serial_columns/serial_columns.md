@@ -27,6 +27,7 @@ execution:
 
 import importlib
 from pathlib import Path
+import re
 import sys
 
 from IPython.display import display, Markdown
@@ -201,6 +202,41 @@ overview = setup_overview(case)
     case,
     return_results=True,
 )
+
+# Tab. 6.19 is the widest KPI table (7 decision variables plus three-valued
+# metric lists in the ternary extreme-point row). A list cell such as
+# `$[a, b, c]$` is a single unbreakable math atom, so an overlong row is
+# clipped by the page margin instead of wrapping. Splitting each value into
+# its own math span lets LaTeX wrap inside the cell instead of clipping it.
+# Extreme-point rows carry two zeros and one real value, which already fits
+# on one line and is left untouched; only the one row with two or more real
+# values needs to wrap, and there an ordinary text space between the spans
+# carries stretchable interword glue, so a wrapped line with only one such
+# gap absorbs the whole slack, producing a visibly oversized gap (confirmed
+# by "Underfull \hbox (badness 10000)" in the build log). `\,\allowbreak`
+# instead gives a fixed-width gap (the usual math list-separator spacing)
+# with an optional break and no stretch, so a wrapped line just ends short
+# instead of being stretched.
+# A literal `\\` was tried first and is unsafe here: inside a tabulary cell
+# it is read as ending the table row rather than the paragraph line, and
+# corrupted the whole row.
+def _make_kpi_list_cells_breakable(table_markdown):
+    def _split_cell(match):
+        values = [v.strip() for v in match.group(1).split(",")]
+        if len(values) < 2:
+            return match.group(0)
+        n_real = sum(1 for v in values if v != "0")
+        separator = r"{raw-latex}`\,\allowbreak`" if n_real >= 2 else " "
+        return separator.join(
+            f"$[{v},$" if i == 0
+            else f"${v}]$" if i == len(values) - 1
+            else f"${v},$"
+            for i, v in enumerate(values)
+        )
+    return re.sub(r"\$\[([^\[\]]+)\]\$", _split_cell, table_markdown)
+
+
+moo_table = _make_kpi_list_cells_breakable(moo_table)
 
 moo_fig_obj_parts, _, moo_fig_obj_groups = plot_moo_objective_figures(case, moo_results)
 moo_fig_chrom_parts, _, moo_fig_chrom_groups = plot_moo_chromatogram_figures(
