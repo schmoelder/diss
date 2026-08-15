@@ -108,7 +108,7 @@ Unless noted otherwise, all experiments were performed at pH 5.
 :class: longtable
 :widths: 4 18 22 18 14 6 18
 
-| ID  | Goal                                 | Parameters                                                             | Bypass                               | Injected component              | Volume         | Eluent                                               |
+| ID  | Goal                                 | Parameters                                                             | Bypass                               | Injection                       | Vol.           | Eluent                                               |
 | --- | ------------------------------------ | ---------------------------------------------------------------------- | ------------------------------------ | ------------------------------- | -------------- | ---------------------------------------------------- |
 | E1  | Characterize injection (pre-column) tubing  | Tubing length and axial dispersion                                     | column, post-column tubing, detector | $1\%~\text{w/w}$ Acetone        | $50~\mu\text{L}$ | $A$                                                  |
 | E2  | Characterize pre- and post-column tubing    | Tubing length and axial dispersion                                     | column, detector                     | $1\%~\text{w/w}$ Acetone        | $50~\mu\text{L}$ | $A$                                                  |
