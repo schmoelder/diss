@@ -52,7 +52,7 @@ However, productivity can be increased and eluent consumption reduced by minimiz
 Allowing intermediate waste fractions between product fractions or between peaks of successive injections can further improve productivity and reduce eluent consumption, though this may lower yield.
 
 These trade-offs are systematically explored using model-based process design by formulating an {class}`~CADETProcess.optimization.OptimizationProblem`, where the KPIs serve as objectives.
-The KPIs are either aggregated into a single-objective function ({eq}`weighted_objective`) or treated as separate objectives in a multi-objective optimization problem.
+The KPIs are either aggregated into a single-objective function {eq}`weighted_objective` or treated as separate objectives in a multi-objective optimization problem.
 
 Optimal fractionation windows, determined automatically after each simulation using the {mod}`~CADETProcess.fractionation` module, ensure a minimum purity constraint of $95\%$ ({eq}`purity`, {numref}`fractionation`).
 The decision variables include process-specific operating parameters, such as valve switching times (i.e., the time points of {class}`Events <CADETProcess.dynamicEvents.Event>`; {numref}`optimization`), as well as process parameters like column length.

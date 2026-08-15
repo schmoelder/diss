@@ -278,7 +278,7 @@ Rather than discarding these fractions as waste, they are recycled via the mixin
 This results in lower overall solvent consumption {cite}`Dienstbier2020`.
 The recycling effect is clearly visible in the resulting chromatograms as broader, overloaded peaks, while the optimization landscape for the recycling time variables shows less pronounced optima compared to productivity.
 
-Optimizing the combined weighted objective ({eq}`weighted_objective`) yields a solution with a small but non-zero recycling fraction, balancing the eluent savings of MR-SSR against the productivity penalty of extended cycle times.
+Optimizing the combined weighted objective {eq}`weighted_objective` yields a solution with a small but non-zero recycling fraction, balancing the eluent savings of MR-SSR against the productivity penalty of extended cycle times.
 This suggests that a moderate recycling strategy may be preferable when both criteria matter, though the precise trade-off depends on economic factors such as solvent cost and throughput requirements.
 
 Compared to CLR (see {numref}`clr`), MR-SSR offers greater operational flexibility by decoupling the timing of fresh feed addition from the column recycling cycle via the mixing tank.
