@@ -35,18 +35,23 @@ Importantly, publicly visible source code remains fully protected by copyright u
 FOSS licenses can be further divided into permissive and copyleft licenses.
 Permissive licenses allow modification and redistribution under different licensing terms, including proprietary ones.
 Copyleft licenses, by contrast, require that derivative works be distributed under the same license, thereby preserving openness.
-The following table summarizes the rights associated with common licensing models.
+The following table summarizes the rights associated with common distribution and protection models.
 
-```{table} Software Licenses
+```{table} Rights granted under common distribution and protection models
 :name: software_licenses_overview
 
-| Rights granted       | Public domain (e.g. CC0) | Permissive license (e.g. MIT) | Copyleft license (e.g. GPL) | Freeware | Proprietary software | Trade secret |
-| -------------------- | ------------------------ | ----------------------------- | --------------------------- | -------- | -------------------- | ------------ |
-| Copyright retention  | -                        | +                             | +                           | +        | +                    | +            |
-| Copying/distribution | +                        | +                             | +                           | Often    | -                    | -            |
-| Modification         | +                        | +                             | +                           | -        | -                    | -            |
-| Re-licensing         | +                        | +                             | -                           | -        | -                    | -            |
+| Distribution / protection model | Copyright retention | Redistribution | Modification | Re-licensing |
+| ------------------------------- | :-----------------: | :------------: | :----------: | :----------: |
+| Public domain (e.g. CC0)        | No                  | Yes            | Yes          | Yes          |
+| Permissive license (e.g. MIT)   | Yes                 | Yes            | Yes          | Yes          |
+| Copyleft license (e.g. GPL)     | Yes                 | Yes            | Yes          | No           |
+| Freeware                        | Yes                 | Varies         | No           | No           |
+| Proprietary software            | Yes                 | No             | No           | No           |
+| Trade secret                    | Yes                 | No             | No           | No           |
 ```
+
+Re-licensing here denotes the freedom to choose different terms for a derivative work.
+Copyleft-licensed software may be redistributed and modified without restriction, but only under the original license or a compatible one, which is why the corresponding entry reads "No".
 
 ```{raw} latex
 \needspace{6\baselineskip}
