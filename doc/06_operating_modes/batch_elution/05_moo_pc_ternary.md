@@ -52,6 +52,8 @@ from operating_modes.post_processing import (
     setup_overview,
 )
 from operating_mode_figures import (
+    CHROMATOGRAM_PANEL_PRESET,
+    TEXT_WIDTH_IN,
     create_figure_directives,
     plot_moo_chromatogram_figures,
     plot_moo_objective_figures,
@@ -187,7 +189,12 @@ from operating_modes.post_processing import (
     slice_population
 )
 
-fig_nodes, axs = plotting.setup_figure(nrows=3, ncols=2, scale_with_subplots=True)
+fig_nodes, axs = plotting.setup_figure(
+    nrows=3,
+    ncols=2,
+    figsize=(TEXT_WIDTH_IN, CHROMATOGRAM_PANEL_PRESET.row_height_in * 3),
+    squeeze=False,
+)
 optimization_problem = moo_results.optimization_problem
 pop_all = moo_results.population_all
 
