@@ -106,17 +106,17 @@ Unless noted otherwise, all experiments were performed at pH 5.
 ```{table} Overview of experiments performed for model calibration
 :name: tab_experiments
 :class: longtable
-:widths: 4 18 22 18 14 6 18
+:widths: 4 17 22 17 14 9 17
 
-| ID  | Goal                                 | Parameters                                                             | Bypass                               | Injection                       | Vol.           | Eluent                                               |
+| ID  | Goal                                 | Parameters                                                             | Bypass                               | Injection                       | Vol. / $\mu\text{L}$ | Eluent                                               |
 | --- | ------------------------------------ | ---------------------------------------------------------------------- | ------------------------------------ | ------------------------------- | -------------- | ---------------------------------------------------- |
-| E1  | Characterize injection (pre-column) tubing  | Tubing length and axial dispersion                                     | column, post-column tubing, detector | $1\%~\text{w/w}$ Acetone        | $50~\mu\text{L}$ | $A$                                                  |
-| E2  | Characterize pre- and post-column tubing    | Tubing length and axial dispersion                                     | column, detector                     | $1\%~\text{w/w}$ Acetone        | $50~\mu\text{L}$ | $A$                                                  |
-| E3  | Characterize inter-detector tubing          | Tubing length and axial dispersion                                     | column                               | $1020~\text{mM}$ Salt           | $50~\mu\text{L}$ | $A$                                                  |
+| E1  | Characterize injection (pre-column) tubing  | Tubing length and axial dispersion                                     | column, post-column tubing, detector | $1\%~\text{w/w}$ Acetone        | 50             | $A$                                                  |
+| E2  | Characterize pre- and post-column tubing    | Tubing length and axial dispersion                                     | column, detector                     | $1\%~\text{w/w}$ Acetone        | 50             | $A$                                                  |
+| E3  | Characterize inter-detector tubing          | Tubing length and axial dispersion                                     | column                               | $1020~\text{mM}$ Salt           | 50             | $A$                                                  |
 | E4  | Characterize mixer and pre-column tubing    | Mixer volume, tubing length and axial dispersion                       | column                               | $1020~\text{mM}$ Salt           | -              | $A \rightarrow B$ (step)                             |
-| E5  | Determine bed properties             | Bed porosity and axial dispersion                                      | -                                    | $0.0005~\text{mM}$ Blue Dextran | $50~\mu\text{L}$ | $A$                                                  |
-| E6  | Determine particle properties        | Particle porosity, total porosity, axial dispersion                    | -                                    | $1\%~\text{w/w}$ Acetone        | $50~\mu\text{L}$ | $B$                                                  |
-| E7  | Determine diffusion characteristics  | Particle porosity, film diffusion, pore diffusion                      | -                                    | $0.2~\text{mM}$ Lysozyme        | $50~\mu\text{L}$ | $B$                                                  |
+| E5  | Determine bed properties             | Bed porosity and axial dispersion                                      | -                                    | $0.0005~\text{mM}$ Blue Dextran | 50             | $A$                                                  |
+| E6  | Determine particle properties        | Particle porosity, total porosity, axial dispersion                    | -                                    | $1\%~\text{w/w}$ Acetone        | 50             | $B$                                                  |
+| E7  | Determine diffusion characteristics  | Particle porosity, film diffusion, pore diffusion                      | -                                    | $0.2~\text{mM}$ Lysozyme        | 50             | $B$                                                  |
 | E8  | Determine capacity                   | Capacity                                                               | -                                    | $18.2~\text{mM}$ $\ce{NaOH}$    | -              | Water $\rightarrow$ $\ce{NaOH}$ (step)               |
-| E9  | Determine adsorption characteristics | Adsorption rate, desorption rate, characteristic charge, steric factor | -                                    | $0.2~\text{mM}$ Lysozyme        | $50~\mu\text{L}$ | $A \rightarrow B$ (Gradient: 4, 6, 8, 12, 14, 16 CV) |
+| E9  | Determine adsorption characteristics | Adsorption rate, desorption rate, characteristic charge, steric factor | -                                    | $0.2~\text{mM}$ Lysozyme        | 50             | $A \rightarrow B$ (Gradient: 4, 6, 8, 12, 14, 16 CV) |
 ```
