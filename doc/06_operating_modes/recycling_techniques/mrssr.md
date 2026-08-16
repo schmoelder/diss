@@ -55,7 +55,6 @@ from operating_mode_figures import (
     create_figure_directives,
     plot_moo_chromatogram_figures,
     plot_moo_objective_figures,
-    resize_chromatogram_figure,
     resize_sparse_chromatogram_figure,
 )
 ```
@@ -127,7 +126,7 @@ glue("ssr_last", fig_last, display=False)
 fig_all, _ = simulation_results.solution.outlet.outlet.plot()
 glue("ssr_all", fig_all, display=False)
 fig_overlay, _ = case_module.plot_overlay(simulation_results)
-resize_chromatogram_figure(fig_overlay, ncols=1)
+resize_sparse_chromatogram_figure(fig_overlay, ncols=1)
 glue("ssr_overlay", fig_overlay, display=False)
 ```
 
