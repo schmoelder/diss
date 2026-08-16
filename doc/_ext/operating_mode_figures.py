@@ -43,7 +43,7 @@ MOO_CHROMATOGRAM_GRID_PRESET = SplitFigurePreset(
     column_width_in=2.05,
 )
 CHROMATOGRAM_PANEL_PRESET = SplitFigurePreset(
-    row_height_in=2.35,
+    row_height_in=1.88,
     column_width_in=2.05,
 )
 SPARSE_CHROMATOGRAM_PANEL_PRESET = SplitFigurePreset(
