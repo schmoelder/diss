@@ -259,6 +259,11 @@ mystnb:
 display(Markdown(moo_fig_obj_directives))
 ```
 
+```{raw} latex
+\pagebreak
+\begin{landscape}
+```
+
 ```{code-cell} ipython3
 ---
 mystnb:
@@ -266,6 +271,11 @@ mystnb:
   remove_code_source: true
 ---
 display(Markdown(moo_table))
+```
+
+```{raw} latex
+\end{landscape}
+\pagebreak
 ```
 
 ```{code-cell} ipython3
