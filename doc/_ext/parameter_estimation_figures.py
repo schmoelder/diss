@@ -10,6 +10,7 @@ from CADETProcess import plotting
 
 TEXT_WIDTH_IN = 156 / 25.4
 THESIS_FIGURE_LAYOUT = "1.5_col"
+OBJECTIVE_MARKER_SIZE = 4.0
 
 
 @dataclass(frozen=True)
@@ -20,24 +21,36 @@ class SplitFigurePreset:
     layout: str = THESIS_FIGURE_LAYOUT
 
 
+#: Columns are sized so that a full group spans the text block instead of the
+#: 2.05 in that left the two-column figures at two thirds of the text width.
+OBJECTIVE_COLUMNS_PER_FIGURE = 2
+OBJECTIVE_COLUMN_WIDTH_IN = TEXT_WIDTH_IN / OBJECTIVE_COLUMNS_PER_FIGURE
+
 OBJECTIVE_GRID_PRESET = SplitFigurePreset(
     row_height_in=1.5,
-    column_width_in=2.05,
+    column_width_in=OBJECTIVE_COLUMN_WIDTH_IN,
 )
 SINGLE_OBJECTIVE_GRID_PRESET = SplitFigurePreset(
     row_height_in=1.8,
-    column_width_in=2.05,
+    column_width_in=OBJECTIVE_COLUMN_WIDTH_IN,
 )
 
 
 def resize_comparison_figure(
     fig: plt.Figure,
-    width_in: float = 5.25,
-    height_in: float = 3.2,
+    width_in: float = 110 / 25.4,
+    height_in: float = 67 / 25.4,
 ) -> plt.Figure:
     fig.set_size_inches(width_in, height_in)
     fig.tight_layout()
     return fig
+
+
+def _set_scatter_marker_size(axes: np.ndarray, marker_size: float) -> None:
+    for ax in axes.flatten():
+        for collection in ax.collections:
+            if hasattr(collection, "set_sizes"):
+                collection.set_sizes([marker_size])
 
 
 def balanced_chunks(items: Iterable[int], max_chunk_size: int) -> Iterable[tuple[int, ...]]:
@@ -79,10 +92,11 @@ def _format_objective_variable_label(label: str) -> str:
 def create_split_objective_figures(
     optimization_results,
     rows_per_figure: int = 4,
-    columns_per_figure: int = 2,
+    columns_per_figure: int = OBJECTIVE_COLUMNS_PER_FIGURE,
     row_height_in: float | None = None,
     column_width_in: float = OBJECTIVE_GRID_PRESET.column_width_in,
     max_width_in: float = OBJECTIVE_GRID_PRESET.max_width_in,
+    marker_size: float = OBJECTIVE_MARKER_SIZE,
 ) -> tuple[
     list[plt.Figure],
     np.ndarray,
@@ -127,6 +141,7 @@ def create_split_objective_figures(
             ax=axes_full,
             tight_layout=False,
         )
+        _set_scatter_marker_size(axes_full, marker_size)
 
         for row_group, column_group in figure_groups:
             for global_row in row_group:
@@ -153,7 +168,7 @@ def save_split_objective_figures(
     output_dir: Path,
     file_stem: str = "objectives",
     rows_per_figure: int = 4,
-    columns_per_figure: int = 2,
+    columns_per_figure: int = OBJECTIVE_COLUMNS_PER_FIGURE,
     **kwargs,
 ) -> list[Path]:
     """Save split objective figures as thesis-ready artifacts."""
