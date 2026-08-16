@@ -98,6 +98,32 @@ With normalization ({numref}`fig_initial_values_normalized`), samples are distri
 :tags: [remove-cell]
 
 from CADETProcess.optimization import OptimizationProblem
+from CADETProcess import plotting
+
+#: 2x2 grids come out at 90 mm, which keeps them under 48 % of the text height
+#: including the caption and therefore lets two share a page.
+DEMO_PANEL_IN = 45/25.4
+#: The 1x2 convergence plot is only half as tall and is sized on its own.
+CONVERGENCE_PANEL_IN = 65/25.4
+
+
+def setup_demo_axes(nrows=2, ncols=2, share=True, panel_in=DEMO_PANEL_IN):
+    """Create a grid of demo panels at a fixed physical size.
+
+    The optimization demos are sized by panel rather than by figure, so that
+    the 2x2 grids come out identical. `share` mirrors what the plot method
+    would set up on its own: the pairwise plots share axes per column and row,
+    `plot_objectives` and `plot_convergence` do not.
+    """
+    sharing = {"sharex": "col", "sharey": "row"} if share else {}
+    return plotting.setup_figure(
+        nrows=nrows,
+        ncols=ncols,
+        figsize=(ncols*panel_in, nrows*panel_in),
+        squeeze=False,
+        **sharing,
+    )
+
 
 optimization_problem = OptimizationProblem('no_transform_demo')
 optimization_problem.add_variable(r'$\varepsilon_{\text{bed}}$', lb=0.1, ub=0.8)
@@ -106,7 +132,9 @@ optimization_problem.add_variable(r'$D_{\text{ax}}$', lb=1e-9, ub=1e-4)
 x0 = optimization_problem.create_initial_values(2*64)
 pop = optimization_problem.create_population(x0)
 
-fig, _ = pop.plot_pairwise(autoscale=True)
+fig, axs = setup_demo_axes()
+pop.plot_pairwise(autoscale=True, ax=axs)
+fig.tight_layout()
 glue("fig_initial_values", fig, display=False)
 
 optimization_problem = OptimizationProblem('transform_demo')
@@ -116,7 +144,9 @@ optimization_problem.add_variable(r'$D_{\text{ax}}$', lb=1e-9, ub=1e-4, transfor
 x0 = optimization_problem.create_initial_values(2*64)
 pop = optimization_problem.create_population(x0)
 
-fig, _ = pop.plot_pairwise(autoscale=True)
+fig, axs = setup_demo_axes()
+pop.plot_pairwise(autoscale=True, ax=axs)
+fig.tight_layout()
 glue("fig_initial_values_normalized", fig, display=False)
 ```
 
@@ -306,12 +336,18 @@ def multi_objective_func(x):
 
 optimization_problem = OptimizationProblem('moo')
 
-optimization_problem.add_variable('x_0', lb=-5, ub=5)
-optimization_problem.add_variable('x_1', lb=-5, ub=5)
+# Names double as axis labels, so they are written the way eq.
+# `optimization_problem_example` writes them.
+optimization_problem.add_variable(r'$x_0$', lb=-5, ub=5)
+optimization_problem.add_variable(r'$x_1$', lb=-5, ub=5)
 
-optimization_problem.add_linear_constraint(['x_0', 'x_1'], [-1, 1], 0)
+optimization_problem.add_linear_constraint([r'$x_0$', r'$x_1$'], [-1, 1], 0)
 
-optimization_problem.add_objective(multi_objective_func, n_objectives=2)
+optimization_problem.add_objective(
+    multi_objective_func,
+    n_objectives=2,
+    labels=[r'$f_0$', r'$f_1$'],
+)
 
 ```
 
@@ -335,7 +371,9 @@ import matplotlib.pyplot as plt
 x0 = optimization_problem.create_initial_values(n_samples=1000)
 pop = optimization_problem.create_population(x0)
 
-fig, _ = pop.plot_pairwise(autoscale=True)
+fig, axs = setup_demo_axes()
+pop.plot_pairwise(autoscale=True, ax=axs)
+fig.tight_layout()
 glue("uniform_samples", fig, display=False)
 ```
 
@@ -369,7 +407,9 @@ optimizer = U_NSGA3()
 
 optimization_results = optimizer.optimize(optimization_problem, save_results=False)
 
-fig, axs = optimization_results.plot_objectives(autoscale=False)
+fig, axs = setup_demo_axes(share=False)
+optimization_results.plot_objectives(autoscale=False, ax=axs)
+fig.tight_layout()
 glue("objectives", fig, display=False)
 ```
 
@@ -385,7 +425,9 @@ The prominent minima are indicative of successful convergence.
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-fig, ax = optimization_results.plot_pareto(autoscale=False)
+fig, ax = setup_demo_axes()
+optimization_results.plot_pareto(autoscale=False, ax=ax)
+fig.tight_layout()
 glue("pareto", fig, display=False)
 ```
 
@@ -399,7 +441,13 @@ Pareto plot of all evaluated individuals.
 ```{code-cell} ipython3
 :tags: [remove-cell]
 
-fig, axs = optimization_results.plot_convergence()
+fig, axs = setup_demo_axes(nrows=1, share=False, panel_in=CONVERGENCE_PANEL_IN)
+# plot_convergence indexes a flat axes array, not a 2D grid.
+optimization_results.plot_convergence(ax=axs[0])
+# The default sets a multi-letter word in math italics.
+for ax in axs[0]:
+    ax.set_xlabel("Evaluations")
+fig.tight_layout()
 glue("convergence", fig, display=False)
 ```
 ---

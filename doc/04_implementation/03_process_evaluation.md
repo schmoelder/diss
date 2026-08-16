@@ -98,7 +98,7 @@ from CADETProcess import plotting
 
 fig_purity, axs = plotting.setup_figure(
     nrows=2,
-    scale_with_subplots=True,
+    figsize=(110/25.4, 95/25.4),
     sharex=True,
 )
 
