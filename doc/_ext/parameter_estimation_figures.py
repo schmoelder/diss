@@ -21,10 +21,12 @@ class SplitFigurePreset:
     layout: str = THESIS_FIGURE_LAYOUT
 
 
-#: Columns are sized so that a full group spans the text block instead of the
-#: 2.05 in that left the two-column figures at two thirds of the text width.
+#: Columns use the same width as the chapter 6 objective grids so that figures
+#: with the same number of columns are the same size across both chapters.
+#: Spanning the full text block instead left the two-column figures visibly
+#: stretched next to their chapter 6 counterparts.
 OBJECTIVE_COLUMNS_PER_FIGURE = 2
-OBJECTIVE_COLUMN_WIDTH_IN = TEXT_WIDTH_IN / OBJECTIVE_COLUMNS_PER_FIGURE
+OBJECTIVE_COLUMN_WIDTH_IN = 2.05
 
 OBJECTIVE_GRID_PRESET = SplitFigurePreset(
     row_height_in=1.5,
@@ -34,6 +36,12 @@ SINGLE_OBJECTIVE_GRID_PRESET = SplitFigurePreset(
     row_height_in=1.8,
     column_width_in=OBJECTIVE_COLUMN_WIDTH_IN,
 )
+
+
+#: Width for comparison figures that carry several twin axes plus an in-plot
+#: legend. The legend needs room relative to the text, and the font size is
+#: fixed in points, so widening the figure is what buys that room.
+WIDE_COMPARISON_WIDTH_IN = 140 / 25.4
 
 
 def resize_comparison_figure(
