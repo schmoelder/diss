@@ -61,8 +61,22 @@ Build the PDF version:
 jb build doc/ --builder pdflatex
 ```
 
-For a clean rebuild that re-executes notebooks and picks up changes in imported helper modules, use:
+To force Sphinx to rewrite all outputs, use:
 
 ```bash
 jb build doc/ --builder pdflatex --all
 ```
+
+Note that `--all` does *not* re-execute the notebooks.
+The notebook cache is keyed on the content of the code cells, so a build with `--all` still reports "Using cached notebook" and reuses the stored outputs.
+Changes to imported helper modules under `doc/_ext/` or in the study submodules are invisible to that cache, because they leave the code cells untouched.
+A build can therefore combine current sources with stale figures without showing it in the PDF.
+
+To actually re-execute, invalidate the cache rather than the Sphinx output:
+
+```bash
+rm -rf doc/_build/.jupyter_cache
+```
+
+For a single notebook, edit one of its code cells instead, for example by adding a line such as `print("figure update 1")` and incrementing the counter on later runs.
+Both approaches change what the cache is keyed on; `--all` does not.
