@@ -431,6 +431,16 @@ fig.tight_layout()
 glue("pareto", fig, display=False)
 ```
 
+```{raw} latex
+% Force the pareto/convergence pair onto one page with [H] placement: the
+% chapter ends right after convergence, leaving too little body text to
+% absorb two floating figures, which otherwise strands each on its own
+% near-empty page (same structural issue as the chapter 6 float pages).
+\let\oldfigure\figure
+\let\endoldfigure\endfigure
+\renewenvironment{figure}[1][htbp]{\oldfigure[H]}{\endoldfigure}
+```
+
 ```{glue:figure} pareto
 :name: pareto
 :scale: 100%
@@ -450,11 +460,6 @@ for ax in axs[0]:
 fig.tight_layout()
 glue("convergence", fig, display=False)
 ```
----
-
-With the CADET-Process framework fully established, covering process configuration, simulation, performance evaluation, and optimization, the focus shifts to its practical application.
-The following chapters demonstrate how these tools address real-world problems, starting with the characterization of a representative laboratory system (see {numref}`characterization`).
-Subsequent optimization studies explore a range of advanced operating concepts (see {numref}`Chapter %s <operating_modes>`).
 
 ```{glue:figure} convergence
 :name: convergence
@@ -462,6 +467,16 @@ Subsequent optimization studies explore a range of advanced operating concepts (
 
 Convergence of the optimization algorithm: objective values plotted against the number of function evaluations.
 ```
+
+```{raw} latex
+\let\figure\oldfigure
+\let\endfigure\endoldfigure
+```
+---
+
+With the CADET-Process framework fully established, covering process configuration, simulation, performance evaluation, and optimization, the focus shifts to its practical application.
+The following chapters demonstrate how these tools address real-world problems, starting with the characterization of a representative laboratory system (see {numref}`characterization`).
+Subsequent optimization studies explore a range of advanced operating concepts (see {numref}`Chapter %s <operating_modes>`).
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
