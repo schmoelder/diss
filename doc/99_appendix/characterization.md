@@ -38,7 +38,7 @@ parameters_all = load_all_parameters(final_parameters_branch)
 (characterization_appendix)=
 # Characterization
 
-In all objective function value plots of this section, darker shades represent individuals evaluated in later generations.
+{numref}`fig_conductivity` shows the calibration curve used to convert the measured conductivity to salt concentration, as described in {numref}`conductivity_calibration`.
 
 ```{code-cell} ipython3
 :tags: [remove-cell]
@@ -60,6 +60,9 @@ glue("fig_conductivity", fig, display=False)
 
 Calibration curve for conductivity sensor.
 ```
+
+Figures {numref}`e1_objectives` through {numref}`e6_objectives` show the objective function values evaluated during parameter estimation for experiments `E1`–`E6`.
+Darker shades represent individuals evaluated in later generations.
 
 ```{figure} figures/objectives/e1_objectives.png
 :name: e1_objectives
