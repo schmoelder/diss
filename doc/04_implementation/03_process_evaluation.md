@@ -258,5 +258,6 @@ glue("chromatogram_comparison", fig, display=False)
 ```{glue:figure} chromatogram_comparison
 :name: chromatogram_comparison
 
-Comparison between (experimental) reference data (dashed) and simulation results (solid).
+Comparison of the non-pore-penetrating dextran reference experiment (dashed) with the simulated column outlet profile (solid) using initial estimates of $\varepsilon^b = 0.5$ and $D_{\text{ax}} = 1.0 \times 10^{-7}~\text{m}^2~\text{s}^{-1}$.
+The annotation reports the NRMSE evaluated over the interval from $3$ to $6~\text{min}$.
 ```
