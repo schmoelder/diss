@@ -51,6 +51,7 @@ All experiments were conducted at $0.5~\text{mL}~\text{min}^{-1}$.
 
 ```{figure} ./figures/knauer_pid.png
 :name: knauer_pid
+:width: 100%
 
 P&ID of Knauer system.
 ```

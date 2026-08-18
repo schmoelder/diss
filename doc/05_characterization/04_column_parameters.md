@@ -37,7 +37,7 @@ parameters_all = load_all_parameters(final_parameters_branch)
 
 from comparison_plots import load_cached_objective_results
 from parameter_estimation_figures import (
-    WIDE_COMPARISON_WIDTH_IN,
+    OBJECTIVE_COLUMN_WIDTH_IN,
     resize_comparison_figure,
     save_split_objective_figures,
 )
@@ -112,12 +112,29 @@ from comparison_plots import (
     create_column_table,
     plot_comparison_with_column,
 )
-fig, *_ = plot_comparison_with_column(
+fig, ax_bd, ax_acetone, ax_lysozyme = plot_comparison_with_column(
     parameters_all["e5"],
     parameters_all["e6"],
     parameters_all["e7_lrmp"],
 )
-resize_comparison_figure(fig, width_in=WIDE_COMPARISON_WIDTH_IN)
+# The third twin axis is offset proportionally to the axes width, so at the
+# thesis figure width it leaves a wide blank gap; pull it in to a fixed offset.
+ax_lysozyme.spines.right.set_position(("outward", 45))
+# The submodule's auto-placed "upper right" legend sits on top of whichever
+# curve happens to peak on the right (here, the E7 Lysozyme peak). Moving it
+# above the axes avoids the collision regardless of which curve is tallest
+# where, without needing to widen the figure to make room.
+legend = ax_bd.get_legend()
+handles = legend.legend_handles
+labels = [text.get_text() for text in legend.get_texts()]
+legend.remove()
+ax_bd.legend(
+    handles, labels,
+    loc="lower center", bbox_to_anchor=(0.5, 1.08), ncol=3,
+    frameon=False, borderaxespad=0, fontsize="x-small",
+    columnspacing=1.0, handlelength=1.5, handletextpad=0.4,
+)
+resize_comparison_figure(fig, width_in=2 * OBJECTIVE_COLUMN_WIDTH_IN)
 glue("fig_comparison_with_column", fig, display=False)
 tab_column_parameters = create_column_table(parameters_all["e9_lrmp_4_cv"])
 ```
@@ -134,7 +151,6 @@ The only conclusion that could be drawn was that the film diffusion coefficient 
 
 ```{figure} figures/objectives/e7_objectives_film_diffusion.png
 :name: e7_objectives_film_diffusion
-:scale: 100%
 
 Objective function values per optimization variable for experiment E7.
 Darker shades represent individuals evaluated in later generations.
@@ -147,7 +163,6 @@ Both fitting approaches resulted in similar particle porosities, and film diffus
 
 ```{figure} figures/objectives/e7_objectives.png
 :name: e7_objectives
-:scale: 100%
 
 Objective function values per optimization variable for experiment E7, assuming non-limiting film diffusion.
 Darker shades represent individuals evaluated in later generations.
@@ -171,7 +186,6 @@ display(Markdown(tab_column_parameters))
 
 ```{glue:figure} fig_comparison_with_column
 :name: fig_comparison_with_column
-:scale: 100%
 
 Comparison of simulation results using estimated parameters (solid lines) with reference experiments (dotted lines) for column parameter experiments.
 ```

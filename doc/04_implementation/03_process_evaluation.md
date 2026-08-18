@@ -98,7 +98,7 @@ from CADETProcess import plotting
 
 fig_purity, axs = plotting.setup_figure(
     nrows=2,
-    figsize=(110/25.4, 95/25.4),
+    figsize=(100/25.4, 86/25.4),
     sharex=True,
 )
 
@@ -154,7 +154,6 @@ glue("fig_purity", fig_purity, display=False)
 
 ```{glue:figure} fig_purity
 :name: fig_purity
-:scale: 100%
 
 **Top:** Chromatogram of binary separation.
 **Bottom:** Local purity profile of the chromatogram with initial fraction start and end times indicated; color regions highlight intervals where local purity exceeds the minimum required threshold.
@@ -223,13 +222,41 @@ process.flow_sheet.column.axial_dispersion = 1e-7
 simulation_results = simulator.simulate(process)
 metrics = comparator.evaluate(simulation_results)
 
-fig, ax = comparator.plot_comparison(simulation_results)
+fig, ax = comparator.plot_comparison(
+    simulation_results,
+    setup_figure_kwargs={
+        "layout": "1.5_col",
+        # Narrower than a typical comparison figure: a single curve on one axis
+        # looks like an empty, overly wide box at the usual comparison width.
+        "figsize": (85/25.4, 55/25.4),
+    },
+)
+for axis in ax:
+    axis.set_title("")
+
+    y_min, y_max = axis.get_ylim()
+    axis.set_ylim(y_min, y_min + 1.1 * (y_max - y_min))
+
+    metric_text = axis.texts[-1]
+    metric_text.set_position((0.05, 0.08))
+    metric_text.set_verticalalignment("bottom")
+
+    handles, labels = axis.get_legend_handles_labels()
+    axis.get_legend().remove()
+    axis.legend(
+        handles,
+        labels,
+        loc="lower center",
+        bbox_to_anchor=(0.5, 1.02),
+        borderaxespad=0,
+    )
+
+fig.tight_layout()
 glue("chromatogram_comparison", fig, display=False)
 ```
 
 ```{glue:figure} chromatogram_comparison
 :name: chromatogram_comparison
-:scale: 100%
 
 Comparison between (experimental) reference data (dashed) and simulation results (solid).
 ```

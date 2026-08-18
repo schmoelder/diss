@@ -6,11 +6,19 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from CADETProcess import plotting
-
-
-TEXT_WIDTH_IN = 156 / 25.4
-THESIS_FIGURE_LAYOUT = "1.5_col"
-OBJECTIVE_MARKER_SIZE = 4.0
+from thesis_figure_styles import (
+    CHARACTERIZATION_SINGLE_OBJECTIVE_HEIGHT_IN,
+    CHARACTERIZATION_SINGLE_OBJECTIVE_WIDTH_IN,
+    CHROMATOGRAM_HEIGHT_IN,
+    COMPARISON_WIDTH_IN,
+    OBJECTIVE_COLUMN_WIDTH_IN,
+    OBJECTIVE_MARKER_SIZE,
+    OBJECTIVE_ROW_HEIGHT_IN,
+    SINGLE_OBJECTIVE_ROW_HEIGHT_IN,
+    TEXT_WIDTH_IN,
+    THESIS_FIGURE_LAYOUT,
+    WIDE_COMPARISON_WIDTH_IN,
+)
 
 
 @dataclass(frozen=True)
@@ -25,15 +33,13 @@ class SplitFigurePreset:
 #: with the same number of columns are the same size across both chapters.
 #: Spanning the full text block instead left the two-column figures visibly
 #: stretched next to their chapter 6 counterparts.
-OBJECTIVE_COLUMNS_PER_FIGURE = 2
-OBJECTIVE_COLUMN_WIDTH_IN = 2.05
-
+OBJECTIVE_COLUMNS_PER_FIGURE = 3
 OBJECTIVE_GRID_PRESET = SplitFigurePreset(
-    row_height_in=1.5,
+    row_height_in=OBJECTIVE_ROW_HEIGHT_IN,
     column_width_in=OBJECTIVE_COLUMN_WIDTH_IN,
 )
 SINGLE_OBJECTIVE_GRID_PRESET = SplitFigurePreset(
-    row_height_in=1.8,
+    row_height_in=CHARACTERIZATION_SINGLE_OBJECTIVE_HEIGHT_IN,
     column_width_in=OBJECTIVE_COLUMN_WIDTH_IN,
 )
 
@@ -41,14 +47,29 @@ SINGLE_OBJECTIVE_GRID_PRESET = SplitFigurePreset(
 #: Width for comparison figures that carry several twin axes plus an in-plot
 #: legend. The legend needs room relative to the text, and the font size is
 #: fixed in points, so widening the figure is what buys that room.
-WIDE_COMPARISON_WIDTH_IN = 140 / 25.4
-
-
 def resize_comparison_figure(
     fig: plt.Figure,
-    width_in: float = 110 / 25.4,
-    height_in: float = 67 / 25.4,
+    width_in: float = COMPARISON_WIDTH_IN,
+    height_in: float = CHROMATOGRAM_HEIGHT_IN,
 ) -> plt.Figure:
+    fig.set_size_inches(width_in, height_in)
+    fig.tight_layout()
+    return fig
+
+
+#: Resize figure for objective-related comparison plots (e.g., meta score plots)
+#: to match the objective grid preset panel dimensions.
+#: Uses the same column/row dimensions as OBJECTIVE_GRID_PRESET for consistency.
+def resize_objective_comparison_figure(
+    fig: plt.Figure,
+    ncols: int = 1,
+    nrows: int = 1,
+) -> plt.Figure:
+    width_in = ncols * OBJECTIVE_COLUMN_WIDTH_IN
+    if nrows == 1:
+        height_in = SINGLE_OBJECTIVE_GRID_PRESET.row_height_in
+    else:
+        height_in = nrows * OBJECTIVE_ROW_HEIGHT_IN
     fig.set_size_inches(width_in, height_in)
     fig.tight_layout()
     return fig
@@ -102,7 +123,7 @@ def create_split_objective_figures(
     rows_per_figure: int = 4,
     columns_per_figure: int = OBJECTIVE_COLUMNS_PER_FIGURE,
     row_height_in: float | None = None,
-    column_width_in: float = OBJECTIVE_GRID_PRESET.column_width_in,
+    column_width_in: float | None = None,
     max_width_in: float = OBJECTIVE_GRID_PRESET.max_width_in,
     marker_size: float = OBJECTIVE_MARKER_SIZE,
 ) -> tuple[
@@ -120,6 +141,11 @@ def create_split_objective_figures(
             row_height_in = SINGLE_OBJECTIVE_GRID_PRESET.row_height_in
         else:
             row_height_in = OBJECTIVE_GRID_PRESET.row_height_in
+    if column_width_in is None:
+        if nrows == 1:
+            column_width_in = SINGLE_OBJECTIVE_GRID_PRESET.column_width_in
+        else:
+            column_width_in = OBJECTIVE_GRID_PRESET.column_width_in
 
     figures = []
     axes_full = np.empty((nrows, ncols), dtype=object)
@@ -164,6 +190,7 @@ def create_split_objective_figures(
                         )
                     if global_col != column_group[0]:
                         ax.set_ylabel("")
+                        ax.tick_params(labelleft=False)
 
         for fig in figures:
             fig.tight_layout()

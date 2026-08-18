@@ -12,13 +12,22 @@ from operating_modes.post_processing import (
     metrics,
     plot_moo_chromatograms,
 )
+from thesis_figure_styles import (
+    CHROMATOGRAM_COLUMN_WIDTH_IN,
+    CHROMATOGRAM_HEIGHT_IN,
+    CHROMATOGRAM_MIN_WIDTH_IN,
+    OBJECTIVE_COLUMN_WIDTH_IN,
+    OBJECTIVE_MARKER_SIZE,
+    OBJECTIVE_ROW_HEIGHT_IN,
+    SINGLE_OBJECTIVE_ROW_HEIGHT_IN,
+    SPARSE_CHROMATOGRAM_COLUMN_WIDTH_IN,
+    TEXT_WIDTH_IN,
+    THESIS_FIGURE_LAYOUT,
+)
 
 
-TEXT_WIDTH_IN = 156 / 25.4
-OBJECTIVE_MARKER_SIZE = 4.0
 OBJECTIVE_UNIT_NOTE = "Objective and KPI units follow the corresponding results table."
 OBJECTIVE_COLOR_NOTE = "Darker shades represent individuals evaluated in later generations."
-THESIS_FIGURE_LAYOUT = "1.5_col"
 
 
 @dataclass(frozen=True)
@@ -31,24 +40,26 @@ class SplitFigurePreset:
 
 
 OBJECTIVE_GRID_PRESET = SplitFigurePreset(
-    row_height_in=1.5,
-    column_width_in=2.05,
+    row_height_in=OBJECTIVE_ROW_HEIGHT_IN,
+    column_width_in=OBJECTIVE_COLUMN_WIDTH_IN,
 )
 SOO_OBJECTIVE_GRID_PRESET = SplitFigurePreset(
-    row_height_in=1.8,
-    column_width_in=2.05,
+    row_height_in=SINGLE_OBJECTIVE_ROW_HEIGHT_IN,
+    column_width_in=OBJECTIVE_COLUMN_WIDTH_IN,
 )
 MOO_CHROMATOGRAM_GRID_PRESET = SplitFigurePreset(
-    row_height_in=1.45,
-    column_width_in=2.05,
+    row_height_in=CHROMATOGRAM_HEIGHT_IN,
+    column_width_in=OBJECTIVE_COLUMN_WIDTH_IN,
 )
 CHROMATOGRAM_PANEL_PRESET = SplitFigurePreset(
-    row_height_in=1.88,
-    column_width_in=2.05,
+    row_height_in=CHROMATOGRAM_HEIGHT_IN,
+    column_width_in=CHROMATOGRAM_COLUMN_WIDTH_IN,
+    min_width_in=CHROMATOGRAM_MIN_WIDTH_IN,
 )
 SPARSE_CHROMATOGRAM_PANEL_PRESET = SplitFigurePreset(
-    row_height_in=2.25,
-    column_width_in=2.8,
+    row_height_in=CHROMATOGRAM_HEIGHT_IN,
+    column_width_in=SPARSE_CHROMATOGRAM_COLUMN_WIDTH_IN,
+    min_width_in=CHROMATOGRAM_MIN_WIDTH_IN,
 )
 
 
@@ -176,11 +187,12 @@ def resize_chromatogram_figure(
 def resize_sparse_chromatogram_figure(
     fig: plt.Figure,
     ncols: int = 1,
+    row_height_in: float = SPARSE_CHROMATOGRAM_PANEL_PRESET.row_height_in,
 ) -> plt.Figure:
     return resize_chromatogram_figure(
         fig,
         ncols=ncols,
-        row_height_in=SPARSE_CHROMATOGRAM_PANEL_PRESET.row_height_in,
+        row_height_in=row_height_in,
         column_width_in=SPARSE_CHROMATOGRAM_PANEL_PRESET.column_width_in,
         min_width_in=SPARSE_CHROMATOGRAM_PANEL_PRESET.min_width_in,
         max_width_in=SPARSE_CHROMATOGRAM_PANEL_PRESET.max_width_in,

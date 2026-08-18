@@ -93,6 +93,7 @@ To model the flip-flop operating mode in CADET-Process, two {class}`Inlets <CADE
 
 ```{figure} ./figures/flow_sheet.png
 :name: flip_flop_flow_sheet
+:width: 100%
 
 Flow sheet for the flip-flop process.
 ```
@@ -140,7 +141,6 @@ glue("flip_flop_bulk", fig_flip_flop_bulk, display=False)
 
 ```{glue:figure} flip_flop_bulk
 :name: flip_flop_bulk
-:scale: 100%
 
 **Left:** Concentration profile at the inlet of the column. **Center**: Bulk concentration at different times. The flow direction is indicated by the arrow. **Right:** Concentration profile at the system outlet.
 ```
@@ -173,7 +173,6 @@ glue("fig_flip_flop_validation", fig_flip_flop_validation, display=False)
 
 ```{glue:figure} fig_flip_flop_validation
 :name: fig_flip_flop_validation
-:scale: 100%
 
 Comparison of the flip-flop simulation chromatogram (solid line) with the analytical equilibrium theory solution (dashed line), assuming a linear binding model and neglecting axial dispersion and other transport-limiting effects.
 ```

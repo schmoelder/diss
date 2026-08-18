@@ -50,6 +50,7 @@ As a result, these components elute from the column's outlet as distinct peaks.
 
 ```{figure} ./figures/flow_sheet.png
 :name: batch_elution_flow_sheet_intro
+:width: 100%
 
 Flow sheet for batch-elution process.
 The flow sheet is comprised of feed and eluent reservoirs, each with a pump capable of delivering the required flow rate against the pressure drop of the packed column, a volume-less mixer to merge feed and eluent streams entering the column, the chromatographic column itself, and an outlet.
@@ -66,6 +67,20 @@ In practice, this signal can be detected using various methods, such as UV or co
 from myst_nb import glue
 %config InlineBackend.figure_format = 'retina'
 
+from pathlib import Path
+import sys
+
+from git import Repo
+
+diss_root = Path(Repo(search_parent_directories=True).working_dir)
+sys.path.insert(0, str(diss_root / "doc" / "_ext"))
+
+from thesis_figure_styles import (
+    CHROMATOGRAM_HEIGHT_IN,
+    SPARSE_CHROMATOGRAM_COLUMN_WIDTH_IN,
+    THESIS_FIGURE_LAYOUT,
+)
+
 from examples.batch_elution.process import process
 
 from CADETProcess.simulator import Cadet
@@ -73,8 +88,14 @@ from CADETProcess.simulator import Cadet
 simulator = Cadet()
 simulation_results = simulator.simulate(process)
 
-import matplotlib.pyplot as plt
-fig, (ax1, ax2) = plt.subplots(nrows=1, ncols=2, figsize=(10, 4))
+from CADETProcess import plotting
+
+fig, (ax1, ax2) = plotting.setup_figure(
+    layout=THESIS_FIGURE_LAYOUT,
+    nrows=1,
+    ncols=2,
+    figsize=(2 * SPARSE_CHROMATOGRAM_COLUMN_WIDTH_IN, CHROMATOGRAM_HEIGHT_IN),
+)
 
 simulation_results.solution.column.inlet.plot(ax=ax1, show=False)
 
@@ -84,7 +105,6 @@ glue("chromatogram", fig, display=False)
 
 ```{glue:figure} chromatogram
 :name: "chromatogram"
-:scale: 100%
 
 Left: Concentration profile at the column inlet.
 Right: Chromatogram recorded at the column outlet with components $A$ and $B$ partially separated.

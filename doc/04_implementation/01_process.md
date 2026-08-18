@@ -15,6 +15,7 @@ A {class}`UnitOperation <CADETProcess.processModel.UnitBaseClass>` represents th
 
 ```{figure} ./figures/unit_operation.png
 :name: unit_operation
+:width: 100%
 
 UML diagram of a unit operation.
 The `UnitOperationBase` provides a unified interface for all its implementations.
@@ -91,6 +92,7 @@ Each dynamic change is represented by an {class}`Event <CADETProcess.dynamicEven
 
 ```{figure} ./figures/events.png
 :name: events
+:width: 100%
 
 Dynamic events of a batch-elution process.
 At $t = 0~\text{min}$, the flow of the `Feed` unit operation is set to $60 \text{mL}~\text{min}^{-1}$ on, while the flow of the `Eluent` unit is turned off.
@@ -122,6 +124,7 @@ If the start time of the injection is set to $t = 0~\text{min}$, only the feed d
 
 ```{figure} ./figures/event_dependencies.png
 :name: event_dependencies
+:width: 100%
 
 Dynamic events in a batch-elution process, with dependent events highlighted in green and durations in blue.
 Arrows indicate the dependency of an event's execution time on other events or durations.

@@ -76,7 +76,21 @@ The start time, $t_{\text{start}, f}$, and end time, $t_{\text{end}, f}$, for ea
 
 %config InlineBackend.figure_format = 'retina'
 
+from pathlib import Path
+import sys
+
+from git import Repo
 from myst_nb import glue
+
+diss_root = Path(Repo(search_parent_directories=True).working_dir)
+sys.path.insert(0, str(diss_root / "doc" / "_ext"))
+
+from thesis_figure_styles import (
+    CHROMATOGRAM_HEIGHT_IN,
+    CHROMATOGRAM_MIN_WIDTH_IN,
+    THESIS_FIGURE_LAYOUT,
+)
+
 from examples.batch_elution.process import process
 
 from CADETProcess.simulator import Cadet
@@ -94,13 +108,16 @@ fractionator.add_fractionation_event('end_B', -1, 9*60)
 
 from CADETProcess import plotting
 
-fig, ax = fractionator.plot_fraction_signal(show=False)
+fig, ax = plotting.setup_figure(
+    layout=THESIS_FIGURE_LAYOUT,
+    figsize=(CHROMATOGRAM_MIN_WIDTH_IN, CHROMATOGRAM_HEIGHT_IN),
+)
+fractionator.plot_fraction_signal(ax=ax, show=False)
 glue("chromatogram_fractionation", fig, display=False)
 ```
 
 ```{glue:figure} chromatogram_fractionation
 :name: "chromatogram_fractionation"
-:scale: 100%
 
 Fractionation of a chromatogram.
 Blue: Target fraction of component $A$.

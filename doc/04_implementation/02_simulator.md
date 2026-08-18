@@ -114,13 +114,18 @@ simulation_results = process_simulator.simulate(process)
 
 glue("n_cycles", simulation_results.n_cycles)
 
-fig, ax = simulation_results.solution.column.outlet.plot()
+from CADETProcess import plotting
+
+fig, ax = plotting.setup_figure(
+    layout="1.5_col",
+    figsize=(90/25.4, 55/25.4),
+)
+simulation_results.solution.column.outlet.plot(ax=ax)
 glue("chromatogram_stationarity", fig, display=False)
 ```
 
 ```{glue:figure} chromatogram_stationarity
 :name: chromatogram_stationarity
-:scale: 100%
 
 Concentration profile at the column outlet across {glue:text}`n_cycles` simulated cycles, showing the startup transient and convergence to cyclic stationarity.
 ```

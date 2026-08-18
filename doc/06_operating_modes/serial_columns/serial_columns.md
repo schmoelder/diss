@@ -91,6 +91,7 @@ One strategy to increase productivity is to "shave off" sufficiently separated f
 
 ```{figure} ./figures/flow_sheet.png
 :name: serial_columns_flow_sheet
+:width: 100%
 
 Flow sheet for the serial columns process.
 ```
@@ -101,6 +102,7 @@ The process events are shown in {numref}`serial_columns_events`.
 
 ```{figure} ./figures/event_dependencies.png
 :name: serial_columns_events
+:width: 100%
 
 Events of serial columns process with event dependencies.
 ```
@@ -123,7 +125,7 @@ process_simulator = Cadet()
 
 simulation_results = process_simulator.simulate(process_demo)
 fig_serial_columns, _ = case_module.plot_results(simulation_results)
-resize_chromatogram_figure(fig_serial_columns, ncols=3)
+resize_chromatogram_figure(fig_serial_columns, ncols=3, row_height_in=48/25.4)
 glue("fig_serial_columns", fig_serial_columns, display=False)
 ```
 
@@ -132,7 +134,6 @@ For this study a ternary separation problem with a Langmuir isotherm is consider
 
 ```{glue:figure} fig_serial_columns
 :name: fig_serial_columns
-:scale: 100%
 
 Typical chromatogram of a serial columns process.
 **Left:** Concentration profile at outlet of first column.
@@ -170,7 +171,6 @@ glue("fig_serial_validation", fig_serial_validation, display=False)
 
 ```{glue:figure} fig_serial_validation
 :name: serial_columns_chromatogram
-:scale: 100%
 
 Comparison of serial columns simulation chromatograms (solid lines) with the analytical equilibrium theory solution (dashed lines), assuming a linear binding model and neglecting axial dispersion and other transport-limiting effects.
 **Left:** Concentration profile at first system outlet.

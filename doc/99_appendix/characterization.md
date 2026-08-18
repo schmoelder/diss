@@ -44,55 +44,61 @@ In all objective function value plots of this section, darker shades represent i
 :tags: [remove-cell]
 
 from e0 import plot
+from parameter_estimation_figures import resize_comparison_figure
+
 fig, ax = plot()
+ax.lines[0].set_markersize(4)
+ax.set_ylabel(r"$c_{\mathrm{salt}}~/~\mathrm{mM}$")
+ax.texts[0].set_fontsize(8)
+ax.texts[0].set_bbox(None)
+resize_comparison_figure(fig, width_in=90/25.4)
 glue("fig_conductivity", fig, display=False)
 ```
 
 ```{glue:figure} fig_conductivity
 :name: fig_conductivity
-:scale: 100%
 
 Calibration curve for conductivity sensor.
 ```
 
 ```{figure} figures/objectives/e1_objectives.png
 :name: e1_objectives
-:scale: 100%
+:width: 59%
 
 Evaluated objective values per optimization variable in experiment `E1`.
 ```
 
 ```{figure} figures/objectives/e2_objectives.png
 :name: e2_objectives
-:scale: 100%
+:width: 59%
 
 Evaluated objective values per optimization variable in experiment `E2`.
 ```
 
 ```{figure} figures/objectives/e3_objectives.png
 :name: e3_objectives
-:scale: 100%
+:width: 59%
 
 Evaluated objective values per optimization variable in experiment `E3`.
 ```
 
 ```{figure} figures/objectives/e4_objectives.png
 :name: e4_objectives
-:scale: 100%
+:width: 59%
 
 Evaluated objective values per optimization variable in experiment `E4`.
 ```
 
 ```{figure} figures/objectives/e5_objectives.png
 :name: e5_objectives
-:scale: 100%
+:width: 59%
 
 Evaluated objective values per optimization variable in experiment `E5`.
 ```
 
 ```{figure} figures/objectives/e6_objectives.png
 :name: e6_objectives
-:scale: 100%
+:width: 59%
 
 Evaluated objective values per optimization variable in experiment `E6`.
 ```

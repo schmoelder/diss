@@ -68,7 +68,16 @@ $$
 :tags: [remove-cell]
 
 from comparison_plots import plot_resin_titration
+from parameter_estimation_figures import (
+    resize_comparison_figure,
+    OBJECTIVE_COLUMN_WIDTH_IN,
+)
+
 fig, *_ = plot_resin_titration(plot_single=True)
+# Narrower than the other comparison figures: a single breakthrough curve on one
+# axis reads as an empty, overly wide box at the 2x column width used for the
+# multi-curve/twin-axis comparison figures.
+resize_comparison_figure(fig, width_in=1.5 * OBJECTIVE_COLUMN_WIDTH_IN)
 glue("fig_resin_titration", fig, display=False)
 
 glue("system_dead_volume", round(parameters_all["e8"]["system_dead_volume"]*1e6, 2))
@@ -100,7 +109,6 @@ glue("lambda_lysozyme", round(lambda_lysozyme, 2))
 
 ```{glue:figure} fig_resin_titration
 :name: fig_resin_titration
-:scale: 100%
 
 Breakthrough curve of $\ce{NaOH}$ for resin capacity titration.
 The dashed line indicates the time point of $10\%$ breakthrough used to determine the consumed $\ce{NaOH}$ volume.

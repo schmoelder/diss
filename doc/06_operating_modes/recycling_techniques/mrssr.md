@@ -85,6 +85,7 @@ A schematic flow diagram of the MR-SSR process is shown in {numref}`mrssr_flow_s
 
 ```{figure} ./figures/mrssr_flow_sheet.png
 :name: mrssr_flow_sheet
+:width: 100%
 
 Flow sheet for mixed-recycle steady-state recycling process.
 ```
@@ -99,6 +100,7 @@ To minimize the number of explicitly defined event times, event dependencies are
 
 ```{figure} ./figures/mrssr_events.png
 :name: mrssr_events
+:width: 100%
 
 Events for mixed-recycle steady-state recycling process with event dependencies.
 ```
@@ -134,7 +136,6 @@ glue("ssr_overlay", fig_overlay, display=False)
 
 ```{glue:figure} ssr_last
 :name: ssr_last
-:scale: 100%
 
 Example MR-SSR process in mixed-recycle operation for the separation of two components (blue and red) reaching cyclic steady state after 35 cycles.
 **Left:** Concentration profiles at the column's outlet.
@@ -151,7 +152,6 @@ For this demonstration, a standard two-component system with a Langmuir isotherm
 
 ```{glue:figure} ssr_overlay
 :name: ssr_overlay
-:scale: 100%
 
 Overlay of concentration profiles of all cycles, showing the transient towards stationarity.
 ```
@@ -185,7 +185,6 @@ glue("fig_mrssr_validation", fig_mrssr_validation, display=False)
 
 ```{glue:figure} fig_mrssr_validation
 :name: fig_mrssr_validation
-:scale: 100%
 
 Comparison of the MR-SSR simulation chromatogram (solid line) with the analytical equilibrium theory solution (dashed line), assuming a linear binding model and neglecting axial dispersion and other transport-limiting effects.
 ```

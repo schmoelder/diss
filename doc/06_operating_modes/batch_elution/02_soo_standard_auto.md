@@ -152,7 +152,6 @@ display(Markdown(soo_table))
 
 ```{glue:figure} soo_fig_chrom
 :name: batch-elution_auto-cycle_soo_fig_chrom
-:scale: 100%
 
 {glue:text}`soo_fig_chrom_caption`
 ```

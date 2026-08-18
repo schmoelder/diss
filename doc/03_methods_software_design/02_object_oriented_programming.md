@@ -142,7 +142,7 @@ This pattern of abstract base classes and concrete subclasses recurs throughout 
 
 ```{figure} ./figures/uml_unit_operation.png
 :name: uml_unit_operation_oop
-:scale: 25%
+:width: 45%
 
 UML class diagram of `UnitOperationBase` and `CSTR`.
 The abstract base class defines the common interface; `CSTR` inherits from it and adds model-specific parameters.

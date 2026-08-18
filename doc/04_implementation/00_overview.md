@@ -26,6 +26,7 @@ An overview of the corresponding modules and their relations is given in {numref
 
 ```{figure} ./figures/framework_overview.png
 :name: framework_overview
+:width: 85%
 
 Overview of the framework modules and their relations.
 White boxes represent input configurations and solution objects, blue boxes represent internal tools and procedures, green boxes represent external tools, and the orange box represents the core process model.

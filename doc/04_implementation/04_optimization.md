@@ -157,7 +157,6 @@ glue("fig_initial_values_normalized", fig, display=False)
 
 ```{glue:figure} fig_initial_values
 :name: fig_initial_values
-:scale: 100%
 
 Sampling without normalization: $D_{\text{ax}}$ values cluster near the upper bound, leaving the lower orders of magnitude nearly unexplored.
 ```
@@ -168,7 +167,6 @@ Sampling without normalization: $D_{\text{ax}}$ values cluster near the upper bo
 
 ```{glue:figure} fig_initial_values_normalized
 :name: fig_initial_values_normalized
-:scale: 100%
 
 Sampling with log-normalization applied to $D_{\text{ax}}$ (logarithmic scale): coverage is near-uniform across the full five orders of magnitude.
 ```
@@ -230,7 +228,7 @@ The process is then simulated, and the results are passed to the {class}`~CADETP
 
 ```{figure} ./figures/evaluation_example_comparator.png
 :name: evaluation_example_comparator
-:scale: 50%
+:width: 100%
 
 Steps required for calculating difference metrics in a parameter estimation problem.
 ```
@@ -246,7 +244,7 @@ Furthermore, a given optimization variable can be linked to either a single eval
 
 ```{figure} ./figures/evalobj_multiple_variables.png
 :name: multiple_evaluation_objects
-:scale: 25%
+:width: 30%
 
 Relationship between optimization variables and evaluation objects.
 Here, optimization variable $1$ is associated with both evaluation objects, while variable $2$ is specific to evaluation object $2$.
@@ -259,7 +257,7 @@ The full toolchain is illustrated in {numref}`evaluation_steps`.
 
 ```{figure} ./figures/evaluation_steps.png
 :name: evaluation_steps
-:scale: 25%
+:width: 100%
 
 Evaluation toolchain in CADET-Process.
 Optimization variables $v$ are mapped to parameters of evaluation objects $e$ (e.g., a {class}`~CADETProcess.processModel.Process`), each of which is then passed through a chain of $s$ evaluators.
@@ -275,7 +273,7 @@ Like objective and nonlinear constraint functions, callbacks are typically imple
 
 ```{figure} ./figures/callbacks_evaluation.png
 :name: callbacks
-:scale: 25%
+:width: 100%
 
 Evaluation of user-defined callbacks $c$ for each member $p$ of the Pareto front $X_{\text{Pareto}}$ in multi-objective optimization.
 ```
@@ -297,6 +295,7 @@ The latter is equivalent to single-objective optimization, but with an important
 
 ```{figure} ./figures/multi_criteria_decision_function.png
 :name: multi_criteria_decision_function
+:width: 100%
 
 Processing of Pareto front $X_{\text{Pareto}}$ with meta scores and multi-criteria decision function to generate reduced Pareto front $X_{\text{Pareto}}^\prime$.
 ```
@@ -379,7 +378,6 @@ glue("uniform_samples", fig, display=False)
 
 ```{glue:figure} uniform_samples
 :name: uniform_samples
-:scale: 100%
 
 Example for uniform sampling of parameter space with linear inequality constraints, used for initial values.
 ```
@@ -415,7 +413,6 @@ glue("objectives", fig, display=False)
 
 ```{glue:figure} objectives
 :name: objectives
-:scale: 100%
 
 Objective function values for all evaluated individuals.
 Darker shades represent individuals evaluated in later generations.
@@ -443,7 +440,6 @@ glue("pareto", fig, display=False)
 
 ```{glue:figure} pareto
 :name: pareto
-:scale: 100%
 
 Pareto plot of all evaluated individuals.
 ```
@@ -463,7 +459,6 @@ glue("convergence", fig, display=False)
 
 ```{glue:figure} convergence
 :name: convergence
-:scale: 100%
 
 Convergence of the optimization algorithm: objective values plotted against the number of function evaluations.
 ```

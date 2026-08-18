@@ -37,6 +37,7 @@ parameters_all = load_all_parameters(final_parameters_branch)
 
 from comparison_plots import load_cached_objective_results
 from parameter_estimation_figures import (
+    OBJECTIVE_COLUMN_WIDTH_IN,
     resize_comparison_figure,
     save_split_objective_figures,
 )
@@ -71,7 +72,7 @@ The experimental protocol consists of:
 
 from comparison_plots import plot_comparison_without_column
 fig, *_ = plot_comparison_without_column(parameters_all["e4"])
-resize_comparison_figure(fig)
+resize_comparison_figure(fig, width_in=2 * OBJECTIVE_COLUMN_WIDTH_IN)
 glue("fig_comparison_without_column", fig, display=False)
 
 from comparison_plots import create_system_table
@@ -96,7 +97,6 @@ The model accurately captures the time offset, which is the primary goal of the 
 
 ```{glue:figure} fig_comparison_without_column
 :name: fig_comparison_without_column
-:scale: 100%
 
 Comparison of simulation results using estimated parameters (solid lines) with reference experiments E1--4 (dotted lines) for system periphery experiments.
 ```

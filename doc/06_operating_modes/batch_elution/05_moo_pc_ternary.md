@@ -52,7 +52,6 @@ from operating_modes.post_processing import (
     setup_overview,
 )
 from operating_mode_figures import (
-    CHROMATOGRAM_PANEL_PRESET,
     TEXT_WIDTH_IN,
     create_figure_directives,
     plot_moo_chromatogram_figures,
@@ -173,9 +172,11 @@ display(Markdown(moo_fig_chrom_directives))
 Interestingly, the optimization landscape now exhibits a more complex structure.
 For the specific productivity of component $A$, three distinct optima are observed.
 This behavior becomes clear upon analyzing the chromatograms corresponding to these optima ({numref}`batch-elution_ternary_moo-pc_fig_nodes`):
+
 - The longest cycle time ($\alpha$) resembles the previous scenario, where the tail of component $C$ overlaps with the leading edge of component $A$ from the subsequent injection.
 - At a shorter cycle time ($\beta$), components $A$ and $B$ overtake component $C$ from the previous injection, resulting in the $C$ peak being interlocked between the $B$ and $A$ peaks of consecutive injections.
 - With the shortest cycle time ($\gamma$), components $A$ and $B$ overtake the $C$ peak from two previous injections.
+
 This creates a highly efficient operational scenario, as components $B$ and $C$, neither of which is a target component, are effectively managed to minimize their impact on the process.
 
 ```{code-cell} ipython3
@@ -192,7 +193,7 @@ from operating_modes.post_processing import (
 fig_nodes, axs = plotting.setup_figure(
     nrows=3,
     ncols=2,
-    figsize=(TEXT_WIDTH_IN, CHROMATOGRAM_PANEL_PRESET.row_height_in * 3),
+    figsize=(TEXT_WIDTH_IN, 3 * 48/25.4),
     squeeze=False,
 )
 optimization_problem = moo_results.optimization_problem
@@ -281,7 +282,6 @@ glue("moo_fig_nodes", fig_nodes, display=False)
 
 ```{glue:figure} moo_fig_nodes
 :name: batch-elution_ternary_moo-pc_fig_nodes
-:scale: 100%
 
 Comparison of local productivity optima for component $A$ across different cycle times.
 **Left column:** Chromatograms for all cycles until cyclic stationarity is reached.

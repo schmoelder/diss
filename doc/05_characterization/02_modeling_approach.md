@@ -18,6 +18,7 @@ These will be discussed later in {numref}`column_parameters` and {numref}`adsorp
 
 ```{figure} ./figures/knauer_model.png
 :name: knauer_model
+:width: 100%
 
 Model of Knauer system.
 ```

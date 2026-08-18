@@ -20,6 +20,7 @@ execution:
 from pathlib import Path
 import sys
 
+import matplotlib
 from IPython.display import display, Markdown
 from git import Repo
 from myst_nb import glue
@@ -37,7 +38,9 @@ parameters_all = load_all_parameters(final_parameters_branch)
 
 from comparison_plots import load_cached_objective_results
 from parameter_estimation_figures import (
+    OBJECTIVE_COLUMN_WIDTH_IN,
     resize_comparison_figure,
+    resize_objective_comparison_figure,
     save_split_objective_figures,
 )
 
@@ -49,6 +52,10 @@ save_split_objective_figures(
     optimization_results,
     diss_root / "doc" / "05_characterization" / "figures" / "objectives",
     file_stem="e9_objectives",
+    # Shrunk from the shared OBJECTIVE_ROW_HEIGHT_IN (1.5in) just for this
+    # figure so it fits on one page together with fig_e9_meta_scores; see
+    # doc/05_characterization/06_adsorption_parameters.md figure block below.
+    row_height_in=1.4,
 )
 ```
 
@@ -78,7 +85,7 @@ fig, ax_lysozyme, ax_salt = plot_lysozyme(
     include_pore_diffusion=False,
     is_kinetic=False,
 )
-resize_comparison_figure(fig)
+resize_comparison_figure(fig, width_in=2 * OBJECTIVE_COLUMN_WIDTH_IN)
 glue("fig_lysozyme", fig, display=False)
 
 from comparison_plots import create_lysozyme_table
@@ -96,7 +103,7 @@ fig_validation, ax_lysozyme, ax_salt = plot_lysozyme(
     is_kinetic=False,
     use_validation=True,
 )
-resize_comparison_figure(fig_validation)
+resize_comparison_figure(fig_validation, width_in=2 * OBJECTIVE_COLUMN_WIDTH_IN)
 glue("fig_lysozyme_validation", fig_validation, display=False)
 ```
 
@@ -111,7 +118,6 @@ display(Markdown(tab_lysozyme))
 
 ```{glue:figure} fig_lysozyme
 :name: fig_lysozyme
-:scale: 100%
 
 Comparison of experimental data with simulation results at pH 5 for 4, 8, 12, and 16 CV gradients.
 ```
@@ -121,7 +127,6 @@ To further validate the model, two additional gradient experiments using 6 and 1
 
 ```{glue:figure} fig_lysozyme_validation
 :name: fig_lysozyme_validation
-:scale: 100%
 
 Comparison of experimental data with simulation results at pH 5 for 6 and 14 CV gradients.
 ```
@@ -147,13 +152,22 @@ fig, axs = plot_meta_score(
     study_root,
     parameters_all["e9_lrmp_4_cv"]["branch_name"],
 )
-
+axs[1].set_ylabel('')
+axs[1].tick_params(labelleft=False)
+for ax in axs:
+    # The submodule plots this on a log y-axis, which for this data's sub-decade
+    # range yields sparse, oddly-formatted ticks (e.g. "2 x 10^-1"). Switch to
+    # linear to match the plain decimal ticks used in fig_e9_objectives (5.11).
+    ax.set_yscale("linear")
+    ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(nbins=5, min_n_ticks=4))
+    ax.xaxis.set_major_locator(matplotlib.ticker.MaxNLocator(nbins=4, min_n_ticks=3))
+resize_objective_comparison_figure(fig, ncols=2, nrows=1)
+fig.subplots_adjust(wspace=0.6)
 glue("fig_e9_meta_scores", fig, display=False)
 ```
 
 ```{glue:figure} fig_e9_meta_scores
 :name: fig_e9_meta_scores
-:scale: 100%
 
 Sum of evaluated objective values per optimization variable in experiment `E9`, assuming non-limiting film diffusion and rapid equilibrium.
 Darker shades represent individuals evaluated in later generations.
@@ -161,7 +175,6 @@ Darker shades represent individuals evaluated in later generations.
 
 ```{figure} figures/objectives/e9_objectives.png
 :name: e9_objectives
-:scale: 100%
 
 Evaluated objective values per optimization variable in experiment `E9`, assuming non-limiting film diffusion and rapid equilibrium.
 Darker shades represent individuals evaluated in later generations.

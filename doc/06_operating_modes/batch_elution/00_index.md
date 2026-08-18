@@ -74,12 +74,14 @@ The CADET-Process implementation follows the structure described in {numref}`pro
 
 ```{figure} ./figures/flow_sheet.png
 :name: batch_elution_flow_sheet
+:width: 100%
 
 Flow sheet for the batch-elution process.
 ```
 
 ```{figure} ./figures/event_dependencies.png
 :name: batch_elution_events
+:width: 100%
 
 Events of batch-elution process with event dependencies.
 ```
@@ -108,7 +110,6 @@ glue("fig_batch_elution", fig_batch_elution, display=False)
 
 ```{glue:figure} fig_batch_elution
 :name: fig_batch_elution
-:scale: 100%
 
 Typical chromatogram of a batch-elution process.
 ```
@@ -145,7 +146,6 @@ glue("fig_batch_elution_validation", fig_batch_elution_validation, display=False
 
 ```{glue:figure} fig_batch_elution_validation
 :name: fig_batch_elution_validation
-:scale: 100%
 
 Comparison of a batch-elution simulation chromatogram (solid line) with an analytical equilibrium theory solution (dashed line), assuming a linear binding model and neglecting axial dispersion and other transport-limiting effects.
 ```

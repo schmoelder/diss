@@ -91,12 +91,14 @@ The profiles illustrate that the recycled material does not fully exit the syste
 
 ```{figure} ./figures/clr_flow_sheet.png
 :name: clr_flow_sheet
+:width: 100%
 
 Flow sheet for closed-loop recycling process.
 ```
 
 ```{figure} ./figures/clr_events.png
 :name: clr_events
+:width: 100%
 
 Events for closed-loop recycling process.
 ```
@@ -124,7 +126,6 @@ glue("fig_clr_demo", fig_clr_demo, display=False)
 
 ```{glue:figure} fig_clr_demo
 :name: fig_clr_demo
-:scale: 100%
 
 **Left:** Concentration at column outlet.
 **Right:** Concentration at system outlet.
@@ -158,7 +159,6 @@ glue("fig_clr_validation", fig_clr_validation, display=False)
 
 ```{glue:figure} fig_clr_validation
 :name: fig_clr_validation
-:scale: 100%
 
 Comparison of the CLR simulation chromatogram (solid line) with the analytical equilibrium theory solution (dashed line), assuming a linear binding model and neglecting axial dispersion and other transport-limiting effects.
 ```
@@ -290,7 +290,6 @@ glue("moo_fig_outlets", fig_column_outlet, display=False)
 
 ```{glue:figure} moo_fig_outlets
 :name: clr_moo-pc_fig_outlet
-:scale: 100%
 
 Concentration profiles at column outlets for Pareto edge points (a) and (c) of CLR process with difficult separation problem.
 ```
