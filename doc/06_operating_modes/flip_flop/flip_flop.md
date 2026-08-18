@@ -105,10 +105,21 @@ In CADET-Process, a full cycle requires all parameters to return to their initia
 To ensure full elution of the strongly bound component, the injection is delayed by $\Delta t_{\text{delay}}$.
 The process events are shown in {numref}`flip_flop_flow_events`.
 
+```{raw} latex
+\pagebreak
+\begin{landscape}
+```
+
 ```{figure} ./figures/event_dependencies.png
 :name: flip_flop_flow_events
+:width: 100%
 
 Events of flip-flop process with event dependencies.
+```
+
+```{raw} latex
+\end{landscape}
+\pagebreak
 ```
 
 ```{code-cell} ipython3
