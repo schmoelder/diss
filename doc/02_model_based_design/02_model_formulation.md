@@ -22,7 +22,7 @@ This relationship is defined by an equilibrium constant $a$, sometimes referred 
 ```{math}
 :label: linear_equilibrium
 
-c^s = a \cdot c^l
+c^s = a \cdot c^l.
 ```
 
 This linear model assumes an excess of adsorption sites and no interactions between adsorbed molecules {cite}`SchmidtTraub2020`.
@@ -134,13 +134,12 @@ c^s_0 = \Lambda - \sum_{j=1}^{N_{\text{comp}} - 1} \nu_j c^s_j,
 where $\Lambda$ is the total ionic capacity of the resin.
 Steric effects also play an important role, especially for large molecules like proteins.
 Due to their shape, some binding sites may be shielded from other molecules, effectively reducing the number of free binding sites $\bar{c}^s_0$.
-
 This can be accounted for by modifying the selectivity expression:
 
 ```{math}
 :label: sma_selectivity_steric
 
-K_{i, 0} = \left( \frac{c^s_i}{c^l_i} \right)^{\nu_i} \left( \frac{c^l_0}{\bar{c}^s_0} \right)^{\nu_0} \quad i = 1, \dots, N_{\text{comp}} - 1,
+K_{i, 0} = \left( \frac{c^s_i}{c^l_i} \right)^{\nu_i} \left( \frac{c^l_0}{\bar{c}^s_0} \right)^{\nu_0} \quad i = 1, \dots, N_{\text{comp}} - 1.
 ```
 
 To model steric shielding, a steric shielding factor $\sigma$ is introduced {cite}`Brooks1992`:
@@ -148,7 +147,7 @@ To model steric shielding, a steric shielding factor $\sigma$ is introduced {cit
 ```{math}
 :label: sma_free_sites
 
-\bar{c}^s_0 = c^s_0 - \sum_{j=1}^{N_{\text{comp}} - 1} \sigma_j c^s_j = \Lambda - \sum_{j=1}^{N_{\text{comp}} - 1} \left( \nu_j + \sigma_j \right) c^s_j
+\bar{c}^s_0 = c^s_0 - \sum_{j=1}^{N_{\text{comp}} - 1} \sigma_j c^s_j = \Lambda - \sum_{j=1}^{N_{\text{comp}} - 1} \left( \nu_j + \sigma_j \right) c^s_j.
 ```
 
 The complete Steric Mass Action (SMA) model, which incorporates both kinetics and equilibrium, is then given by
@@ -177,7 +176,7 @@ The net flux for component $i$ is expressed as
 
 \begin{aligned}
  f_{\text{react},i}\left(c\right) &= \sum_{r=0}^{N_{\text{react}}-1} s_{i,r} \varphi_r\left(c\right), \\
- \varphi_r(c) &= k_{\text{fwd},r} \prod_{\ell=0}^{N_{\text{comp}}-1} \left(c_{\ell}\right)^{e_{\text{fwd},\ell,r}} - k_{\text{bwd},r} \prod_{\ell=0}^{N_{\text{comp}}-1} \left(c_{\ell}\right)^{e_{\text{bwd},\ell,r}},
+ \varphi_r(c) &= k_{\text{fwd},r} \prod_{\ell=0}^{N_{\text{comp}}-1} \left(c_{\ell}\right)^{e_{\text{fwd},\ell,r}} - k_{\text{bwd},r} \prod_{\ell=0}^{N_{\text{comp}}-1} \left(c_{\ell}\right)^{e_{\text{bwd},\ell,r}}.
 \end{aligned}
 ```
 
@@ -187,6 +186,7 @@ Here, subscript $i$ denotes the component of interest, $r$ the reaction, and $\e
 - $\varphi_r(c)$ is the net flux of reaction $r$.
 - $k_{\text{fwd},r}$ and $k_{\text{bwd},r}$ are the forward and backward rate constants, respectively.
 - $e_{\text{fwd},\ell,r}$ and $e_{\text{bwd},\ell,r}$ are the reaction orders for the forward and backward reactions, respectively.
+
 By default, the exponents $e_{\text{fwd},\ell,r}$ and $e_{\text{bwd},\ell,r}$ are derived from the stoichiometric coefficients using the following rules:
 
 ```{math}
@@ -237,7 +237,7 @@ The differential mass balance for component $i$ in the mobile phase is given by
 ```{math}
 :label: mass_balance_pfr
 
-\frac{\partial c^b_i}{\partial t} = - u \cdot \frac{\partial c^b_i}{\partial z},
+\frac{\partial c^b_i}{\partial t} = - u \frac{\partial c^b_i}{\partial z},
 ```
 
 where $z$ is the axial coordinate along the column.
@@ -253,7 +253,7 @@ u \cdot c_{in,i}(t) = u \cdot c^b_i(t,0) \quad \forall t > 0,
 ```{math}
 :label: danckwerts_out_pfr
 
-\frac{\partial c^b_i}{\partial z}(t, L_c) = 0 \quad \forall t > 0,
+\frac{\partial c^b_i}{\partial z}(t, L_c) = 0 \quad \forall t > 0.
 ```
 
 Here, $c_{in,i}(t)$ is the inlet concentration of component $i$, and $L_c$ is the length of the column.
@@ -270,7 +270,7 @@ This phenomenon is described analogously to Fick's laws of diffusion {cite}`Schm
 ```{math}
 :label: axial_dispersion
 
-\frac{\partial c^b_i}{\partial t} = D_{ax,i} \cdot \frac{\partial^2 c^b_i}{\partial z^2},
+\frac{\partial c^b_i}{\partial t} = D_{ax,i} \frac{\partial^2 c^b_i}{\partial z^2},
 ```
 
 where $D_{ax,i}$ is the axial dispersion coefficient, which reflects the deviations from ideal plug flow due to column packing quality.
@@ -279,7 +279,7 @@ Incorporating axial dispersion modifies the mass balance equation of the PFR mod
 ```{math}
 :label: mass_balance_dpfr
 
-\frac{\partial c^b_i}{\partial t} = -u \cdot \frac{\partial c^b_i}{\partial z} + D_{ax,i} \frac{\partial^2 c^b_i}{\partial z^2}.
+\frac{\partial c^b_i}{\partial t} = -u \frac{\partial c^b_i}{\partial z} + D_{ax,i} \frac{\partial^2 c^b_i}{\partial z^2}.
 ```
 
 The boundary conditions follow the same Danckwerts approach, but the inlet condition now includes the additional dispersion flux term:
@@ -295,10 +295,10 @@ To account for chemical reactions within the (D)PFR, an additional term describi
 ```{math}
 :label: mass_balance_dpfr_reaction
 
-\frac{\partial c^b_i}{\partial t} = -u \cdot \frac{\partial c^b_i}{\partial z} + D_{ax,i} \frac{\partial^2 c^b_i}{\partial z^2} + f_{\text{react},i}(c^b),
+\frac{\partial c^b_i}{\partial t} = -u \frac{\partial c^b_i}{\partial z} + D_{ax,i} \frac{\partial^2 c^b_i}{\partial z^2} + f^b_{\text{react},i}(c^b),
 ```
 
-where $f_{\text{react},i}(c^b)$ represents the reaction flux for component $i$.
+where $f^b_{\text{react},i}(c^b)$ represents the reaction flux for component $i$ in the bulk phase.
 
 (equilibrium_model)=
 ### Equilibrium model
@@ -309,7 +309,7 @@ The particles in the bed reduce the effective cross-sectional area available for
 ```{math}
 :label: convection_em
 
-\dot{m}_{conv, i} = Q \cdot c^b_i \quad \text{with} \quad Q = \varepsilon^t \cdot A_c \cdot u ,
+\dot{m}_{conv, i} = Q \cdot c^b_i \quad \text{with} \quad Q = \varepsilon^t \cdot A_c \cdot u,
 ```
 
 where $\varepsilon^t$ is the total porosity of the packed bed, $u$ is the mobile phase velocity, and $A_c$ is the column's cross-sectional area.
@@ -329,20 +329,17 @@ The differential mass balance for component $i$ is expressed as
 ```{math}
 :label: mass_balance_em
 
-\frac{\partial c^b_i}{\partial t} + F \cdot \frac{\partial c^s_i}{\partial t} = -u \cdot \frac{\partial c^b_i}{\partial z},
+\frac{\partial c^b_i}{\partial t} + F \frac{\partial c^s_i}{\partial t} = -u \frac{\partial c^b_i}{\partial z},
 ```
 
-where:
+where $c^b_i$ is the concentration of component $i$ in the mobile phase, $c^s_i$ the concentration in the stationary phase, and $F = \frac{1 - \varepsilon^t}{\varepsilon^t}$ the phase ratio.
 
-- $c^b_i$ is the concentration of component $i$ in the mobile phase,
-- $c^s_i$ is the concentration in the stationary phase, and
-- $F = \frac{1 - \varepsilon^t}{\varepsilon^t}$ is the phase ratio.
 The relationship between $c^b$ and $c^s$ is defined by the adsorption isotherm (see {numref}`isotherm_models`):
 
 ```{math}
 :label: implicit_adsorption
 
-0 = f_{\text{ads}} \left( c^b, c^s \right).
+0 = f_{\text{ads},i} \left( c^b, c^s \right).
 ```
 
 (lumped_rate_model_without_pores)=
@@ -357,7 +354,7 @@ To account for peak broadening effects, axial dispersion is included, leading to
 ```{math}
 :label: mass_balance_edm
 
-\frac{\partial c^b_i}{\partial t} + F \cdot \frac{\partial c^s_i}{\partial t} = -u \cdot \frac{\partial c^b_i}{\partial z} + D_{ax,i} \frac{\partial^2 c^b_i}{\partial z^2}.
+\frac{\partial c^b_i}{\partial t} + F \frac{\partial c^s_i}{\partial t} = -u \frac{\partial c^b_i}{\partial z} + D_{ax,i} \frac{\partial^2 c^b_i}{\partial z^2}.
 ```
 
 Conversely, the Thomas model considers finite adsorption rates as discussed in {numref}`isotherm_models`, but neglects dispersion effects {cite}`Thomas1944`:
@@ -366,8 +363,8 @@ Conversely, the Thomas model considers finite adsorption rates as discussed in {
 :label: mass_balance_thomas
 
 \begin{aligned}
-\frac{\partial c^b_i}{\partial t} + F \cdot \frac{\partial c^s_i}{\partial t} &= -u \cdot \frac{\partial c^b_i}{\partial z}, \\
-\frac{\partial c^s_i}{\partial t} &= f_{\text{ads}}\left( c^b, c^s \right).
+\frac{\partial c^b_i}{\partial t} + F \frac{\partial c^s_i}{\partial t} &= -u \frac{\partial c^b_i}{\partial z}, \\
+\frac{\partial c^s_i}{\partial t} &= f_{\text{ads},i}\left( c^b, c^s \right).
 \end{aligned}
 ```
 
@@ -379,6 +376,9 @@ This framework allows for independent specification of dispersion and adsorption
 - The transport-dispersive model (TDM) corresponds to the LRM with dynamic binding ($f_{\text{ads}}$) and $D_{ax} > 0$.
 - The Thomas model corresponds to the LRM with dynamic binding ($f_{\text{ads}}$) and $D_{ax} = 0$.
 
+The equilibrium, equilibrium-dispersive, and Thomas equations are stated in their original form and omit reaction source terms.
+Reactions enter the bulk phase balance of these models as in eq. {eq}`mass_balance_dpfr_reaction`.
+
 
 (lumped_rate_model_with_pores)=
 ### Lumped rate model with pores
@@ -386,7 +386,7 @@ This framework allows for independent specification of dispersion and adsorption
 To account for additional mass-transfer-limiting effects, the volume of the particle pores can be considered by introducing the particle porosity, $\varepsilon^p$.
 This creates a separate reference volume within the particles in which the solute concentration, $c^p_i$, can differ from the bulk liquid phase concentration, $c^b_i$, where convection occurs.
 The interstitial or bed porosity $\varepsilon^b$ represents the void volume between the particles in the packed bed.
-The total porosity, $\varepsilon^t$, is then given by:
+The total porosity, $\varepsilon^t$, is then given by
 
 ```{math}
 :label: total_porosity
@@ -400,21 +400,21 @@ The stationary phase particles are assumed to be surrounded by a stagnant bounda
 A thicker boundary layer slows down mass transport and increases band broadening, while a thinner layer allows for faster mass transfer and improves separation efficiency.
 To model this, a film diffusion term accounts for transport through the stagnant film around the particles.
 The flux through this boundary layer depends on the specific surface area, $a_s$, of the particles in a finite volume element.
-Here, $A^p$ denotes the total particle surface area and $V$ the volume of the element, giving:
+Here, $A^p$ denotes the total particle surface area and $V$ the volume of the element, giving
 
 ```{math}
 :label: specific_particle_surface
 
-a_s = \frac{\text{d} A^p}{\text{d} V} = \frac{3}{r^p} \cdot (1 - \varepsilon^b),
+a_s = \frac{\text{d} A^p}{\text{d} V} = \frac{3}{r^p} (1 - \varepsilon^b),
 ```
 
 where $r^p$ is the particle radius.
-The transport from the bulk phase (denoted by the superscript $b$) to the pore phase (denoted by the superscript $p$), governed by the film mass transfer coefficient $k_{f,i}$, is then given by:
+The transport from the bulk phase (denoted by the superscript $b$) to the pore phase (denoted by the superscript $p$), governed by the film mass transfer coefficient $k_{f,i}$, is then given by
 
 ```{math}
 :label: film_diffusion
 
-\frac{\partial c^p_i}{\partial t} = F \cdot \frac{3}{\varepsilon^p r^p} \cdot k_{f,i} \left(c^b_i - c^p_i \right).
+\frac{\partial c^p_i}{\partial t} = \frac{3}{\varepsilon^p r^p} k_{f,i} \left(c^b_i - c^p_i \right).
 ```
 
 The lumped rate model with pores (LRMP) combines these considerations into the following mass balance equations for component $i$ in the bulk phase and the pore phase:
@@ -422,31 +422,27 @@ The lumped rate model with pores (LRMP) combines these considerations into the f
 ```{math}
 :label: mass_balance_lrmp
 
-\frac{\partial c^b_i}{\partial t} = -u \cdot \frac{\partial c^b_i}{\partial z} + D_{ax,i} \frac{\partial^2 c^b_i}{\partial z^2} - F \cdot \frac{3}{r^p} \cdot k_{f,i} \left(c^b_i - c^p_i \right) + f_{\text{react}}(c^b) , \\
-\frac{\partial c^p_i}{\partial t} + \frac{1 - \varepsilon^p}{\varepsilon^p} \cdot \frac{\partial c^s_i}{\partial t} = \frac{3}{\varepsilon^p r^p} \cdot k_{f,i} \left(c^b_i - c^p_i \right) + f^p_{\text{react}}(c^p, c^s) + \frac{1 - \varepsilon^p}{\varepsilon^p} f^s_{\text{react}}(c^p, c^s).
+\frac{\partial c^b_i}{\partial t} = -u \frac{\partial c^b_i}{\partial z} + D_{ax,i} \frac{\partial^2 c^b_i}{\partial z^2} - \frac{1 - \varepsilon^b}{\varepsilon^b} \frac{3}{r^p} k_{f,i} \left(c^b_i - c^p_i \right) + f^b_{\text{react},i}(c^b), \\
+\frac{\partial c^p_i}{\partial t} + \frac{1 - \varepsilon^p}{\varepsilon^p} \frac{\partial c^s_i}{\partial t} = \frac{3}{\varepsilon^p r^p} k_{f,i} \left(c^b_i - c^p_i \right) + f^p_{\text{react},i}(c^p, c^s) + \frac{1 - \varepsilon^p}{\varepsilon^p} f^s_{\text{react},i}(c^p, c^s),
 ```
 
-where:
+where $f^b_{\text{react},i}$, $f^p_{\text{react},i}$, and $f^s_{\text{react},i}$ collect the reaction source terms in the bulk, pore, and solid phase, respectively.
+Each balance is referenced to the volume of the phase whose concentration it tracks, which is why the two film terms carry different prefactors.
+The particle volume fraction $1 - \varepsilon^b$ contained in the specific surface area $a_s$ cancels once the flux is expressed per unit pore volume, so no phase ratio remains in the particle balance.
 
-- $f_{\text{react}}(c^b)$ represents reaction kinetics in the bulk phase,
-- $f_{\text{react}}^p(c^p, c^s)$ represents reactions in the pore phase, and
-- $f_{\text{react}}^s(c^p, c^s)$ represents reactions on the particle surface.
-
-The adsorption process in this model can be described in either a quasi-stationary or dynamic form:
+The solid phase balance closes the particle model.
+In the dynamic form, bound solute accumulates through adsorption and surface reactions, whereas the quasi-stationary approximation assumes instantaneous equilibrium and reduces the balance to an algebraic condition,
 
 ```{math}
 :label: adsorption_dynamics
 
 \begin{aligned}
-    \text{quasi-stationary: } \quad 0 &= f_{\text{ads}} \left( c^p, c^s \right), \\
-    \text{dynamic: } \quad \frac{\partial c^s_i}{\partial t} &= f_{\text{ads}} \left( c^p, c^s \right) + f^s_{\text{react}}(c^p, c^s).
+    \text{quasi-stationary: } \quad 0 &= f_{\text{ads},i} \left( c^p, c^s \right), \\
+    \text{dynamic: } \quad \frac{\partial c^s_i}{\partial t} &= f_{\text{ads},i} \left( c^p, c^s \right) + f^s_{\text{react},i}(c^p, c^s),
 \end{aligned}
 ```
 
-Here:
-
-- $f_{\text{ads}}(c^p, c^s)$ is the adsorption isotherm model equation (describing binding dynamics),
-- $f_{\text{react}}^s(c^p, c^s)$ accounts for surface reactions on the stationary phase.
+where $f_{\text{ads},i}$ denotes the adsorption isotherm model equation (see {numref}`isotherm_models`).
 
 (high_fidelity_models)=
 ### High-fidelity models
@@ -458,7 +454,7 @@ Assuming spherical, monodisperse particles with a homogeneous pore structure, th
 ```{math}
 :label: mass_balance_grm
 
-\frac{\partial c^p_i}{\partial t} + \frac{1 - \varepsilon^p}{\varepsilon^p} \frac{\partial c^s_i}{\partial t} = D_{p,i} \frac{1}{r^2} \frac{\partial}{\partial r} \left( r^2 \frac{\partial c^p_i}{\partial r} \right) + f^p_{\text{react}}(c^p, c^s) + \frac{1 - \varepsilon^p}{\varepsilon^p} f^s_{\text{react}}(c^p, c^s),
+\frac{\partial c^p_i}{\partial t} + \frac{1 - \varepsilon^p}{\varepsilon^p} \frac{\partial c^s_i}{\partial t} = D_{p,i} \frac{1}{r^2} \frac{\partial}{\partial r} \left( r^2 \frac{\partial c^p_i}{\partial r} \right) + f^p_{\text{react},i}(c^p, c^s) + \frac{1 - \varepsilon^p}{\varepsilon^p} f^s_{\text{react},i}(c^p, c^s),
 ```
 
 where $D_{p,i}$ denotes the pore diffusion coefficient of component $i$.

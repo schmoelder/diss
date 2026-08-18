@@ -126,7 +126,7 @@ Grey areas represent waste fractions.
 ```
 
 In advanced operating modes such as recycling or SMB, outlet chromatograms can be considerably more complex than the example in {numref}`chromatogram_fractionation`: multiple non-contiguous sections may contribute to the same target fraction $f$, flow sheets may have several outlets $k$ that are fractionated simultaneously, and the volumetric flow rate $Q_k$ at each outlet may vary over time.
-To accommodate these cases, the total collected amount of component $i$ is defined as:
+To accommodate these cases, the total collected amount of component $i$ is defined as
 
 ```{math}
 :label: molar_amount
@@ -167,7 +167,7 @@ V_{\text{eluent}} = \sum_{s=1}^{N_{\text{eluents}}} \int_{0}^{t_{\text{cycle}}} 
 n_{\text{feed},i} = \sum_{f=1}^{N_{\text{feeds}}} \int_{0}^{t_{\text{cycle}}} Q_f(t) \cdot c_{f,i}(t) dt.\\
 ```
 
-The cumulative product purity $PU_i$ is given by:
+The cumulative product purity $PU_i$ is given by
 
 ```{math}
 :label: purity
@@ -190,7 +190,7 @@ This simple calculation provides a rough estimate of the total separation costs,
 C_{i,\text{total}} = C_{\text{operating}} + C_{\text{depreciation}} + C_{i,\text{ads}} + C_{i,\text{eluent}} + C_{i,\text{feed}}. \\
 ```
 
-The cost associated with the eluent, $C_{i, \text{eluent}}$, which is the solvent used to elute the target product from the adsorbent, is calculated as:
+The cost associated with the eluent, $C_{i, \text{eluent}}$, which is the solvent used to elute the target product from the adsorbent, is calculated as
 
 ```{math}
 :label: eluent_cost
@@ -198,20 +198,20 @@ C_{i, \text{eluent}} = EC_{i} \cdot \dot{n}_{i, \text{annual}} \cdot p_{\text{el
 ```
 
 where $EC_{i}$ is the eluent consumption in $\text{m}^3$ per mol of product, $\dot{n}_{i, \text{annual}}$ is the annual production rate in mol per year, and $p_{\text{eluent}}$ is the eluent price in $\euro$ per $\text{m}^3$.
-The feed cost, $C_{i, \text{feed}}$, which reflects the cost of the feed material processed in the separation, is given by:
+The feed cost, $C_{i, \text{feed}}$, which reflects the cost of the feed material processed in the separation, is given by
 
 ```{math}
 :label: feed_cost
-C_{i, \text{feed}} = \frac{1 - Y_i}{Y_i} \cdot \dot{n}_{i, \text{annual}} \cdot p_{\text{feed}}, \\
+C_{i, \text{feed}} = \frac{1 - Y_i}{Y_i} \dot{n}_{i, \text{annual}} \cdot p_{\text{feed}}, \\
 ```
 
 where $Y_i$ is the product yield, and $p_{\text{feed}}$ is the feed price in $\euro$ per $\text{m}^3$.
-The adsorbent cost, $C_{i, \text{ads}}$, which reflects the cost of the adsorbent material used in the separation, can be calculated as:
+The adsorbent cost, $C_{i, \text{ads}}$, which reflects the cost of the adsorbent material used in the separation, can be calculated as
 
 ```{math}
 :label: adsorbent_cost
 
-C_{i,\text{ads}} = \frac{1}{PR_i} \cdot \dot{n}_{i,\text{annual}} \cdot \frac{p_{\text{ads}}}{\Delta t_{\text{life}}}, \\
+C_{i,\text{ads}} = \frac{1}{PR_i} \dot{n}_{i,\text{annual}} \frac{p_{\text{ads}}}{\Delta t_{\text{life}}}, \\
 ```
 
 where $PR_i$ is the productivity in mol per $\text{m}^3$ of adsorbent per unit time, $p_{\text{ads}}$ is the adsorbent price in $\euro$ per $\text{m}^3$, and $\Delta t_{\text{life}}$ is the lifetime of the adsorbent material.
@@ -233,7 +233,7 @@ f(x) = \frac{PR_{\text{weighted}}(x) \cdot Y_{\text{weighted}}(x)}{EC_{\text{wei
 Here, $PR_{\text{weighted}}(x)$, $Y_{\text{weighted}}(x)$, and $EC_{\text{weighted}}(x)$ represent the weighted values of productivity, yield, and eluent consumption, respectively.
 The term "weighted" reflects the process of assigning weighting factors to individual components, allowing their relative importance to be incorporated into the overall objective.
 When multiple target components are considered, their contributions to the objective function are combined using weighting factors $\omega_i$, which reflect the relative significance of each component.
-Each weighted performance indicator $KPI_{\text{weighted}}$ is then calculated as:
+Each weighted performance indicator $KPI_{\text{weighted}}$ is then calculated as
 
 ```{math}
 :label: ranked_performance

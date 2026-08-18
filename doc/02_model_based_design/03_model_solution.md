@@ -37,7 +37,7 @@ Using the chain rule, the time derivative of the solid phase concentration can b
 ```{math}
 :label: solid_phase_derivative_chain_rule
 
-\frac{\partial c^s_i}{\partial t} = \left. \frac{\text{d} c^s_i}{\text{d} c^b_i} \right|_{c^{b,+}_i} \cdot \frac{\partial c^b_i}{\partial t}.
+\frac{\partial c^s_i}{\partial t} = \left. \frac{\text{d} c^s_i}{\text{d} c^b_i} \right|_{c^{b,+}_i} \frac{\partial c^b_i}{\partial t}.
 ```
 
 Rearranging eq. {eq}`mass_balance_em` and substituting eq. {eq}`solid_phase_derivative_chain_rule` yields the propagation velocity $w(c^{b,+}_i)$
@@ -49,7 +49,7 @@ of a concentration front $c^{b,+}_i$:
 w(c^{b,+}_i) = \frac{u}{1 + F \cdot \left. \frac{\text{d} c^s_i}{\text{d} c^b_i} \right|_{c^{b,+}_i}}.
 ```
 
-By considering the column length $L_c$, the retention time $t_{\text{R},i}(c^{b,+}_i)$ can be derived as:
+By considering the column length $L_c$, the retention time $t_{\text{R},i}(c^{b,+}_i)$ can be derived as
 
 ```{math}
 :label: retention_time
@@ -57,7 +57,7 @@ By considering the column length $L_c$, the retention time $t_{\text{R},i}(c^{b,
 t_{\text{R},i}(c^{b,+}_i) = \frac{L_c}{w(c^{b,+}_i)} = t_{0,t} \cdot \left( 1 + F \cdot \left. \frac{\text{d} c^s_i}{\text{d} c^b_i} \right|_{c^{b,+}_i} \right),
 ```
 where $t_{0,t} = L_c / u$ is the column dead time.
-For a linear isotherm, where $\frac{\text{d} c^s_i}{\text{d} c^b_i} = a_i$ (Henry coefficient), this simplifies to:
+For a linear isotherm, where $\frac{\text{d} c^s_i}{\text{d} c^b_i} = a_i$ (Henry coefficient), this simplifies to
 
 ```{math}
 :label: retention_time_linear
@@ -97,7 +97,7 @@ First, different approaches for spatial semi-discretization are discussed, follo
 
 % Finite Difference
 The finite difference method (FDM) is based on Taylor's theorem, where a Taylor series is used to replace spatial derivatives with discrete difference quotients.
-For example, the spatial first-order forward finite difference is derived by approximating the derivative at a point $z_n$ as:
+For example, the spatial first-order forward finite difference is derived by approximating the derivative at a point $z_n$ as
 
 ```{math}
 :label: finite_difference_scheme

@@ -33,7 +33,7 @@ In the simplest case, an optimization problem consists of minimizing a function 
 ```{math}
 :label: objective
 
-\min_x f(x)
+\min_x f(x).
 ```
 
 In practice, many variables are subject to optimization simultaneously, multiple criteria must be balanced, and additional constraints need to be considered:
@@ -66,20 +66,20 @@ It allows the addition of any number of variables, each with optional lower and 
 Optimization algorithms often struggle when variables span multiple orders of magnitude, as large differences in scale distort the relative influence of each parameter on the objective function {cite}`Heymann2022`.
 Without normalization, the optimizer effectively treats all parameters as if they operate on the same scale, leading to biased exploration and an increased risk of missing optimal regions at the lower end of wide-ranging variables.
 CADET-Process addresses this by supporting both linear and logarithmic normalization, mapping each variable to a consistent $[0, 1]$ domain while handling the inverse transformation back to physical units transparently.
-The linear normalization is defined as:
+The linear normalization is defined as
 
 ```{math}
 :label: linear_normalization
 
-x^\prime = \frac{x - x_{lb}}{x_{ub} - x_{lb}}
+x^\prime = \frac{x - x_{lb}}{x_{ub} - x_{lb}}.
 ```
 
-The logarithmic normalization is defined as:
+The logarithmic normalization is defined as
 
 ```{math}
 :label: log_normalization
 
-x^\prime = \frac{log \left( \frac{x}{x_{lb}} \right) }{log \left( \frac{x_{ub} }{x_{lb}} \right) }
+x^\prime = \frac{log \left( \frac{x}{x_{lb}} \right) }{log \left( \frac{x_{ub} }{x_{lb}} \right) }.
 ```
 
 ```{raw} latex
@@ -188,7 +188,7 @@ CADET-Process supports such reparametrizations through user-defined dependency f
 
 Linear constraints restrict the feasible region through linear relationships between variables.
 CADET-Process supports both inequality and equality linear constraints.
-Inequality constraints take the form:
+Inequality constraints take the form
 
 ```{math}
 :label: linear_constraints_ineq
@@ -196,7 +196,7 @@ Inequality constraints take the form:
 A_{\leq} \cdot x \leq b_{\leq},
 ```
 
-and equality constraints:
+and equality constraints take the form
 
 ```{math}
 :label: linear_constraints_eq

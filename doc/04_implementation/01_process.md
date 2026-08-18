@@ -114,7 +114,7 @@ For simulations spanning multiple cycles, each event's execution time is offset 
 Consequently, the execution time $t_{j,n}$ of a dependent event $j$ during the $nth$ cycle is calculated using the following equation:
 
 $$
-t_{j,n} = \left( n - 1 \right) \Delta t_{\text{cycle}} + \sum_i^{n_{\text{dep}}} \lambda_i \cdot f_i(t_{\text{dep},i}) ,
+t_{j,n} = \left( n - 1 \right) \Delta t_{\text{cycle}} + \sum_i^{n_{\text{dep}}} \lambda_i \cdot f_i(t_{\text{dep},i}),
 $$
 
 where $\Delta t_{\text{cycle}}$ represents the cycle time, $n_{\text{dep}}$ is the number of dependencies of event $j$, $t_{\text{dep},i}$ is the time of dependency $i$, $\lambda_i$ is a linear factor, and $f_i$ is a transform function.

@@ -426,8 +426,8 @@ WENO
 | $D_p$                              | Pore diffusion coefficient                                  | $\text{m}^{2}\,\text{s}^{-1}$                  |
 | $e_{\text{fwd}/\text{bwd},\ell,r}$ | Reaction order of component $\ell$ in reaction $r$          |                                                |
 | $EC_i$                             | Specific eluent consumption for component $i$               | $\text{m}^{3}\,\text{mol}^{-1}$                |
-| $F$                                | Phase ratio                                                 |                                                |
-| $f_{\text{ads}}$                   | Adsorption isotherm function                                |                                                |
+| $F$                                | Phase ratio, $(1 - \varepsilon^t) / \varepsilon^t$          |                                                |
+| $f_{\text{ads},i}$                 | Adsorption isotherm function                                |                                                |
 | $\mathcal{F}$                      | Numerical flux function (finite volume)                     |                                                |
 | $f_{\text{react},i}$               | Reaction flux for component $i$                             | $\text{mol}\,\text{m}^{-3}\,\text{s}^{-1}$     |
 | $k_a$                              | Adsorption rate constant                                    | $\text{m}^{3}\,\text{mol}^{-1}\,\text{s}^{-1}$ |
