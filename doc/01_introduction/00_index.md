@@ -23,7 +23,7 @@ At the same time, progress in theoretical modeling and numerical simulation deep
 Meanwhile, advances in material science made it possible to produce highly selective adsorbents, opening up opportunities in the biopharmaceutical industry, a trend that continues today {cite}`SchmidtTraub2020`.
 
 Today, the technique is widely used, as a broad range of stationary phases can be combined with diverse solvents.
-Its applications span from analytical chromatography, primarily used for characterization and quantification, to large-scale preparative purification of bulk chemicals on multi-ton scales
+Its applications span from analytical chromatography, primarily used for characterization and quantification, to large-scale preparative purification of bulk chemicals on multi-ton scales.
 These preparative applications include the separation of petrochemical isomers and sugars, as well as the purification of essential compounds such as amino acids and pharmaceuticals.
 In addition, it plays an important role in complex separations in the biopharmaceutical industry, where stringent requirements regarding purity and regulatory compliance must be met {cite}`SchmidtTraub2020`.
 
@@ -72,8 +72,8 @@ Several commercial programs are available which provide parts of the aforementio
 Most of these programs are aimed at experimentalists and allow users to carry out simulations of simple processes without requiring programming expertise.
 In contrast, there exist many highly application-specific programs in academia which were developed to examine individual research questions.
 However, neither provides the flexibility and customizability required for the *ab initio* development of novel process concepts.
-A notable exception here is **CADET** by the Forschungszentrum Jülich {cite}`Leweke2018,Leweke2025`
-Its numerical simulation engine **CADET-Core** offers a diverse family of binding, reaction, and unit operation models for simulating a large range of separation processes.
+A notable exception here is CADET by the Forschungszentrum Jülich {cite}`Leweke2018,Leweke2025`.
+Its numerical simulation engine CADET-Core offers a diverse family of binding, reaction, and unit operation models for simulating a large range of separation processes.
 Multiple unit operations can be connected in a network, generally allowing even complex process configurations to be represented.
 Yet CADET-Core is primarily a numerical solver for the partial differential equations, and defining advanced operating concepts requires an additional abstraction layer.
 Moreover, it provides no dedicated tools for process evaluation, parameter estimation, or optimization.
@@ -82,10 +82,10 @@ Moreover, it provides no dedicated tools for process evaluation, parameter estim
 To address these limitations, a modular framework for the efficient modeling, simulation, parameter estimation, and optimization of chromatographic processes was developed for this work.
 The framework implements a modular architecture where process configuration, simulation, evaluation, and optimization exist as independent components that can be developed, tested, and exchanged separately.
 This design enables flexible combination of physico-chemical models, numerical solvers, process configurations, and optimization algorithms.
-The software is implemented in an object-oriented paradigm in the programming language **Python**.
-It provides an interface to **CADET-Core**, which serves as the primary solver within the framework; however, the architecture is sufficiently flexible to accommodate alternative solvers.
-This tight integration motivated the designation of the framework as **CADET-Process**.
-The code is open source and distributed under *GPL* version 3, making it freely accessible to both academic and industrial users.
+The software is implemented in an object-oriented paradigm in the programming language Python.
+It provides an interface to CADET-Core, which serves as the primary solver within the framework; however, the architecture is sufficiently flexible to accommodate alternative solvers.
+This tight integration motivated the designation of the framework as *CADET-Process*.
+The code is open source and distributed under GPL version 3, making it freely accessible to both academic and industrial users.
 The repository is publicly available at [https://github.com/fau-advanced-separations/CADET-Process](https://github.com/fau-advanced-separations/CADET-Process).
 
 Best practices for sustainable scientific software development have been applied throughout this work, as reliability and reproducibility are of particular importance in a scientific context where results must be verifiable by others.
