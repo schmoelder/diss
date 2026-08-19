@@ -71,27 +71,31 @@ Guido van Rossum, the creator of the Python programming language, introduced a s
 Alongside *PEP-8*, the "Zen of Python" (*PEP-20*) condenses the same attitude into 19 aphorisms, several of which restate the principles discussed above in compressed form.
 Their phrasing is deliberately light, and one entry is an in-joke about Van Rossum's Dutch nationality, but the collection is not decorative: it records the design consensus of the community that maintains the language, and it is the standard against which Python code is judged in review.
 
-> 1. Beautiful is better than ugly.
-> 1. Explicit is better than implicit.
-> 1. Simple is better than complex.
-> 1. Complex is better than complicated.
-> 1. Flat is better than nested.
-> 1. Sparse is better than dense.
-> 1. Readability counts.
-> 1. Special cases aren't special enough to break the rules.
-> 1. Although practicality beats purity.
-> 1. Errors should never pass silently.
-> 1. Unless explicitly silenced.
-> 1. In the face of ambiguity, refuse the temptation to guess.
-> 1. There should be one-- and preferably only one --obvious way to do it.
-> 1. Although that way may not be obvious at first unless you're Dutch.
-> 1. Now is better than never.
-> 1. Although never is often better than *right* now.
-> 1. If the implementation is hard to explain, it's a bad idea.
-> 1. If the implementation is easy to explain, it may be a good idea.
-> 1. Namespaces are one honking great idea -- let's do more of those!
->
-> — Tim Peters, *PEP 20 – The Zen of Python* {cite}`PEP20`
+::::{container} zenquote
+:::{line-block}
+Beautiful is better than ugly.
+Explicit is better than implicit.
+Simple is better than complex.
+Complex is better than complicated.
+Flat is better than nested.
+Sparse is better than dense.
+Readability counts.
+Special cases aren't special enough to break the rules.
+Although practicality beats purity.
+Errors should never pass silently.
+Unless explicitly silenced.
+In the face of ambiguity, refuse the temptation to guess.
+There should be one, and preferably only one, obvious way to do it.
+Although that way may not be obvious at first unless you're Dutch.
+Now is better than never.
+Although never is often better than *right* now.
+If the implementation is hard to explain, it's a bad idea.
+If the implementation is easy to explain, it may be a good idea.
+Namespaces are one honking great idea; let's do more of those!
+:::
+
+— Tim Peters, *PEP 20: The Zen of Python* {cite}`PEP20`
+::::
 
 None of these principles is enforceable in the way a compiler enforces syntax.
 They decide between implementations that are all technically correct, and they hold because the community applies them in review and in discussion, which makes them a matter of culture rather than of rules.

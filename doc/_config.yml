@@ -140,6 +140,17 @@ sphinx:
         \usepackage{setspace}
         \onehalfspacing
 
+        % Keep the Zen of Python compact and attach its attribution.
+        % The list separations are zero here, so the quote adds no space of its
+        % own: the gap below the block is the \parskip of the following
+        % paragraph. The same amount is added above. It has to be \vspace*, not
+        % \addvspace, because the container starts in horizontal mode, where
+        % \addvspace is a no-op.
+        \newenvironment{sphinxclasszenquote}
+          {\par\vspace*{\parskip}%
+           \begin{samepage}\begin{quote}\small\setstretch{1.0}\setlength{\parskip}{0pt}}
+          {\end{quote}\end{samepage}}
+
         %% Code blocks: Override the fontsize command defined and used by fancyvrb (which implements Verbatim environments).
         %% \renewcommand{\FV@FontSize}{\scriptsize}
 
