@@ -104,6 +104,10 @@ Peak boundaries were defined by start and stop times, and baseline correction wa
 The individual results will be discussed in the following chapters.
 Unless noted otherwise, all experiments were performed at pH 5.
 
+```{raw} latex
+\begin{landscape}
+```
+
 ```{table} Overview of experiments performed for model calibration
 :name: tab_experiments
 :class: longtable
@@ -120,4 +124,8 @@ Unless noted otherwise, all experiments were performed at pH 5.
 | E7  | Determine diffusion characteristics  | Particle porosity, film diffusion, pore diffusion                      | -                                    | $0.2~\text{mM}$ Lysozyme        | 50             | $B$                                                  |
 | E8  | Determine capacity                   | Capacity                                                               | -                                    | $18.2~\text{mM}$ $\ce{NaOH}$    | -              | Water $\rightarrow$ $\ce{NaOH}$ (step)               |
 | E9  | Determine adsorption characteristics | Adsorption rate, desorption rate, characteristic charge, steric factor | -                                    | $0.2~\text{mM}$ Lysozyme        | 50             | $A \rightarrow B$ (Gradient: 4, 6, 8, 12, 14, 16 CV) |
+```
+
+```{raw} latex
+\end{landscape}
 ```
