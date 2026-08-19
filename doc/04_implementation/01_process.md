@@ -13,6 +13,10 @@ The following sections describe each of these building blocks in turn.
 A {class}`UnitOperation <CADETProcess.processModel.UnitBaseClass>` represents the physico-chemical behavior of an apparatus and holds the model parameters.
 {numref}`unit_operation` displays a UML class diagram (see {numref}`uml`) illustrating the unit operation's structure and relationships.
 
+```{raw} latex
+\begin{landscape}
+```
+
 ```{figure} ./figures/unit_operation.png
 :name: unit_operation
 :width: 100%
@@ -25,6 +29,10 @@ Each unit operation also has information about components involved in the system
 Optionally, unit operations can also be associated with binding and reaction models.
 Both are defined as abstract interfaces where concrete implementations specify the corresponding parameters (demonstrated here by a `Linear` and `MassActionLaw` class respectively).
 For unit operations in which binding models or reactions are not modeled, the `NoBinding` and `NoReaction` classes are used.
+```
+
+```{raw} latex
+\end{landscape}
 ```
 
 To ensure consistency across all parts of the process, a {class}`~CADETProcess.processModel.ComponentSystem` must be configured and assigned to all unit operations.
