@@ -166,6 +166,16 @@ fig.subplots_adjust(wspace=0.6)
 glue("fig_e9_meta_scores", fig, display=False)
 ```
 
+```{raw} latex
+% The section ends right after these two figures, with too little body text left
+% to absorb them. Left floating, they exceed one page together and each claims a
+% float page, stranding the short one mid-page with white above and below.
+% Placing them inline keeps them with the text they follow.
+\let\oldfigure\figure
+\let\endoldfigure\endfigure
+\renewenvironment{figure}[1][htbp]{\oldfigure[H]}{\endoldfigure}
+```
+
 ```{glue:figure} fig_e9_meta_scores
 :name: fig_e9_meta_scores
 
@@ -178,4 +188,9 @@ Darker shades represent individuals evaluated in later generations.
 
 Evaluated objective values per optimization variable in experiment `E9`, assuming non-limiting film diffusion and rapid equilibrium.
 Darker shades represent individuals evaluated in later generations.
+```
+
+```{raw} latex
+\let\figure\oldfigure
+\let\endfigure\endoldfigure
 ```

@@ -49,6 +49,7 @@ sphinx:
     - sphinx.ext.intersphinx
   local_extensions:
     bibliography_position: _ext/
+    table_floats: _ext/
   config:
     # List with examples 👇 https://de.overleaf.com/learn/latex/Bibtex_bibliography_styles
     bibtex_reference_style: label
@@ -114,6 +115,8 @@ sphinx:
 
         % Load packages
         \usepackage{etoc}
+        \usepackage{flafter}
+        \usepackage{float}
         \usepackage{mhchem}
         \usepackage{needspace}
         \usepackage{pdflscape}
@@ -131,12 +134,6 @@ sphinx:
         \usepackage{epigraph}
         \setlength\epigraphwidth{.8\textwidth}
         \setlength\epigraphrule{0pt}
-
-        % Table floats
-        \usepackage{float}
-        \let\oldtable\table
-        \let\endoldtable\endtable
-        \renewenvironment{table}[1][H]{\oldtable[H]}{\endoldtable}
 
         % Font Sizes
         %% Standard text

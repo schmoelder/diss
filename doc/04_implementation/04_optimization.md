@@ -442,10 +442,10 @@ glue("pareto", fig, display=False)
 ```
 
 ```{raw} latex
-% Force the pareto/convergence pair onto one page with [H] placement: the
-% chapter ends right after convergence, leaving too little body text to
-% absorb two floating figures, which otherwise strands each on its own
-% near-empty page (same structural issue as the chapter 6 float pages).
+% The chapter ends right after the convergence figure, with too little body text
+% left to absorb two more floats. Left floating, the pair claims a whole float
+% page and strands the outro on a near-empty page after it. Placing them inline
+% instead lets the outro follow them on the same page.
 \let\oldfigure\figure
 \let\endoldfigure\endfigure
 \renewenvironment{figure}[1][htbp]{\oldfigure[H]}{\endoldfigure}
@@ -480,6 +480,7 @@ Convergence of the optimization algorithm: objective values plotted against the 
 \let\figure\oldfigure
 \let\endfigure\endoldfigure
 ```
+
 ---
 
 With the CADET-Process framework fully established, covering process configuration, simulation, performance evaluation, and optimization, the focus shifts to its practical application.
