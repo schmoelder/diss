@@ -1,0 +1,26 @@
+.bd-content div.cell > div.cell_input,
+.bd-content div.cell > div.cell_input .highlight,
+.bd-content div.cell > div.cell_input pre {
+  border-radius: 0 !important;
+}
+
+.bd-content div.cell > div.cell_input pre,
+.bd-content div.cell > div.cell_input code {
+  font-family: "JetBrains Mono", monospace;
+}
+
+.zenquote {
+  border-left: 2px solid var(--pst-color-border);
+  line-height: 1.25;
+  margin: 1rem 0 1rem 1rem;
+  padding-left: 1rem;
+}
+
+.zenquote .line-block {
+  margin: 0;
+}
+
+.zenquote > p:last-child {
+  font-size: 0.9em;
+  margin: 0.5rem 0 0;
+}
