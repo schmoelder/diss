@@ -105,6 +105,7 @@ from CADETProcess import plotting
 DEMO_PANEL_IN = 45/25.4
 #: The 1x2 convergence plot is only half as tall and is sized on its own.
 CONVERGENCE_PANEL_IN = 65/25.4
+DEMO_MARKER_SIZE = 4.0
 
 
 def setup_demo_axes(nrows=2, ncols=2, share=True, panel_in=DEMO_PANEL_IN):
@@ -125,6 +126,13 @@ def setup_demo_axes(nrows=2, ncols=2, share=True, panel_in=DEMO_PANEL_IN):
     )
 
 
+def set_demo_marker_size(axes, marker_size=DEMO_MARKER_SIZE):
+    for axis in axes.flat:
+        for collection in axis.collections:
+            if hasattr(collection, "set_sizes"):
+                collection.set_sizes([marker_size])
+
+
 optimization_problem = OptimizationProblem('no_transform_demo')
 optimization_problem.add_variable(r'$\varepsilon_{\text{bed}}$', lb=0.1, ub=0.8)
 optimization_problem.add_variable(r'$D_{\text{ax}}$', lb=1e-9, ub=1e-4)
@@ -134,6 +142,7 @@ pop = optimization_problem.create_population(x0)
 
 fig, axs = setup_demo_axes()
 pop.plot_pairwise(autoscale=True, ax=axs)
+set_demo_marker_size(axs)
 fig.tight_layout()
 glue("fig_initial_values", fig, display=False)
 
@@ -146,6 +155,7 @@ pop = optimization_problem.create_population(x0)
 
 fig, axs = setup_demo_axes()
 pop.plot_pairwise(autoscale=True, ax=axs)
+set_demo_marker_size(axs)
 fig.tight_layout()
 glue("fig_initial_values_normalized", fig, display=False)
 ```
@@ -372,6 +382,7 @@ pop = optimization_problem.create_population(x0)
 
 fig, axs = setup_demo_axes()
 pop.plot_pairwise(autoscale=True, ax=axs)
+set_demo_marker_size(axs)
 fig.tight_layout()
 glue("uniform_samples", fig, display=False)
 ```
@@ -407,6 +418,7 @@ optimization_results = optimizer.optimize(optimization_problem, save_results=Fal
 
 fig, axs = setup_demo_axes(share=False)
 optimization_results.plot_objectives(autoscale=False, ax=axs)
+set_demo_marker_size(axs)
 fig.tight_layout()
 glue("objectives", fig, display=False)
 ```
@@ -424,6 +436,7 @@ The prominent minima are indicative of successful convergence.
 
 fig, ax = setup_demo_axes()
 optimization_results.plot_pareto(autoscale=False, ax=ax)
+set_demo_marker_size(ax)
 fig.tight_layout()
 glue("pareto", fig, display=False)
 ```
