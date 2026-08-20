@@ -69,7 +69,16 @@ sphinx:
       figure: "Fig. %s"
       table: "Tab. %s"
       code-block: "Code %s"
-    latex_logo: "_static/logo.png"
+    # Bare submission year, matching the FAU Deckblatt convention in
+    # ../Umschlag/umschlag.tex, rather than Sphinx's default build-date string.
+    today: "2026"
+    # Corporate-design assets for the FAU Deckblatt (see \FAUDeckblatt in the
+    # preamble below); copied from ../Umschlag/titlepage/ since the LaTeX
+    # build only has access to files inside doc/.
+    latex_additional_files:
+      - "_static/titlepage/FAU_Wortmarke_black.pdf"
+      - "_static/titlepage/FAU_UK_Techfak_EN_black.pdf"
+      - "_static/titlepage/FAU_Siegel_black.pdf"
     latex_elements:
       papersize: "a4paper"
       pointsize: "12"
@@ -114,6 +123,7 @@ sphinx:
         \makeatletter
 
         % Load packages
+        \usepackage{anyfontsize}
         \usepackage{etoc}
         \usepackage{flafter}
         \usepackage{float}
@@ -121,6 +131,7 @@ sphinx:
         \usepackage{needspace}
         \usepackage{pdflscape}
         \usepackage{placeins}
+        \usepackage{tikz}
         \usepackage{unicode-math}
 
         % Use a dedicated typeface for rendered notebook inputs only.
@@ -129,6 +140,43 @@ sphinx:
         % German title, required on the title page for English-language dissertations
         % (RPromO 2024, Anlage).
         \newcommand{\germantitle}{Ein modulares Framework zur Modellierung und Optimierung chromatographischer Prozesse}
+
+        % Official FAU Deckblatt (corporate design cover page), adapted from
+        % ../Umschlag/titlepage/titlepage.tex. Kept as its own command rather
+        % than overriding \maketitle, since sphinx already owns that name;
+        % called once, before \mysphinxtitle, in the maketitle hook below.
+        % Only the print (black-on-white) variant is used, matching the rest
+        % of the document.
+        % No \makeatletter/\makeatother here: the outer preamble already
+        % opened one a few lines up (for \CodeCellFont) and doesn't close it
+        % until just before "Normal Page Style" below; nesting a second pair
+        % here would turn `@` back into a plain character in between,
+        % breaking sphinx's own \py@HeaderFamily-style macro names.
+        \newcommand{\FAUDeckblatt}{%
+          \newgeometry{top=12mm, bottom=0mm, left=25mm, right=12mm}
+          \begin{titlepage}{%
+            \raggedright
+            \begingroup
+            \tikzset{every picture/.style={}}
+            \begin{tikzpicture}
+              \node[anchor=north west, inner sep=0] at (0,\textheight) {\includegraphics[trim={17.1mm 0 17.1mm 17.1mm}, clip, width=66.8mm]{FAU_Wortmarke_black.pdf}};
+              \node[anchor=north east, inner sep=0] at (\textwidth,\textheight) {\includegraphics[trim={17.1mm 0 17.1mm 16.5mm}, clip, width=66.8mm]{FAU_UK_Techfak_EN_black.pdf}};
+              \node[anchor=south east, inner sep=0, xshift=-13.6mm, yshift=10mm] at (\textwidth,0) {\includegraphics[trim={21.74mm 21.74mm 21.74mm 21.74mm}, clip, width=40mm]{FAU_Siegel_black.pdf}};
+              \node[right, inner sep=-2pt] at (0,200mm) {\fontsize{40}{48}\selectfont\bfseries\sffamily Doctoral thesis\hfill\par};
+              \draw[line width=1.6pt] (0,180mm) -- (\textwidth,180mm);
+              \node[right, text width=\textwidth, inner sep=0] at (0,160mm) {\fontsize{17}{20.4}\selectfont\sffamily\@date\hfill\par};
+              \draw[line width=1.6pt] (0,140mm) -- (\textwidth,140mm);
+              \node[right, text width=\textwidth, inner sep=0] at (0,120mm) {\fontsize{24}{28.8}\selectfont\sffamily\@author\hfill\par};
+              \draw[line width=1.6pt] (0,100mm) -- (\textwidth,100mm);
+              \node[right, text width=\textwidth, inner sep=0] at (0,80mm) {\fontsize{17}{20.4}\selectfont\slshape\bfseries\sffamily\@title\hfill\par};
+              \draw[line width=1.6pt] (0,60mm) -- (\textwidth,60mm);
+            \end{tikzpicture}
+            \endgroup
+          }
+          \end{titlepage}
+          \restoregeometry
+          \clearpage
+        }
 
         % Epigraph
         \usepackage{epigraph}
@@ -359,6 +407,8 @@ sphinx:
           \sphinxrestorepageanchorsetting
           \setcounter{footnote}{0}%
         }
+        \FAUDeckblatt
+        \shipout\null
         \mysphinxtitle
         \makeatother
 
