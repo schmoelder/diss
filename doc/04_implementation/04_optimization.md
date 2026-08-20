@@ -100,27 +100,34 @@ With normalization ({numref}`fig_initial_values_normalized`), samples are distri
 from CADETProcess.optimization import OptimizationProblem
 from CADETProcess import plotting
 
-#: 2x2 grids come out at 90 mm, which keeps them under 48 % of the text height
-#: including the caption and therefore lets two share a page.
+#: 2x2 grids come out at 90 mm tall, which keeps them under 48 % of the text
+#: height including the caption and therefore lets two share a page.
 DEMO_PANEL_IN = 45/25.4
+#: Wider than DEMO_PANEL_IN for the pairwise initial-value demos specifically:
+#: those panels were reading as cramped, and widening only the width (not the
+#: shared square panel_in) keeps the page-height budget above unchanged.
+DEMO_PANEL_WIDTH_IN = 52/25.4
 #: The 1x2 convergence plot is only half as tall and is sized on its own.
 CONVERGENCE_PANEL_IN = 65/25.4
 DEMO_MARKER_SIZE = 4.0
 
 
-def setup_demo_axes(nrows=2, ncols=2, share=True, panel_in=DEMO_PANEL_IN):
+def setup_demo_axes(nrows=2, ncols=2, share=True, panel_in=DEMO_PANEL_IN, panel_width_in=None):
     """Create a grid of demo panels at a fixed physical size.
 
     The optimization demos are sized by panel rather than by figure, so that
     the 2x2 grids come out identical. `share` mirrors what the plot method
     would set up on its own: the pairwise plots share axes per column and row,
-    `plot_objectives` and `plot_convergence` do not.
+    `plot_objectives` and `plot_convergence` do not. `panel_width_in` overrides
+    the panel width alone, independent of its height.
     """
+    if panel_width_in is None:
+        panel_width_in = panel_in
     sharing = {"sharex": "col", "sharey": "row"} if share else {}
     return plotting.setup_figure(
         nrows=nrows,
         ncols=ncols,
-        figsize=(ncols*panel_in, nrows*panel_in),
+        figsize=(ncols*panel_width_in, nrows*panel_in),
         squeeze=False,
         **sharing,
     )
@@ -133,6 +140,22 @@ def set_demo_marker_size(axes, marker_size=DEMO_MARKER_SIZE):
                 collection.set_sizes([marker_size])
 
 
+def set_demo_limits(axes, bounds):
+    """Force the same axis limits on both pairwise demo figures.
+
+    Autoscaling fits each panel to its own sampled points, so a clustered
+    sample and a spread-out sample can end up looking similarly distributed
+    once each is scaled to fill its panel. Fixing both figures to the true
+    variable bounds keeps the comparison honest.
+    """
+    for col, (lb, ub) in enumerate(bounds):
+        axes[-1, col].set_xlim(lb, ub)
+    for row, (lb, ub) in enumerate(bounds):
+        axes[row, 0].set_ylim(lb, ub)
+
+
+DEMO_VARIABLE_BOUNDS = [(0.1, 0.8), (1e-9, 1e-4)]
+
 optimization_problem = OptimizationProblem('no_transform_demo')
 optimization_problem.add_variable(r'$\varepsilon_{\text{bed}}$', lb=0.1, ub=0.8)
 optimization_problem.add_variable(r'$D_{\text{ax}}$', lb=1e-9, ub=1e-4)
@@ -140,9 +163,10 @@ optimization_problem.add_variable(r'$D_{\text{ax}}$', lb=1e-9, ub=1e-4)
 x0 = optimization_problem.create_initial_values(2*64)
 pop = optimization_problem.create_population(x0)
 
-fig, axs = setup_demo_axes()
+fig, axs = setup_demo_axes(panel_width_in=DEMO_PANEL_WIDTH_IN)
 pop.plot_pairwise(autoscale=True, ax=axs)
 set_demo_marker_size(axs)
+set_demo_limits(axs, DEMO_VARIABLE_BOUNDS)
 fig.tight_layout()
 glue("fig_initial_values", fig, display=False)
 
@@ -153,9 +177,10 @@ optimization_problem.add_variable(r'$D_{\text{ax}}$', lb=1e-9, ub=1e-4, transfor
 x0 = optimization_problem.create_initial_values(2*64)
 pop = optimization_problem.create_population(x0)
 
-fig, axs = setup_demo_axes()
+fig, axs = setup_demo_axes(panel_width_in=DEMO_PANEL_WIDTH_IN)
 pop.plot_pairwise(autoscale=True, ax=axs)
 set_demo_marker_size(axs)
+set_demo_limits(axs, DEMO_VARIABLE_BOUNDS)
 fig.tight_layout()
 glue("fig_initial_values_normalized", fig, display=False)
 ```
@@ -380,7 +405,7 @@ import matplotlib.pyplot as plt
 x0 = optimization_problem.create_initial_values(n_samples=1000)
 pop = optimization_problem.create_population(x0)
 
-fig, axs = setup_demo_axes()
+fig, axs = setup_demo_axes(panel_width_in=DEMO_PANEL_WIDTH_IN)
 pop.plot_pairwise(autoscale=True, ax=axs)
 set_demo_marker_size(axs)
 fig.tight_layout()

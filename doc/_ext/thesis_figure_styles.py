@@ -18,6 +18,11 @@ CHARACTERIZATION_SINGLE_OBJECTIVE_HEIGHT_IN = 1.9
 CHROMATOGRAM_HEIGHT_IN = 55 / MM_PER_INCH
 CHROMATOGRAM_MIN_WIDTH_IN = 90 / MM_PER_INCH
 CHROMATOGRAM_COLUMN_WIDTH_IN = 2.05
+#: Same as SPARSE_CHROMATOGRAM_COLUMN_WIDTH_IN: two-column Pareto-edge
+#: chromatogram grids left visible horizontal margin at 2.05in/col, and
+#: matching the sparse-chromatogram width keeps every "two column
+#: chromatogram figure" in chapter 6 the same size.
+MOO_CHROMATOGRAM_COLUMN_WIDTH_IN = 2.8
 SPARSE_CHROMATOGRAM_COLUMN_WIDTH_IN = 2.8
 
 COMPARISON_WIDTH_IN = 100 / MM_PER_INCH

@@ -64,12 +64,19 @@ def resize_objective_comparison_figure(
     fig: plt.Figure,
     ncols: int = 1,
     nrows: int = 1,
+    row_height_in: float = OBJECTIVE_ROW_HEIGHT_IN,
 ) -> plt.Figure:
     width_in = ncols * OBJECTIVE_COLUMN_WIDTH_IN
     if nrows == 1:
-        height_in = SINGLE_OBJECTIVE_GRID_PRESET.row_height_in
+        # CHARACTERIZATION_SINGLE_OBJECTIVE_HEIGHT_IN is calibrated to match a
+        # multi-row grid using the *default* OBJECTIVE_ROW_HEIGHT_IN (see
+        # thesis_figure_styles.py); scale it if the figure being matched
+        # against uses a different row height (e.g. shrunk to fit a page).
+        height_in = SINGLE_OBJECTIVE_GRID_PRESET.row_height_in * (
+            row_height_in / OBJECTIVE_ROW_HEIGHT_IN
+        )
     else:
-        height_in = nrows * OBJECTIVE_ROW_HEIGHT_IN
+        height_in = nrows * row_height_in
     fig.set_size_inches(width_in, height_in)
     fig.tight_layout()
     return fig
@@ -107,13 +114,13 @@ def _format_objective_variable_label(label: str) -> str:
         "tubing_pre_column_axial_dispersion": "axial dispersion",
         "tubing_post_column_axial_dispersion": "axial dispersion",
         "tubing_detectors_axial_dispersion": "axial dispersion",
-        "axial_dispersion": "axial dispersion",
+        "axial_dispersion": r"$D_{ax}~/~\text{m}^{2}\,\text{s}^{-1}$",
         "mixer_volume": "mixer volume",
         "bed_porosity": "bed porosity",
-        "particle_porosity": "particle porosity",
-        "film_diffusion": "film diffusion",
-        "characteristic_charge": "characteristic charge",
-        "adsorption_rate": "adsorption rate",
+        "particle_porosity": r"$\varepsilon^p~/~-$",
+        "film_diffusion": r"$k_f~/~\text{m}\,\text{s}^{-1}$",
+        "characteristic_charge": r"$\nu~/~-$",
+        "adsorption_rate": r"$K_{\text{eq}}~/~\text{m}_\text{l}^3\,\text{m}_\text{s}^{-3}$",
     }
     return labels.get(label, label.replace("_", " "))
 

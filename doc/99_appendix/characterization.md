@@ -45,13 +45,27 @@ parameters_all = load_all_parameters(final_parameters_branch)
 
 from e0 import plot
 from parameter_estimation_figures import resize_comparison_figure
+from thesis_figure_styles import (
+    CHARACTERIZATION_SINGLE_OBJECTIVE_HEIGHT_IN,
+    CHARACTERIZATION_SINGLE_OBJECTIVE_WIDTH_IN,
+)
 
 fig, ax = plot()
 ax.lines[0].set_markersize(4)
-ax.set_ylabel(r"$c_{\mathrm{salt}}~/~\mathrm{mM}$")
+# e0.plot() sizes its own fonts for an 8x6in canvas; rescale to the
+# thesis' font_medium/font_small (10pt/8pt) convention for a resized figure
+# (see CADETProcess.plotting.figure_layouts["1_col"]) instead of shrinking a
+# figure authored at fixed point sizes, which left everything oversized.
+ax.set_xlabel(ax.get_xlabel(), fontsize=10)
+ax.set_ylabel(r"$c_{\mathrm{salt}}~/~\mathrm{mM}$", fontsize=10)
+ax.tick_params(labelsize=8)
 ax.texts[0].set_fontsize(8)
 ax.texts[0].set_bbox(None)
-resize_comparison_figure(fig, width_in=90/25.4)
+resize_comparison_figure(
+    fig,
+    width_in=CHARACTERIZATION_SINGLE_OBJECTIVE_WIDTH_IN,
+    height_in=CHARACTERIZATION_SINGLE_OBJECTIVE_HEIGHT_IN,
+)
 glue("fig_conductivity", fig, display=False)
 ```
 

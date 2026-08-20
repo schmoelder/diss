@@ -152,6 +152,11 @@ fig, axs = plot_meta_score(
     study_root,
     parameters_all["e9_lrmp_4_cv"]["branch_name"],
 )
+# Override the submodule's plain-text/unitless xlabels to match the thesis'
+# symbol-and-unit convention; K_eq is not actually dimensionless (see the
+# nomenclature table and the intro sentence above).
+axs[0].set_xlabel(r"$\nu~/~-$")
+axs[1].set_xlabel(r"$K_{\text{eq}}~/~\text{m}_\text{l}^3\,\text{m}_\text{s}^{-3}$")
 axs[1].set_ylabel('')
 axs[1].tick_params(labelleft=False)
 for ax in axs:
@@ -161,8 +166,11 @@ for ax in axs:
     ax.set_yscale("linear")
     ax.yaxis.set_major_locator(matplotlib.ticker.MaxNLocator(nbins=5, min_n_ticks=4))
     ax.xaxis.set_major_locator(matplotlib.ticker.MaxNLocator(nbins=4, min_n_ticks=3))
-resize_objective_comparison_figure(fig, ncols=2, nrows=1)
-fig.subplots_adjust(wspace=0.6)
+resize_objective_comparison_figure(fig, ncols=2, nrows=1, row_height_in=1.4)
+# axs[1] no longer carries its own y-axis label/ticks (removed above as
+# redundant), so it no longer needs the wide clearance a prior tuning pass
+# left in place here; a small gap is enough now.
+fig.subplots_adjust(wspace=0.15)
 glue("fig_e9_meta_scores", fig, display=False)
 ```
 

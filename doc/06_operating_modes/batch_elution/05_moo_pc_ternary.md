@@ -52,6 +52,7 @@ from operating_modes.post_processing import (
     setup_overview,
 )
 from operating_mode_figures import (
+    MOO_CHROMATOGRAM_COLUMN_WIDTH_IN,
     TEXT_WIDTH_IN,
     create_figure_directives,
     plot_moo_chromatogram_figures,
@@ -193,7 +194,7 @@ from operating_modes.post_processing import (
 fig_nodes, axs = plotting.setup_figure(
     nrows=3,
     ncols=2,
-    figsize=(TEXT_WIDTH_IN, 3 * 48/25.4),
+    figsize=(2 * MOO_CHROMATOGRAM_COLUMN_WIDTH_IN, 3 * 48/25.4),
     squeeze=False,
 )
 optimization_problem = moo_results.optimization_problem

@@ -285,6 +285,7 @@ plotting.add_text(axs[0], r"(a)")
 simulation_results[2].solution.column.outlet.plot(ax=axs[1], end=85*60)
 plotting.add_text(axs[1], r"(c)")
 
+resize_sparse_chromatogram_figure(fig_column_outlet, ncols=2)
 glue("moo_fig_outlets", fig_column_outlet, display=False)
 ```
 
